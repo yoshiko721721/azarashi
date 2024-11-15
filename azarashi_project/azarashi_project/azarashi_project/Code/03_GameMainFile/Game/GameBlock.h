@@ -1,6 +1,6 @@
 #pragma once
-#include "Object.h"
-#include "input.h"
+#include "../../01_Direct3D/Object.h"
+#include "../../02_Input/input.h"
 
 	const float groundY = -200.0f; // 地面のY座標
 	const float groundX = 0.0f; // 地面のY座標

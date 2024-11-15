@@ -40,7 +40,7 @@ public:
 	float numU = 0;
 	float numV = 0;
 
-	void Init(const wchar_t* imgname, int sx = 1, int sy = 1);			//初期化
+	void Initialize(const wchar_t* imgname, int sx = 1, int sy = 1);			//初期化
 	void Draw();										//描画
 	void Uninit();										//終了
 	void SetPos(float x, float y, float z);				//座標をセット

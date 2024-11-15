@@ -40,6 +40,18 @@
     <Filter Include="ソース ファイル\説明用">
       <UniqueIdentifier>{7de196b9-552e-4b9a-8035-80987cdfebd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\MainGame.h\Title">
+      <UniqueIdentifier>{438e96cb-baf1-4392-9e8e-28545da49e82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MainGame.h\Game">
+      <UniqueIdentifier>{340d328d-d4f8-4390-bbd8-95fc9b005f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Camera">
+      <UniqueIdentifier>{607e85af-b4d9-4019-85a9-8298b47fe5bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{659835f4-3f12-4a46-89c1-ee7fa7cbbd7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\06_Scene\Scene.cpp">
@@ -66,14 +78,38 @@
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp">
       <Filter>ソース ファイル\Basic.cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\GameScene.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\TitleScene.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
-    </ClCompile>
     <ClCompile Include="Code\ReadMeText.cpp">
       <Filter>ソース ファイル\説明用</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GamePointer.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleCamera.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\07_Camera\Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\07_Camera\CameraManager.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Application.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\GameScene.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
     </ClInclude>
     <ClInclude Include="Code\02_Input\input.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
@@ -101,11 +134,38 @@
     <ClInclude Include="Code\01_Direct3D\Singleton.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\TitleScene.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
-    </ClInclude>
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameBackGround.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameBlock.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameCamera.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GamePointer.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleBackGround.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleCamera.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\07_Camera\Camera.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\07_Camera\CameraManager.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

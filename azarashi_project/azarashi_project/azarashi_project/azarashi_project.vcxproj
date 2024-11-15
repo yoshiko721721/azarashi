@@ -23,12 +23,34 @@
     <ClCompile Include="Code\01_Direct3D\Object.cpp" />
     <ClCompile Include="Code\02_Input\input.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Application.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\GameScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GamePointer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\main.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\TitleScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleCamera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
     <ClCompile Include="Code\06_Scene\SceneManager.cpp" />
+    <ClCompile Include="Code\07_Camera\Camera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\07_Camera\CameraManager.cpp" />
     <ClCompile Include="Code\ReadMeText.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -39,11 +61,35 @@
     <ClInclude Include="Code\01_Direct3D\Singleton.h" />
     <ClInclude Include="Code\02_Input\input.h" />
     <ClInclude Include="Code\03_GameMainFile\Application.h" />
-    <ClInclude Include="Code\03_GameMainFile\GameScene.h" />
-    <ClInclude Include="Code\03_GameMainFile\TitleScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\GameBackGround.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameBlock.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameCamera.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GamePointer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleBackGround.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleCamera.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
     <ClInclude Include="Code\06_Scene\SceneManager.h" />
+    <ClInclude Include="Code\07_Camera\Camera.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Code\07_Camera\CameraManager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Code\04_hlsl\PixelShader.hlsl">

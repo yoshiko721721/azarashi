@@ -1,6 +1,6 @@
 #include "object.h"
 
-void Object::Init(const wchar_t* imgname, int sx, int sy)
+void Object::Initialize(const wchar_t* imgname, int sx, int sy)
 {
 	splitX = sx;
 	splitY = sy;

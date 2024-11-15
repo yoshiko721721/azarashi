@@ -1,6 +1,5 @@
 #pragma once
-#include "camera.h"
-#include "input.h"
+#include "../../07_Camera/Camera.h"
 
 class TitleCamera :public Camera
 {
