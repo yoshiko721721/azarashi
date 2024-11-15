@@ -1,4 +1,5 @@
 #include "GamePointer.h"
+using DirectX::XMFLOAT3 ;
 void GamePointer::Init()
 {
 	Initialize(L"asset/point.png");   //背景を初期化
@@ -23,7 +24,7 @@ void GamePointer::Update(void)//Playerのアップデート
 	pos.y += circle.velocityY;
 	if (pos.x >= groundX - 300 && pos.x <= groundX + 300 && pos.y <= groundY + 25 + circle.radius /* && pos.y >= groundY + 50 + circle.radius&&*/)
 	{
-		pos.y = groundY + circle.radius + 25; // 地面の上に位置を修正
+		pos.y = groundY + circle.radius + 23; // 地面の上に位置を修正
 		///circle.velocityY = 0.0f;			// 速度をゼロにして停止
 	}
 		/*// 地面法線ベクル
@@ -49,3 +50,13 @@ void GamePointer::Update(void)//Playerのアップデート
 	}*/
 	SetPos(pos.x, pos.y, pos.z);
 }
+
+float GamePointer::GetCirclePosX()
+{
+	return circle.velocityX;
+}
+float GamePointer::GetCirclePosY()
+{
+	return circle.velocityY;
+}
+

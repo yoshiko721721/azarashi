@@ -16,7 +16,7 @@ void GameScene::Update()
     GameBackGround.Update();
     GamePointer.Update();
     GameBlock.Update();
-    GameCamera.Update();
+    GameCamera.Update(GamePointer.GetCirclePosX(),GamePointer.GetCirclePosY());
 }
 
 void GameScene::Draw()

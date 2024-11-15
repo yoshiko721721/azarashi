@@ -154,7 +154,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="GameBackGround.h" />
     <ClInclude Include="GameCamera.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="GameBlock.h" />
     <ClInclude Include="GamePointer.h" />

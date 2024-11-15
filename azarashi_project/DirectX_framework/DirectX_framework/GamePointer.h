@@ -18,6 +18,8 @@ public:
 	~GamePointer() { Uninit(); }
 	void Init();  //‰Šú‰»
 	void Update();//XV
+	float GetCirclePosX();
+	float GetCirclePosY();
 private:
 	Input input;
 	Circle circle = { 50.0f, 0.0f , 0.0f};

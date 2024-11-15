@@ -13,5 +13,107 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\MainGame.cpp">
+      <UniqueIdentifier>{096e48dc-a384-4d80-aa23-7ea34bbd26f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Basic.cpp">
+      <UniqueIdentifier>{82ffaf71-7444-42f2-8305-8f42941c71a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene.cpp">
+      <UniqueIdentifier>{13d1d8fe-b9a1-4d9c-b872-8ec553488ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Basic.h">
+      <UniqueIdentifier>{f709e651-28d3-43b5-8e2f-d33be1852fb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MainGame.h">
+      <UniqueIdentifier>{b44f3b4c-fb70-4424-ac5b-6cb37bf2277d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene.h">
+      <UniqueIdentifier>{b6804d38-88b4-4d34-a5c0-6e4a4223a6a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MainGame.cpp\Title">
+      <UniqueIdentifier>{a3c9e030-90b9-4d2a-b79f-cbbade18e216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MainGame.cpp\Game">
+      <UniqueIdentifier>{de2d2c82-1ea9-4c53-910b-fb316e37dfb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\説明用">
+      <UniqueIdentifier>{7de196b9-552e-4b9a-8035-80987cdfebd3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Code\06_Scene\Scene.cpp">
+      <Filter>ソース ファイル\Scene.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\06_Scene\SceneManager.cpp">
+      <Filter>ソース ファイル\Scene.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\01_Direct3D\direct3d.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Application.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\main.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\02_Input\input.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\01_Direct3D\Object.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\GameScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\TitleScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ReadMeText.cpp">
+      <Filter>ソース ファイル\説明用</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\01_Direct3D\direct3d.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Application.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\GameScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\02_Input\input.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\01_Direct3D\Object.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\06_Scene\Scene.h">
+      <Filter>ヘッダー ファイル\Scene.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\06_Scene\SceneManager.h">
+      <Filter>ヘッダー ファイル\Scene.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\01_Direct3D\Singleton.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\TitleScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Code\04_hlsl\PixelShader.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Code\04_hlsl\VertexShader.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
