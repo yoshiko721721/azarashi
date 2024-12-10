@@ -60,10 +60,21 @@ bool BoxCollider::CheckCollision_Box_Circle(Object* m_GamePlayer,Object* p_block
         // 最近接点と円の中心の距離を計算
         float distanceSquared = (closestPoint.x - circlepos.x) * (closestPoint.x - circlepos.x) +
                                 (closestPoint.y - circlepos.y) * (closestPoint.y - circlepos.y);
+
         // 距離が半径以下なら当たりと判定
         if (distanceSquared <= circlesize.y / 2 * circlesize.y / 2)
         {
-          return true;
+            // 衝突が検出された場合、円の位置を補正 
+            float distance = std::sqrt(distanceSquared); float overlap = (m_GamePlayer->GetSize().y / 2) - distance;
+            // 最近接点から円の中心への方向ベクトル
+            DirectX::XMFLOAT2 direction = { circlepos.x - closestPoint.x, circlepos.y - closestPoint.y };
+            // 方向ベクトルを単位ベクトルに正規化 
+            float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+            direction = { direction.x / length, direction.y / length }; 
+            // 補正された円の位置 
+            m_GamePlayer->SetPos(circlepos.x + direction.x * overlap,circlepos.y + direction.y * overlap,0 );
+            
+            return true;
         }
     }
 

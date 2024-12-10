@@ -16,7 +16,7 @@ void GameScene::Update()
 {
 
 	//backGround.Update();
-	pointer.Update();
+	pointer.Update(block.GetAngle());
 	block.Update();
 
 	if (Input::GetKeyTrigger(VK_RETURN)) {
@@ -25,35 +25,18 @@ void GameScene::Update()
 
 	
 
-	//°‚É“–‚½‚Á‚½Žž
-	if (pointer.GetPos().x >= block.GetPos().x - block.GetSize().x / 2 &&
-		pointer.GetPos().x <= block.GetPos().x + block.GetSize().x / 2 &&
-		pointer.GetPos().y <= block.GetPos().y + block.GetSize().y / 2 )
+	//°‚É“–‚½‚Á‚½Žž@Õ“Ë”»’è
+	if (block.collider.CheckCollision_Box_Circle(&pointer, &block) )
 	{
-
-		pointer.body.Repulsion(pointer.GetFrictionResistance());		//”½”­
-		pointer.body.HorizonUpdate(&pointer.body.vector,				//
-									pointer.GetFrictionResistance(),
-									block.GetAngle());
-
-		//’n–Ê‚Ìã‚ÉˆÊ’u‚ðC³
-		pointer.SetPos(pointer.GetPos().x, block.GetPos().y + pointer.GetCircleRadius() + 23, 0);
+		
+		pointer.body.Repulsion(pointer.GetFrictionResistance());			//”½”­
 		pointer.body.VectorPruductAngle(&pointer.body.vector,
-			block.GetAngle(),
-			pointer.GetFrictionResistance());
-
-
-		pointer.RotateTexture(block.GetFrictionRasistance());
+										 block.GetAngle(),					//Šp“x‚É‡‚í‚¹‚ÄÀ•W•ÏŠ·
+										 pointer.GetFrictionResistance());
+		pointer.RotateTexture(block.GetFrictionRasistance());				//‰¡ˆÚ“®‚Æ˜A“®‚µ‚½‰æ‘œ‚Ì‰ñ“]
 
 	}
 
-
-	//if (pointer.GetPos().x >= block.GetPos().x   - block.GetSize().x / 2 &&
-	//	pointer.GetPos().x <= block.GetPos().x   + block.GetSize().x / 2 &&
-	//	pointer.GetPos().y <= pointer.GetPos().y + block.GetSize().y + block.GetSize().y / 2 + pointer.GetCircleRadius()) {
-	//	pointer.body.Repulsion( - block.GetAngle());
-	//	pointer.body.TimeReset();
-	//}
 
 
 

@@ -2,6 +2,10 @@
 #include "../../03_GameMainFile/Math.h"
 
 using DirectX::XMFLOAT3 ;
+
+//=========================================
+//				初期化処理
+//=========================================
 void GamePointer::Init()
 {
 	Initialize(L"Asset/pic/point.png");   //背景を初期化
@@ -13,21 +17,30 @@ void GamePointer::Init()
 	circle.radius = GetPos().y / 2;
 
 	body.SetMass(7.0f);					  //質量を設定
-	body.SetTime(0.0f);					  //時間を初期化
+	body.SetTime(0.01);					  //時間を初期化
 	body.SetMag(7.0f);					  //倍率を設定
 	body.SetVector(0.0f, 0.0f);
 
 }
 
-void GamePointer::Update(void)//Playerのアップデート
+//===========================================
+//				更新処理					
+//===========================================
+
+void GamePointer::Update(float blockAngle)//Playerのアップデート
 {
 	Vector2 pos = { GetPos().x,GetPos().y };
 
-	body.TimeCounter(FRAMERATE);			//時間を1 / FPS 計算
-	body.Update(pos, body.GetTime());
+	body.TimeCounter(FRAMERATE);
+	body.Update(pos, body.GetTime());		//時間を引数にして物理の更新処理
 
-	pos.x += body.GetVector().x;
-	pos.y += body.GetVector().y;
+	body.HorizonUpdate(&body.vector,				//横方向の更新
+						GetFrictionResistance(),
+						GetAngle());
+
+
+	pos.x += body.GetVector().x;			//
+	pos.y += body.GetVector().y;			//最後に位置を移動した分更新
 
 	SetPos(pos.x, pos.y, 0);
 }
@@ -53,4 +66,10 @@ void GamePointer::RotateTexture(const float sub)  //引数　：　当たった物体の摩擦
 		tempAngle -= body.GetVector().x + frictionResistance * sub;
 
 	SetAngle(tempAngle);
+}
+
+//座標の補正
+void GamePointer::CorrectionPos(Object* p_player, Object* p_block)
+{
+
 }

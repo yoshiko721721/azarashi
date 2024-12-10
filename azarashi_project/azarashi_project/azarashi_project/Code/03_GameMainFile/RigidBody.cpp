@@ -6,7 +6,8 @@ void RigidBody::Update(Vector2 position,float dt)
 {
 	//自由落下
 	FreeFall(dt);
-
+	
+	
 }
 
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -22,7 +23,7 @@ void RigidBody::Update(Vector2 position,float dt)
 void RigidBody::VectorPruductAngle(Vector2* m_Velocity, float m_Angle, float friction)
 {
 	m_Angle += 90;
-	m_Angle *= ConvertDegreeToRadian();
+	m_Angle *= ConvertDegreeToRadian();	//自身の角度をラジアン（弧度法）にする
 
 	vectorNum = vector.y;
 
@@ -45,7 +46,9 @@ void RigidBody::TimeReset()
 //自由落下
 void RigidBody::FreeFall(float time)
 {
+
 	vector.y += -0.5 * g * time * mag;	//速度
+
 }
 //反発速度の計算
 void RigidBody::Repulsion(float friction)
@@ -64,59 +67,62 @@ void RigidBody::AddForce(float forceX, float forceY)
 void RigidBody::HorizonUpdate(Vector2* m_Velocity,float friction,float angle )
 {
 
-	//vectorNum = m_Velocity->y / sin(angle);
-	//m_Velocity->x += cos(angle) * vectorNum;
 
-	////垂直抗力を計算
-	//float normaleForce = mass * g;
-	////摩擦力を計算
-	//float frictionForce = friction * normaleForce;
-	//if (Math::ConvertAbsoluteValue(m_Velocity->x) > 0) {
-	//	float deceleration = frictionForce / mass;
-	//	if (Math::ConvertAbsoluteValue(m_Velocity->x <= deceleration * time)) {
-	//		m_Velocity->x = 0;
-	//	}
-	//	else if(angle < 90){
-	//		m_Velocity->x -= deceleration * time * (vector.x > 0 ? 1 : -1);
-	//	}
-	//	else if(angle > 90){
-	//		m_Velocity->x = deceleration * time * (vector.x > 0 ? 1 : -1);
-	//	}
-	//}
 
 }
 
+//==============================================
+//				セッター
+//==============================================
+
+//方向
 void RigidBody::SetVector(float setVX, float setVY)
 {
 	vector.x = setVX;
 	vector.y = setVY;
 }
+
+//時間
 void RigidBody::SetTime(float setTime)
 {
 	time = setTime;
 }
+
+//質量
 void RigidBody::SetMass			(float setMass)
 {
 	mass = setMass ;
 }
+
+//都合のいい倍率
 void RigidBody::SetMag(float setMag)
 {
 	mag = setMag;
 }
 
-//ゲッター
-float RigidBody::GetMass()
-{
-	return mass;
-}
+//==============================================
+//				ゲッター
+//==============================================
+
+
+//方向
 Vector2 RigidBody::GetVector()
 {
 	return vector;
 }
+
+//時間
 float RigidBody::GetTime()
 {
 	return time;
 }
+//質量
+float RigidBody::GetMass()
+{
+	return mass;
+}
+
+//都合のいい倍率
 float RigidBody::GetMag()
 {
 	return mag;

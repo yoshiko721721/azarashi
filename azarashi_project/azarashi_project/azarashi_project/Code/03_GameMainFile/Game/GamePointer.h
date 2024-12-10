@@ -20,16 +20,14 @@ public:
 	GamePointer() {}
 	~GamePointer() { Uninit(); }
 	void Init();  //初期化
-	void Update();//更新
+	void Update(float blockAngle);//更新
 
 
-	//半径のゲッター
-	float GetCircleRadius();
-	float GetFrictionResistance();
-
-
-
-	void  RotateTexture(const float sub);	//画像を丁度よく回転
+	float GetCircleRadius();		//半径のゲッター
+	float GetFrictionResistance();	//摩擦抵抗のゲッター
+	
+	void  RotateTexture(const float sub);					//画像を丁度よく回転
+	void  CorrectionPos(Object* p_player, Object* p_block);	//座標の補正
 	//float GetCirclePosX();
 	//float GetCirclePosY();
 

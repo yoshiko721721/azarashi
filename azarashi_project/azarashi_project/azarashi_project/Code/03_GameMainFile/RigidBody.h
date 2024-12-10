@@ -23,23 +23,23 @@ private:
 
 public:
 
-	Vector2 vector;			//速度
-	float vectorNum;		//総合的な速度
+	Vector2 vector;					//方向
+	float vectorNum;				//総合的な速度
+	bool oldCollisionFlg = false;	//二回連続で処理に入るときめり込まないようにするため
 
 	//========================================
 	//			常に必要・反映されるもの
 	//========================================
-	void Update(Vector2 position,float dt) ;
-	void FreeFall(float setTime);	//自由落下
+	void Update(Vector2 position,float dt) ;	//更新処理
+	void FreeFall(float setTime);				//自由落下
 
 
 	//=======================================
 	//			条件を満たした時に反映するもの
 	//=======================================
-	void Repulsion(float friction);				//反発
-	void AddForce (float forceX,float forceY);						//力を加える
-	void HorizonUpdate(Vector2* m_Velocity,float friction, float angle);			//減速の計算
-
+	void Repulsion(float friction);											//反発
+	void AddForce (float forceX,float forceY);								//力を加える
+	void HorizonUpdate(Vector2* m_Velocity,float friction, float angle);	//減速の計算
 
 	//角度に添ったベクトル変換
 	void VectorPruductAngle(Vector2* m_Velocity,float angle, float friction);
