@@ -3,7 +3,7 @@
 void GameScene::Init()
 {
 
-	sample.Initialize(L"Asset/pic/point.png");	
+	sample.Initialize(L"Asset/pic/MatsuFace_transparent.png");	
 	sample.SetSize(100, 100, 0);
 	sample.SetPos(300, 0, 0);
 
@@ -15,38 +15,35 @@ void GameScene::Init()
 void GameScene::Update()
 {
 
-	//Eを押した時タイトルシーンに移動
-	
 	//backGround.Update();
 	pointer.Update();
 	block.Update();
-	
+
 	if (Input::GetKeyTrigger(VK_RETURN)) {
-		pointer.body.AddForce(10.0f,0.0f);
+		pointer.body.AddForce(10.0f, 0.0f);
 	}
+
+	
 
 	//床に当たった時
 	if (pointer.GetPos().x >= block.GetPos().x - block.GetSize().x / 2 &&
 		pointer.GetPos().x <= block.GetPos().x + block.GetSize().x / 2 &&
-		pointer.GetPos().y <= block.GetPos().y + block.GetSize().y / 2 + pointer.GetCircleRadius())
+		pointer.GetPos().y <= block.GetPos().y + block.GetSize().y / 2 )
 	{
 
-		pointer.body.Repulsion(pointer.GetFrictionResistance());
-		pointer.body.HorizonUpdate(&pointer.body.vector, 
+		pointer.body.Repulsion(pointer.GetFrictionResistance());		//反発
+		pointer.body.HorizonUpdate(&pointer.body.vector,				//
 									pointer.GetFrictionResistance(),
 									block.GetAngle());
 
 		//地面の上に位置を修正
 		pointer.SetPos(pointer.GetPos().x, block.GetPos().y + pointer.GetCircleRadius() + 23, 0);
-		pointer.body.VectorPruductAngle(&pointer.body.vector, 
-										 block.GetAngle(),
-										 pointer.GetFrictionResistance());
+		pointer.body.VectorPruductAngle(&pointer.body.vector,
+			block.GetAngle(),
+			pointer.GetFrictionResistance());
 
 
 		pointer.RotateTexture(block.GetFrictionRasistance());
-
-	}
-	else {
 
 	}
 
@@ -58,7 +55,7 @@ void GameScene::Update()
 	//	pointer.body.TimeReset();
 	//}
 
-	
+
 
 
 	if (Input::GetKeyTrigger(VK_S)) {
@@ -82,4 +79,3 @@ void GameScene::Uninit()
 	block.Uninit();
 
 }
-

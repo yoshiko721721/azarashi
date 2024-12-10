@@ -1,8 +1,6 @@
 #include"Scene.h"
 
 
-
-
 //セッター
 void Scene::SetCurrentScene(SceneList setScene)
 {

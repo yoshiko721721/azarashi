@@ -3,9 +3,11 @@
 #include "Application.h"
 #include "../01_Direct3D\Object.h"
 
+
+
+
 Application::Application()
 {
-
 }
 
 void Application::Init(HWND hWnd)
@@ -19,6 +21,7 @@ void Application::Init(HWND hWnd)
 
 void Application::Update(void)
 {
+	Input::Update();
 	sceneManager.Update();
 }
 

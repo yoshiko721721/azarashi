@@ -4,12 +4,12 @@
 #include "../../03_GameMainFile/RigidBody.h"
 #include "GameBlock.h"
 
-class Circle
+struct Circle
 {
-public:
-	Vector2 position;		// 位置
-	float radius;			// 半径
-
+	//float x, y; // 位置
+	float radius; // 半径
+	float velocityX; // 垂直方向の速度
+	float velocityY; // 垂直方向の速度
 };
 
 class GamePointer :public Object
@@ -29,7 +29,7 @@ public:
 
 
 
-	void  RotateTexture(const float sub) ;	//画像を丁度よく回転
+	void  RotateTexture(const float sub);	//画像を丁度よく回転
 	//float GetCirclePosX();
 	//float GetCirclePosY();
 

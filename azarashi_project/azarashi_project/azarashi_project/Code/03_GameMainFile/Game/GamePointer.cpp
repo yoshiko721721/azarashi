@@ -1,32 +1,31 @@
 #include "GamePointer.h"
+#include "../../03_GameMainFile/Math.h"
+
 using DirectX::XMFLOAT3 ;
 void GamePointer::Init()
 {
 	Initialize(L"Asset/pic/point.png");   //”wŒi‚ð‰Šú‰»
-	SetPos(-250.0f, 100.0f, 0.0f);			  //ˆÊ’u‚ðÝ’è
+	SetPos(   0.0f,   0.0f, 0.0f);		  //ˆÊ’u‚ðÝ’è
 	SetSize(100.0f, 100.0f, 0.0f);		  //‘å‚«‚³‚ðÝ’è
 	SetAngle(0.0f);						  //Šp“x‚ðÝ’è
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);	  //F‚ðÝ’è
 
 	circle.radius = GetPos().y / 2;
+
 	body.SetMass(7.0f);					  //Ž¿—Ê‚ðÝ’è
 	body.SetTime(0.0f);					  //ŽžŠÔ‚ð‰Šú‰»
-	body.SetMag (7.0f);				  //”{—¦‚ðÝ’è
-	body.SetVector(0.0f,0.0f);
-
+	body.SetMag(7.0f);					  //”{—¦‚ðÝ’è
+	body.SetVector(0.0f, 0.0f);
 
 }
 
-/// @brief XV
-/// @param  ‚È‚µ
 void GamePointer::Update(void)//Player‚ÌƒAƒbƒvƒf[ƒg
 {
-	
-	Vector2 pos = { GetPos().x,GetPos().y};
-	
+	Vector2 pos = { GetPos().x,GetPos().y };
+
 	body.TimeCounter(FRAMERATE);			//ŽžŠÔ‚ð1 / FPS ŒvŽZ
-	body.Update(pos,body.GetTime());
-	
+	body.Update(pos, body.GetTime());
+
 	pos.x += body.GetVector().x;
 	pos.y += body.GetVector().y;
 
@@ -43,6 +42,7 @@ float GamePointer::GetFrictionResistance()
 	return frictionResistance;
 }
 
+//‰¡‚É“]‚ª‚Á‚½•ª‚¾‚¯‰ñ“]‚·‚é
 void GamePointer::RotateTexture(const float sub)  //ˆø”@F@“–‚½‚Á‚½•¨‘Ì‚Ì–€ŽC’ïR
 {
 	float tempAngle = GetAngle();
@@ -52,12 +52,5 @@ void GamePointer::RotateTexture(const float sub)  //ˆø”@F@“–‚½‚Á‚½•¨‘Ì‚Ì–€ŽC
 	else if (body.GetVector().x > 0)
 		tempAngle -= body.GetVector().x + frictionResistance * sub;
 
-	SetAngle( tempAngle);
-
-
-
+	SetAngle(tempAngle);
 }
-
-
-
-

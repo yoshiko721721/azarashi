@@ -26,11 +26,9 @@ void RigidBody::VectorPruductAngle(Vector2* m_Velocity, float m_Angle, float fri
 
 	vectorNum = vector.y;
 
-	//float tempVectorX = cos(m_Angle) * vectorNum.x;
-	//float tempVectorY = sin(m_Angle) * vectorNum.y;
-	
-	m_Velocity->x  = cos(m_Angle) * ( vector.y );
-	m_Velocity->y  = sin(m_Angle) * ( vector.y );
+
+	m_Velocity->x  = cos(m_Angle) * ( vectorNum );
+	m_Velocity->y  = sin(m_Angle) * ( vectorNum );
 
 }
 
@@ -66,8 +64,8 @@ void RigidBody::AddForce(float forceX, float forceY)
 void RigidBody::HorizonUpdate(Vector2* m_Velocity,float friction,float angle )
 {
 
-	vectorNum = m_Velocity->y / sin(angle);
-	m_Velocity->x += cos(angle) * vectorNum;
+	//vectorNum = m_Velocity->y / sin(angle);
+	//m_Velocity->x += cos(angle) * vectorNum;
 
 	////‚’¼R—Í‚ğŒvZ
 	//float normaleForce = mass * g;

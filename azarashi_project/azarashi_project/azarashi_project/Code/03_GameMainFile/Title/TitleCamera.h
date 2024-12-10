@@ -13,5 +13,5 @@ public:
 	///void LeftCamera(DirectX::XMFLOAT3 pos);
 
 private:
-	Input input;
+
 };

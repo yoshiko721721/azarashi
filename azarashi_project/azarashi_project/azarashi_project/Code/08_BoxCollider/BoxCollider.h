@@ -17,7 +17,7 @@ public:
 		{ 0, 0 }, //LeftTop
 	};
 
-	bool CheckCollision_Box_Circle(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height);//ŽlŠp‚Æ‰~‚Ì“–‚½‚è”»’è
+	bool CheckCollision_Box_Circle(Object* p_player, Object* p_block);//ŽlŠp‚Æ‰~‚Ì“–‚½‚è”»’è
 	bool CheckCollision_Box_Box(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height);	 //ŽlŠp‚ÆŽlŠp‚Ì“–‚½‚è”»’è
 	bool IsColliderInRange(float circleposx, float circleposy,float Scaffoldposx, float Scaffoldposy,float wihtd , float height);	 //
 

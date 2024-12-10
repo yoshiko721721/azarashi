@@ -1,6 +1,6 @@
 #pragma once
 #include"../01_Direct3D/Object.h"
-#include "../../Math.h"
+#include "Math.h"
 using DirectX::XMFLOAT2;
 
 //

@@ -20,6 +20,7 @@ public:
 
 
 private:
+
 	DirectX::XMFLOAT3 position;				//カメラ座標
 	DirectX::XMMATRIX viewMatrix;			//ビュー行列
 	DirectX::XMMATRIX projectionMatrix;		//射影行列

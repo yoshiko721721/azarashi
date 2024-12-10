@@ -10,6 +10,7 @@ void TitleBackGround::Init()
 
 void TitleBackGround::Update(void)
 {
+
 	DirectX::XMFLOAT3 pos = GetPos();
 	if (Input::GetKeyPress(VK_W))
 	{

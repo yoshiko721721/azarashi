@@ -18,7 +18,7 @@ void GameCamera::Init()//2024/10/28
 //=======================================
 void GameCamera::Update(float targetPosX,float targetPosY)
 {
-    Input::Update();
+
     target = { targetPosX ,targetPosY };        //基準のターゲット座標を代入
     DirectX::XMFLOAT3 pos = GetPosition();
 
