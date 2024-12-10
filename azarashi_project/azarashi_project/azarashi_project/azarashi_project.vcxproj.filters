@@ -52,6 +52,12 @@
     <Filter Include="ソース ファイル\Camera">
       <UniqueIdentifier>{659835f4-3f12-4a46-89c1-ee7fa7cbbd7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Sound">
+      <UniqueIdentifier>{fa125cbf-3aa5-4827-9e79-bd00698bed73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Sound">
+      <UniqueIdentifier>{df541632-ee86-45fb-9e9c-ece88ce4a3db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\06_Scene\Scene.cpp">
@@ -111,6 +117,9 @@
     <ClCompile Include="Code\07_Camera\CameraManager.cpp">
       <Filter>ソース ファイル\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Code\09_Sound\sound.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -166,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Code\07_Camera\CameraManager.h">
       <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\09_Sound\sound.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
