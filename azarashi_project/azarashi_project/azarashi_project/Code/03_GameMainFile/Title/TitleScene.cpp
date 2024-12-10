@@ -10,7 +10,7 @@ void TitleScene::Update()
 	backGround.Update();
 
 
-	if (input.GetKeyPress(VK_A)) {
+	if (Input::GetKeyTrigger(VK_A)) {
 		SetOldScene(TITLESCENE);	//チェンジ前のoldSceneを操作
 		SetCurrentScene(GAMESCENE);	//ここでoldSceneを入れて置かないと他のシーンで遷移出来ない
 	}
@@ -25,5 +25,6 @@ void TitleScene::Uninit()
 {
 	backGround.Uninit();
 }
+
 
 

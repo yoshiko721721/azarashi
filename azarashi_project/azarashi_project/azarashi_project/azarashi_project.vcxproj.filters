@@ -16,9 +16,6 @@
     <Filter Include="ソース ファイル\MainGame.cpp">
       <UniqueIdentifier>{096e48dc-a384-4d80-aa23-7ea34bbd26f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Basic.cpp">
-      <UniqueIdentifier>{82ffaf71-7444-42f2-8305-8f42941c71a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Scene.cpp">
       <UniqueIdentifier>{13d1d8fe-b9a1-4d9c-b872-8ec553488ed2}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,9 @@
     </Filter>
     <Filter Include="ソース ファイル\Camera">
       <UniqueIdentifier>{659835f4-3f12-4a46-89c1-ee7fa7cbbd7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Basic.cpp">
+      <UniqueIdentifier>{82ffaf71-7444-42f2-8305-8f42941c71a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +111,12 @@
     <ClCompile Include="Code\07_Camera\CameraManager.cpp">
       <Filter>ソース ファイル\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp">
+      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -166,6 +172,15 @@
     </ClInclude>
     <ClInclude Include="Code\07_Camera\CameraManager.h">
       <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\RigidBody.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\01_Direct3D\Coroutine.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

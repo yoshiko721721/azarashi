@@ -18,7 +18,7 @@ void GameCamera::Init()//2024/10/28
 //=======================================
 void GameCamera::Update(float targetPosX,float targetPosY)
 {
-    input.Update();
+    Input::Update();
     target = { targetPosX ,targetPosY };        //基準のターゲット座標を代入
     DirectX::XMFLOAT3 pos = GetPosition();
 
@@ -29,7 +29,7 @@ void GameCamera::Update(float targetPosX,float targetPosY)
 
 
 
-    if (input.GetKeyPress(VK_RIGHT))
+    if (Input::GetKeyPress(VK_RIGHT))
     {
         pos.x += 5.0f;
     }

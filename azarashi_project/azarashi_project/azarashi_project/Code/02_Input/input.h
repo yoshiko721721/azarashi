@@ -60,52 +60,51 @@
 #define VK_Y 0x59
 #define VK_Z 0x5A
 
-class Input : public Singleton<Input>
+class Input 
 {
 private:
 	//キー入力情報を保存する変数
-	BYTE keyState[256] = {};
-	float keySecond[256] = {};
-	BYTE keyState_old[256] = {};
+	static BYTE keyState[256] ;
+	static float keySecond[256] ;
+	static BYTE keyState_old[256] ;
 
 	//コントローラー入力情報を保存する変数
-	XINPUT_STATE controllerState = {};
-	XINPUT_STATE controllerState_old = {};
+	static XINPUT_STATE controllerState ;
+	static XINPUT_STATE controllerState_old ;
 
-	int VibrationTime; //振動継続時間をカウントする変数
+	static int VibrationTime; //振動継続時間をカウントする変数
 
 	////シングルトンからアクセスを許可
 	//friend class Singleton<Input>;
 
+	Input(); //コンストラクタ
 public:
 
-	Input(); //コンストラクタ
 	~Input(); //デストラクタ
-	void Update(); //更新
+	static void Update(); //更新
 
 	//キー入力
-	bool GetKeyPress(int key, float second = 0.0f);   //プレス(押している間ずっと)
-	bool GetKeyTrigger(int key); //トリガー(押し始めた時)
-	bool GetKeyRelease(int key); //リリース(押し終わった時)
+	static bool GetKeyPress(int key, float second = 0.0f);   //プレス(押している間ずっと)
+	static bool GetKeyTrigger(int key); //トリガー(押し始めた時)
+	static bool GetKeyRelease(int key); //リリース(押し終わった時)
 
 	//アナログスティック(コントローラー)
-	DirectX::XMFLOAT2 GetLeftAnalogStick(void);
-	DirectX::XMFLOAT2 GetRightAnalogStick(void);
+	static DirectX::XMFLOAT2 GetLeftAnalogStick(void);
+	static DirectX::XMFLOAT2 GetRightAnalogStick(void);
 
 	//トリガー(コントローラー)
-	float GetLeftTrigger(void);
-	float GetRightTrigger(void);
+	static float GetLeftTrigger(void);
+	static float GetRightTrigger(void);
 
 	//ボタン入力(コントローラー)
-	bool GetButtonPress(WORD btn);   //プレス(押している間ずっと)
-	bool GetButtonTrigger(WORD btn); //トリガー(押し始めた時)
-	bool GetButtonRelease(WORD btn); //リリース(押し終わった時)
+	static bool GetButtonPress(WORD btn);   //プレス(押している間ずっと)
+	static bool GetButtonTrigger(WORD btn); //トリガー(押し始めた時)
+	static bool GetButtonRelease(WORD btn); //リリース(押し終わった時)
 	
 	//振動(コントローラー)
 	//flame：振動を継続する時間(単位：フレーム)
 	//powoe：振動の強さ(0～1)
-	void SetVibration(int frame = 1, float powor = 1);
+	static void SetVibration(int frame = 1, float powor = 1);
 };
 
-extern Input input;
 

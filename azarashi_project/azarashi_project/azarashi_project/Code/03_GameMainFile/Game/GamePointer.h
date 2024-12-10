@@ -1,28 +1,41 @@
 #pragma once
 #include "../../01_Direct3D/Object.h"
 #include "../../02_Input/input.h"
+#include "../../03_GameMainFile/RigidBody.h"
 #include "GameBlock.h"
 
-struct Circle
+class Circle
 {
-	//float x, y; // 位置
-	float radius; // 半径
-	float velocityX; // 垂直方向の速度
-	float velocityY; // 垂直方向の速度
+public:
+	Vector2 position;		// 位置
+	float radius;			// 半径
+
 };
 
 class GamePointer :public Object
 {
 public:
+	RigidBody body;
+
 	GamePointer() {}
 	~GamePointer() { Uninit(); }
 	void Init();  //初期化
 	void Update();//更新
-	float GetCirclePosX();
-	float GetCirclePosY();
+
+
+	//半径のゲッター
+	float GetCircleRadius();
+	float GetFrictionResistance();
+
+
+
+	void  RotateTexture(const float sub) ;	//画像を丁度よく回転
+	//float GetCirclePosX();
+	//float GetCirclePosY();
+
 private:
-	Input input;
-	Circle circle = { 50.0f, 0.0f , 0.0f};
-	const float gravity = -0.4f;   // 重力の力
+	Circle circle;
+	const float frictionResistance = 0.5;		// 摩擦係数
+	//const float gravity = -0.4f;				// 重力の力
 };
 

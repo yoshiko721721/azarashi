@@ -105,7 +105,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 			QueryPerformanceCounter(&liWork);	//現在時間を取得
 			nowCount = liWork.QuadPart;
 			//1/60が経過したか？
-			if (nowCount >= oldCount + frequency / 60) {
+			if (nowCount >= oldCount + frequency / FRAMERATE) {
 				//ゲーム処理実行
 				oldCount = nowCount;
 				fpsCounter++;		//ゲーム処理を実行したら＋１する

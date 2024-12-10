@@ -5,7 +5,7 @@
 class TitleBackGround :public Object
 {
 private:
-	Input input;
+
 public:
 	TitleBackGround() {}
 	~TitleBackGround() { Uninit(); }

@@ -4,7 +4,6 @@
 
 class Application {
 private:
-	Input input;
 	SceneManager sceneManager;
 public:
 	Application();

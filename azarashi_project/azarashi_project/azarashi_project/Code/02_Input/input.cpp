@@ -1,8 +1,16 @@
 #include "input.h"
 #include "../03_GameMainFile/Application.h"
 
+//コントローラー入力情報を保存する変数
+XINPUT_STATE Input::controllerState;
+XINPUT_STATE Input::controllerState_old;
 
-Input input;
+//キー入力情報を保存する変数
+float Input::keySecond[256];
+BYTE Input::keyState[256];
+BYTE Input::keyState_old[256];
+
+int Input::VibrationTime;
 
 //コンストラクタ
 Input::Input()

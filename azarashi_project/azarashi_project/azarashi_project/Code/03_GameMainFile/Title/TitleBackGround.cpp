@@ -10,13 +10,12 @@ void TitleBackGround::Init()
 
 void TitleBackGround::Update(void)
 {
-	input.Update();
 	DirectX::XMFLOAT3 pos = GetPos();
-	if (input.GetKeyPress(VK_W))
+	if (Input::GetKeyPress(VK_W))
 	{
 		pos.x -= 5.0f;
 	}
-	if (input.GetKeyTrigger(VK_E))
+	if (Input::GetKeyTrigger(VK_E))
 	{
 		pos.x += 5.0f;
 	}

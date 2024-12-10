@@ -3,6 +3,7 @@
 #include <memory>
 #include"../01_Direct3D/direct3d.h"
 #include"../01_Direct3D/Object.h"
+#include"../01_Direct3D/Coroutine.h"
 #include"../02_Input/input.h"
 
 enum SceneList {
@@ -12,11 +13,12 @@ enum SceneList {
 };
 
 class Scene {
-private:
-	SceneList oldScene; //使用中のシーン（現在も過去も含める）
-	SceneList newScene; //新しく登録する用
+protected:
+	SceneList oldScene;  //使用中のシーン（現在も過去も含める）
+	SceneList newScene;  //新しく登録する用
+
 public:
-	Input input;
+	//Input input;
 	//Scene() {};
 	//virtual ~Scene();
 	//純粋仮想関数

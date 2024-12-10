@@ -28,7 +28,7 @@ void SceneManager::Update()
 
 	if (currentScene)
 	{
-		currentScene->input.Update();
+		Input::Update();
 		currentScene->Update(); 
 	}
 

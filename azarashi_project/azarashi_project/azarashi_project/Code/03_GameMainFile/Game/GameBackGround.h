@@ -5,7 +5,7 @@
 class GameBackGround : public Object
 {
 private:
-	Input input;
+
 public:
 	GameBackGround() {}
 	~GameBackGround() { Uninit(); }
