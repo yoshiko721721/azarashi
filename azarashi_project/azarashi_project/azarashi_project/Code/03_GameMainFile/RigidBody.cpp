@@ -20,17 +20,17 @@ void RigidBody::Update(Vector2 position,float dt)
 /// </summary>
 /// <param name="m_Velocity"></param>
 /// <param name="m_Angle"></param>
-void RigidBody::VectorPruductAngle(Vector2* m_Velocity, float m_Angle, float friction)
+void RigidBody::VectorPruductAngle(Vector2* m_Vector, float m_Angle, float friction)
 {
-	m_Angle += 90;
-	m_Angle *= ConvertDegreeToRadian();	//自身の角度をラジアン（弧度法）にする
-
-	vectorNum = vector.y;
-
-
-	m_Velocity->x  = cos(m_Angle) * ( vectorNum );
-	m_Velocity->y  = sin(m_Angle) * ( vectorNum );
-
+//	m_Angle += 90;
+//	m_Angle *= ConvertDegreeToRadian();	//自身の角度をラジアン（弧度法）にする
+//
+//	vectorNum = vector.y;
+//
+//
+//	m_Vector->x  = cos(m_Angle) * ( vectorNum );
+//	m_Vector->y  = sin(m_Angle) * ( vectorNum );
+//
 }
 
 //タイマー
@@ -51,10 +51,12 @@ void RigidBody::FreeFall(float time)
 
 }
 //反発速度の計算
-void RigidBody::Repulsion(float friction)
+void RigidBody::Repulsion(float friction, float angle)
 {
-	//反発
-	vector.y *= - restitution ;
+
+	vector.y *= - (1.0 - restitution);
+
+
 }
 //力の追加
 void RigidBody::AddForce(float forceX, float forceY)
@@ -64,11 +66,31 @@ void RigidBody::AddForce(float forceX, float forceY)
 }
 
 //転がる処理
-void RigidBody::HorizonUpdate(Vector2* m_Velocity,float friction,float angle )
+void RigidBody::HorizonUpdate(Vector2* m_Vector,float friction,float angle )
 {
+	Vector2 tempVector;
+	float tempVectorNum;		//自由落下と垂直抗力を意識
+	angle *= Math::ConvertDegreeToRadian();
 
+	tempVectorNum = m_Vector->y * sin(angle);
+	
+	tempVector.x = cos(angle) * tempVectorNum * (1 - friction); 
+	tempVector.y = sin(angle) * tempVectorNum * (1 - friction); 
+	// 摩擦の影響を追加 
+	tempVector.x *= (1.0f - friction);
+	tempVector.x -= tempVector.x * (1.0f - friction);
 
+	// ベクトルを更新 
+	m_Vector->x += tempVector.x ;
+	m_Vector->y += tempVector.y ;
 
+}
+
+void RigidBody::DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber)
+{
+	if (m_Mode_Nummber == STAND) {
+		vector.x -= vector.x * m_damping;
+	}
 }
 
 //==============================================

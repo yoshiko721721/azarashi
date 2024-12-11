@@ -4,7 +4,7 @@
 #include "../../08_BoxCollider/BoxCollider.h"
 
 	const float groundY = -200.0f; // 地面のY座標
-	const float groundX = 0.0f; // 地面のY座標
+	const float groundX = 100.0f; // 地面のY座標
 
 class GameBlock :public Object
 {

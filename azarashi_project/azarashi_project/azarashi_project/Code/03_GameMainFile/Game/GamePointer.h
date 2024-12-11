@@ -4,6 +4,11 @@
 #include "../../03_GameMainFile/RigidBody.h"
 #include "GameBlock.h"
 
+#define AZARASHI_PICTURE_CIRCLE L"Asset/pic/azarasi.png"
+#define AZARASHI_PICTURE_STAND  L"Asset/pic/MatsuFace_transparent.png"
+
+
+
 struct Circle
 {
 	//float x, y; // 位置
@@ -27,13 +32,21 @@ public:
 	float GetFrictionResistance();	//摩擦抵抗のゲッター
 	
 	void  RotateTexture(const float sub);					//画像を丁度よく回転
-	void  CorrectionPos(Object* p_player, Object* p_block);	//座標の補正
+	AZA_MODE_NUMMBER azaNum = STAND;
+	AZA_MODE_NUMMBER oldAzaNum = azaNum;
+
+
+	bool isChangeMode();									//アザラシのモード比較
+	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット
+
+
 	//float GetCirclePosX();
 	//float GetCirclePosY();
 
+	float damping = 0.9f;
 private:
 	Circle circle;
-	const float frictionResistance = 0.5;		// 摩擦係数
-	//const float gravity = -0.4f;				// 重力の力
+	const float AZARASHI_MODE[MODENUM] = { 0.3 , 0.2 };	// 摩擦係数
+	//const float gravity = -0.4f;					// 重力の力
 };
 

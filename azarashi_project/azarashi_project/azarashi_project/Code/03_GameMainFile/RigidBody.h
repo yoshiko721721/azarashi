@@ -9,8 +9,14 @@ using DirectX::XMFLOAT2;
 //	基本変数にしています。
 //
 
+enum AZA_MODE_NUMMBER {
+	CIRCLE = 0 ,
+	STAND  = 1 ,
+	MODENUM= 2
+};
+
 const float g = 9.81f;			//重力加速度
-const float restitution = 0.8f;	//反発係数
+const float restitution = 0.6;	//反発係数
 
 
 class RigidBody
@@ -37,12 +43,13 @@ public:
 	//=======================================
 	//			条件を満たした時に反映するもの
 	//=======================================
-	void Repulsion(float friction);											//反発
+	void Repulsion(float friction ,float angle);							//反発
 	void AddForce (float forceX,float forceY);								//力を加える
-	void HorizonUpdate(Vector2* m_Velocity,float friction, float angle);	//減速の計算
+	void HorizonUpdate(Vector2* m_Vector,float friction, float angle);		//角度を考慮する計算
+	void DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber);
 
 	//角度に添ったベクトル変換
-	void VectorPruductAngle(Vector2* m_Velocity,float angle, float friction);
+	void VectorPruductAngle(Vector2* m_Vector,float angle, float friction);
 
 	//ストップウォッチ
 	void TimeCounter(float frameRate);
