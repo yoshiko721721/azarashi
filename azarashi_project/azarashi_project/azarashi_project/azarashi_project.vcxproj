@@ -55,6 +55,7 @@
     <ClCompile Include="Code\07_Camera\CameraManager.cpp" />
     <ClCompile Include="Code\08_BoxCollider\BoxCollider.cpp" />
     <ClCompile Include="Code\09_Sound\sound.cpp" />
+    <ClCompile Include="Code\10_Timer\Timer.cpp" />
     <ClCompile Include="Code\ReadMeText.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -98,6 +99,7 @@
     </ClInclude>
     <ClInclude Include="Code\08_BoxCollider\BoxCollider.h" />
     <ClInclude Include="Code\09_Sound\sound.h" />
+    <ClInclude Include="Code\10_Timer\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Code\04_hlsl\PixelShader.hlsl">

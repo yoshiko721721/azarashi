@@ -58,6 +58,12 @@
     <Filter Include="ヘッダー ファイル\Sound">
       <UniqueIdentifier>{df541632-ee86-45fb-9e9c-ece88ce4a3db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Timer">
+      <UniqueIdentifier>{d338b84e-9e02-448d-9dc4-856ee2eb3b11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Timer">
+      <UniqueIdentifier>{5f02ec90-61cc-428d-97c9-77c15c4a8c75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\06_Scene\Scene.cpp">
@@ -129,6 +135,9 @@
     <ClCompile Include="Code\08_BoxCollider\BoxCollider.cpp">
       <Filter>ソース ファイル\MainGame.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Code\10_Timer\Timer.cpp">
+      <Filter>ソース ファイル\Timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -196,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="Code\08_BoxCollider\BoxCollider.h">
       <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\10_Timer\Timer.h">
+      <Filter>ヘッダー ファイル\Timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
