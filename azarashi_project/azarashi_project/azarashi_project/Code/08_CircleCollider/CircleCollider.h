@@ -13,8 +13,7 @@ struct  ContactPointVector
 	DirectX::XMFLOAT2 normalizedVector;
 };
 
-
-class BoxCollider
+class CircleCollider
 {
 public:
 	DirectX::XMFLOAT2 hitcorners[4] = {//当たり判定をとる際の座標格納先
@@ -24,9 +23,9 @@ public:
 		{ 0, 0 }, //LeftTop
 	};
 
-	ContactPointVector CheckCollision_Box_Circle(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height);//四角と円の当たり判定
-	bool CheckCollision_Box_Box(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height, DirectX::XMFLOAT2& touchbox);	 //四角と四角の当たり判定
-	bool IsColliderInRange(float circleposx, float circleposy,float Scaffoldposx, float Scaffoldposy,float wihtd , float height);	 //
+	ContactPointVector CheckCollision_Circle_Box(Object* p_player, float circleposx, float circleposy, float radius);//四角と円の当たり判定
+	bool CheckCollision_Circle_Circle(Object* m_boxpointer, float circleposx, float circleposy, float radius);	 //四角と四角の当たり判定
+	bool IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height);	 //
 
 private://円との当たり判定で使う
 
@@ -34,7 +33,9 @@ private://円との当たり判定で使う
 	const float range_y = 100;//当たり判定を取る範囲Y
 
 	//--------------------------ベクトルなどの計算の関数--------------------------
-	DirectX::XMFLOAT2 RotatePosition(DirectX::XMFLOAT2,float);//回転行列
+	DirectX::XMFLOAT2 RotatePosition(DirectX::XMFLOAT2, float);//回転行列
+	DirectX::XMFLOAT2 SubtractVectors(const DirectX::XMFLOAT2 vec1, const DirectX::XMFLOAT2 vec2);//ベクトル計算
+	float CrossProduct(DirectX::XMFLOAT2, DirectX::XMFLOAT2);//外積(多分使わんから消す)
 	float dotProduct(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2);//内積
 	//----------------------------------------------------------------------------
 };
