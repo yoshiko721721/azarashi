@@ -24,7 +24,7 @@ float BoxCollider::dotProduct(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2)
 //2024/12/11 中江
 //--------------------------------------------------------------
 
-ContactPointVector BoxCollider::CheckCollision_Box_Circle(Object* m_GamePlayer, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height)
+ContactPointVector BoxCollider::ColliderWithCircle(Object* m_GamePlayer, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height)
 {
     angle = angle * (M_PI / 180.0);   //角度をラジアンに変換
 
@@ -49,6 +49,9 @@ ContactPointVector BoxCollider::CheckCollision_Box_Circle(Object* m_GamePlayer, 
        
     }//OK
 
+    DirectX::XMFLOAT2 normalizedVector = {0.0f,0.0f};
+    DirectX::XMFLOAT2 closestPoint = { 0.0f,0.0f };
+
      // 各辺と円との距離を判定
     for(int i = 0; i < 4; i++)
     {
@@ -60,30 +63,27 @@ ContactPointVector BoxCollider::CheckCollision_Box_Circle(Object* m_GamePlayer, 
         DirectX::XMFLOAT2 toCircle = { circlepos.x - p1.x, circlepos.y - p1.y };//点から角のベクトルを図るよ
 
         float t = fmax(0, fmin(1, (toCircle.x * edge.x + toCircle.y * edge.y) / (edge.x * edge.x + edge.y * edge.y)));
-        DirectX::XMFLOAT2 closestPoint = { p1.x + t * edge.x, p1.y + t * edge.y }; //返す値
+        closestPoint = { p1.x + t * edge.x, p1.y + t * edge.y }; //返す値
 
         // 最近接点と円の中心の距離を計算
         float distanceSquared = (closestPoint.x - circlepos.x) * (closestPoint.x - circlepos.x) + (closestPoint.y - circlepos.y) * (closestPoint.y - circlepos.y);//返す値
         // 距離が半径以下なら当たりと判定
         if (distanceSquared <= circlesize.y / 2 * circlesize.y / 2)
         {
-            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
-            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y); 
-            DirectX::XMFLOAT2 normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
-            //closscircle = closestPoint;
-            //distancesquared = distanceSquared;
+            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };//接地点から円の中心までの大きさ
+            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);    //正規化
+            normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };                       //正規化
 
             return { true, closestPoint ,normalizedVector };
-
         }
     }
-    return {false};
+    return { false, closestPoint ,normalizedVector };
 };
 //--------------------------------------------------------------
 //四角と四角の当たり判定関数
 //2024/12/03 中江
 //--------------------------------------------------------------
-bool BoxCollider::CheckCollision_Box_Box(Object* m_GamePlayer, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height, DirectX::XMFLOAT2& touchbox)
+bool BoxCollider::ColliderWithBox(Object* m_GamePlayer, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height, DirectX::XMFLOAT2& touchbox)
 {
     DirectX::XMFLOAT2 hitcorners2[4] = {//当たり判定をとる際の座標格納先
         { 0, 0 }, //LeftBottom
@@ -199,13 +199,13 @@ bool BoxCollider::CheckCollision_Box_Box(Object* m_GamePlayer, float Scaffoldpos
 bool BoxCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height)
 {
     // 矩形の中心から円の中心までの距離を計算 
-    float distancex = range_x + wihtd / 2;
+    float distancex = range_x + wihtd  / 2;
     float distancey = range_y + height / 2;
     //float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
     // 距離が指定された範囲内であればtrueを返す  
-    DirectX::XMFLOAT3 circlesize = { 50,50,0 };
     //ObjectのX座標が範囲に入っているなら
-    if ((distancex + wihtd) * -1 <= circleposx && circleposx <= (distancex + wihtd)){
+    if ((distancex + wihtd) * -1 <= circleposx && circleposx <= (distancex + wihtd))
+    {
         //ObjectのY座標が範囲に入っているなら
         if ((distancey + height) * -1 <= circleposy && circleposy <= (distancey + wihtd)){
             return true;

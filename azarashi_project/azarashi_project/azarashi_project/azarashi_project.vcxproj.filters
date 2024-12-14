@@ -64,6 +64,12 @@
     <Filter Include="ヘッダー ファイル\Timer">
       <UniqueIdentifier>{5f02ec90-61cc-428d-97c9-77c15c4a8c75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Collider">
+      <UniqueIdentifier>{e07b9b9d-7581-4c6c-97c6-fb52f70290b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Collider">
+      <UniqueIdentifier>{e78423e5-ddb7-44eb-9c05-d66e13855ae8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\06_Scene\Scene.cpp">
@@ -132,11 +138,17 @@
     <ClCompile Include="Code\02_Input\input.cpp">
       <Filter>ソース ファイル\Basic.cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Code\08_BoxCollider\BoxCollider.cpp">
-      <Filter>ソース ファイル\MainGame.cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Code\10_Timer\Timer.cpp">
       <Filter>ソース ファイル\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\08_Collider\Bass_collision.cpp">
+      <Filter>ソース ファイル\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\08_Collider\BoxCollider.cpp">
+      <Filter>ソース ファイル\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\08_Collider\CircleCollider.cpp">
+      <Filter>ソース ファイル\Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -203,11 +215,17 @@
     <ClInclude Include="Code\02_Input\input.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
     </ClInclude>
-    <ClInclude Include="Code\08_BoxCollider\BoxCollider.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
-    </ClInclude>
     <ClInclude Include="Code\10_Timer\Timer.h">
       <Filter>ヘッダー ファイル\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\08_Collider\Bass_collision.h">
+      <Filter>ヘッダー ファイル\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\08_Collider\BoxCollider.h">
+      <Filter>ヘッダー ファイル\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\08_Collider\CircleCollider.h">
+      <Filter>ヘッダー ファイル\Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

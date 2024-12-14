@@ -1,20 +1,13 @@
 #pragma once
 #include <DirectXMath.h>
 #include <cmath>
-#include "../01_Direct3D/Object.h"
+#include "Bass_collision.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 using namespace std;
 
-struct  ContactPointVector
-{
-	bool checkCollision;
-	DirectX::XMFLOAT2 closspoint;
-	DirectX::XMFLOAT2 normalizedVector;
-};
 
-
-class BoxCollider
+class BoxCollider:public BaseCollider
 {
 public:
 	DirectX::XMFLOAT2 hitcorners[4] = {//“–‚½‚è”»’è‚ğ‚Æ‚éÛ‚ÌÀ•WŠi”[æ
@@ -24,13 +17,13 @@ public:
 		{ 0, 0 }, //LeftTop
 	};
 
-	ContactPointVector CheckCollision_Box_Circle(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height);//lŠp‚Æ‰~‚Ì“–‚½‚è”»’è
-	bool CheckCollision_Box_Box(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height, DirectX::XMFLOAT2& touchbox);	 //lŠp‚ÆlŠp‚Ì“–‚½‚è”»’è
+	ContactPointVector ColliderWithCircle(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height);//lŠp‚Æ‰~‚Ì“–‚½‚è”»’è
+	bool ColliderWithBox(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height, DirectX::XMFLOAT2& touchbox);	 //lŠp‚ÆlŠp‚Ì“–‚½‚è”»’è
 	bool IsColliderInRange(float circleposx, float circleposy,float Scaffoldposx, float Scaffoldposy,float wihtd , float height);	 //
 
 private://‰~‚Æ‚Ì“–‚½‚è”»’è‚Åg‚¤
 
-	const float range_x = 50;//“–‚½‚è”»’è‚ğæ‚é”ÍˆÍX
+	const float range_x = 150;//“–‚½‚è”»’è‚ğæ‚é”ÍˆÍX
 	const float range_y = 100;//“–‚½‚è”»’è‚ğæ‚é”ÍˆÍY
 
 	//--------------------------ƒxƒNƒgƒ‹‚È‚Ç‚ÌŒvZ‚ÌŠÖ”--------------------------
