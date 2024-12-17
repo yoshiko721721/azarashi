@@ -70,11 +70,14 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* m_GamePlayer, float S
         // ‹——£‚ª”¼ŒaˆÈ‰º‚È‚ç“–‚½‚è‚Æ”»’è
         if (distanceSquared <= circlesize.y / 2 * circlesize.y / 2)
         {
-            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };//Ú’n“_‚©‚ç‰~‚Ì’†S‚Ü‚Å‚Ì‘å‚«‚³
-            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);    //³‹K‰»
-            normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };                       //³‹K‰»
+            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
+            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y); 
+           normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
+            //closscircle = closestPoint;
+            //distancesquared = distanceSquared;
 
             return { true, closestPoint ,normalizedVector };
+
         }
     }
     return { false, closestPoint ,normalizedVector };

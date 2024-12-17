@@ -1,33 +1,29 @@
 #pragma once
 #include <DirectXMath.h>
 #include <cmath>
+#include "Object.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "Bass_collision.h"
+#include "Base_collision.h"
 
 class CircleCollider :public BaseCollider
 {
 public:
-	DirectX::XMFLOAT2 hitcorners[4] = {//当たり判定をとる際の座標格納先
-		{ 0, 0 }, //LeftBottom
-		{ 0, 0 }, //RightBottom
-		{ 0, 0 }, //RightTop
-		{ 0, 0 }, //LeftTop
-	};
+	static DirectX::XMFLOAT2 hitcorners[4];//当たり判定をとる際の座標格納先
 
-	ContactPointVector ColliderWithBox(Object* p_player, float circleposx, float circleposy, float radius);//四角と円の当たり判定
-	bool ColliderWithCircle(Object* m_boxpointer, float circleposx, float circleposy, float radius);	 //四角と四角の当たり判定
-	bool IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height);	 //
+	static ContactPointVector ColliderWithBox(Object* p_player, float circleposx, float circleposy, float radius);//四角と円の当たり判定
+	static bool ColliderWithCircle(Object* m_boxpointer, float circleposx, float circleposy, float radius);	 //四角と四角の当たり判定
+	static bool IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height);	 //
 
 private://円との当たり判定で使う
 
-	const float range_x = 50;//当たり判定を取る範囲X
-	const float range_y = 100;//当たり判定を取る範囲Y
+	static const float range_x;//当たり判定を取る範囲X
+	static const float range_y;//当たり判定を取る範囲Y
 
 	//--------------------------ベクトルなどの計算の関数--------------------------
-	DirectX::XMFLOAT2 RotatePosition(DirectX::XMFLOAT2, float);//回転行列
-	DirectX::XMFLOAT2 SubtractVectors(const DirectX::XMFLOAT2 vec1, const DirectX::XMFLOAT2 vec2);//ベクトル計算
-	float CrossProduct(DirectX::XMFLOAT2, DirectX::XMFLOAT2);//外積(多分使わんから消す)
-	float dotProduct(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2);//内積
+	static DirectX::XMFLOAT2 RotatePosition(DirectX::XMFLOAT2, float);//回転行列
+	static DirectX::XMFLOAT2 SubtractVectors(const DirectX::XMFLOAT2 vec1, const DirectX::XMFLOAT2 vec2);//ベクトル計算
+	static float CrossProduct(DirectX::XMFLOAT2, DirectX::XMFLOAT2);//外積(多分使わんから消す)
+	static float dotProduct(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2);//内積
 	//----------------------------------------------------------------------------
 };

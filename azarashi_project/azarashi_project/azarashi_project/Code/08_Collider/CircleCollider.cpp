@@ -49,9 +49,6 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* m_boxpointer, float c
 
     }//OK
 
-    DirectX::XMFLOAT2 normalizedVector;
-    DirectX::XMFLOAT2 closestPoint;
-
      // Še•Ó‚Æ‰~‚Æ‚Ì‹——£‚ð”»’è
     for (int i = 0; i < 4; i++)
     {
@@ -63,7 +60,7 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* m_boxpointer, float c
         DirectX::XMFLOAT2 toCircle = { circleposx - p1.x, circleposy - p1.y };//“_‚©‚çŠp‚ÌƒxƒNƒgƒ‹‚ð}‚é‚æ
 
         float t = fmax(0, fmin(1, (toCircle.x * edge.x + toCircle.y * edge.y) / (edge.x * edge.x + edge.y * edge.y)));
-        closestPoint = { p1.x + t * edge.x, p1.y + t * edge.y }; //•Ô‚·’l
+        DirectX::XMFLOAT2 closestPoint = { p1.x + t * edge.x, p1.y + t * edge.y }; //•Ô‚·’l
 
         // Å‹ßÚ“_‚Æ‰~‚Ì’†S‚Ì‹——£‚ðŒvŽZ
         float distanceSquared = (closestPoint.x - circleposx) * (closestPoint.x - circleposx) + (closestPoint.y - circleposy) * (closestPoint.y - circleposy);//•Ô‚·’l
@@ -71,15 +68,17 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* m_boxpointer, float c
         // ‹——£‚ª”¼ŒaˆÈ‰º‚È‚ç“–‚½‚è‚Æ”»’è
         if (distanceSquared <= radius * radius)
         {
-            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circleposx , closestPoint.y - circleposy }; //Ú’n“_‚©‚ç‰~‚Ì’†S‚Ü‚Å‚Ì‘å‚«‚³
-            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);   //³‹K‰»
-            normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };    //³‹K‰»
+            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circleposx , closestPoint.y - circleposy };
+            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);
+            DirectX::XMFLOAT2 normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
+            //closscircle = closestPoint;
+            //distancesquared = distanceSquared;
 
             return { true, closestPoint ,normalizedVector };
         }
     }
 
-    return { false , closestPoint ,normalizedVector };
+    return { false };
 };
 //--------------------------------------------------------------
 //ŽlŠp‚ÆŽlŠp‚Ì“–‚½‚è”»’èŠÖ”
