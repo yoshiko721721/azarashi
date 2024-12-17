@@ -1,16 +1,15 @@
-#include "Renderer.h"
+ï»¿#include "Renderer.h"
 #include "Camera.h"
 #include "Application.h"
 #include "Player.h"
 
 using namespace DirectX::SimpleMath;
 
-const int WORLD_WIDTH = 50;		//ƒ[ƒ‹ƒhiƒ}ƒbƒvj‚Ì‰¡•
-const int WORLD_HEIGHT = 60;		//ƒ[ƒ‹ƒhiƒ}ƒbƒvj‚Ìc•
-extern Player* aza;			//ŠO•”‚©‚çƒvƒŒƒCƒ„[‚ğƒJƒƒ‰‚É
-
+const int WORLD_WIDTH = 50;		//ãƒ¯ãƒ¼ãƒ«ãƒ‰ï¼ˆãƒãƒƒãƒ—ï¼‰ã®æ¨ªå¹…
+const int WORLD_HEIGHT = 60;		//ãƒ¯ãƒ¼ãƒ«ãƒ‰ï¼ˆãƒãƒƒãƒ—ï¼‰ã®ç¸¦å¹…
+extern Player* aza;			//å¤–éƒ¨ã‹ã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ã‚«ãƒ¡ãƒ©ã«
 //=======================================
-//‰Šú‰»ˆ—
+//åˆæœŸåŒ–å‡¦ç†
 //=======================================
 void Camera::Init ( )
 {
@@ -20,64 +19,103 @@ void Camera::Init ( )
 
 
 //=======================================
-//XVˆ—
+//æ›´æ–°å‡¦ç†
 //=======================================
 void Camera::Update ( )
 {
+	//float CameraMoveCounter = 0.0f;	//ã‚«ãƒ¡ãƒ©ãƒ•ã‚©ãƒ¼ãƒ­ãƒ¼ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	float CmCnt = 0.0f;	//ã‚«ãƒ¡ãƒ©ãƒ•ã‚©ãƒ¼ãƒ­ãƒ¼ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	bool FollowPlayer = false;	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ•ã‚©ãƒ¼ãƒ­ãƒ¼ãƒ•ãƒ©ã‚°
+	Vector3 playerPos = aza->GetPosition ( );
 
-	Vector3 player = aza->GetPosition ( );
-	//ƒvƒŒƒCƒ„[‚ğƒtƒHƒ[
-	m_Position.x = aza->GetPosition ( ).x;
-	m_Position.y = aza->GetPosition ( ).y;
-	m_Target = aza->GetPosition ( );
+	constexpr float smoothSpeedX = 0.02f; //Xãƒ•ã‚©ãƒ¼ãƒ­ãƒ¼é€Ÿåº¦
+	constexpr float smoothSpeedY = 0.03f; //Yãƒ•ã‚©ãƒ¼ãƒ­ãƒ¼é€Ÿåº¦
 
-	//ƒvƒŒƒCƒ„[‚ª•Ç‚É“’…‚µ‚½ˆ—
-	if ( m_Position.x < -WORLD_WIDTH / 2 ) {	//ˆê”Ô¶
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ãƒ•ã‚©ãƒ­ãƒ¼
+	m_Position.x = m_Position.x + ( playerPos.x - m_Position.x ) * smoothSpeedX;
+	m_Target.x = m_Position.x;
+
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åŠåˆ†ä»¥ä¸Šã«ã„ã‚‹æ™‚ã‚«ã‚¦ãƒ³ãƒˆ
+	if ( playerPos.y > m_Scale.y / 2 ) {
+		if ( CmCnt == 0.0f )
+		{
+			CmCnt = 2.0f;
+		}
+	}
+	
+	if ( CmCnt > 0.0f ) {
+		CmCnt -= 1.0f / 60.0f;  // ï¼‘ç§’60ãƒ•ãƒ¬ãƒ¼ãƒ 
+		if ( CmCnt <= 0.0f ) {
+			FollowPlayer = true;
+		}
+	}
+
+	if ( playerPos.y - m_Position.y==0.0f )
+	{
+		FollowPlayer = false;
+	}
+
+
+	// å¾ã€…ã«ãƒ•ã‚©ãƒ¼ãƒ­ãƒ¼
+	if ( FollowPlayer )
+	{
+			m_Position.y = m_Position.y + ( playerPos.y - m_Position.y ) * smoothSpeedY;
+			m_Target.y = m_Position.y; 
+		}
+	else
+	{
+		m_Position.y = m_Position.y + ( playerPos.y - m_Position.y ) * smoothSpeedY;
+		m_Target.y = m_Position.y; 
+	}
+
+
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå£ã«åˆ°ç€ã—ãŸæ™‚å‡¦ç†
+	if ( m_Position.x < -WORLD_WIDTH / 2 ) {	//ä¸€ç•ªå·¦
 		m_Position.x = -WORLD_WIDTH / 2;
 		m_Target.x = -WORLD_WIDTH / 2;
 	}
-	if ( m_Position.x > WORLD_WIDTH / 2 ) {	//ˆê”Ô‰E
+	if ( m_Position.x > WORLD_WIDTH / 2 ) {	//ä¸€ç•ªå³
 		m_Position.x = WORLD_WIDTH / 2;
 		m_Target.x = WORLD_WIDTH / 2;
 	}
-	if ( m_Position.y < 0 ) {	//’n–Ê
+	if ( m_Position.y < 0 ) {	//åœ°é¢
 		m_Position.y = 0;
 		m_Target.y = 0;
 	}
-	if ( m_Position.y > WORLD_HEIGHT / 2 ) {	//ˆê”Ôã
+	if ( m_Position.y > WORLD_HEIGHT / 2 ) {	//ä¸€ç•ªä¸Š
 		m_Position.y = WORLD_HEIGHT / 2;
 		m_Target.y = WORLD_HEIGHT / 2;
 	}
 }
 
 //=======================================
-//•`‰æˆ—
+//æç”»å‡¦ç†
 //=======================================
 void Camera::Draw ( )
 {
-	// ƒrƒ…[•ÏŠ·Œã—ñì¬
+	// ãƒ“ãƒ¥ãƒ¼å¤‰æ›å¾Œåˆ—ä½œæˆ
 	Vector3 up = Vector3 ( 0.0f , 1.0f , 0.0f );
-	m_ViewMatrix = DirectX::XMMatrixLookAtLH ( m_Position , m_Target , up ); // ¶èŒn‚É‚µ‚½@20230511 by suzuki.tomoki
-	// DIRECTXTK‚Ìƒƒ\ƒbƒh‚Í‰EèŒn@20230511 by suzuki.tomoki
-	// ‰EèŒn‚É‚·‚é‚Æ‚RŠpŒ`’¸“_‚ª”½Œv‰ñ‚è‚É‚È‚é‚Ì‚Å•`‰æ‚³‚ê‚È‚­‚È‚é‚Ì‚Å’ˆÓ
-	// ‚±‚ÌƒR[ƒh‚ÍŠm”FƒeƒXƒg‚Ì‚½‚ß‚Éc‚·
+	m_ViewMatrix = DirectX::XMMatrixLookAtLH ( m_Position , m_Target , up ); // å·¦æ‰‹ç³»ã«ã—ãŸã€€20230511 by suzuki.tomoki
+	// DIRECTXTKã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯å³æ‰‹ç³»ã€€20230511 by suzuki.tomoki
+	// å³æ‰‹ç³»ã«ã™ã‚‹ã¨ï¼“è§’å½¢é ‚ç‚¹ãŒåæ™‚è¨ˆå›ã‚Šã«ãªã‚‹ã®ã§æç”»ã•ã‚Œãªããªã‚‹ã®ã§æ³¨æ„
+	// ã“ã®ã‚³ãƒ¼ãƒ‰ã¯ç¢ºèªãƒ†ã‚¹ãƒˆã®ãŸã‚ã«æ®‹ã™
 	// m_ViewMatrix = m_ViewMatrix.CreateLookAt(m_Position, m_Target, up);					
 
 	Renderer::SetViewMatrix ( &m_ViewMatrix );
 
-	//ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ‚Ì¶¬
-	constexpr float fieldOfView = DirectX::XMConvertToRadians ( 45.0f );    // ‹–ìŠp
+	//ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—ã®ç”Ÿæˆ
+	constexpr float fieldOfView = DirectX::XMConvertToRadians ( 45.0f );    // è¦–é‡è§’
 
-	float aspectRatio = static_cast< float >( Application::GetWidth ( ) ) / static_cast< float >( Application::GetHeight ( ) );	// ƒAƒXƒyƒNƒg”ä	
-	float nearPlane = 1.0f;       // ƒjƒAƒNƒŠƒbƒv
-	float farPlane = 1000.0f;      // ƒtƒ@[ƒNƒŠƒbƒv
+	float aspectRatio = static_cast< float >( Application::GetWidth ( ) ) / static_cast< float >( Application::GetHeight ( ) );	// ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”	
+	float nearPlane = 1.0f;       // ãƒ‹ã‚¢ã‚¯ãƒªãƒƒãƒ—
+	float farPlane = 1000.0f;      // ãƒ•ã‚¡ãƒ¼ã‚¯ãƒªãƒƒãƒ—
 
-	//ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ‚Ì¶¬
+	//ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—ã®ç”Ÿæˆ
 	Matrix projectionMatrix;
-	projectionMatrix = DirectX::XMMatrixPerspectiveFovLH ( fieldOfView , aspectRatio , nearPlane , farPlane );	// ¶èŒn‚É‚µ‚½@20230511 by suzuki.tomoki
-	// DIRECTXTK‚Ìƒƒ\ƒbƒh‚Í‰EèŒn@20230511 by suzuki.tomoki
-	// ‰EèŒn‚É‚·‚é‚Æ‚RŠpŒ`’¸“_‚ª”½Œv‰ñ‚è‚É‚È‚é‚Ì‚Å•`‰æ‚³‚ê‚È‚­‚È‚é‚Ì‚Å’ˆÓ
-	// ‚±‚ÌƒR[ƒh‚ÍŠm”FƒeƒXƒg‚Ì‚½‚ß‚Éc‚·
+	projectionMatrix = DirectX::XMMatrixPerspectiveFovLH ( fieldOfView , aspectRatio , nearPlane , farPlane );	// å·¦æ‰‹ç³»ã«ã—ãŸã€€20230511 by suzuki.tomoki
+	// DIRECTXTKã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯å³æ‰‹ç³»ã€€20230511 by suzuki.tomoki
+	// å³æ‰‹ç³»ã«ã™ã‚‹ã¨ï¼“è§’å½¢é ‚ç‚¹ãŒåæ™‚è¨ˆå›ã‚Šã«ãªã‚‹ã®ã§æç”»ã•ã‚Œãªããªã‚‹ã®ã§æ³¨æ„
+	// ã“ã®ã‚³ãƒ¼ãƒ‰ã¯ç¢ºèªãƒ†ã‚¹ãƒˆã®ãŸã‚ã«æ®‹ã™
 	// projectionMatrix = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView(fieldOfView, aspectRatio, nearPlane, farPlane);
 
 	Renderer::SetProjectionMatrix ( &projectionMatrix );
@@ -85,7 +123,7 @@ void Camera::Draw ( )
 
 
 //=======================================
-//I—¹ˆ—
+//çµ‚äº†å‡¦ç†
 //=======================================
 void Camera::Uninit ( )
 {
