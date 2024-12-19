@@ -1,5 +1,8 @@
 #include "Renderer.h"
-#include "Application.h"
+
+//SCREEN_WIDTH，SCREEN_HEIGHT，hWndを直接使える場合はそのままでいい
+//使えない場合はゲッター関数を用意してお願いします
+
 
 using namespace DirectX::SimpleMath;
 
@@ -34,13 +37,13 @@ void Renderer::Init()
 	// デバイス、スワップチェーン作成
 	DXGI_SWAP_CHAIN_DESC swapChainDesc{};
 	swapChainDesc.BufferCount = 1; // バックバッファの数を1に設定（ダブルバッファリング）
-	swapChainDesc.BufferDesc.Width = Application::GetWidth(); // バッファの幅をウィンドウサイズに合わせる
-	swapChainDesc.BufferDesc.Height = Application::GetHeight(); // バッファの高さをウィンドウサイズに合わせる
+	swapChainDesc.BufferDesc.Width = SCREEN_WIDTH; // バッファの幅をウィンドウサイズに合わせる
+	swapChainDesc.BufferDesc.Height = SCREEN_HEIGHT; // バッファの高さをウィンドウサイズに合わせる
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM; // バッファのピクセルフォーマットを設定
 	swapChainDesc.BufferDesc.RefreshRate.Numerator = 60; // リフレッシュレートを設定（Hz）
 	swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT; // バッファの使用用途を設定
-	swapChainDesc.OutputWindow = Application::GetWindow(); // スワップチェーンのターゲットウィンドウを設定
+	swapChainDesc.OutputWindow = hWnd; // スワップチェーンのターゲットウィンドウを設定
 	swapChainDesc.SampleDesc.Count = 1; // マルチサンプリングの設定（アンチエイリアスのサンプル数とクオリティ）
 	swapChainDesc.SampleDesc.Quality = 0; //同上
 	swapChainDesc.Windowed = TRUE; // ウィンドウモード（フルスクリーンではなく、ウィンドウモードで実行）
@@ -84,8 +87,8 @@ void Renderer::Init()
 
 	// ビューポート設定
 	D3D11_VIEWPORT viewport;
-	viewport.Width = (FLOAT)Application::GetWidth();   // ビューポートの幅
-	viewport.Height = (FLOAT)Application::GetHeight(); // ビューポートの高さ
+	viewport.Width = (FLOAT) SCREEN_WIDTH;   // ビューポートの幅
+	viewport.Height = (FLOAT) SCREEN_HEIGHT; // ビューポートの高さ
 	viewport.MinDepth = 0.0f;                          // 深度範囲の最小値
 	viewport.MaxDepth = 1.0f;                          // 深度範囲の最大値
 	viewport.TopLeftX = 0;                             // ビューポートの左上隅のX座標
@@ -286,8 +289,8 @@ void Renderer::SetWorldViewProjection2D()
 	// 2D描画を左上原点にする
 	Matrix projection = DirectX::XMMatrixOrthographicOffCenterLH(
 		0.0f,
-		static_cast<float>(Application::GetWidth()),	// ビューボリュームの最小Ｘ
-		static_cast<float>(Application::GetHeight()),	// ビューボリュームの最小Ｙ
+		static_cast<float>( SCREEN_WIDTH ),	// ビューボリュームの最小Ｘ
+		static_cast<float>( SCREEN_HEIGHT ),	// ビューボリュームの最小Ｙ
 		0.0f,											// ビューボリュームの最大Ｙ
 		0.0f,
 		1.0f);

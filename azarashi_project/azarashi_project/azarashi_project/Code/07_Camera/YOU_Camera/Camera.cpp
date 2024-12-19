@@ -1,7 +1,9 @@
 ﻿#include "Renderer.h"
 #include "Camera.h"
-#include "Application.h"
 #include "Player.h"
+
+//SCREEN_WIDTH，SCREEN_HEIGHTを直接使える場合はそのままでいい
+//使えない場合はゲッター関数を用意してお願いします
 
 using namespace DirectX::SimpleMath;
 
@@ -13,7 +15,7 @@ extern Player* aza;			//外部からプレイヤーをカメラに
 //=======================================
 void Camera::Init ( )
 {
-	m_Position = Vector3 ( 0.0f , 0.0f , -50.0f );
+	m_Position = Vector3 ( 0.0f , 0.0f , -50.0f );	
 	m_Target = Vector3 ( 0.0f , 0.0f , 0.0f );
 }
 
@@ -24,8 +26,8 @@ void Camera::Init ( )
 void Camera::Update ( )
 {
 	//float CameraMoveCounter = 0.0f;	//カメラフォーローカウンター
-	float CmCnt = 0.0f;	//カメラフォーローカウンター
-	bool FollowPlayer = false;	//プレイヤーフォーローフラグ
+	//float CmCnt = 0.0f;	//カメラフォーローカウンター
+	//bool FollowPlayer = false;	//プレイヤーフォーローフラグ
 	Vector3 playerPos = aza->GetPosition ( );
 
 	constexpr float smoothSpeedX = 0.02f; //Xフォーロー速度
@@ -36,38 +38,32 @@ void Camera::Update ( )
 	m_Target.x = m_Position.x;
 
 	// プレイヤーがウィンドウの半分以上にいる時カウント
-	if ( playerPos.y > m_Scale.y / 2 ) {
-		if ( CmCnt == 0.0f )
-		{
-			CmCnt = 2.0f;
-		}
-	}
+	//if ( playerPos.y > m_Scale.y / 2 ) {
+	//	if ( CmCnt == 0.0f )
+	//	{
+	//		CmCnt = 2.0f;
+	//	}
+	//}
 	
-	if ( CmCnt > 0.0f ) {
-		CmCnt -= 1.0f / 60.0f;  // １秒60フレーム
-		if ( CmCnt <= 0.0f ) {
-			FollowPlayer = true;
-		}
-	}
+	//if ( CmCnt > 0.0f ) {
+	//	CmCnt -= 1.0f / 60.0f;  // １秒60フレーム
+	//	if ( CmCnt <= 0.0f ) {
+	//		FollowPlayer = true;
+	//	}
+	//}
 
-	if ( playerPos.y - m_Position.y==0.0f )
-	{
-		FollowPlayer = false;
-	}
+	//if ( playerPos.y - m_Position.y==0.0f )
+	//{
+	//	FollowPlayer = false;
+	//}
 
 
 	// 徐々にフォーロー
-	if ( FollowPlayer )
-	{
+	//if ( FollowPlayer )
+	//{
 			m_Position.y = m_Position.y + ( playerPos.y - m_Position.y ) * smoothSpeedY;
 			m_Target.y = m_Position.y; 
-		}
-	else
-	{
-		m_Position.y = m_Position.y + ( playerPos.y - m_Position.y ) * smoothSpeedY;
-		m_Target.y = m_Position.y; 
-	}
-
+	//	}
 
 	//プレイヤーが壁に到着した時処理
 	if ( m_Position.x < -WORLD_WIDTH / 2 ) {	//一番左
@@ -106,7 +102,7 @@ void Camera::Draw ( )
 	//プロジェクション行列の生成
 	constexpr float fieldOfView = DirectX::XMConvertToRadians ( 45.0f );    // 視野角
 
-	float aspectRatio = static_cast< float >( Application::GetWidth ( ) ) / static_cast< float >( Application::GetHeight ( ) );	// アスペクト比	
+	float aspectRatio = static_cast< float >( SCREEN_WIDTH ) / static_cast< float >( SCREEN_HEIGHT );	// アスペクト比	
 	float nearPlane = 1.0f;       // ニアクリップ
 	float farPlane = 1000.0f;      // ファークリップ
 
