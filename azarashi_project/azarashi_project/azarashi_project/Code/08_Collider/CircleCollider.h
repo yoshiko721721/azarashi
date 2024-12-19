@@ -1,18 +1,17 @@
 #pragma once
 #include <DirectXMath.h>
 #include <cmath>
-#include "Object.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "Base_collision.h"
+#include "../08_Collider/Base_collision.h"
 
 class CircleCollider :public BaseCollider
 {
 public:
 	static DirectX::XMFLOAT2 hitcorners[4];//“–‚½‚è”»’è‚ğ‚Æ‚éÛ‚ÌÀ•WŠi”[æ
 
-	static ContactPointVector ColliderWithBox(Object* p_player, float circleposx, float circleposy, float radius);//lŠp‚Æ‰~‚Ì“–‚½‚è”»’è
-	static bool ColliderWithCircle(Object* m_boxpointer, float circleposx, float circleposy, float radius);	 //lŠp‚ÆlŠp‚Ì“–‚½‚è”»’è
+	static ContactPointVector ColliderWithBox(Object* p_Box, Object* p_Circle);//lŠp‚Æ‰~‚Ì“–‚½‚è”»’è(ˆê‚Â–Ú‚Ìˆø”‚ªBox‚ÅA“ñ‚Â–Ú‚Ìˆø”‚ªcircle)
+	static bool ColliderWithCircle(Object* p_Circle1, Object* p_Circle2);	   //‰~‚Æ‰~‚Ì“–‚½‚è”»’è(Šî–{“I‚Éupdate‚ğ‰ñ‚µ‚Ä‚¢‚é‰~‚Ì•û‚ğp_circle1‚É‚·‚é)
 	static bool IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height);	 //
 
 private://‰~‚Æ‚Ì“–‚½‚è”»’è‚Åg‚¤

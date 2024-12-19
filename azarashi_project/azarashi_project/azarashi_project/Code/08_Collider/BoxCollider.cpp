@@ -24,16 +24,16 @@ float BoxCollider::dotProduct(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2)
 //2024/12/11 中江
 //--------------------------------------------------------------
 
-ContactPointVector BoxCollider::ColliderWithCircle(Object* m_GamePlayer, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height)
+ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_Box)
 {
-    angle = angle * (M_PI / 180.0);   //角度をラジアンに変換
+    float angle = p_Box->GetAngle();   //角度をラジアンに変換
+    angle = angle * (M_PI / 180.0);
 
-    DirectX::XMFLOAT3 circlepos = m_GamePlayer->GetPos();   //ポインターを使ってcircleの座標取得
-    DirectX::XMFLOAT2 circlepos2 = { circlepos.x,circlepos.y };
-    DirectX::XMFLOAT3 circlesize =m_GamePlayer->GetSize();  //ポインターを使ってcircleのサイズ取得
+    DirectX::XMFLOAT3 circlepos = p_Circle->GetPos();   //ポインターを使ってcircleの座標取得
+    DirectX::XMFLOAT3 circlesize = p_Circle->GetSize();  //ポインターを使ってcircleのサイズ取得
 
     //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
-    DirectX::XMFLOAT2 halfsize = { wihtd / 2,height / 2 };//OK
+    DirectX::XMFLOAT2 halfsize = { circlesize.x / 2, circlesize.y / 2 };//OK
 
     //幅の半分と高さの半分の数値を使って長方形の頂点の座標を計算する(o^―^o)
     hitcorners[0] = { -halfsize.x , -halfsize.y };
@@ -44,8 +44,8 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* m_GamePlayer, float S
     //回転後、平行移動後の座標に変換(四つ角すべて)
     for (int i = 0; i < 4; i++) {
         hitcorners[i] = RotatePosition(hitcorners[i], angle);//長方形の各角を回転させる
-        hitcorners[i].x += Scaffoldposx;//変換した矩形のXに矩形の中心座標Xを足す
-        hitcorners[i].y += Scaffoldposy;//変換した矩形のYに矩形の中心座標Yを足す
+        hitcorners[i].x += circlepos.x;//変換した矩形のXに矩形の中心座標Xを足す
+        hitcorners[i].y += circlepos.y;//変換した矩形のYに矩形の中心座標Yを足す
        
     }//OK
 
@@ -86,7 +86,7 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* m_GamePlayer, float S
 //四角と四角の当たり判定関数
 //2024/12/03 中江
 //--------------------------------------------------------------
-bool BoxCollider::ColliderWithBox(Object* m_GamePlayer, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height, DirectX::XMFLOAT2& touchbox)
+bool BoxCollider::ColliderWithBox(Object* p_Box1, Object* p_Box2)
 {
     DirectX::XMFLOAT2 hitcorners2[4] = {//当たり判定をとる際の座標格納先
         { 0, 0 }, //LeftBottom
@@ -95,17 +95,15 @@ bool BoxCollider::ColliderWithBox(Object* m_GamePlayer, float Scaffoldposx, floa
         { 0, 0 }, //LeftTop
     };
 
-    angle = angle * (M_PI / 180.0);   //角度をラジアンに変換
-    float angle1 = m_GamePlayer->GetAngle();
-    angle1 = angle1 * (M_PI / 180.0);
-
-    DirectX::XMFLOAT3 boxpos = m_GamePlayer->GetPos();   //ポインターを使ってBoxの座標取得
-    DirectX::XMFLOAT2 boxpos2 = { boxpos.x,boxpos.y };
-    DirectX::XMFLOAT3 boxsize = m_GamePlayer->GetSize();  //ポインターを使ってcircleのサイズ取得
+    float angle1 = p_Box1->GetAngle();
+    angle1 = angle1 * (M_PI / 180.0);   //角度をラジアンに変換
+    
+    DirectX::XMFLOAT3 boxpos1 = p_Box1->GetPos();   //ポインターを使ってBoxの座標取得
+    DirectX::XMFLOAT3 boxsize1 = p_Box1->GetSize();  //ポインターを使ってcircleのサイズ取得
 
 //-------------------当たり判定を持っている方の矩形計算--------------------------------
     //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
-    DirectX::XMFLOAT2 halfsize1 = { wihtd / 2,height / 2 };//OK
+    DirectX::XMFLOAT2 halfsize1 = { boxsize1.x / 2,boxsize1.y / 2 };//OK
 
     //幅の半分と高さの半分の数値を使って長方形の頂点の座標を計算する(o^―^o)
     hitcorners[0] = { -halfsize1.x , -halfsize1.y };
@@ -115,9 +113,9 @@ bool BoxCollider::ColliderWithBox(Object* m_GamePlayer, float Scaffoldposx, floa
 
     //回転後、平行移動後の座標に変換(四つ角すべて)
     for (int i = 0; i < 4; i++) {
-        hitcorners[i] = RotatePosition(hitcorners[i], angle);//長方形の各角を回転させる
-        hitcorners[i].x += Scaffoldposx;//変換した矩形のXに矩形の中心座標Xを足す
-        hitcorners[i].y += Scaffoldposy;//変換した矩形のYに矩形の中心座標Yを足す
+        hitcorners[i] = RotatePosition(hitcorners[i], angle1);//長方形の各角を回転させる
+        hitcorners[i].x += boxpos1.x;//変換した矩形のXに矩形の中心座標Xを足す
+        hitcorners[i].y += boxpos1.y;//変換した矩形のYに矩形の中心座標Yを足す
 
     }//OK
 
@@ -132,9 +130,14 @@ bool BoxCollider::ColliderWithBox(Object* m_GamePlayer, float Scaffoldposx, floa
     }
 
 //----------------------------------------------------------------------------------------
+    float angle2 = p_Box2->GetAngle();
+    angle2 = angle2 * (M_PI / 180.0);
+
+    DirectX::XMFLOAT3 boxpos2 = p_Box2->GetPos();   //ポインターを使ってBoxの座標取得
+    DirectX::XMFLOAT3 boxsize2 = p_Box2->GetSize();  //ポインターを使ってcircleのサイズ取得
 
      //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
-    DirectX::XMFLOAT2 halfsize2 = { boxsize.x / 2 , boxsize.y / 2};//OK
+    DirectX::XMFLOAT2 halfsize2 = { boxsize2.x / 2 , boxsize2.y / 2};//OK
 
      //幅の半分と高さの半分の数値を使って長方形の頂点の座標を計算する(o^―^o)
     hitcorners2[0] = { -halfsize2.x , -halfsize2.y };
@@ -145,8 +148,8 @@ bool BoxCollider::ColliderWithBox(Object* m_GamePlayer, float Scaffoldposx, floa
     //回転後、平行移動後の座標に変換(四つ角すべて)
     for (int i = 0; i < 4; i++) {
         hitcorners2[i] = RotatePosition(hitcorners2[i], angle1);//長方形の各角を回転させる
-        hitcorners2[i].x += boxpos.x;//変換した矩形のXに矩形の中心座標Xを足す
-        hitcorners2[i].y += boxpos.y;//変換した矩形のYに矩形の中心座標Yを足す
+        hitcorners2[i].x += boxpos2.x;//変換した矩形のXに矩形の中心座標Xを足す
+        hitcorners2[i].y += boxpos2.y;//変換した矩形のYに矩形の中心座標Yを足す
 
     }//OK
  //----------------------------------------------------------------------------------------

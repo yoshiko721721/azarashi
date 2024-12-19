@@ -23,14 +23,17 @@ float CircleCollider::dotProduct(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2)
 //四角と円の当たり判定関数
 //2024/11/14 中江
 //--------------------------------------------------------------
-ContactPointVector CircleCollider::ColliderWithBox(Object* m_boxpointer, float circleposx, float circleposy, float radius)
+ContactPointVector CircleCollider::ColliderWithBox(Object* p_Box, Object* p_Circle)
 {
-    float angle = m_boxpointer->GetAngle();   //角度をラジアンに変換
-    angle = angle * (M_PI / 180.0);
+    float angle = p_Box->GetAngle();     //四角の角度を取得
+    angle = angle * (M_PI / 180.0);      //四角の角度をラジアンに変換
 
-    DirectX::XMFLOAT3 boxpos = m_boxpointer->GetPos();   //ポインターを使ってcircleの座標取得
-    DirectX::XMFLOAT2 boxpos2 = { boxpos.x,boxpos.y };
-    DirectX::XMFLOAT3 boxsize = m_boxpointer->GetSize();  //ポインターを使ってcircleのサイズ取得
+    DirectX::XMFLOAT3 boxpos = p_Box->GetPos();   //ポインターを使ってcircleの座標取得
+    //DirectX::XMFLOAT3 boxpos2 = { boxpos.x,boxpos.y };
+    DirectX::XMFLOAT3 boxsize = p_Box->GetSize();  //ポインターを使ってcircleのサイズ取得
+
+    DirectX::XMFLOAT3 circlepos = p_Circle->GetPos();   //ポインターを使ってcircleの座標取得
+    DirectX::XMFLOAT3 circlesize = p_Circle->GetSize();  //ポインターを使ってcircleのサイズ取得
 
     //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
     DirectX::XMFLOAT2 halfsize = { boxsize.x / 2 , boxsize.y / 2 };//OK
@@ -44,8 +47,8 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* m_boxpointer, float c
     //回転後、平行移動後の座標に変換(四つ角すべて)
     for (int i = 0; i < 4; i++) {
         hitcorners[i] = RotatePosition(hitcorners[i], angle);//長方形の各角を回転させる
-        hitcorners[i].x += boxpos2.x;//変換した矩形のXに矩形の中心座標Xを足す
-        hitcorners[i].y += boxpos2.y;//変換した矩形のYに矩形の中心座標Yを足す
+        hitcorners[i].x += boxpos.x;//変換した矩形のXに矩形の中心座標Xを足す
+        hitcorners[i].y += boxpos.y;//変換した矩形のYに矩形の中心座標Yを足す
 
     }//OK
 
@@ -57,18 +60,18 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* m_boxpointer, float c
 
         // 辺の方向ベクトル
         DirectX::XMFLOAT2 edge = { p2.x - p1.x, p2.y - p1.y };//角から角のベクトルを図るよ
-        DirectX::XMFLOAT2 toCircle = { circleposx - p1.x, circleposy - p1.y };//点から角のベクトルを図るよ
+        DirectX::XMFLOAT2 toCircle = { circlepos.x - p1.x, circlepos.y - p1.y };//点から角のベクトルを図るよ
 
         float t = fmax(0, fmin(1, (toCircle.x * edge.x + toCircle.y * edge.y) / (edge.x * edge.x + edge.y * edge.y)));
         DirectX::XMFLOAT2 closestPoint = { p1.x + t * edge.x, p1.y + t * edge.y }; //返す値
 
         // 最近接点と円の中心の距離を計算
-        float distanceSquared = (closestPoint.x - circleposx) * (closestPoint.x - circleposx) + (closestPoint.y - circleposy) * (closestPoint.y - circleposy);//返す値
+        float distanceSquared = (closestPoint.x - circlepos.x) * (closestPoint.x - circlepos.x) + (closestPoint.y - circlepos.y) * (closestPoint.y - circlepos.y);//返す値
 
         // 距離が半径以下なら当たりと判定
-        if (distanceSquared <= radius * radius)
+        if (distanceSquared <= (circlesize.y / 2) * (circlesize.y / 2))
         {
-            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circleposx , closestPoint.y - circleposy };
+            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
             float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);
             DirectX::XMFLOAT2 normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
             //closscircle = closestPoint;
@@ -84,18 +87,22 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* m_boxpointer, float c
 //四角と四角の当たり判定関数
 //2024/12/03 中江
 //--------------------------------------------------------------
-bool CircleCollider::ColliderWithCircle(Object* m_circlepointer, float circleposx, float circleposy, float radius)
+bool CircleCollider::ColliderWithCircle(Object* p_Circle1, Object* p_Circle2)
 {
-    DirectX::XMFLOAT3 circlepos2 = m_circlepointer->GetPos();
-    DirectX::XMFLOAT3 circlesize2 = m_circlepointer->GetSize();  //ポインターを使ってcircleのサイズ取得
+    DirectX::XMFLOAT3 circlepos1 = p_Circle1->GetPos();
+    DirectX::XMFLOAT3 circlesize1 = p_Circle1->GetSize();  //ポインターを使ってcircleのサイズ取得
 
+    DirectX::XMFLOAT3 circlepos2 = p_Circle2->GetPos();
+    DirectX::XMFLOAT3 circlesize2 = p_Circle2->GetSize();  //ポインターを使ってcircleのサイズ取得
+
+    float radius1 = circlesize1.y / 2;
     float radius2 = circlesize2.y / 2;
 
-    float a = circleposx - circlepos2.x;
-    float b = circleposy - circlepos2.y;
+    float a = circlepos1.x - circlepos2.x;
+    float b = circlepos1.y - circlepos2.y;
     float c = sqrt(a * a + b * b);
 
-    if (c <= radius + radius2)
+    if (c <= radius1 + radius2)
     {
         return true;
     }

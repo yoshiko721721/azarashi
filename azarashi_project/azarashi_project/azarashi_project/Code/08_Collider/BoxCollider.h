@@ -1,8 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
 #include <cmath>
-#include "Object.h"
-#include "Base_collision.h"
+#include "../08_Collider/Base_collision.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 using namespace std;
@@ -13,8 +12,8 @@ class BoxCollider:public BaseCollider
 public:
 	static DirectX::XMFLOAT2 hitcorners[4];//“–‚½‚è”»’è‚ğ‚Æ‚éÛ‚ÌÀ•WŠi”[
 
-	static ContactPointVector ColliderWithCircle(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height);//lŠp‚Æ‰~‚Ì“–‚½‚è”»’è
-	static bool ColliderWithBox(Object* p_player, float Scaffoldposx, float Scaffoldposy, float angle, float wihtd, float height, DirectX::XMFLOAT2& touchbox);	 //lŠp‚ÆlŠp‚Ì“–‚½‚è”»’è
+	static ContactPointVector ColliderWithCircle(Object* p_Circle,Object* p_Box);//lŠp‚Æ‰~‚Ì“–‚½‚è”»’è(ˆê‚Â–Ú‚Ìˆø”‚ªcircle‚ÅA“ñ‚Â–Ú‚Ìˆø”‚ªbox)
+	static bool ColliderWithBox(Object* p_Box1, Object* p_Box2);	 //lŠp‚ÆlŠp‚Ì“–‚½‚è”»’è(Šî–{“I‚Éupdate‚ğ‰ñ‚µ‚Ä‚¢‚élŠp‚Ì•û‚ğp_Box1‚É‚·‚é)
 	static bool IsColliderInRange(float circleposx, float circleposy,float Scaffoldposx, float Scaffoldposy,float wihtd , float height);	 //
 
 private://‰~‚Æ‚Ì“–‚½‚è”»’è‚Åg‚¤
