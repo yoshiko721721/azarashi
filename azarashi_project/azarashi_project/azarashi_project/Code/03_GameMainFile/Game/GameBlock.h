@@ -1,7 +1,7 @@
 #pragma once
 #include "../../01_Direct3D/Object.h"
 #include "../../02_Input/input.h"
-#include "../../08_BoxCollider/BoxCollider.h"
+
 
 	const float groundY = -200.0f; // 地面のY座標
 	const float groundX = 100.0f; // 地面のY座標
@@ -15,7 +15,6 @@ public:
 	void Update();//更新
 
 	float GetFrictionRasistance();
-	BoxCollider collider;
 
 private:
 
