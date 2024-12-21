@@ -1,6 +1,9 @@
 #include "CircleCollider.h"
 #include <algorithm>
 
+// スコープを付けてhitcorners を定義 
+DirectX::XMFLOAT2 CircleCollider::hitcorners[4];
+
 //--------------------------------------------------------------
 //傾きに合わせて長方形の角度計算関数(回転座標)
 // //2024/11/14 中江

@@ -16,8 +16,6 @@ struct  ContactPointVector
 class BaseCollider
 {
 public:
-	BaseCollider();
-	~BaseCollider();
 	virtual void ColliderWithBox() = 0;
 	virtual void ColliderWithCircle() = 0;
 
@@ -26,12 +24,5 @@ private:
 
 };
 
-BaseCollider::BaseCollider()
-{
-}
-
-BaseCollider::~BaseCollider()
-{
-}
 
 

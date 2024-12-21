@@ -1,4 +1,6 @@
 #include "GameScene.h"
+#include "../../08_Collider/BoxCollider.h"
+
 
 void GameScene::Init()
 {
@@ -27,7 +29,7 @@ void GameScene::Update()
 	}
 
 	//è∞Ç…ìñÇΩÇ¡ÇΩéûÅ@è’ìÀîªíË
-	if (block.collider.CheckCollision_Box_Circle(&pointer, &block) )
+	if (BoxCollider::ColliderWithCircle(&pointer, &block) )
 	{
 		if (Input::GetKeyTrigger(VK_RETURN)) {
 			pointer.body.AddForce(0.0f, -30.0f);

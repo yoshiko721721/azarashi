@@ -13,7 +13,7 @@ public:
 	static DirectX::XMFLOAT2 hitcorners[4];//当たり判定をとる際の座標格納
 
 	static ContactPointVector ColliderWithCircle(Object* p_Circle,Object* p_Box);//四角と円の当たり判定(一つ目の引数がcircleで、二つ目の引数がbox)
-	static bool ColliderWithBox(Object* p_Box1, Object* p_Box2);	 //四角と四角の当たり判定(基本的にupdateを回している四角の方をp_Box1にする)
+	static bool ColliderWithBox(Object* p_Box1, Object* p_Box2);				 //四角と四角の当たり判定(基本的にupdateを回している四角の方をp_Box1にする)
 	static bool IsColliderInRange(float circleposx, float circleposy,float Scaffoldposx, float Scaffoldposy,float wihtd , float height);	 //
 
 private://円との当たり判定で使う
