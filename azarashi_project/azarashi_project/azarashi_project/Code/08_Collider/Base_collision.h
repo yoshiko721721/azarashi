@@ -24,12 +24,5 @@ private:
 
 };
 
-BaseCollider::BaseCollider()
-{
-}
-
-BaseCollider::~BaseCollider()
-{
-}
 
 
