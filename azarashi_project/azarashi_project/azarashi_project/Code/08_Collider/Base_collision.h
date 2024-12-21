@@ -18,10 +18,7 @@ class BaseCollider
 public:
 	virtual void ColliderWithBox() = 0;
 	virtual void ColliderWithCircle() = 0;
-
 private:
-
-
 };
 
 

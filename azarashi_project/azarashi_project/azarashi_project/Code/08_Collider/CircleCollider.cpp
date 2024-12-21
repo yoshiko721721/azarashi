@@ -118,9 +118,9 @@ bool CircleCollider::ColliderWithCircle(Object* p_Circle1, Object* p_Circle2)
 //範囲内にcircleがなにかあるかどうかを調べる関数
 //2024/11/23 中江
 //--------------------------------------------------------------
-bool CircleCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height)
+/* bool CircleCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height)
 {
-    // 矩形の中心から円の中心までの距離を計算 
+   // 矩形の中心から円の中心までの距離を計算 
     float distancex = range_x + wihtd / 2;
     float distancey = range_y + height / 2;
     //float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
@@ -140,6 +140,6 @@ bool CircleCollider::IsColliderInRange(float circleposx, float circleposy, float
         return false;
     }
 
-}
+}*/
 
 

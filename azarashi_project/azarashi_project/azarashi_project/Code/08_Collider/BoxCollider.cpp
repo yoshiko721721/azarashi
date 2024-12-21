@@ -158,20 +158,6 @@ bool BoxCollider::ColliderWithBox(Object* p_Box1, Object* p_Box2)
  //----------------------------------------------------------------------------------------
     DirectX::XMFLOAT2 relative_position;
     DirectX::XMFLOAT2 transform_pos;
-    /*for (int i = 0; i < 4; i++)
-    {
-        //Šp‚Ì‘Š‘ÎÀ•W‚ðì‚èo‚·
-        relative_position = { hitcorners2[i].x - Scaffoldposx , hitcorners2[i].y - Scaffoldposy };
-
-        //‘Š‘ÎÀ•W‚É‘Î‚µ‚Ä‹éŒ`‚Ì‰ñ“]‚ð‘Å‚¿Á‚·‹ts—ñ‚ðŠ|‚¯‚é
-        transform_pos = { cos(angle) * relative_position.x + sin(angle) * relative_position.y ,-sin(angle) * relative_position.x + cos(angle) * relative_position.y };
-
-         // ‹éŒ`‚Æ“_‚Ì“–‚½‚è”»’è‚ðs‚¤
-        if (-halfsize1.x <= transform_pos.x && halfsize1.x >= transform_pos.x && -halfsize1.y <= transform_pos.y && halfsize1.y >= transform_pos.y)
-        {
-            return true;
-        }
-    }*/
 
      for(int i = 0;i < 4;i++)
      {
@@ -205,36 +191,7 @@ bool BoxCollider::ColliderWithBox(Object* p_Box1, Object* p_Box2)
 //”ÍˆÍ“à‚Écircle‚ª‚È‚É‚©‚ ‚é‚©‚Ç‚¤‚©‚ð’²‚×‚éŠÖ”
 //2024/11/23 ’†]
 //--------------------------------------------------------------
-bool BoxCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height)
-{
-    // ‹éŒ`‚Ì’†S‚©‚ç‰~‚Ì’†S‚Ü‚Å‚Ì‹——£‚ðŒvŽZ 
-    float distancex = range_x + wihtd  / 2;
-    float distancey = range_y + height / 2;
-    //float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
-    // ‹——£‚ªŽw’è‚³‚ê‚½”ÍˆÍ“à‚Å‚ ‚ê‚Îtrue‚ð•Ô‚·  
-    //Object‚ÌXÀ•W‚ª”ÍˆÍ‚É“ü‚Á‚Ä‚¢‚é‚È‚ç
-    if ((distancex + wihtd) * -1 <= circleposx && circleposx <= (distancex + wihtd))
-    {
-        //Object‚ÌYÀ•W‚ª”ÍˆÍ‚É“ü‚Á‚Ä‚¢‚é‚È‚ç
-        if ((distancey + height) * -1 <= circleposy && circleposy <= (distancey + wihtd)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    else{ 
-        return false;
-    }
+//bool BoxCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height){}
 
-}
-
-//i’»ƒƒ‚ 2024/11/25 ’†]
-// ‚â‚Î‚¢Š
-//E‘«ê‚Ì’[‚Á‚±(‰~‚Ì^‚ñ’†‚æ‚èŠO‘¤)‚¾‚¯‘«ê‚É“–‚½‚Á‚Ä‚¢‚éŽž‚É”»’è‚ª”­“®‚µ‚È‚¢
-//EŽÎ‚ß‚É‚µ‚½‚Æ‚«‚É‚¿‚å‚Á‚Æ‰~‚ªH‚¢ž‚Þ(ˆê”Ô‚â‚Î‚¢‚µƒCƒ‰ƒCƒ‰‚·‚é)
-//‰ü‘PˆÄ
-//EŠp‚Ì•”•ª‚¾‚¯•Ê‚Å“–‚½‚è”»’è‚ðŽæ‚é
-//E‰~‚Ì^‚ñ’†‚©‚çü•ª”ò‚Î‚µ‚Ä‚ ‚½‚Á‚Ä‚½‚ç‚»‚±‚Å“–‚½‚Á‚Ä‚¢‚é”»’è‚É‚·‚é
 
 
