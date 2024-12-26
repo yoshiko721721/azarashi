@@ -1,4 +1,6 @@
 #include "GameBlock.h"
+#include "../../08_Collider/BoxCollider.h"
+
 void GameBlock::Init()
 {
 	Initialize(L"Asset/pic/Box.png");   //”wŒi‚ğ‰Šú‰»
