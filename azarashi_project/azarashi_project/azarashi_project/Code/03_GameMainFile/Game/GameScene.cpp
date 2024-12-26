@@ -14,8 +14,15 @@ void GameScene::Init()
 }
 void GameScene::Update()
 {
-
 	//backGround.Update();
+
+	if (pause.isPaused() == false) {
+		pause.apply();
+	}else{
+		pause.maladaptive();
+		return;
+	}
+
 	pointer.Update(block.GetAngle());
 	block.Update();
 
