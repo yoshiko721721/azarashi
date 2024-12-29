@@ -1,15 +1,8 @@
 #include "BoxCollider.h"
 #include <algorithm>
 
-<<<<<<< HEAD
-
-DirectX::XMFLOAT2 BoxCollider::hitcorners[4];//当たり判定をとる際の座標格納
-float BoxCollider::range_x;
-float BoxCollider::range_y;
-=======
 // スコープを付けてhitcorners を定義 
 DirectX::XMFLOAT2 BoxCollider::hitcorners[4];
->>>>>>> 55ad0e60c1cf48eabbd4b77e80a9963e15570d9c
 
 //--------------------------------------------------------------
 //傾きに合わせて長方形の角度計算関数(回転座標)

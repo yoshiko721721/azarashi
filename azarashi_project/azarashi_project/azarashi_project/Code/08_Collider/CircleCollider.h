@@ -16,13 +16,8 @@ public:
 
 private://円との当たり判定で使う
 
-<<<<<<< HEAD
-	static float range_x;//当たり判定を取る範囲X
-	static float range_y;//当たり判定を取る範囲Y
-=======
 	//static const float range_x;//当たり判定を取る範囲X
 	//static const float range_y;//当たり判定を取る範囲Y
->>>>>>> 55ad0e60c1cf48eabbd4b77e80a9963e15570d9c
 
 	//--------------------------ベクトルなどの計算の関数--------------------------
 	static DirectX::XMFLOAT2 RotatePosition(DirectX::XMFLOAT2, float);//回転行列
