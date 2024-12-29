@@ -1,0 +1,4 @@
+・SDLのzipファイルを解凍しプロジェクトのファイルに移動、includeとlibを指定.
+・ViGEm Busドライバーをブラウザからインストールする
+・Xoutputを解凍、Xoutput.exeを開き動作をEditで動作を確認、addcontrollerを開き、edit、configureAllで設定、startを押して完了
+・
