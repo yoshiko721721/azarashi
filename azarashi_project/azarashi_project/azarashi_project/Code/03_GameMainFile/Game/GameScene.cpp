@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "../../08_Collider/BoxCollider.h"
+#include"../../03_GameMainFile/Application.h"
 
 
 void GameScene::Init()
@@ -16,8 +17,15 @@ void GameScene::Init()
 }
 void GameScene::Update()
 {
-
 	//backGround.Update();
+
+	if (pause.isPaused() == false) {
+		pause.apply();
+	}else{
+		pause.maladaptive();
+		return;
+	}
+
 	pointer.Update(block.GetAngle());
 	block.Update();
 
@@ -29,7 +37,7 @@ void GameScene::Update()
 	}
 
 	//床に当たった時　衝突判定
-	if (BoxCollider::ColliderWithCircle(&pointer, &block) )
+	if (BoxCollider::ColliderWithCircle(&pointer, &block).checkCollision )
 	{
 		if (Input::GetKeyTrigger(VK_RETURN)) {
 			pointer.body.AddForce(0.0f, -30.0f);
@@ -64,8 +72,7 @@ void GameScene::Update()
 
 
 	if (Input::GetKeyTrigger(VK_S)) {
-		SetOldScene(GAMESCENE);			//currentScene登録前に
-		SetCurrentScene(TITLESCENE);	//oldSceneに自身のシーンタグを登録しないといけない
+		Application::GetInstance()->ChangeScene(TITLESCENE);	//ここでoldSceneを入れて置かないと他のシーンで遷移出来ない
 	}
 
 }

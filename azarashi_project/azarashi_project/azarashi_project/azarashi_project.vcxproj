@@ -48,7 +48,6 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
-    <ClCompile Include="Code\06_Scene\SceneManager.cpp" />
     <ClCompile Include="Code\07_Camera\Camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -58,6 +57,7 @@
     <ClCompile Include="Code\08_Collider\CircleCollider.cpp" />
     <ClCompile Include="Code\09_Sound\sound.cpp" />
     <ClCompile Include="Code\10_Timer\Timer.cpp" />
+    <ClCompile Include="Code\11_Pause\pause.cpp" />
     <ClCompile Include="Code\ReadMeText.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -67,7 +67,9 @@
     <ClInclude Include="Code\01_Direct3D\Object.h" />
     <ClInclude Include="Code\01_Direct3D\Singleton.h" />
     <ClInclude Include="Code\02_Input\input.h" />
-    <ClInclude Include="Code\03_GameMainFile\Application.h" />
+    <ClInclude Include="Code\03_GameMainFile\Application.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -92,7 +94,6 @@
     <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
-    <ClInclude Include="Code\06_Scene\SceneManager.h" />
     <ClInclude Include="Code\07_Camera\Camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -104,6 +105,7 @@
     <ClInclude Include="Code\08_Collider\CircleCollider.h" />
     <ClInclude Include="Code\09_Sound\sound.h" />
     <ClInclude Include="Code\10_Timer\Timer.h" />
+    <ClInclude Include="Code\11_Pause\pause.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Code\04_hlsl\PixelShader.hlsl">

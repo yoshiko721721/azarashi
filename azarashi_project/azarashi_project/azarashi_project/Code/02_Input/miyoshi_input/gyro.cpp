@@ -10,6 +10,19 @@
 //    SDL_Quit();
 //    return -1;
 //}
+// 
+//  // ジャイロセンサーで変数Objectの位置を更新
+// UpdateCirclePosition(controller, //Object, SCREEN_WIDTH, SCREEN_HEIGHT);
+// 
+// //必要に応じてSDL_Delayを用いて遅延をかける
+// //(例)
+// SDL_Delay(16); // 60FPSに近似
+// 
+// //終了処理
+// SDL_GameControllerClose(controller);
+// SDL_Quit();
+//
+// return 0;
 //を入力
 
 SDL_GameController* InitializeController() {
@@ -30,17 +43,9 @@ SDL_GameController* InitializeController() {
     return controller;
 }
 
-//void UpdateCirclePosition(SDL_GameController* controller, Circle& circle, int screenWidth, int screenHeight) {
+//void UpdateObjectPosition(SDL_GameController* controller, Object& object, int screenWidth, int screenHeight) {
 //    float gyroData[3] = { 0 }; // x, y, z軸
 //    if (SDL_GameControllerGetSensorData(controller, SDL_SENSOR_GYRO, gyroData, 3) == 0) {
-//        // ジャイロデータを円の位置に反映
-//        circle.x += gyroData[0] * 0.1f; // スケーリング係数を調整
-//        circle.y += gyroData[1] * 0.1f;
-//
-//        // 画面端でバウンド
-//        if (circle.x < 0) circle.x = 0;
-//        if (circle.x > screenWidth) circle.x = screenWidth;
-//        if (circle.y < 0) circle.y = 0;
-//        if (circle.y > screenHeight) circle.y = screenHeight;
+//       ここに処理を記入
 //    }
 //}

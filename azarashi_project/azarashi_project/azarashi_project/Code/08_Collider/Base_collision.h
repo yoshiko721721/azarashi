@@ -6,7 +6,7 @@
 #include <math.h>
 using namespace std;
 
-struct  ContactPointVector
+static struct  ContactPointVector
 {
 	bool checkCollision;			//ìñÇΩÇ¡ÇΩÇ©Ç«Ç§Ç©Çï‘Ç∑bool
 	DirectX::XMFLOAT2 closspoint;	//â~ÇÃê⁄ínì_
@@ -16,22 +16,26 @@ struct  ContactPointVector
 class BaseCollider
 {
 public:
-	BaseCollider();
-	~BaseCollider();
+<<<<<<< HEAD
+	//BaseCollider();
+	//~BaseCollider();
+=======
+>>>>>>> 55ad0e60c1cf48eabbd4b77e80a9963e15570d9c
 	virtual void ColliderWithBox() = 0;
 	virtual void ColliderWithCircle() = 0;
-
 private:
-
-
 };
+<<<<<<< HEAD
+//
+//BaseCollider::BaseCollider()
+//{
+//}
+//
+//BaseCollider::~BaseCollider()
+//{
+//}
+=======
 
-BaseCollider::BaseCollider()
-{
-}
-
-BaseCollider::~BaseCollider()
-{
-}
+>>>>>>> 55ad0e60c1cf48eabbd4b77e80a9963e15570d9c
 
 

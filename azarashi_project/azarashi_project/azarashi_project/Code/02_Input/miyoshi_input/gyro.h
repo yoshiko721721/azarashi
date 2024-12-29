@@ -9,7 +9,7 @@
 // コントローラーを初期化する関数
 SDL_GameController* InitializeController();
 
-// ジャイロセンサーのデータを用いて円の位置を更新する関数
-//void UpdateCirclePosition(SDL_GameController* controller, Circle& circle, int screenWidth, int screenHeight);
+// ジャイロセンサーのデータを用いて変数Objectの位置を更新する関数
+//void UpdateCirclePosition(SDL_GameController* controller, //Object& //Object, int screenWidth, int screenHeight);
 
 #endif // GYRO_H

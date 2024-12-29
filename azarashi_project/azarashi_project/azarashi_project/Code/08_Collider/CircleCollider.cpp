@@ -1,6 +1,17 @@
 #include "CircleCollider.h"
 #include <algorithm>
 
+<<<<<<< HEAD
+
+DirectX::XMFLOAT2 CircleCollider::hitcorners[4];//当たり判定をとる際の座標格納先
+
+float CircleCollider::range_x;//当たり判定を取る範囲X
+float CircleCollider::range_y;//当たり判定を取る範囲Y
+=======
+// スコープを付けてhitcorners を定義 
+DirectX::XMFLOAT2 CircleCollider::hitcorners[4];
+>>>>>>> 55ad0e60c1cf48eabbd4b77e80a9963e15570d9c
+
 //--------------------------------------------------------------
 //傾きに合わせて長方形の角度計算関数(回転座標)
 // //2024/11/14 中江
@@ -115,9 +126,9 @@ bool CircleCollider::ColliderWithCircle(Object* p_Circle1, Object* p_Circle2)
 //範囲内にcircleがなにかあるかどうかを調べる関数
 //2024/11/23 中江
 //--------------------------------------------------------------
-bool CircleCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height)
+/* bool CircleCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height)
 {
-    // 矩形の中心から円の中心までの距離を計算 
+   // 矩形の中心から円の中心までの距離を計算 
     float distancex = range_x + wihtd / 2;
     float distancey = range_y + height / 2;
     //float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
@@ -137,6 +148,6 @@ bool CircleCollider::IsColliderInRange(float circleposx, float circleposy, float
         return false;
     }
 
-}
+}*/
 
 

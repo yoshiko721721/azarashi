@@ -1,6 +1,16 @@
 #include "BoxCollider.h"
 #include <algorithm>
 
+<<<<<<< HEAD
+
+DirectX::XMFLOAT2 BoxCollider::hitcorners[4];//当たり判定をとる際の座標格納
+float BoxCollider::range_x;
+float BoxCollider::range_y;
+=======
+// スコープを付けてhitcorners を定義 
+DirectX::XMFLOAT2 BoxCollider::hitcorners[4];
+>>>>>>> 55ad0e60c1cf48eabbd4b77e80a9963e15570d9c
+
 //--------------------------------------------------------------
 //傾きに合わせて長方形の角度計算関数(回転座標)
 // //2024/11/14 中江
@@ -155,20 +165,6 @@ bool BoxCollider::ColliderWithBox(Object* p_Box1, Object* p_Box2)
  //----------------------------------------------------------------------------------------
     DirectX::XMFLOAT2 relative_position;
     DirectX::XMFLOAT2 transform_pos;
-    /*for (int i = 0; i < 4; i++)
-    {
-        //角の相対座標を作り出す
-        relative_position = { hitcorners2[i].x - Scaffoldposx , hitcorners2[i].y - Scaffoldposy };
-
-        //相対座標に対して矩形の回転を打ち消す逆行列を掛ける
-        transform_pos = { cos(angle) * relative_position.x + sin(angle) * relative_position.y ,-sin(angle) * relative_position.x + cos(angle) * relative_position.y };
-
-         // 矩形と点の当たり判定を行う
-        if (-halfsize1.x <= transform_pos.x && halfsize1.x >= transform_pos.x && -halfsize1.y <= transform_pos.y && halfsize1.y >= transform_pos.y)
-        {
-            return true;
-        }
-    }*/
 
      for(int i = 0;i < 4;i++)
      {
@@ -202,36 +198,7 @@ bool BoxCollider::ColliderWithBox(Object* p_Box1, Object* p_Box2)
 //範囲内にcircleがなにかあるかどうかを調べる関数
 //2024/11/23 中江
 //--------------------------------------------------------------
-bool BoxCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height)
-{
-    // 矩形の中心から円の中心までの距離を計算 
-    float distancex = range_x + wihtd  / 2;
-    float distancey = range_y + height / 2;
-    //float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
-    // 距離が指定された範囲内であればtrueを返す  
-    //ObjectのX座標が範囲に入っているなら
-    if ((distancex + wihtd) * -1 <= circleposx && circleposx <= (distancex + wihtd))
-    {
-        //ObjectのY座標が範囲に入っているなら
-        if ((distancey + height) * -1 <= circleposy && circleposy <= (distancey + wihtd)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    else{ 
-        return false;
-    }
+//bool BoxCollider::IsColliderInRange(float circleposx, float circleposy, float Scaffoldposx, float Scaffoldposy, float wihtd, float height){}
 
-}
-
-//進捗メモ 2024/11/25 中江
-// やばい所
-//・足場の端っこ(円の真ん中より外側)だけ足場に当たっている時に判定が発動しない
-//・斜めにしたときにちょっと円が食い込む(一番やばいしイライラする)
-//改善案
-//・角の部分だけ別で当たり判定を取る
-//・円の真ん中から線分飛ばしてあたってたらそこで当たっている判定にする
 
 

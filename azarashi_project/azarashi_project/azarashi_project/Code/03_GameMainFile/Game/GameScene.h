@@ -1,5 +1,6 @@
 #pragma once
 #include "../../06_Scene/Scene.h"
+#include "../../11_Pause/pause.h"
 #include "GameBackGround.h"
 #include "GameCamera.h"
 #include "GamePointer.h"
@@ -13,6 +14,7 @@ private:
 	//GameCamera     camera;
 	GamePointer    pointer;
 	GameBlock      block;
+	Pause	pause;
 
 public:
 	void Init();		//‰Šú‰»
