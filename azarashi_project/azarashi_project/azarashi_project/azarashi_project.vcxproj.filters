@@ -156,9 +156,6 @@
     <ClCompile Include="Code\08_Collider\CircleCollider.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Select\SelectBackGround.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
-    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
@@ -238,9 +235,6 @@
     </ClInclude>
     <ClInclude Include="Code\08_Collider\CircleCollider.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Select\SelectBackGround.h">
-      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h">
       <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>

@@ -39,7 +39,6 @@
     <ClCompile Include="Code\03_GameMainFile\main.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Math.cpp" />
     <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\Select\SelectBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -87,7 +86,6 @@
     <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Math.h" />
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
-    <ClInclude Include="Code\03_GameMainFile\Select\SelectBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Title\TitleBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

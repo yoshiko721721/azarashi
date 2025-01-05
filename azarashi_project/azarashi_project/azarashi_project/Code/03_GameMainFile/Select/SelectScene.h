@@ -1,12 +1,10 @@
 #pragma once
 #include "../../06_Scene/Scene.h"
-#include"SelectBackGround.h"
 
 class SelectScene : public Scene
 {
 private:
 	Object sample;
-	SelectBackGround backGround;
 	std::vector<Object*> m_MySceneObjects; // このシーンのオブジェクト
 
 public:
@@ -16,5 +14,3 @@ public:
 	void Uninit();		//終了
 
 };
-
-extern SelectScene* titleScene;
