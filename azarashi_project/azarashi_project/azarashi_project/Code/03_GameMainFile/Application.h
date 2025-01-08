@@ -24,12 +24,13 @@ public:
 	void DeleteAllObject(); // オブジェクトをすべて削除する
 
 	// オブジェクトを追加する(※テンプレート関数なのでここに直接記述)
-	template<typename... Args> 
-	Object* AddObject(Args&&... args)
+	template<typename T, typename... Args>
+	T* AddObject(Args&&... args)
 	{
-		auto newObject = std::make_unique<Object>(std::forward<Args>(args)...);
-		Object* objectPtr = newObject.get();
+		auto newObject = std::make_unique<T>(std::forward<Args>(args)...); // T型のオブジェクトを作成
+		T* objectPtr = newObject.get();
 		m_Objects.push_back(std::move(newObject));
+		//objectPtr->Init(); // 初期化
 		return objectPtr;
 	}
 
