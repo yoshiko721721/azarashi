@@ -36,7 +36,7 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_B
     DirectX::XMFLOAT3 circlesize = p_Circle->GetSize();  //ポインターを使ってcircleのサイズ取得
 
     //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
-    DirectX::XMFLOAT2 halfsize = { circlesize.x / 2, circlesize.y / 2 };//OK
+    DirectX::XMFLOAT2 halfsize = { p_Box->GetSize().x / 2, p_Box->GetSize().y / 2 };//OK
 
     //幅の半分と高さの半分の数値を使って長方形の頂点の座標を計算する(o^―^o)
     hitcorners[0] = { -halfsize.x , -halfsize.y };
@@ -47,8 +47,8 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_B
     //回転後、平行移動後の座標に変換(四つ角すべて)
     for (int i = 0; i < 4; i++) {
         hitcorners[i] = RotatePosition(hitcorners[i], angle);//長方形の各角を回転させる
-        hitcorners[i].x += circlepos.x;//変換した矩形のXに矩形の中心座標Xを足す
-        hitcorners[i].y += circlepos.y;//変換した矩形のYに矩形の中心座標Yを足す
+        hitcorners[i].x += p_Box->GetPos().x;//変換した矩形のXに矩形の中心座標Xを足す
+        hitcorners[i].y += p_Box->GetPos().y;//変換した矩形のYに矩形の中心座標Yを足す
        
     }//OK
 
@@ -70,20 +70,20 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_B
 
         // 最近接点と円の中心の距離を計算
         float distanceSquared = (closestPoint.x - circlepos.x) * (closestPoint.x - circlepos.x) + (closestPoint.y - circlepos.y) * (closestPoint.y - circlepos.y);//返す値
+        float radius = circlesize.y / 2.0;
         // 距離が半径以下なら当たりと判定
-        if (distanceSquared <= circlesize.y / 2 * circlesize.y / 2)
+        if (distanceSquared <= radius * radius)
         {
-            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
-            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y); 
-           normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
+            //DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
+            //float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);
+            //DirectX::XMFLOAT2 normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
             //closscircle = closestPoint;
             //distancesquared = distanceSquared;
 
-            return { true, closestPoint ,normalizedVector };
-
+            return { true, closestPoint , distanceSquared };
         }
     }
-    return { false, closestPoint ,normalizedVector };
+    return { false };
 };
 //--------------------------------------------------------------
 //四角と四角の当たり判定関数
