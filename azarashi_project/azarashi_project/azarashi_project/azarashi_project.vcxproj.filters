@@ -159,6 +159,9 @@
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h">
       <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
