@@ -1,7 +1,7 @@
 #pragma once
 #include <d3d11.h>  // DirectX11を使うためのヘッダーファイル
 #include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
-#include "DirectX.h"
+//#include "DirectX.h"
 
 #include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL.h"//SDLでジャイロセンサーを読み取るために使用
 #include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL_main.h" //SDL_main関係のエラーが出るときに必要※エラーが無い時も
