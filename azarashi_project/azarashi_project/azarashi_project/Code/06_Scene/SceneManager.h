@@ -11,6 +11,9 @@ private:
 	std::unique_ptr<Scene> currentScene;			//現在のシーン
 
 public:
+	// シングルトンパターン
+	static SceneManager& GetInstance();
+
 	void AddScene();									//シーン追加
 	void ChangeScene(std::unique_ptr<Scene> newScene);	//シーン遷移
 	void Update();										//現在のシーンの更新処理
