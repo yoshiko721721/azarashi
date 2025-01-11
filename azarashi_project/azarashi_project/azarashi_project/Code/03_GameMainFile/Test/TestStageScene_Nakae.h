@@ -10,6 +10,7 @@
 #include "../../10_Timer/Timer.h"
 #include "../../12_CSVMapLoader/CSVMapLoader.h"
 #include "../Game/MoveGameBlock.h"
+#include "TestWall.h"
 
 class TestStageScene_Nakae : public Scene
 {
@@ -19,6 +20,7 @@ private:
 	Pause pause;
 	Timer timer;
 	GameBackGround TestBackGround;
+	TestWall testWall;
 	//PauseText pauseText;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures ‚ğƒƒ“ƒo•Ï”‚Æ‚µ‚ÄéŒ¾ 
 	MoveGameBlock moveGameBlock;

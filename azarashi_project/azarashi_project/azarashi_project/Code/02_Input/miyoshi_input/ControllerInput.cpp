@@ -159,14 +159,14 @@ SDL_GameController* InitializeController()//コントローラー初期化
 		if (SDL_IsGameController(i)) {
 			controller = SDL_GameControllerOpen(i);
 			if (controller) {
-				std::cout << "Controller connected: " << SDL_GameControllerName(controller) << std::endl;
+				//std::cout << "Controller connected: " << SDL_GameControllerName(controller) << std::endl;
 				SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE);
 				break;
 			}
 		}
 	}
 	if (!controller) {
-		std::cerr << "No GameController found!" << std::endl;
+		//std::cerr << "No GameController found!" << std::endl;
 	}
 	return controller;
 }

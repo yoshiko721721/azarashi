@@ -10,6 +10,7 @@ TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*
 void TestStageScene_Nakae::Init()
 {
 	moveGameBlock.Init();
+	testWall.Init();
 	/*//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
    //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
 	TestBackGround.Init();
@@ -43,6 +44,7 @@ void TestStageScene_Nakae::Init()
 void TestStageScene_Nakae::Update()
 {
 	moveGameBlock.Update();
+	testWall.Init();
 	/*if (pause.isPaused() == false)
 	{
 		pause.apply();
@@ -72,6 +74,7 @@ void TestStageScene_Nakae::Update()
 
 void TestStageScene_Nakae::Draw()
 {
+	testWall.Init();
 	moveGameBlock.Draw();
 	/*TestBackGround.Draw();
 	for (auto& o : m_MySceneObjects)
@@ -88,6 +91,7 @@ void TestStageScene_Nakae::Draw()
 
 void TestStageScene_Nakae::Uninit()
 {
+	testWall.Init();
 	moveGameBlock.Uninit();
 	//TestBackGround.Uninit();
 	//pauseText.Uninit();
