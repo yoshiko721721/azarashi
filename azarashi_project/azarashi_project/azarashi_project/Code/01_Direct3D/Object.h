@@ -41,6 +41,7 @@ public:
 	float numV = 0;
 
 	void Initialize(const wchar_t* imgname, int sx = 1, int sy = 1);			//初期化
+	virtual void Update() {};
 	void Draw();										//描画
 	void Uninit();										//終了
 	void SetPos(float x, float y, float z);				//座標をセット
@@ -48,6 +49,7 @@ public:
 	void SetAngle(float a);								//角度をセット
 	void SetColor(float r, float g, float b, float a);	//色をセット
 	void SetTexture(const wchar_t* imgname);
+	void SetTexture(ID3D11ShaderResourceView* mm_pTextureView);//Objectの色のセッター
 
 	XMFLOAT3 GetPos(void);		//座標をゲット
 	XMFLOAT3 GetSize(void);		//大きさをゲット

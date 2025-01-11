@@ -8,6 +8,7 @@
 enum SceneList {
 	TITLESCENE,
 	GAMESCENE,
+	TESTSCENE,
 	SCENENUM
 };
 

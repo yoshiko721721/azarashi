@@ -76,6 +76,12 @@
     <Filter Include="ヘッダー ファイル\MainGame.h\Select">
       <UniqueIdentifier>{b359deca-131c-421c-9909-934dab6771a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\CSVMapLoader">
+      <UniqueIdentifier>{ff3af761-da01-499e-b069-9dd7504d85f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\CSVMapLoader">
+      <UniqueIdentifier>{da3398bc-d525-47f9-9531-50e21b3e5b51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\06_Scene\Scene.cpp">
@@ -162,6 +168,21 @@
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.cpp">
+      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Test\Testfloor.cpp">
+      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Test\TestWall.cpp">
+      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\12_CSVMapLoader\CSVMapLoader.cpp">
+      <Filter>ソース ファイル\CSVMapLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\06_Scene\StageSelectScene\StageSelectScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -244,6 +265,21 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Test\Testfloor.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Test\TestWall.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\12_CSVMapLoader\CSVMapLoader.h">
+      <Filter>ヘッダー ファイル\CSVMapLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\06_Scene\StageSelectScene\StageSelectScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

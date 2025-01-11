@@ -136,5 +136,9 @@ void Object::SetTexture(const wchar_t* imgname)
 	m_pTextureView->Release();
 	m_pTextureView = nullptr;
 	DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
+}
 
+void Object::SetTexture(ID3D11ShaderResourceView* mm_pTextureView)//Objectの色のセッター
+{
+	m_pTextureView = mm_pTextureView;
 }
