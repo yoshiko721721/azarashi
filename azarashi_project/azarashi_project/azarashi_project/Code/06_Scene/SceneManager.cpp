@@ -71,3 +71,9 @@ bool SceneManager::isSceneListTogether()
 	}
 	return false;
 }
+
+// シングルトンのインスタンス取得
+SceneManager& SceneManager::GetInstance() {
+	static SceneManager instance;
+	return instance;
+}
