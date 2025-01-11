@@ -70,17 +70,17 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* p_Box, Object* p_Circ
 
         // 最近接点と円の中心の距離を計算
         float distanceSquared = (closestPoint.x - circlepos.x) * (closestPoint.x - circlepos.x) + (closestPoint.y - circlepos.y) * (closestPoint.y - circlepos.y);//返す値
-
+        float radius = circlesize.y / 2.0;
         // 距離が半径以下なら当たりと判定
-        if (distanceSquared <= (circlesize.y / 2) * (circlesize.y / 2))
+        if (distanceSquared <= radius * radius)
         {
-            DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
-            float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);
-            DirectX::XMFLOAT2 normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
+            //DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
+            //float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);
+            //DirectX::XMFLOAT2 normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
             //closscircle = closestPoint;
             //distancesquared = distanceSquared;
 
-            return { true, closestPoint ,normalizedVector };
+            return { true, closestPoint , distanceSquared};
         }
     }
 

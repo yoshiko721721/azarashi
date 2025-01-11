@@ -1,4 +1,5 @@
 #include"TitleScene.h"
+#include"../../03_GameMainFile/Application.h"
 
 void TitleScene::Init()
 {
@@ -7,12 +8,8 @@ void TitleScene::Init()
 void TitleScene::Update()
 {
 
-	backGround.Update();
-
-
 	if (Input::GetKeyPress(VK_A)) {
-		SetOldScene(TITLESCENE);	//チェンジ前のoldSceneを操作
-		SetCurrentScene(GAMESCENE);	//ここでoldSceneを入れて置かないと他のシーンで遷移出来ない
+		Application::GetInstance()->ChangeScene(GAMESCENE);
 	}
 
 

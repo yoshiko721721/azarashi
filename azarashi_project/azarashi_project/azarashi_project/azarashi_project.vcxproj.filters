@@ -70,12 +70,15 @@
     <Filter Include="ソース ファイル\Scene.cpp">
       <UniqueIdentifier>{13d1d8fe-b9a1-4d9c-b872-8ec553488ed2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\MainGame.cpp\Select">
+      <UniqueIdentifier>{32fd880c-9b4b-4ca2-b648-a92efdf13ad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MainGame.h\Select">
+      <UniqueIdentifier>{b359deca-131c-421c-9909-934dab6771a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\06_Scene\Scene.cpp">
-      <Filter>ソース ファイル\Scene.cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\06_Scene\SceneManager.cpp">
       <Filter>ソース ファイル\Scene.cpp</Filter>
     </ClCompile>
     <ClCompile Include="Code\01_Direct3D\direct3d.cpp">
@@ -138,14 +141,26 @@
     <ClCompile Include="Code\02_Input\input.cpp">
       <Filter>ソース ファイル\Basic.cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Code\08_BoxCollider\BoxCollider.cpp">
-      <Filter>ソース ファイル\MainGame.cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Code\10_Timer\Timer.cpp">
       <Filter>ソース ファイル\Timer</Filter>
     </ClCompile>
     <ClCompile Include="Code\11_Pause\pause.cpp">
       <Filter>ソース ファイル\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\08_Collider\Base_collision.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\08_Collider\BoxCollider.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\08_Collider\CircleCollider.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,9 +174,6 @@
       <Filter>ヘッダー ファイル\Basic.h</Filter>
     </ClInclude>
     <ClInclude Include="Code\06_Scene\Scene.h">
-      <Filter>ヘッダー ファイル\Scene.h</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\06_Scene\SceneManager.h">
       <Filter>ヘッダー ファイル\Scene.h</Filter>
     </ClInclude>
     <ClInclude Include="Code\01_Direct3D\Singleton.h">
@@ -212,14 +224,26 @@
     <ClInclude Include="Code\02_Input\input.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
     </ClInclude>
-    <ClInclude Include="Code\08_BoxCollider\BoxCollider.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
-    </ClInclude>
     <ClInclude Include="Code\10_Timer\Timer.h">
       <Filter>ヘッダー ファイル\Timer</Filter>
     </ClInclude>
     <ClInclude Include="Code\11_Pause\pause.h">
       <Filter>ヘッダー ファイル\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\08_Collider\Base_collision.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\08_Collider\BoxCollider.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\08_Collider\CircleCollider.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

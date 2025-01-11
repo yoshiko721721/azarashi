@@ -10,7 +10,7 @@ struct  ContactPointVector
 {
 	bool checkCollision;			//当たったかどうかを返すbool
 	DirectX::XMFLOAT2 closspoint;	//円の接地点
-	DirectX::XMFLOAT2 normalizedVector;//接地点から円の中心の正規化されたベクトル
+	float DistanceSquared;			//接地点から円の中心の正規化されたベクトル
 };
 
 class BaseCollider

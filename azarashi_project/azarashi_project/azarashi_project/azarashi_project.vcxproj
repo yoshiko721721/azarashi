@@ -36,9 +36,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\main.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Math.cpp" />
     <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -48,7 +50,6 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
-    <ClCompile Include="Code\06_Scene\SceneManager.cpp" />
     <ClCompile Include="Code\07_Camera\Camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -68,7 +69,9 @@
     <ClInclude Include="Code\01_Direct3D\Object.h" />
     <ClInclude Include="Code\01_Direct3D\Singleton.h" />
     <ClInclude Include="Code\02_Input\input.h" />
-    <ClInclude Include="Code\03_GameMainFile\Application.h" />
+    <ClInclude Include="Code\03_GameMainFile\Application.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -82,8 +85,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Math.h" />
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Title\TitleBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -93,7 +98,6 @@
     <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
-    <ClInclude Include="Code\06_Scene\SceneManager.h" />
     <ClInclude Include="Code\07_Camera\Camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
