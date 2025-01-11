@@ -11,6 +11,7 @@ public:
     StageSelectScene();              // コンストラクタ
     ~StageSelectScene();             // デストラクタ
 
-    void Update() override;          // ステージセレクトの更新処理
-    void Draw() override;          // ステージセレクトの描画処理
+    void Update() override;          // 更新処理
+    void Draw() override;            // 描画処理
+    void Uninit();                   // 終了処理
 };

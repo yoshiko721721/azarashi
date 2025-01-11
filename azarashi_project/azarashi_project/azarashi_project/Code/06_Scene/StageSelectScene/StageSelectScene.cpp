@@ -49,3 +49,7 @@ void StageSelectScene::Draw() {
         }
     }
 }
+
+void StageSelectScene::Uninit() {
+
+}
