@@ -22,6 +22,8 @@
     <ClCompile Include="Code\01_Direct3D\direct3d.cpp" />
     <ClCompile Include="Code\01_Direct3D\Object.cpp" />
     <ClCompile Include="Code\02_Input\input.cpp" />
+    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerGyro.cpp" />
+    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerInput.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Application.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -76,6 +78,8 @@
     <ClInclude Include="Code\01_Direct3D\Object.h" />
     <ClInclude Include="Code\01_Direct3D\Singleton.h" />
     <ClInclude Include="Code\02_Input\input.h" />
+    <ClInclude Include="Code\02_Input\miyoshi_input\ControllerGyro.h" />
+    <ClInclude Include="Code\02_Input\miyoshi_input\ControllerInput.h" />
     <ClInclude Include="Code\03_GameMainFile\Application.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>

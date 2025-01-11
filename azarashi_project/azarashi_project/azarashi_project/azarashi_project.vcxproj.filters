@@ -183,6 +183,12 @@
     <ClCompile Include="Code\06_Scene\StageSelectScene\StageSelectScene.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
+    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerGyro.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerInput.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -280,6 +286,12 @@
     </ClInclude>
     <ClInclude Include="Code\06_Scene\StageSelectScene\StageSelectScene.h">
       <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\02_Input\miyoshi_input\ControllerGyro.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\02_Input\miyoshi_input\ControllerInput.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,9 +3,7 @@
 #ifndef GYRO_H
 #define GYRO_H
 
-#include <SDL.h>
-#include "circle.h"
-
+#include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL.h"
 // コントローラーを初期化する関数
 SDL_GameController* InitializeController();
 

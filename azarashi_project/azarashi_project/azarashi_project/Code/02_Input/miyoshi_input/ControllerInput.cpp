@@ -1,6 +1,6 @@
-#include "Input.h"
-#include "SDL.h"
-#include "SDL_main.h"
+#include "../miyoshi_input/ControllerInput.h"
+#include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL.h"
+#include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL_main.h"
 #include "DirectX.h"
 
 //コントローラー入力情報を保存する変数
