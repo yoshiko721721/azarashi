@@ -1,7 +1,7 @@
 #pragma once
-#include"../../../01_Direct3D/direct3d.h"
-#include "../../../01_Direct3D/Object.h"
-#include "../../../05_WICTextureLoader/WICTextureLoader.h" // テクスチャ読み込みライブラリ
+#include"../../01_Direct3D/direct3d.h"
+#include "../../01_Direct3D/Object.h"
+#include "../../05_WICTextureLoader/WICTextureLoader.h" // テクスチャ読み込みライブラリ
 
 class Fade :public Object
 {

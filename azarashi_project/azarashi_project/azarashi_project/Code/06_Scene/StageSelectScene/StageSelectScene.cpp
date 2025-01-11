@@ -3,6 +3,9 @@
 #include "input.h"
 #include <iostream>
 
+#include "../03_GameMainFile/Game/GameScene.h"
+
+
 // コンストラクタ
 StageSelectScene::StageSelectScene()
     : selectedStage(0), totalStages(5) { // ステージ数分
