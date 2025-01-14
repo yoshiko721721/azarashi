@@ -26,9 +26,7 @@
     <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -36,6 +34,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\main.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Math.cpp" />
@@ -75,9 +75,7 @@
     <ClInclude Include="Code\03_GameMainFile\Game\GameBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Game\GameBlock.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\GameCamera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -85,6 +83,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Math.h" />
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
