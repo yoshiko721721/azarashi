@@ -3,15 +3,19 @@
 #include "input.h"
 #include <iostream>
 
+#include "../03_GameMainFile/Title/TitleScene.h"
+#include "../03_GameMainFile/Game/GameScene.h"
+
+
 // コンストラクタ
 StageSelectScene::StageSelectScene()
     : selectedStage(0), totalStages(5) { // ステージ数分
-    std::cout << "StageSelectScene Initialized" << std::endl;
+    std::cout << "StageSelectScene 初期化" << std::endl;
 }
 
 // デストラクタ
 StageSelectScene::~StageSelectScene() {
-    std::cout << "StageSelectScene Destroyed" << std::endl;
+    std::cout << "StageSelectScene 削除" << std::endl;
 }
 
 // 更新処理
@@ -33,7 +37,7 @@ void StageSelectScene::Update() {
 
 // 描画処理
 void StageSelectScene::Draw() {
-    std::cout << "Rendering StageSelectScene" << std::endl;
+    std::cout << "StageSelectScene描画" << std::endl;
 
     // ステージ選択のUIを描画
     for (int i = 0; i < totalStages; i++) {
@@ -44,4 +48,8 @@ void StageSelectScene::Draw() {
             std::cout << "  Stage " << i + 1 << std::endl;          // 他のステージ
         }
     }
+}
+
+void StageSelectScene::Uninit() {
+
 }

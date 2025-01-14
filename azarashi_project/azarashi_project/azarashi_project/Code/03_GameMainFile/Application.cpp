@@ -5,6 +5,8 @@
 #include "../02_Input/input.h"
 #include "../03_GameMainFile/Game/GameScene.h"
 #include "../03_GameMainFile/Title/TitleScene.h"
+#include "../06_Scene/StageSelectScene/StageSelectScene.h"
+#include "Test/TestStageScene_Nakae.h"
 
 
 
@@ -61,14 +63,23 @@ void Application::ChangeScene(SceneList sName)
 
 	switch (sName)
 	{
-	case TITLESCENE:
-		m_Instance->m_Scene = new TitleScene; // メモリを確保
-		break;
-	case GAMESCENE:
-		m_Instance->m_Scene = new GameScene; // メモリを確保
-		break;
-	}
+		case TITLESCENE:
+			m_Instance->m_Scene = new TitleScene; // メモリを確保
+			break;
+		case STAGESELECTSCENE:
+			m_Instance->m_Scene = new StageSelectScene; // メモリを確保
+			break;
+		case GAMESCENE:
+			m_Instance->m_Scene = new GameScene; // メモリを確保
+			break;
+		case TESTSCENE:
+		{
+			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
+			m_Instance->m_Scene = new TestStageScene_Nakae(textures); // メモリを確保
+			break;
+		}
 
+	}
 }
 
 void Application::DeleteObject(Object* pt)

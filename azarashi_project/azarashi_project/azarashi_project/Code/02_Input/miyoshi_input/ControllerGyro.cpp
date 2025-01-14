@@ -1,4 +1,4 @@
-#include "gyro.h"
+#include "ControllerGyro.h"
 #include <iostream>
 
 //maincpp‚Å

@@ -7,6 +7,7 @@
 void SceneManager::AddScene()
 {
 	sceneList.push_back(std::make_unique<TitleScene>());
+	sceneList.push_back(std::make_unique<StageSelectScene>());
 	sceneList.push_back(std::make_unique<GameScene> ());
 }
 
@@ -37,6 +38,7 @@ void SceneManager::Update()
 		SceneList newBuff = currentScene->GetCurrentScene();
 		switch (newBuff) {
 		case TITLESCENE: ChangeScene(std::make_unique<TitleScene>());   break;
+		case STAGESELECTSCENE: ChangeScene(std::make_unique<StageSelectScene>());   break;
 		case GAMESCENE : ChangeScene(std::make_unique<GameScene>());   break;
 		default:  return;
 		}
@@ -70,4 +72,10 @@ bool SceneManager::isSceneListTogether()
 		return true;
 	}
 	return false;
+}
+
+// シングルトンのインスタンス取得
+SceneManager& SceneManager::GetInstance() {
+	static SceneManager instance;
+	return instance;
 }

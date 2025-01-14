@@ -2,6 +2,7 @@
 #include"Scene.h"
 #include "../03_GameMainFile/Title/TitleScene.h"
 #include "../03_GameMainFile/Game/GameScene.h"
+#include "../06_Scene/StageSelectScene/StageSelectScene.h"
 
 
 class SceneManager 
@@ -11,6 +12,9 @@ private:
 	std::unique_ptr<Scene> currentScene;			//現在のシーン
 
 public:
+	// シングルトンパターン
+	static SceneManager& GetInstance();
+
 	void AddScene();									//シーン追加
 	void ChangeScene(std::unique_ptr<Scene> newScene);	//シーン遷移
 	void Update();										//現在のシーンの更新処理
