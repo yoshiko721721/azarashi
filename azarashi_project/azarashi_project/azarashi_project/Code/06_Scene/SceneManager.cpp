@@ -41,7 +41,7 @@ void SceneManager::Update()
 		case STAGESELECTSCENE: ChangeScene(std::make_unique<StageSelectScene>());   break;
 		case GAMESCENE : ChangeScene(std::make_unique<GameScene>());   break;
 		default:  return;
-		}
+		} 
 	}
 
 }
