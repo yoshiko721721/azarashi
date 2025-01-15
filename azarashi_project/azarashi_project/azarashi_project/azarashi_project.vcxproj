@@ -48,6 +48,7 @@
     <ClCompile Include="Code\03_GameMainFile\Math.cpp" />
     <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Test\Testfloor.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -62,9 +63,7 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
-    <ClCompile Include="Code\06_Scene\StageSelectScene\StageSelectScene.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Code\06_Scene\SceneManager.cpp" />
     <ClCompile Include="Code\07_Camera\Camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -110,6 +109,7 @@
     <ClInclude Include="Code\03_GameMainFile\Math.h" />
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Test\Testfloor.h" />
     <ClInclude Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -124,9 +124,7 @@
     <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
-    <ClInclude Include="Code\06_Scene\StageSelectScene\StageSelectScene.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="Code\06_Scene\SceneManager.h" />
     <ClInclude Include="Code\07_Camera\Camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
