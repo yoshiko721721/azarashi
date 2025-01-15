@@ -1,7 +1,7 @@
 #include "TestStageScene_Nakae.h" 
 #include "../../03_GameMainFile/Application.h" 
 
-TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures) , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
+TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
 {
 
 
@@ -9,10 +9,16 @@ TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*
 
 void TestStageScene_Nakae::Init()
 {
-	moveGameBlock.Init();
-	testWall.Init();
-	/*//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
-   //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
+	/*SDL_GameController* controller = InitializeController();
+	if (!controller)
+	{
+		//SDL_DestroyRenderer(renderer);
+		//SDL_DestroyWindow(window);
+		SDL_Quit();
+		return;
+	}*/
+	//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
+    //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
 	TestBackGround.Init();
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();
@@ -29,7 +35,7 @@ void TestStageScene_Nakae::Init()
 
 	csvMapLoader.LoadTextures(); // textures ベクターを渡さずに呼び出し
 
-	AddObject();
+	csvMapLoader.AddObject(&m_MySceneObjects);
 	//int kakunin = csvMapLoader.PrintValueAt(3, 6);
 
 	//timer.Init();
@@ -38,14 +44,13 @@ void TestStageScene_Nakae::Init()
 	for (auto& o : m_MySceneObjects)
 	{
 		// 各オブジェクトの描画メソッドを呼び出す
-	}*/
+	}
 }
 
 void TestStageScene_Nakae::Update()
 {
-	moveGameBlock.Update();
-	testWall.Init();
-	/*if (pause.isPaused() == false)
+	//UpdateCirclePosition(controller, Object, SCREEN_WIDTH, SCREEN_HEIGHT);
+	if (pause.isPaused() == false)
 	{
 		pause.apply();
 
@@ -69,14 +74,12 @@ void TestStageScene_Nakae::Update()
 	{
 		pause.maladaptive();
 		return;
-	}*/
+	}
 }
 
 void TestStageScene_Nakae::Draw()
 {
-	testWall.Init();
-	moveGameBlock.Draw();
-	/*TestBackGround.Draw();
+	TestBackGround.Draw();
 	for (auto& o : m_MySceneObjects)
 	{
 		o->Draw(); // 各オブジェクトの描画メソッドを呼び出
@@ -91,20 +94,18 @@ void TestStageScene_Nakae::Draw()
 
 void TestStageScene_Nakae::Uninit()
 {
-	testWall.Init();
-	moveGameBlock.Uninit();
-	//TestBackGround.Uninit();
+	TestBackGround.Uninit();
 	//pauseText.Uninit();
 	// このシーンのオブジェクトを削除する 
-	/*for (auto& o : m_MySceneObjects)
+	for (auto& o : m_MySceneObjects)
 	{
 		Application::GetInstance()->DeleteObject(o.get()); // .get()を追加
-	}*/
+	}
 }
 
-void TestStageScene_Nakae::AddObject()
+/*void TestStageScene_Nakae::AddObject()
 {
-	/*int Platformcount = 1;
+	int Platformcount = 1;
 	int count = 0;
 	float x = SCREEN_WIDTH * -1 / 2 + 32;
 	float y = SCREEN_HEIGHT / 2 - 32;
@@ -118,7 +119,7 @@ void TestStageScene_Nakae::AddObject()
 			}
 			if (csvMapLoader.data[i][j] == FLOOR)
 			{
-				/*auto newChip = std::make_unique<GamePointer>(x, y, 100, 100);
+				auto newChip = std::make_unique<GamePointer>(x, y, 100, 100);
 				newChip->SetTexture(csvMapLoader.textures[csvMapLoader.data[i][j]]);
 				newChip->Init();
 				//m_MySceneObjects.push_back(std::move(newChip));
@@ -172,6 +173,6 @@ void TestStageScene_Nakae::AddObject()
 		}
 		y -= 64;
 		x = SCREEN_WIDTH * -1 / 2 + 32;
-	}*/
+	}
 
-}
+}*/

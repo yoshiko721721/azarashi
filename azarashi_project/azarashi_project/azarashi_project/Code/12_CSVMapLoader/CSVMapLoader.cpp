@@ -63,9 +63,9 @@ void CSVMapLoader::LoadTextures()
         return;
     }
 
-    textures[PLAYER] = LoadTexture(L"asset/pic/Player.png");
+    textures[PLAYER] = LoadTexture(L"asset/pic/azarasi.png");
     std::cout << "プレイヤー読み込めました" << std::endl;
-    textures[FLOOR] = LoadTexture(L"asset/pic/block_kusa_02.png");
+    textures[FLOOR] = LoadTexture(L"asset/pic/block_koori.png");
     std::cout << "床を読み込めました" << std::endl;
     textures[WALL] = LoadTexture(L"asset/pic/block_bronze.png");
     std::cout << "壁読み込めました" << std::endl;
@@ -86,5 +86,118 @@ int CSVMapLoader::PrintValueAt(int row, int col)
     return data[row][col];
 }
 
+void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects)
+{
+	int Platformcount = 1;
+	int count = 0;
+	float x = SCREEN_WIDTH * -1 / 2 + 32;
+	float y = SCREEN_HEIGHT / 2 - 32;
+	for (int i = 0; i < rowCount; i++)
+	{
+		for (int j = 0; j < colCount; j++)
+		{
+			switch (data[i][j])
+			{
+			case NULLSPACE:
+			{
+				count++;
+				break;
+			}
+			case FLOOR:
+			{
+				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}
+			case WALL:
+			{
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}
+			case PLAYER:
+			{
+				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}
+			default:
+				break;
+			}
+			/*if (data[i][j] == NULLSPACE)
+			{
+				count++;
+			}
+			if (data[i][j] == FLOOR)
+			{
+				auto newChip = std::make_unique<GamePointer>(x, y, 100, 100);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				//m_MySceneObjects.push_back(std::move(newChip));
+				m_MySceneObjects->emplace_back(Application::GetInstance()->AddObject<GamePointer>());
+				count++;
+
+				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				count++;
+				//x += 64;
+			}
+			if (data[i][j] == WALL)
+			{
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+			}
+			if (data[i][j] == PLAYER)
+			{
+				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+			}
+			/*if (data[i][j] == INCLINED_PLATFORM)
+			{
+				//for(csvMapLoader.data[i][j] ==)
+				for (int k = 0; j + k >= colCount; k++)
+				{
+					if (data[i][j + k] == data[i][j])
+					{
+						Platformcount++;
+					}
+					else
+					{
+						auto newChip = Application::GetInstance()->AddObject<InclinedPlatform>(x, y, 64 * Platformcount, 64);
+						newChip->SetTexture(textures[data[i][j]]);
+						newChip->Init();
+						m_MySceneObjects->emplace_back(newChip);
+
+						break;
+					}
+				}
+
+			}*/
+			x += 64;
+		}
+		y -= 64;
+		x = SCREEN_WIDTH * -1 / 2 + 32;
+	}
+
+}
 
 //中身の数字に沿ってUVでカットするのはどうだ(MapChipの話) 2024/12/18

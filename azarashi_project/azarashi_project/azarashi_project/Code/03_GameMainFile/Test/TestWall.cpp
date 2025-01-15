@@ -10,7 +10,16 @@ void TestWall::Init()
 
 void TestWall::Update(void)
 {
+    DirectX::XMFLOAT3 pos = GetPos();
+    // プレイヤーの入力をチェック
+    if (XINPUT_RIGHT) 
+    {
+        pos.x += 3;
+    }
+    else if (XINPUT_LEFT)
+    {
+        pos.x -= 3;
+    }
 
-
-
+    SetPos(pos.x,pos.y,pos.z);
 }

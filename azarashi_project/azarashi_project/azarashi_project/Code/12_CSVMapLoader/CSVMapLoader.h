@@ -11,16 +11,31 @@
 #include <DirectXMath.h>
 #include <vector> 
 #include <d3d11.h>
+#include "../03_GameMainFile/Application.h"
+#include "../03_GameMainFile/Game/GameBackGround.h"
+#include "../03_GameMainFile/Game/GamePointer.h"
+#include "../03_GameMainFile/Test/TestWall.h"
+#include "../03_GameMainFile/Test/Testfloor.h"
+#include "../03_GameMainFile/Game/GameBlock.h"
 #include "../01_Direct3D/direct3d.h"
+#include "../01_Direct3D/Object.h"
 #include "../05_WICTextureLoader/WICTextureLoader.h"
+
+enum BlockSize
+{
+
+
+};
 
 enum BlockType//１
 { 
     NULLSPACE,
-    PLAYER,     //プレイヤー(アザラシ)
-    FLOOR,      //床
+    FLOOR ,      //床
     WALL,       //壁
+    PLAYER,     //プレイヤー(アザラシ)
+    GOAL,
     INCLINED_PLATFORM,  //傾く足場
+    FLAT_PLATFORM,  //
     MOVING_PLATFORM,
     BlockType_MAX //配列の最大値
 };
@@ -32,6 +47,7 @@ public:
     ~CSVMapLoader(); bool FileOpen(std::string fileName); //ファイル開く 
     void CountRowsAndColumns(); //行数列数数える 
     int PrintValueAt(int row, int col);
+    void AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects);
     void FileClose(); //ファイル閉じる 
     
     ID3D11ShaderResourceView* LoadTexture(const wchar_t* filename); 

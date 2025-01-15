@@ -21,9 +21,14 @@
   <ItemGroup>
     <ClCompile Include="Code\01_Direct3D\direct3d.cpp" />
     <ClCompile Include="Code\01_Direct3D\Object.cpp" />
-    <ClCompile Include="Code\02_Input\input.cpp" />
-    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerGyro.cpp" />
-    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerInput.cpp" />
+    <ClCompile Include="Code\02_Input\input.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerInput.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Application.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -45,7 +50,7 @@
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Test\Testfloor.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Test\TestWall.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
@@ -57,7 +62,9 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
-    <ClCompile Include="Code\06_Scene\StageSelectScene\StageSelectScene.cpp" />
+    <ClCompile Include="Code\06_Scene\StageSelectScene\StageSelectScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Code\07_Camera\Camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -77,9 +84,8 @@
     <ClInclude Include="Code\01_Direct3D\direct3d.h" />
     <ClInclude Include="Code\01_Direct3D\Object.h" />
     <ClInclude Include="Code\01_Direct3D\Singleton.h" />
-    <ClInclude Include="Code\02_Input\input.h" />
-    <ClInclude Include="Code\02_Input\miyoshi_input\ControllerGyro.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    <ClInclude Include="Code\02_Input\input.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\02_Input\miyoshi_input\ControllerInput.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -118,7 +124,9 @@
     <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
-    <ClInclude Include="Code\06_Scene\StageSelectScene\StageSelectScene.h" />
+    <ClInclude Include="Code\06_Scene\StageSelectScene\StageSelectScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Code\07_Camera\Camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -238,6 +246,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
