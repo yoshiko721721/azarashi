@@ -18,6 +18,13 @@ StageSelectScene::~StageSelectScene() {
     std::cout << "StageSelectScene íœ" << std::endl;
 }
 
+//‰Šú‰»ˆ—
+void StageSelectScene::Init() {
+
+
+
+}
+
 // XVˆ—
 void StageSelectScene::Update() {
     std::cout << "StageSelectScene Update" << std::endl;
