@@ -76,11 +76,17 @@
     <Filter Include="ヘッダー ファイル\MainGame.h\Select">
       <UniqueIdentifier>{b359deca-131c-421c-9909-934dab6771a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\CSVMapLoader">
-      <UniqueIdentifier>{ff3af761-da01-499e-b069-9dd7504d85f9}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\MainGame.cpp\Game\Block">
+      <UniqueIdentifier>{9f50ffe8-896f-403f-ad14-24e79e90009c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\CSVMapLoader">
-      <UniqueIdentifier>{da3398bc-d525-47f9-9531-50e21b3e5b51}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\MainGame.h\Game\Block">
+      <UniqueIdentifier>{3803f1a8-1791-4230-af30-bf2763a7f118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MainGame.cpp\Game\Gimmick">
+      <UniqueIdentifier>{9c68d61f-0f18-4f4d-9efa-e86d8d10cc62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MainGame.h\Game\Gimmick">
+      <UniqueIdentifier>{7821b31a-1f8a-477b-bea3-5138bfb1d2be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +118,6 @@
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
@@ -166,28 +169,16 @@
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+      <Filter>ソース ファイル\MainGame.cpp\Game\Block</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.cpp">
-      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game\Block</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Test\Testfloor.cpp">
-      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game\Gimmick</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Test\TestWall.cpp">
-      <Filter>ソース ファイル\MainGame.cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\12_CSVMapLoader\CSVMapLoader.cpp">
-      <Filter>ソース ファイル\CSVMapLoader</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\06_Scene\StageSelectScene\StageSelectScene.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerGyro.cpp">
-      <Filter>ソース ファイル\Basic.cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\02_Input\miyoshi_input\ControllerInput.cpp">
-      <Filter>ソース ファイル\Basic.cpp</Filter>
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game\Gimmick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,9 +201,6 @@
       <Filter>ヘッダー ファイル\Basic.h</Filter>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameBackGround.h">
-      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Game\GameBlock.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameCamera.h">
@@ -270,28 +258,16 @@
       <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h">
-      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+      <Filter>ヘッダー ファイル\MainGame.h\Game\Block</Filter>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameBlock.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game\Block</Filter>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Test\Testfloor.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game\Gimmick</Filter>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Test\TestWall.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\12_CSVMapLoader\CSVMapLoader.h">
-      <Filter>ヘッダー ファイル\CSVMapLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\06_Scene\StageSelectScene\StageSelectScene.h">
-      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\02_Input\miyoshi_input\ControllerGyro.h">
-      <Filter>ヘッダー ファイル\Basic.h</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\02_Input\miyoshi_input\ControllerInput.h">
-      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game\Gimmick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
