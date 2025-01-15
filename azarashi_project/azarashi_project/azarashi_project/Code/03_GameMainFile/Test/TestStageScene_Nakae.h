@@ -1,5 +1,5 @@
 #pragma once
-#include "../../02_Input/miyoshi_input/ControllerGyro.h"
+#include "../../02_Input/miyoshi_input/ControllerInput.h"
 #include "../../06_Scene/Scene.h" 
 #include "../../11_Pause/pause.h"
 #include "../../10_Timer/Timer.h"
@@ -14,6 +14,7 @@ private:
 	Pause pause;
 	Timer timer;
 	GameBackGround TestBackGround;
+	GamePointer Player;
 	//PauseText pauseText;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures ‚ğƒƒ“ƒo•Ï”‚Æ‚µ‚ÄéŒ¾ 
 	CSVMapLoader csvMapLoader;

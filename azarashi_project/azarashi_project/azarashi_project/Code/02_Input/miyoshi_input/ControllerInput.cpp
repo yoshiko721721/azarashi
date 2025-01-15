@@ -1,28 +1,30 @@
 #include "../miyoshi_input/ControllerInput.h"
-#include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL.h"
-#include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL_main.h"
+#include "../SDL2.1/include/SDL.h"
+#include "../SDL2.1/include/SDL_main.h"
+#include "../SDL2.1/include/SDL_gamecontroller.h"
+#include "../SDL2.1/include/SDL_joystick.h"
 //#include <DirectX.h>
 
 //コントローラー入力情報を保存する変数
-XINPUT_STATE Input::controllerState;
-XINPUT_STATE Input::controllerState_old;
+XINPUT_STATE Controller::Input::controllerState;
+XINPUT_STATE Controller::Input::controllerState_old;
 
 //キー入力情報を保存する変数
-float Input::keySecond[256];
-BYTE Input::keyState[256];
-BYTE Input::keyState_old[256];
+float Controller::Input::keySecond[256];
+BYTE Controller::Input::keyState[256];
+BYTE Controller::Input::keyState_old[256];
 
-int Input::VibrationTime;
+int Controller::Input::VibrationTime;
 
 //コンストラクタ
-Input::Input()
+Controller::Input::Input()
 {
 	VibrationTime = 0;
 	//Input::GetInstance();
 }
 
 //デストラクタ
-Input::~Input()
+Controller::Input::~Input()
 {
 	//振動を終了させる
 	XINPUT_VIBRATION vibration;
@@ -32,7 +34,7 @@ Input::~Input()
 	XInputSetState(0, &vibration);
 }
 
-void Input::Update()
+void Controller::Input::Update()
 {
 	//1フレーム前の入力を記録しておく
 	for (int i = 0; i < 256; i++) 
@@ -77,7 +79,7 @@ void Input::Update()
 }
 
 //キー入力
-bool Input::GetKeyPress(int key, float second) //プレス
+bool Controller::Input::GetKeyPress(int key, float second) //プレス
 {
 	if (keyState[key] & 0x80)
 	{
@@ -90,17 +92,17 @@ bool Input::GetKeyPress(int key, float second) //プレス
 	return false;
 }
 
-bool Input::GetKeyTrigger(int key) //トリガー
+bool Controller::Input::GetKeyTrigger(int key) //トリガー
 {
 	return (keyState[key] & 0x80) && !(keyState_old[key] & 0x80);
 }
-bool Input::GetKeyRelease(int key) //リリース
+bool Controller::Input::GetKeyRelease(int key) //リリース
 {
 	return !(keyState[key] & 0x80) && (keyState_old[key] & 0x80);
 }
 
 //左アナログスティック
-DirectX::XMFLOAT2 Input::GetLeftAnalogStick(void)
+DirectX::XMFLOAT2 Controller::Input::GetLeftAnalogStick(void)
 {
 	SHORT Lx = controllerState.Gamepad.sThumbLX; // -32768～32767
 	SHORT Ly = controllerState.Gamepad.sThumbLY; // -32768～32767
@@ -111,7 +113,7 @@ DirectX::XMFLOAT2 Input::GetLeftAnalogStick(void)
 	return res;
 }
 //右アナログスティック
-DirectX::XMFLOAT2 Input::GetRightAnalogStick(void)
+DirectX::XMFLOAT2 Controller::Input::GetRightAnalogStick(void)
 {
 	SHORT Rx = controllerState.Gamepad.sThumbRX; // -32768～32767
 	SHORT Ry = controllerState.Gamepad.sThumbRY; // -32768～32767
@@ -123,28 +125,28 @@ DirectX::XMFLOAT2 Input::GetRightAnalogStick(void)
 }
 
 //左トリガー
-float Input::GetLeftTrigger(void)
+float Controller::Input::GetLeftTrigger(void)
 {
 	BYTE Lt = controllerState.Gamepad.bLeftTrigger; // 0～255
 	return Lt / 255.0f;
 }
 //右トリガー
-float Input::GetRightTrigger(void)
+float Controller::Input::GetRightTrigger(void)
 {
 	BYTE Rt = controllerState.Gamepad.bRightTrigger; // 0～255
 	return Rt / 255.0f;
 }
 
 //ボタン入力
-bool Input::GetButtonPress(WORD btn) //プレス
+bool Controller::Input::GetButtonPress(WORD btn) //プレス
 {
 	return (controllerState.Gamepad.wButtons & btn) != 0;
 }
-bool Input::GetButtonTrigger(WORD btn) //トリガー
+bool Controller::Input::GetButtonTrigger(WORD btn) //トリガー
 {
 	return (controllerState.Gamepad.wButtons & btn) != 0 && (controllerState_old.Gamepad.wButtons & btn) == 0;
 }
-bool Input::GetButtonRelease(WORD btn) //リリース
+bool Controller::Input::GetButtonRelease(WORD btn) //リリース
 {
 	return (controllerState.Gamepad.wButtons & btn) == 0 && (controllerState_old.Gamepad.wButtons & btn) != 0;
 }
@@ -181,7 +183,7 @@ bool GetGyroData(SDL_GameController* controller, float* gyroData) {
 
 
 //振動
-void Input::SetVibration(int frame, float powor)
+void Controller::Input::SetVibration(int frame, float powor)
 {
 	// XINPUT_VIBRATION構造体のインスタンスを作成
 	XINPUT_VIBRATION vibration;

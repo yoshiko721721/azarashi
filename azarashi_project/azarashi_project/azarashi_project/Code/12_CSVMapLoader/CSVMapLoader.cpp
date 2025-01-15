@@ -125,11 +125,11 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 			}
 			case PLAYER:
 			{
-				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, 64, 64);
+				/*auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, 64, 64);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
-				//x += 64;
+				//x += 64;*/
 				count++;
 				break;
 			}

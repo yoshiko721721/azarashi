@@ -19,8 +19,9 @@ void TestStageScene_Nakae::Init()
 	}*/
 	//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
     //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
+
 	TestBackGround.Init();
-	bool Fopen = csvMapLoader.FileOpen(fileName);
+	/*bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();
 	csvMapLoader.FileClose();
 	std::cout << "行数: " << csvMapLoader.rowCount << std::endl; std::cout << "列数: " << csvMapLoader.colCount << std::endl; // データを表示 
@@ -44,7 +45,7 @@ void TestStageScene_Nakae::Init()
 	for (auto& o : m_MySceneObjects)
 	{
 		// 各オブジェクトの描画メソッドを呼び出す
-	}
+	}*/
 }
 
 void TestStageScene_Nakae::Update()
@@ -54,14 +55,15 @@ void TestStageScene_Nakae::Update()
 	{
 		pause.apply();
 
-		if (Input::GetKeyPress(VK_SPACE))
+		if (XINPUT_RIGHT)
 		{
-
+			//Application::GetInstance()->ChangeScene(GAMESCENE);
 		}
 
-		if (Input::GetKeyPress(VK_S))
+		if (InputUpdate::GetKeyPress(VK_S))
 		{
-			Application::GetInstance()->ChangeScene(GAMESCENE);
+			//Application::GetInstance()->ChangeScene(GAMESCENE);
+
 		}
 
 		for (auto& o : m_MySceneObjects)
