@@ -3,8 +3,8 @@
 #include "input.h"
 #include <iostream>
 
-#include "../03_GameMainFile/Title/TitleScene.h"
-#include "../03_GameMainFile/Game/GameScene.h"
+#include "../../03_GameMainFile/Title/TitleScene.h"
+#include "../../03_GameMainFile/Game/GameScene.h"
 
 
 // コンストラクタ
