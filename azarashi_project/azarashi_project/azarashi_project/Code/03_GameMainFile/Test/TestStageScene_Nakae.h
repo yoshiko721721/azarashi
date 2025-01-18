@@ -10,7 +10,7 @@ class TestStageScene_Nakae : public Scene
 {
 private:
 	Object sample;
-
+	
 	Pause pause;
 	Timer timer;
 	TestFloor testFloor;
@@ -35,6 +35,4 @@ public:
 	void Uninit(); //èIóπ
 	//void AddObject();
 };
-
-
 

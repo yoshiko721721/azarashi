@@ -156,22 +156,22 @@ bool Controller::Input::GetButtonRelease(WORD btn) //リリース
 
 SDL_GameController* InitializeController()//コントローラー初期化
 {
-	SDL_GameController* controller = nullptr;
+	Controller::Input::controller = nullptr;
 	for (int i = 0; i < SDL_NumJoysticks(); ++i) {
 		if (SDL_IsGameController(i)) {
-			controller = SDL_GameControllerOpen(i);
-			if (controller) {
+			Controller::Input::controller = SDL_GameControllerOpen(i);
+			if (Controller::Input::controller) {
 				//std::cout << "Controller connected: " << SDL_GameControllerName(controller) << std::endl;
-				SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE);
+				SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
 				break;
 			}
 		}
 	} 
-	if (!controller) {
+	if (!Controller::Input::controller) {
 		//std::cerr << "No GameController found!" << std::endl;
 	}
 	//return controller;
-	return controller;
+	return Controller::Input::controller;
 }
 
 bool GetGyroData(SDL_GameController* controller, float* gyroData) {

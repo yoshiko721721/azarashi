@@ -1,4 +1,5 @@
 #include "TestFloor.h"
+#include "../../03_GameMainFile/Application.h" 
 void TestFloor::Init()
 {
 	Initialize(L"asset/pic/Box.png");   //背景を初期化
@@ -6,6 +7,17 @@ void TestFloor::Init()
 	SetSize(600.0f, 50.0f, 0.0f);  //大きさを設定
 	SetAngle(0.0f);                //角度を設定
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//角度を設定
+
+	/*if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) < 0)
+	{
+		//std::cerr << "SDLの初期化に失敗しました。SDL_Error: " << SDL_GetError() << std::endl;
+		return;
+	}
+
+	InitializeController();
+
+	// ジャイロセンサーを有効化
+	SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE);*/
 }
 
 void TestFloor::Update()
@@ -16,7 +28,7 @@ void TestFloor::Update()
     {
         if (e.cbutton.button == SDL_CONTROLLER_BUTTON_Y)
         {
-            float angle = 0; // スケーリング係数を調整 
+            float angle = 90; // スケーリング係数を調整 
             SetAngle(angle);
         }
     }
@@ -29,4 +41,8 @@ void TestFloor::Update()
         SetAngle(angle);
     }
 }
+
+
+
+
 

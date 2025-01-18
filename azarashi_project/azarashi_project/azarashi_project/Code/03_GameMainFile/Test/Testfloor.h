@@ -18,8 +18,6 @@ public:
 	~TestFloor() { Uninit(); }
 	void Init();  //‰Šú‰»
 	void Update();//XV
-	SDL_Event e;
-	SDL_GameController* controller = nullptr;
 private:
 	//Input input;
 };

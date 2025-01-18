@@ -9,33 +9,8 @@ TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*
 
 void TestStageScene_Nakae::Init()
 {	
-	//testWall.Init();
 	testFloor.Init();
-	/*bool Fopen = csvMapLoader.FileOpen(fileName);
-	csvMapLoader.CountRowsAndColumns();
-	csvMapLoader.FileClose();
-	std::cout << "行数: " << csvMapLoader.rowCount << std::endl; std::cout << "列数: " << csvMapLoader.colCount << std::endl; // データを表示 
-	for (const auto& row : csvMapLoader.data)
-	{
-		for (const auto& value : row)
-		{
-			std::cout << value << " ";
-		}
-		std::cout << std::endl;
-	}
-
-	csvMapLoader.LoadTextures(); // textures ベクターを渡さずに呼び出し
-
-	csvMapLoader.AddObject(&m_MySceneObjects);
-	//int kakunin = csvMapLoader.PrintValueAt(3, 6);
-
-	//timer.Init();
-	//pauseText.Init();
-
-	for (auto& o : m_MySceneObjects)
-	{
-		// 各オブジェクトの描画メソッドを呼び出す
-	}*/
+	testWall.Init();
 }
 
 void TestStageScene_Nakae::Update()
@@ -47,7 +22,7 @@ void TestStageScene_Nakae::Update()
 		testWall.Update();
 		testFloor.Update();
 		if (e.type == SDL_CONTROLLERBUTTONDOWN)
-		{
+		{	
 			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
 			{
 				std::cout << "Xボタンが押されました！" << std::endl;
@@ -56,15 +31,13 @@ void TestStageScene_Nakae::Update()
 			}
 		}
 	}
-
-
 }
 
 
 void TestStageScene_Nakae::Draw()
 {
 	testFloor.Draw();
-	//testWall.Draw();
+	testWall.Draw();
 	for (auto& o : m_MySceneObjects)
 	{
 		o->Draw(); // 各オブジェクトの描画メソッドを呼び出
@@ -79,8 +52,8 @@ void TestStageScene_Nakae::Draw()
 
 void TestStageScene_Nakae::Uninit()
 {
-	//testWall.Uninit();
 	testFloor.Uninit();
+	testWall.Uninit();
 	//pauseText.Uninit();
 	// このシーンのオブジェクトを削除する 
 	for (auto& o : m_MySceneObjects)
