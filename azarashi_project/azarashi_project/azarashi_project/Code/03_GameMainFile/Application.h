@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
-
+#include "../02_Input/miyoshi_input/ControllerInput.h"
 #include "../06_Scene/Scene.h"
+
 
 class Application {
 private:

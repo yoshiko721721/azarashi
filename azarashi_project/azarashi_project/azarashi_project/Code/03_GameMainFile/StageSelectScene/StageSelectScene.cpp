@@ -1,6 +1,6 @@
 #include "StageSelectScene.h"
-#include "SceneManager.h"
-#include "input.h"
+#include "../../06_Scene/SceneManager.h"
+#include "../../02_Input/input.h"
 #include <iostream>
 
 #include "../../03_GameMainFile/Title/TitleScene.h"
@@ -38,7 +38,7 @@ void StageSelectScene::Update() {
     }
     else if (XINPUT_A) {
         std::cout << "Stage " << selectedStage + 1 << " Selected" << std::endl;
-        SceneManager::GetInstance().ChangeScene(Scene::GameScene);
+       // SceneManager::GetInstance().ChangeScene(Scene::GameScene);
     }
 }
 

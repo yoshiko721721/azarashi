@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Scene.h"
+#include "../../06_Scene/Scene.h"
 
 class StageSelectScene : public Scene {
 private:

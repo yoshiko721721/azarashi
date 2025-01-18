@@ -115,7 +115,7 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Test\Testfloor.h" />
     <ClInclude Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Test\TestWall.h" />
     <ClInclude Include="Code\03_GameMainFile\Title\TitleBackGround.h">

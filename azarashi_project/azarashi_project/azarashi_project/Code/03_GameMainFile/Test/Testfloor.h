@@ -1,6 +1,7 @@
 #pragma once
 #include "../../01_Direct3D/Object.h"
 #include "../../02_Input/input.h"
+#include "../../02_Input/miyoshi_input/ControllerInput.h"
 
 class TestFloor:public Object
 {
@@ -17,6 +18,8 @@ public:
 	~TestFloor() { Uninit(); }
 	void Init();  //‰Šú‰»
 	void Update();//XV
+	SDL_Event e;
+	SDL_GameController* controller = nullptr;
 private:
 	//Input input;
 };

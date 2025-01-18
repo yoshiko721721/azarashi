@@ -2,7 +2,7 @@
 #include"Scene.h"
 #include "../03_GameMainFile/Title/TitleScene.h"
 #include "../03_GameMainFile/Game/GameScene.h"
-#include "../06_Scene/StageSelectScene/StageSelectScene.h"
+#include "../03_GameMainFile/StageSelectScene/StageSelectScene.h"
 
 
 class SceneManager 

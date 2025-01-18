@@ -81,7 +81,7 @@ bool GetGyroData(SDL_GameController* controller, float* gyroData);
 #define VK_Z 0x5A
 
 
-namespace Controller 
+namespace Controller
 {
 	class Input
 	{
@@ -106,6 +106,9 @@ namespace Controller
 
 		~Input(); //デストラクタ
 		static void Update(); //更新
+		static SDL_Event e;
+		static SDL_GameController* controller;
+		//static SDL_Event e;
 
 		//キー入力
 		static bool GetKeyPress(int key, float second = 0.0f);   //プレス(押している間ずっと)
@@ -135,3 +138,6 @@ namespace Controller
 		static void SetVibration(int frame = 1, float powor = 1);
 	};
 };
+
+
+

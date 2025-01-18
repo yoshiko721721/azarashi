@@ -5,6 +5,9 @@
 #include "../SDL2.1/include/SDL_joystick.h"
 //#include <DirectX.h>
 
+SDL_Event Controller::Input::e;
+SDL_GameController* Controller::Input::controller = nullptr;
+
 //コントローラー入力情報を保存する変数
 XINPUT_STATE Controller::Input::controllerState;
 XINPUT_STATE Controller::Input::controllerState_old;
@@ -58,9 +61,6 @@ void Controller::Input::Update()
 			keySecond[i] += 1;
 		}
 	}
-
-
-
 
 	//コントローラー入力を更新(XInput)
 	XInputGetState(0, &controllerState);
@@ -166,10 +166,11 @@ SDL_GameController* InitializeController()//コントローラー初期化
 				break;
 			}
 		}
-	}
+	} 
 	if (!controller) {
 		//std::cerr << "No GameController found!" << std::endl;
 	}
+	//return controller;
 	return controller;
 }
 
@@ -179,8 +180,6 @@ bool GetGyroData(SDL_GameController* controller, float* gyroData) {
 	}
 	return false;
 }
-
-
 
 //振動
 void Controller::Input::SetVibration(int frame, float powor)

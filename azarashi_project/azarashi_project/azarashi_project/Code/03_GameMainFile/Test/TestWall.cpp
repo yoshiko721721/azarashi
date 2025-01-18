@@ -8,18 +8,25 @@ void TestWall::Init()
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//角度を設定
 }
 
-void TestWall::Update(void)
+void TestWall::Update()
 {
-    DirectX::XMFLOAT3 pos = GetPos();
-    // プレイヤーの入力をチェック
-    if (XINPUT_RIGHT) 
+    SDL_Event& e = Controller::Input::e;
+
+    if (e.type == SDL_CONTROLLERBUTTONDOWN)
     {
-        pos.x += 3;
-    }
-    else if (XINPUT_LEFT)
-    {
-        pos.x -= 3;
+        if (e.cbutton.button == SDL_CONTROLLER_BUTTON_Y)
+        {
+            float angle = 0; // スケーリング係数を調整 
+            SetAngle(angle);
+        }
     }
 
-    SetPos(pos.x,pos.y,pos.z);
+    float gyroData[3] = { 0 }; // x, y, z軸
+    if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
+    {
+        float angle = GetAngle();
+        angle += gyroData[1] * 1.0f; // スケーリング係数を調整 
+        SetAngle(angle);
+    }
 }
+

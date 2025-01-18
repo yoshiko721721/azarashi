@@ -10,15 +10,18 @@ class TestStageScene_Nakae : public Scene
 {
 private:
 	Object sample;
-	
+
 	Pause pause;
 	Timer timer;
-	GameBackGround TestBackGround;
+	TestFloor testFloor;
+	TestWall testWall;
 	GamePointer Player;
 	//PauseText pauseText;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures をメンバ変数として宣言 
 	CSVMapLoader csvMapLoader;
 	//SceneManager& sceneManager; // sceneManager をメンバ変数として宣言
+	SDL_Event e;
+	//SDL_GameController* controller = nullptr;
 
 public:
 	std::vector<std::unique_ptr<Object>> m_MySceneObjects; // このシーンのオブジェクト 
@@ -32,4 +35,6 @@ public:
 	void Uninit(); //終了
 	//void AddObject();
 };
+
+
 
