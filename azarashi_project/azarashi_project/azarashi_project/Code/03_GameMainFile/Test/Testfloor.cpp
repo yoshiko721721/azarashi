@@ -4,7 +4,7 @@ void TestFloor::Init()
 {
 	Initialize(L"asset/pic/Box.png");   //背景を初期化
 	SetPos(0.0f, 0.0f, 0.0f);      //位置を設定
-	SetSize(600.0f, 50.0f, 0.0f);  //大きさを設定
+	SetSize(320.0f, 64.0f, 0.0f);  //大きさを設定
 	SetAngle(0.0f);                //角度を設定
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//角度を設定
 
@@ -33,13 +33,13 @@ void TestFloor::Update()
         }
     }
 
-    float gyroData[3] = { 0 }; // x, y, z軸
+    /*float gyroData[3] = {0}; // x, y, z軸
     if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
     {
         float angle = GetAngle();
         angle += gyroData[1] * 1.0f; // スケーリング係数を調整 
         SetAngle(angle);
-    }
+    }*/
 }
 
 

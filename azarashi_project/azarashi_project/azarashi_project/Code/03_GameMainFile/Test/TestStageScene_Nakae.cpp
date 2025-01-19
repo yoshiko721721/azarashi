@@ -11,6 +11,25 @@ void TestStageScene_Nakae::Init()
 {	
 	testFloor.Init();
 	testWall.Init();
+	//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
+    //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
+	bool Fopen = csvMapLoader.FileOpen(fileName);
+	csvMapLoader.CountRowsAndColumns();
+	csvMapLoader.FileClose();
+	std::cout << "行数: " << csvMapLoader.rowCount << std::endl; std::cout << "列数: " << csvMapLoader.colCount << std::endl; // データを表示 
+	for (const auto& row : csvMapLoader.data)
+	{
+		for (const auto& value : row)
+		{
+			std::cout << value << " ";
+		}
+		std::cout << std::endl;
+	}
+
+	csvMapLoader.LoadTextures(); //texturesベクターを渡さずに呼び出し
+
+	csvMapLoader.AddObject(&m_MySceneObjects);
+	//csvMapLoader.PrintValueAt(3, 6);
 }
 
 void TestStageScene_Nakae::Update()
@@ -21,6 +40,11 @@ void TestStageScene_Nakae::Update()
 		Controller::Input::e = e; // イベントをController::Input::eに設定 
 		testWall.Update();
 		testFloor.Update();
+
+		/*for (auto& o : m_MySceneObjects)
+		{
+			o->Update(); // 各オブジェクトの描画メソッドを呼び出
+		}*/
 		if (e.type == SDL_CONTROLLERBUTTONDOWN)
 		{	
 			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)

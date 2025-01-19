@@ -207,7 +207,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>C:\Users\Iris1\Desktop\HEW_Koropomu\azarashi\azarashi_project\azarashi_project\azarashi_project\Code\02_Input\hidapi-win\include;C:\Users\Iris1\Desktop\HEW_Koropomu\azarashi\azarashi_project\azarashi_project\azarashi_project\Code\02_Input\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>Code\02_Input\SDL2.1\lib\x64;Code\02_Input\hidapi-win\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

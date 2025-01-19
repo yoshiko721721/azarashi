@@ -9,7 +9,7 @@ void TitleScene::Update()
 {
 
 	if (Input::GetKeyPress(VK_A)) {
-		Application::GetInstance()->ChangeScene(GAMESCENE);
+		Application::GetInstance()->ChangeScene(TESTSCENE);
 	}
 
 
