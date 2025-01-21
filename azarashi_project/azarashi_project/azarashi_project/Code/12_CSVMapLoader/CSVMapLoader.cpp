@@ -62,15 +62,41 @@ void CSVMapLoader::LoadTextures()
         std::cerr << "Error: textures vector size is less than BlockType_MAX" << std::endl;
         return;
     }
+	textures[NULLSPACE] = LoadTexture(L"asset/pic/empty.png");
+	std::cout << "何もない読み込めました" << std::endl;
 
     textures[PLAYER] = LoadTexture(L"asset/pic/azarasi.png");
     std::cout << "プレイヤー読み込めました" << std::endl;
-    textures[FLOOR] = LoadTexture(L"asset/pic/block_koori.png");
+
+    textures[FLOOR] = LoadTexture(L"asset/pic/Floor.png");
     std::cout << "床を読み込めました" << std::endl;
-    textures[WALL] = LoadTexture(L"asset/pic/block_bronze.png");
+
+    textures[WALL] = LoadTexture(L"asset/pic/Wall.png");
     std::cout << "壁読み込めました" << std::endl;
-    textures[INCLINED_PLATFORM] = LoadTexture(L"asset/pic/InclinedPlatform.png");
+
+    textures[INCLINED_PLATFORM] = LoadTexture(L"asset/pic/Block_01.png");
     std::cout << "傾く足場読み込めました" << std::endl;
+
+	textures[FLAT_PLATFORM] = LoadTexture(L"asset/pic/Block_04.png");
+	std::cout << "傾かない足場読み込めました" << std::endl;
+
+	textures[BREAK_PLATFORM] = LoadTexture(L"asset/pic/Block_03.png");
+	std::cout << "崩れる床を読み込めました" << std::endl;
+
+	textures[HEAYVMOVING_PLATFORM] = LoadTexture(L"asset/pic/Block_02.png");
+	std::cout << "動く床(重い)読み込めました" << std::endl;
+
+	textures[LIGHTMOVING_PLATFORM] = LoadTexture(L"asset/pic/Block_05.png");
+	std::cout << "動く床(軽い)読み込めました" << std::endl;
+
+	textures[OBSTACLE_ITEM] = LoadTexture(L"asset/pic/Ojama.png");
+	std::cout << "お邪魔アイテムを読み込めました" << std::endl;
+
+	/*textures[ROUND_ROCK] = LoadTexture(L"asset/pic/block_bronze.png");
+	std::cout << "丸い岩を読み込みました" << std::endl;
+
+	textures[SQUARE_ROCK] = LoadTexture(L"asset/pic/InclinedPlatform.png");
+	std::cout << "四角い岩を読み込みました" << std::endl;*/
 }
 
 int CSVMapLoader::PrintValueAt(int row, int col)
@@ -88,11 +114,12 @@ int CSVMapLoader::PrintValueAt(int row, int col)
 
 void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects)
 {
-	int Platformcount = 1;
-	int count = 0;
-	float x = SCREEN_WIDTH * -1 / 2 + 32;
-	float y = SCREEN_HEIGHT / 2 - 32;
-	for (int i = 0; i < rowCount; i++)
+	//128*128なので縦はMAX8マス横はMAX15マス
+	int Platformcount = 1;//壁やらなんやらは何マス繋がっておかれているのかを調べる
+	int count = 0;//確認用
+	float x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
+	float y = SCREEN_HEIGHT / 2 - BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
+	for (int i = 0; i < rowCount; i++)//CSVに入っているマス分回すんだぜ
 	{
 		for (int j = 0; j < colCount; j++)
 		{
@@ -105,7 +132,7 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 			}
 			case FLOOR:
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 64, 64);
+				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
@@ -115,7 +142,7 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 			}
 			case WALL:
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, 64, 64);
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
@@ -125,14 +152,74 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 			}
 			case PLAYER:
 			{
-				/*auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, 64, 64);
+				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
-				//x += 64;*/
+				//x += 64;
 				count++;
 				break;
 			}
+			case INCLINED_PLATFORM:
+			{
+				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}
+			/*case FLAT_PLATFORM:
+			{
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}*/
+			/*case BREAK_PLATFORM:
+			{
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}*/
+			case HEAYVMOVING_PLATFORM:
+			{
+				auto newChip = Application::GetInstance()->AddObject<MoveGameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}
+			case LIGHTMOVING_PLATFORM:
+			{
+				auto newChip = Application::GetInstance()->AddObject<MoveGameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}
+			/*case OBSTACLE_ITEM:
+			{
+				auto newChip = Application::GetInstance()->AddObject<Snowman>(x, y, 64, 64);
+				newChip->SetTexture(textures[data[i][j]]);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//x += 64;
+				count++;
+				break;
+			}*/
 			default:
 				break;
 			}
@@ -192,10 +279,10 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 				}
 
 			}*/
-			x += 64;
+			x += BLOCKSIZE;
 		}
-		y -= 64;
-		x = SCREEN_WIDTH * -1 / 2 + 32;
+		y -= BLOCKSIZE;
+		x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;
 	}
 
 }
