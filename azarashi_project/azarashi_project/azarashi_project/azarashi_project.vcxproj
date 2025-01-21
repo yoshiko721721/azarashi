@@ -66,8 +66,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\Title\You_Fade\Fade.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\You_Load\Load.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
     <ClCompile Include="Code\07_Camera\Camera.cpp">
