@@ -25,7 +25,7 @@ private:
 
 public:
 	std::vector<std::unique_ptr<Object>> m_MySceneObjects; // このシーンのオブジェクト 
-	std::string fileName = "Code/12_CSVLoader/data.csv"; //ステージサイズ
+	std::string fileName = "Code/12_CSVMapLoader/data.csv"; //ステージサイズ
 	TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*>& textures);
 	//TestStageScene_Nakae():moveGameBlock{ };
 	//SelectScene(SceneManager& sceneManager, std::vector<ID3D11ShaderResourceView*>& textures);
