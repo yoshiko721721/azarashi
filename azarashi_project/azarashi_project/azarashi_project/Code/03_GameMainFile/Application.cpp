@@ -7,6 +7,7 @@
 #include "../03_GameMainFile/Title/TitleScene.h"
 #include "../03_GameMainFile/StageSelectScene/StageSelectScene.h"
 #include "Test/TestStageScene_Nakae.h"
+#include "Test/TestScene_You.h"
 
 Application* Application::m_Instance;		//インスタンス
 
@@ -27,11 +28,10 @@ void Application::Init(HWND hWnd)
 	}
 
 	InitializeController();
-
-	// ジャイロセンサーを有効化
-	SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
 	//初期シーンをセット
 	m_Instance->m_Scene = new TitleScene;
+	m_Instance->m_Scene->Init();
+
 }
 
 
@@ -91,7 +91,10 @@ void Application::ChangeScene(SceneList sName)
 			m_Scene->Init();
 			break;
 		}
-
+		case TESTSCENE02:
+			m_Instance->m_Scene = new TestScene_You; // メモリを確保
+			m_Scene->Init();
+			break;
 	}
 }
 
