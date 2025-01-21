@@ -20,8 +20,9 @@ class GamePointer :public Object
 public:
 	RigidBody body;
 
-	GamePointer() {}
-	~GamePointer() { Uninit(); }
+	GamePointer() {};
+	GamePointer(float posX, float posY, float sizeX, float sizeY) : Object(posX, posY, sizeX, sizeY) {};
+	~GamePointer() { Uninit(); };
 	void Init();  //èâä˙âª
 	void Update(ContactPointVector contactPointVector, Object& block);//çXêV
 

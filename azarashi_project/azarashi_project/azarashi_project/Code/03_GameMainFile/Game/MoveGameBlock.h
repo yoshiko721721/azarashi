@@ -5,6 +5,7 @@
 class MoveGameBlock : public Object {
 public:
     // コンストラクタ: 傾きの閾値を指定可能
+    MoveGameBlock(float posX, float posY, float sizeX, float sizeY) : Object(posX, posY, sizeX, sizeY) {};
     MoveGameBlock(float moveThreshold);
     ~MoveGameBlock() { Uninit(); }
 

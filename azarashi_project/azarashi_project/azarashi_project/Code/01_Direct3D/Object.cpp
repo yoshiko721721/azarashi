@@ -1,5 +1,11 @@
 #include "object.h"
 
+Object::Object(float posX, float posY, float sizeX, float sizeY)
+{
+	SetPos(posX, posY, 0);
+	SetSize(sizeX, sizeY, 0);
+}
+
 void Object::Initialize(const wchar_t* imgname, int sx, int sy)
 {
 	splitX = sx;

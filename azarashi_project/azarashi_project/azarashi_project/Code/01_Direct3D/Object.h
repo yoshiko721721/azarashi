@@ -40,6 +40,9 @@ public:
 	float numU = 0;
 	float numV = 0;
 
+	Object() {}
+	Object(float posX, float posY, float sizeX, float sizeY);
+
 	void Initialize(const wchar_t* imgname, int sx = 1, int sy = 1);			//‰Šú‰»
 	virtual void Update() {};
 	void Draw();										//•`‰æ

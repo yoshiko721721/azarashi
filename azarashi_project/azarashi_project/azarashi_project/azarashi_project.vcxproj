@@ -206,9 +206,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>Code\02_Input\SDL2.1\lib\x64;Code\02_Input\hidapi-win\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Code\02_Input\hidapi-win\include;$(ProjectDir)Code\02_Input\SDL2.1\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>$(ProjectDir)Code\02_Input\hidapi-win\include;$(ProjectDir)Code\02_Input\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(ProjectDir)Code\02_Input\hidapi-win\x64;C:\Users\dorae\OneDrive\デスクトップ\HAL_class 2\HEW2025\azarashi\azarashi_project\azarashi_project\azarashi_project\Code\02_Input\SDL2.1\lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -264,12 +267,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Code\02_Input\SDL2.1\lib\x64;Code\02_Input\hidapi-win\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

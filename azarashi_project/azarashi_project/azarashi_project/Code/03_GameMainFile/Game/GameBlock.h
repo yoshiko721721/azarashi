@@ -9,7 +9,8 @@
 class GameBlock :public Object
 {
 public:
-	GameBlock() {}
+	GameBlock() {};
+	GameBlock(float posX, float posY, float sizeX, float sizeY) : Object(posX, posY, sizeX, sizeY) {};
 	~GameBlock() { Uninit(); }
 	void Init();  //‰Šú‰»
 	void Update();//XV
