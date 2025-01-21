@@ -41,7 +41,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\main.cpp" />
@@ -49,9 +51,10 @@
     <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Test\Testfloor.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Test\TestScene_You.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -63,6 +66,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Title\You_Fade\Fade.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\You_Load\Load.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
     <ClCompile Include="Code\07_Camera\Camera.cpp">
@@ -111,9 +116,10 @@
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
     <ClInclude Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Test\Testfloor.h" />
+    <ClInclude Include="Code\03_GameMainFile\Test\TestScene_You.h" />
     <ClInclude Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -125,6 +131,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Title\You_Fade\Fade.h" />
+    <ClInclude Include="Code\03_GameMainFile\You_Load\Load.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
     <ClInclude Include="Code\07_Camera\Camera.h">
@@ -206,9 +214,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>Code\02_Input\hidapi-win\include;Code\02_Input\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>Code\02_Input\SDL2.1\lib\x64;Code\02_Input\hidapi-win\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\hidapi-win\include;C:\SDL2.1\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\hidapi-win\include;C:\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>C:\SDL2.1\lib\x64;C:\hidapi-win\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

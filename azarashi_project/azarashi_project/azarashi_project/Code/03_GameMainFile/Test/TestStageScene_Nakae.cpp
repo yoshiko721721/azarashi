@@ -9,10 +9,11 @@ TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*
 
 void TestStageScene_Nakae::Init()
 {	
-	testFloor.Init();
-	testWall.Init();
+	//testFloor.Init();
+	//testWall.Init();
 	//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
     //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
+	m_MySceneObjects.emplace_back(Application::GetInstance()->AddObject<GameBackGround>());//地形
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();
 	csvMapLoader.FileClose();
@@ -38,9 +39,12 @@ void TestStageScene_Nakae::Update()
 	while (SDL_PollEvent(&e) != 0)
 	{
 		Controller::Input::e = e; // イベントをController::Input::eに設定 
-		testWall.Update();
-		testFloor.Update();
-
+		//testWall.Update();
+		//testFloor.Update();
+		for (auto& o : m_MySceneObjects)
+		{
+			o->Update(); // 各オブジェクトの描画メソッドを呼び出
+		}
 		/*for (auto& o : m_MySceneObjects)
 		{
 			o->Update(); // 各オブジェクトの描画メソッドを呼び出
@@ -60,8 +64,8 @@ void TestStageScene_Nakae::Update()
 
 void TestStageScene_Nakae::Draw()
 {
-	testFloor.Draw();
-	testWall.Draw();
+	//testFloor.Draw();
+	//testWall.Draw();
 	for (auto& o : m_MySceneObjects)
 	{
 		o->Draw(); // 各オブジェクトの描画メソッドを呼び出

@@ -82,6 +82,15 @@
     <Filter Include="ソース ファイル\CSVMapLoader">
       <UniqueIdentifier>{da3398bc-d525-47f9-9531-50e21b3e5b51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\MainGame.cpp\Load">
+      <UniqueIdentifier>{77064598-bc82-4ad2-b8a5-c8ebd2f77cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MainGame.h\Load">
+      <UniqueIdentifier>{ea05faef-124f-40b9-bd64-fc9c4be24943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MainGame.cpp\Test">
+      <UniqueIdentifier>{198bfec9-f5b7-4d78-85d1-2475053e1f1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\06_Scene\Scene.cpp">
@@ -192,6 +201,15 @@
     <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\You_Fade\Fade.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\You_Load\Load.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Test\TestScene_You.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -298,6 +316,15 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.h">
       <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\You_Fade\Fade.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\You_Load\Load.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Test\TestScene_You.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
