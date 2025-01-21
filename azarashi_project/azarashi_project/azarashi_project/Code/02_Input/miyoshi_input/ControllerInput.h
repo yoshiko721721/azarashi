@@ -3,8 +3,8 @@
 #include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
 //#include "DirectX.h"
 
-#include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL.h"//SDLでジャイロセンサーを読み取るために使用
-#include "../miyoshi_input/gyro動作必要/SDL2-2.30.9/SDL2-2.30.9/include/SDL_main.h" //SDL_main関係のエラーが出るときに必要※エラーが無い時も
+#include "../SDL2.1/include/SDL.h"
+#include "../SDL2.1/include/SDL_main.h"
                       //書いていて問題なし
 
 #include <Xinput.h> //XInputを使うためのヘッダーファイル
@@ -81,55 +81,63 @@ bool GetGyroData(SDL_GameController* controller, float* gyroData);
 #define VK_Z 0x5A
 
 
-
-class Input 
+namespace Controller
 {
-private:
-	//キー入力情報を保存する変数
-	static BYTE keyState[256] ;
-	static float keySecond[256] ;
-	static BYTE keyState_old[256] ;
+	class Input
+	{
+	private:
+		//キー入力情報を保存する変数
+		static BYTE keyState[256];
+		static float keySecond[256];
+		static BYTE keyState_old[256];
 
 
-	//コントローラー入力情報を保存する変数
-	static XINPUT_STATE controllerState ;
-	static XINPUT_STATE controllerState_old ;
+		//コントローラー入力情報を保存する変数
+		static XINPUT_STATE controllerState;
+		static XINPUT_STATE controllerState_old;
 
-	static int VibrationTime; //振動継続時間をカウントする変数
+		static int VibrationTime; //振動継続時間をカウントする変数
 
-	////シングルトンからアクセスを許可
-	//friend class Singleton<Input>;
+		////シングルトンからアクセスを許可
+		//friend class Singleton<Input>;
 
-	Input(); //コンストラクタ
-public:
+		Input(); //コンストラクタ
+	public:
 
-	~Input(); //デストラクタ
-	static void Update(); //更新
+		~Input(); //デストラクタ
+		static void Update(); //更新
+		static SDL_Event e;
+		static SDL_GameController* controller;
+		//static SDL_Event e;
 
-	//キー入力
-	static bool GetKeyPress(int key, float second = 0.0f);   //プレス(押している間ずっと)
-	static bool GetKeyTrigger(int key); //トリガー(押し始めた時)
-	static bool GetKeyRelease(int key); //リリース(押し終わった時)
+		//キー入力
+		static bool GetKeyPress(int key, float second = 0.0f);   //プレス(押している間ずっと)
+		static bool GetKeyTrigger(int key); //トリガー(押し始めた時)
+		static bool GetKeyRelease(int key); //リリース(押し終わった時)
 
-	//アナログスティック(コントローラー)
-	static DirectX::XMFLOAT2 GetLeftAnalogStick(void);
-	static DirectX::XMFLOAT2 GetRightAnalogStick(void);
+		//アナログスティック(コントローラー)
+		static DirectX::XMFLOAT2 GetLeftAnalogStick(void);
+		static DirectX::XMFLOAT2 GetRightAnalogStick(void);
 
-	//トリガー(コントローラー)
-	static float GetLeftTrigger(void);
-	static float GetRightTrigger(void);
+		//トリガー(コントローラー)
+		static float GetLeftTrigger(void);
+		static float GetRightTrigger(void);
 
-	//ボタン入力(コントローラー)
-	static bool GetButtonPress(WORD btn);   //プレス(押している間ずっと)
-	static bool GetButtonTrigger(WORD btn); //トリガー(押し始めた時)
-	static bool GetButtonRelease(WORD btn); //リリース(押し終わった時)
+		//ボタン入力(コントローラー)
+		static bool GetButtonPress(WORD btn);   //プレス(押している間ずっと)
+		static bool GetButtonTrigger(WORD btn); //トリガー(押し始めた時)
+		static bool GetButtonRelease(WORD btn); //リリース(押し終わった時)
 
 
-	
 
-	
-	//振動(コントローラー)
-	//flame：振動を継続する時間(単位：フレーム)
-	//powoe：振動の強さ(0～1)
-	static void SetVibration(int frame = 1, float powor = 1);
+
+
+		//振動(コントローラー)
+		//flame：振動を継続する時間(単位：フレーム)
+		//powoe：振動の強さ(0～1)
+		static void SetVibration(int frame = 1, float powor = 1);
+	};
 };
+
+
+

@@ -17,59 +17,16 @@ void GameScene::Init()
 }
 void GameScene::Update()
 {
-	//backGround.Update();
+	//床に当たった時　衝突判定
+	collision = BoxCollider::ColliderWithCircle(&pointer, &block);
 
-	if (pause.isPaused() == false) {
-		pause.apply();
-	}else{
-		pause.maladaptive();
-		return;
-	}
-
-	pointer.Update(block.GetAngle());
+	pointer.Update(collision, block);
 	block.Update();
 
-	if (Input::GetKeyPress(VK_T)) {
-		pointer.SetAzaNum(CIRCLE);
-	}
-	else {
-		pointer.SetAzaNum(STAND);
-	}
-
-	//床に当たった時　衝突判定
-	if (BoxCollider::ColliderWithCircle(&pointer, &block).checkCollision )
-	{
-		if (Input::GetKeyTrigger(VK_RETURN)) {
-			pointer.body.AddForce(0.0f, -30.0f);
-		}
-
-		//横方向の更新
-		pointer.body.HorizonUpdate(&pointer.body.vector,					
-									pointer.GetFrictionResistance(),
-									block.GetAngle());
-		//反発
-		pointer.body.Repulsion(pointer.GetFrictionResistance(), block.GetAngle());
-		
-		pointer.body.DampingVector(pointer.damping , pointer.azaNum);
-
-
-	}
-	
 	//横移動と連動した画像の回転
 	if (pointer.azaNum == CIRCLE) {
-		pointer.RotateTexture(block.GetFrictionRasistance());				
+		pointer.RotateTexture(block.GetFrictionRasistance());
 	}
-
-	if (pointer.isChangeMode()) {
-		switch (pointer.azaNum) {
-			case CIRCLE: pointer.Initialize(AZARASHI_PICTURE_CIRCLE) ; break;
-			case STAND : pointer.Initialize(AZARASHI_PICTURE_STAND ) ; 
-				pointer.SetAngle(block.GetAngle());
-				break;
-		}
-
-	}
-
 
 	if (Input::GetKeyTrigger(VK_S)) {
 		Application::GetInstance()->ChangeScene(TITLESCENE);	//ここでoldSceneを入れて置かないと他のシーンで遷移出来ない

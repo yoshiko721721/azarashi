@@ -14,6 +14,7 @@ private:
 	//GameCamera     camera;
 	GamePointer    pointer;
 	GameBlock      block;
+	ContactPointVector collision;
 	Pause	pause;
 
 public:

@@ -180,11 +180,17 @@
     <ClCompile Include="Code\12_CSVMapLoader\CSVMapLoader.cpp">
       <Filter>ソース ファイル\CSVMapLoader</Filter>
     </ClCompile>
-    <ClCompile Include="Code\06_Scene\StageSelectScene\StageSelectScene.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
-    </ClCompile>
     <ClCompile Include="Code\02_Input\miyoshi_input\ControllerInput.cpp">
       <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,11 +287,17 @@
     <ClInclude Include="Code\12_CSVMapLoader\CSVMapLoader.h">
       <Filter>ヘッダー ファイル\CSVMapLoader</Filter>
     </ClInclude>
-    <ClInclude Include="Code\06_Scene\StageSelectScene\StageSelectScene.h">
-      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
-    </ClInclude>
     <ClInclude Include="Code\02_Input\miyoshi_input\ControllerInput.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

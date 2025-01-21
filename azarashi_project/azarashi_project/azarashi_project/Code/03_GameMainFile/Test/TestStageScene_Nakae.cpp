@@ -8,18 +8,11 @@ TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*
 }
 
 void TestStageScene_Nakae::Init()
-{
-	/*SDL_GameController* controller = InitializeController();
-	if (!controller)
-	{
-		//SDL_DestroyRenderer(renderer);
-		//SDL_DestroyWindow(window);
-		SDL_Quit();
-		return;
-	}*/
+{	
+	testFloor.Init();
+	testWall.Init();
 	//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
     //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
-	TestBackGround.Init();
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();
 	csvMapLoader.FileClose();
@@ -33,53 +26,42 @@ void TestStageScene_Nakae::Init()
 		std::cout << std::endl;
 	}
 
-	csvMapLoader.LoadTextures(); // textures ベクターを渡さずに呼び出し
+	csvMapLoader.LoadTextures(); //texturesベクターを渡さずに呼び出し
 
 	csvMapLoader.AddObject(&m_MySceneObjects);
-	//int kakunin = csvMapLoader.PrintValueAt(3, 6);
-
-	//timer.Init();
-	//pauseText.Init();
-
-	for (auto& o : m_MySceneObjects)
-	{
-		// 各オブジェクトの描画メソッドを呼び出す
-	}
+	//csvMapLoader.PrintValueAt(3, 6);
 }
 
 void TestStageScene_Nakae::Update()
 {
-	//UpdateCirclePosition(controller, Object, SCREEN_WIDTH, SCREEN_HEIGHT);
-	if (pause.isPaused() == false)
+	SDL_Event& e = Controller::Input::e;
+	while (SDL_PollEvent(&e) != 0)
 	{
-		pause.apply();
+		Controller::Input::e = e; // イベントをController::Input::eに設定 
+		testWall.Update();
+		testFloor.Update();
 
-		if (Input::GetKeyPress(VK_SPACE))
+		/*for (auto& o : m_MySceneObjects)
 		{
-
+			o->Update(); // 各オブジェクトの描画メソッドを呼び出
+		}*/
+		if (e.type == SDL_CONTROLLERBUTTONDOWN)
+		{	
+			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
+			{
+				std::cout << "Xボタンが押されました！" << std::endl;
+				Application::GetInstance()->ChangeScene(GAMESCENE);
+				return;
+			}
 		}
-
-		if (Input::GetKeyPress(VK_S))
-		{
-			Application::GetInstance()->ChangeScene(GAMESCENE);
-		}
-
-		for (auto& o : m_MySceneObjects)
-		{
-			o->Update(); // 各オブジェクトのUpdateメソッドを呼び出す
-		}
-
-	}
-	else
-	{
-		pause.maladaptive();
-		return;
 	}
 }
 
+
 void TestStageScene_Nakae::Draw()
 {
-	TestBackGround.Draw();
+	testFloor.Draw();
+	testWall.Draw();
 	for (auto& o : m_MySceneObjects)
 	{
 		o->Draw(); // 各オブジェクトの描画メソッドを呼び出
@@ -94,7 +76,8 @@ void TestStageScene_Nakae::Draw()
 
 void TestStageScene_Nakae::Uninit()
 {
-	TestBackGround.Uninit();
+	testFloor.Uninit();
+	testWall.Uninit();
 	//pauseText.Uninit();
 	// このシーンのオブジェクトを削除する 
 	for (auto& o : m_MySceneObjects)

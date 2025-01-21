@@ -64,13 +64,13 @@ class Input
 {
 private:
 	//キー入力情報を保存する変数
-	static BYTE keyState[256] ;
-	static float keySecond[256] ;
-	static BYTE keyState_old[256] ;
+	static BYTE keyState[256];
+	static float keySecond[256];
+	static BYTE keyState_old[256];
 
 	//コントローラー入力情報を保存する変数
-	static XINPUT_STATE controllerState ;
-	static XINPUT_STATE controllerState_old ;
+	static XINPUT_STATE controllerState;
+	static XINPUT_STATE controllerState_old;
 
 	static int VibrationTime; //振動継続時間をカウントする変数
 

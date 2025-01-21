@@ -5,26 +5,35 @@
 #include "../02_Input/input.h"
 #include "../03_GameMainFile/Game/GameScene.h"
 #include "../03_GameMainFile/Title/TitleScene.h"
-#include "../06_Scene/StageSelectScene/StageSelectScene.h"
+#include "../03_GameMainFile/StageSelectScene/StageSelectScene.h"
 #include "Test/TestStageScene_Nakae.h"
-
-
 
 Application* Application::m_Instance;		//インスタンス
 
 Application::Application()
 {
+
 }
 
 void Application::Init(HWND hWnd)
 {
-
 	m_Instance = new Application;
 	D3D_Create(hWnd);							//DirectXを初期化
 	srand((unsigned)time(NULL));
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) < 0)
+	{
+		std::cerr << "SDLの初期化に失敗しました。SDL_Error: " << SDL_GetError() << std::endl;
+		return;
+	}
+
+	InitializeController();
+
+	// ジャイロセンサーを有効化
+	SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
 	//初期シーンをセット
 	m_Instance->m_Scene = new TitleScene;
 }
+
 
 void Application::Update(void)
 {
@@ -65,17 +74,21 @@ void Application::ChangeScene(SceneList sName)
 	{
 		case TITLESCENE:
 			m_Instance->m_Scene = new TitleScene; // メモリを確保
+			m_Scene->Init();
 			break;
-		case STAGESELECTSCENE:
+		/*case STAGESELECTSCENE:
 			m_Instance->m_Scene = new StageSelectScene; // メモリを確保
-			break;
+			m_Scene->Init();
+			break;*/
 		case GAMESCENE:
 			m_Instance->m_Scene = new GameScene; // メモリを確保
+			m_Scene->Init();
 			break;
 		case TESTSCENE:
 		{
 			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
 			m_Instance->m_Scene = new TestStageScene_Nakae(textures); // メモリを確保
+			m_Scene->Init();
 			break;
 		}
 

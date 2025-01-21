@@ -20,12 +20,11 @@
 #include "../01_Direct3D/direct3d.h"
 #include "../01_Direct3D/Object.h"
 #include "../05_WICTextureLoader/WICTextureLoader.h"
+#include "../03_GameMainFile/Game/GameBlock.h"
+#include "../03_GameMainFile/Game/MoveGameBlock.h"
+#include"../03_GameMainFile/Game/Gimmick/Snowman.h"
 
-enum BlockSize
-{
-
-
-};
+const int BLOCKSIZE = 128;
 
 enum BlockType//１
 { 
@@ -34,9 +33,14 @@ enum BlockType//１
     WALL,       //壁
     PLAYER,     //プレイヤー(アザラシ)
     GOAL,
-    INCLINED_PLATFORM,  //傾く足場
-    FLAT_PLATFORM,  //
-    MOVING_PLATFORM,
+    INCLINED_PLATFORM = 11,  //傾く足場
+    FLAT_PLATFORM,           //傾かない床
+    BREAK_PLATFORM,          //崩れる床
+    HEAYVMOVING_PLATFORM,    //動く床(重め)
+    LIGHTMOVING_PLATFORM,    //動く床(軽め)
+    OBSTACLE_ITEM = 21,           //お邪魔アイテム
+    ROUND_ROCK,              //丸い岩
+    SQUARE_ROCK,             //四角い岩
     BlockType_MAX //配列の最大値
 };
 
