@@ -26,14 +26,17 @@ void Object::Initialize(const wchar_t* imgname, int sx, int sy)
 
 	HRESULT hr = g_pDevice->CreateBuffer(&bufferDesc, &subResourceData, &m_pVertexBuffer);
 
-	//テクスチャ読込
-	hr = DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
-
-	if (FAILED(hr))
+	if (m_pTextureView == nullptr) // ★ テクスチャが読み込まれていない場合のみ読み込む
 	{
-		MessageBoxA(NULL, "テクスチャ読込失敗", "エラー", MB_ICONERROR | MB_OK);
+		//テクスチャ読み込み
+		hr = DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
 
-		return;
+		if (FAILED(hr))
+		{
+			MessageBoxA(NULL, "テクスチャ読み込み失敗", "エラー", MB_ICONERROR | MB_OK);
+
+			return;
+		}
 	}
 
 }
