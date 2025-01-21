@@ -1,10 +1,28 @@
 #include "Math.h"
 
-#define PI 3.1415926535
+
+float Math::MaintenanceRadian(float radian)
+{
+    if (radian < 0) {
+
+        radian += Math::tau;
+    }
+    else if (radian > Math::tau) {
+
+        radian = fmod(radian, Math::tau);
+    }
+
+    return radian;
+}
 
 float Math::ConvertDegreeToRadian()
 {
     return PI / 180;
+}
+
+float Math::ConvertDegreeToMethod()
+{
+    return 180 / PI;
 }
 
 //“ñ‚Â‚Ì‘¬“x‚©‚ç”½”­ŒW” e ‚ð•Ô‚·
@@ -35,4 +53,32 @@ float Math::ConvertAbsoluteValue(float AbsValue)
 {
     AbsValue = (AbsValue >= 0) ? AbsValue : -AbsValue;
     return AbsValue;
+}
+
+
+float Math::VectorLength(const Vector2& vector)
+{
+    return sqrt(vector.x * vector.x + vector.y * vector.y);
+}
+
+float Math::CalcSquareRoot(float x, float y)
+{
+    return sqrt(x * x + y * y);
+}
+
+Vector2 Math::Normalize(const Vector2& vector)
+{
+    float length = VectorLength(vector);
+    if (length == 0) {
+        return { 0,0 };
+    }
+    return { vector.x / length , vector.y / length };
+}
+
+Vector2 Math::CalculateNormal(const Vector2& point1, const Vector2& point2)
+{
+    Vector2 normal;
+    normal.x = point2.y - point1.y;
+    normal.y = point1.x - point2.x;
+    return Normalize(normal);
 }

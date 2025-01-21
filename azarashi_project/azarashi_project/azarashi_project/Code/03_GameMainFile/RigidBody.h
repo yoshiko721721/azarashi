@@ -1,5 +1,6 @@
 #pragma once
 #include"../01_Direct3D/Object.h"
+#include"../08_Collider/Base_collision.h"
 #include "Math.h"
 using DirectX::XMFLOAT2;
 
@@ -10,9 +11,9 @@ using DirectX::XMFLOAT2;
 //
 
 enum AZA_MODE_NUMMBER {
-	CIRCLE = 0 ,
-	STAND  = 1 ,
-	MODENUM= 2
+	CIRCLE = 0,
+	STAND = 1,
+	MODENUM = 2
 };
 
 const float g = 9.81f;			//重力加速度
@@ -26,33 +27,41 @@ private:
 	float mass;				//質量
 	float time;				//時間によって進む量が変わるため
 	float mag;				//ゲームを自然にみせるための倍率
+	float fainalNormalAngle;		//衝突が起こった時の最終的な法線角度
+	bool edgeFlg;
+
 
 public:
 
 	Vector2 vector;					//方向
 	float vectorNum;				//総合的な速度
-	bool oldCollisionFlg = false;	//二回連続で処理に入るときめり込まないようにするため
+
+	Vector2 normalVector;			//法線ベクトル
 
 	//========================================
 	//			常に必要・反映されるもの
 	//========================================
-	void Update(Vector2 position,float dt) ;	//更新処理
+	void Update();	//更新処理
 	void FreeFall(float setTime);				//自由落下
 
 
 	//=======================================
 	//			条件を満たした時に反映するもの
 	//=======================================
-	void Repulsion(float friction ,float angle);							//反発
-	void AddForce (float forceX,float forceY);								//力を加える
-	void HorizonUpdate(Vector2* m_Vector,float friction, float angle);		//角度を考慮する計算
-	void DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber);
+	void Repulsion();				//反発
+	void AddForce(float forceX, float forceY);									//力を加える
+	void HorizonUpdate(Object& block, float friction);	//角度を考慮する計算
+	void DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber);		//減速処理
+
+	bool isHorizonOrVertical(float boxAngle);									//0度に対して水平か垂直かの確認
+	void CalcFainalNormalAngle(XMFLOAT2 collision, Object& circle, Object& block);
+
 
 	//角度に添ったベクトル変換
-	void VectorPruductAngle(Vector2* m_Vector,float angle, float friction);
+	void VectorPruductAngle(Vector2* m_Vector, float angle, float friction);
 
 	//ストップウォッチ
-	void TimeCounter(float frameRate);
+	void TimeCounter();
 	void TimeReset();
 
 	//セッター
@@ -66,6 +75,7 @@ public:
 	float GetMass();				//質量
 	float GetTime();				//時間
 	float GetMag();					//ゲームを自然にみせるための倍率
-
+	float GetFainalAngle();			//法線の角度を返す
 };
+
 
