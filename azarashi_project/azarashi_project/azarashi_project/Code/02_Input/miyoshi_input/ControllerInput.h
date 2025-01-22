@@ -3,6 +3,8 @@
 #include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
 //#include "DirectX.h"
 
+
+//C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include
 #include "SDL.h"
 #include "SDL_main.h"
                       //書いていて問題なし
