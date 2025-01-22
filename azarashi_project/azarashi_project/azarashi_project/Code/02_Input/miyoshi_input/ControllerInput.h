@@ -3,8 +3,8 @@
 #include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
 //#include "DirectX.h"
 
-#include "../SDL2.1/include/SDL.h"
-#include "../SDL2.1/include/SDL_main.h"
+#include "SDL.h"
+#include "SDL_main.h"
                       //書いていて問題なし
 
 #include <Xinput.h> //XInputを使うためのヘッダーファイル
