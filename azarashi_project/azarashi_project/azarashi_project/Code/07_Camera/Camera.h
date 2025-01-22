@@ -13,8 +13,8 @@ public:
     static void SetTarget(DirectX::XMVECTOR);
 
 protected:
-    static DirectX::XMVECTOR m_position;//cameraの位置用の変数
-    static DirectX::XMVECTOR m_target;
+    static DirectX::XMVECTOR m_Position;//cameraの位置用の変数
+    static DirectX::XMVECTOR m_Target;
     static DirectX::XMVECTOR m_upDirection;
     static DirectX::XMMATRIX m_viewMatrix;//向きや回転率などを計算し、描画内容を決めたもの
 };

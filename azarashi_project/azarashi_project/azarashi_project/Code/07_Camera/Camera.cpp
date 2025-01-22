@@ -3,14 +3,15 @@
 
 using namespace DirectX;
 
-DirectX::XMVECTOR Camera::m_position = { 0.0f,0.0f,-50.0f };//cameraの位置用の変数
-DirectX::XMVECTOR Camera::m_target = { 0.0f,0.0f,0.0f };
-DirectX::XMVECTOR Camera::m_upDirection = { 0.0f, 1.0f, 0.0f };
+DirectX::XMVECTOR Camera::m_Position = { 0.0f,0.0f,-50.0f };//cameraの位置用の変数
+DirectX::XMVECTOR Camera::m_Target = { 0.0f,0.0f,0.0f };      //targetの位置
+DirectX::XMVECTOR Camera::m_upDirection = { 0.0f, 1.0f, 0.0f }; //上方向
 DirectX::XMMATRIX Camera::m_viewMatrix;//向きや回転率などを計算し、描画内容を決めたもの
 
-const int WORLD_WIDTH = 50;      // ワールドの横幅
-const int WORLD_HEIGHT = 60;     // ワールドの縦幅
-extern GamePointer* AZARASHI;			//外部からプレイヤーをカメラに
+const int WORLD_WIDTH = 50;      // ワールドの横幅、テスト用値
+const int WORLD_HEIGHT = 60;     // ワールドの縦幅、テスト用値
+
+extern auto* newChip;			//外部からプレイヤーをカメラに
 
 DirectX::XMMATRIX Camera::GetViewMatrix()
 {
@@ -19,26 +20,35 @@ DirectX::XMMATRIX Camera::GetViewMatrix()
 
 void Camera::Init()
 {
-    m_viewMatrix = XMMatrixLookAtLH(m_position, m_target, m_upDirection);
+    m_viewMatrix = XMMatrixLookAtLH(m_Position, m_Target, m_upDirection);
 }
 
 void Camera::Update()
 {
-    m_viewMatrix = XMMatrixLookAtLH(m_position, m_target, m_upDirection);
+    m_viewMatrix = XMMatrixLookAtLH(m_Position, m_Target, m_upDirection);
 
     //float CameraMoveCounter = 0.0f;	//カメラフォーローカウンター
     //float CmCnt = 0.0f;	//カメラフォーローカウンター
     //bool FollowPlayer = false;	//プレイヤーフォーローフラグ
-    //XMVECTOR playerPos = AZARASHI->GetPos ( );
+    XMFLOAT3 playerPos = newChip->GetPos ( );       //プレイヤーの座標をゲット
+    float caPx = XMVectorGetX ( m_Position);    //カメラの座標Ｘをゲット
+    float caPy = XMVectorGetY ( m_Position);    //カメラの座標Yをゲット
+    float caPz = XMVectorGetZ ( m_Position);    //カメラの座標Zをゲット
+    float caTx = XMVectorGetX ( m_Target );     //ターゲットの座標Ｘをゲット
+    float caTy = XMVectorGetY ( m_Target );     //ターゲットの座標Yをゲット
+    float caTz = XMVectorGetZ ( m_Target );     //ターゲットの座標Zをゲット
     constexpr float smoothSpeedX = 0.02f; // Xフォーロー速度
     constexpr float smoothSpeedY = 0.03f; // Yフォーロー速度
 
     // プレイヤーをフォロー
-    //m_Position.x = m_Position.x + ( playerPos.x - m_Position.x ) * smoothSpeedX;
-    //m_Target.x = m_Position.x;
+    caPx = caPx + ( playerPos.x - caPx ) * smoothSpeedX;
+    caTx = caPx;
+    
+    m_Position = XMVectorSetX ( m_Position , caPx );    //カメラの座標Ｘを更新
+    m_Target = XMVectorSetX ( m_Target , caTx );        //ターゲットの座標Ｘを更新
 
     // プレイヤーがウィンドウの半分以上にいる時カウント
-    ////if ( playerPos.y > m_Scale.y / 2 ) {
+    ////if ( playerPos.y > SCREEN_HEIGHT / 2 ) {
     ////	if ( CmCnt == 0.0f )
     ////	{
     ////		CmCnt = 2.0f;
@@ -52,7 +62,7 @@ void Camera::Update()
     ////	}
     ////}
 
-    ////if ( playerPos.y - m_Position.y==0.0f )
+    ////if ( playerPos.y - caPy==0.0f )
     ////{
     ////	FollowPlayer = false;
     ////}
@@ -60,35 +70,50 @@ void Camera::Update()
         // 徐々にフォーロー
     ////if ( FollowPlayer )
     ////{
-    //m_Position.y = m_Position.y + ( playerPos.y - m_Position.y ) * smoothSpeedY;
-    //m_Target.y = m_Position.y;
+    caPy = caPy + ( playerPos.y - caPy ) * smoothSpeedY;
+    caTy = caPy;
+    m_Position = XMVectorSetY ( m_Position , caPy );    //カメラの座標Yを更新
+    m_Target = XMVectorSetY ( m_Target , caTy );        //ターゲットの座標Yを更新
+
    ////}
 
-     // プレイヤーが壁に到着した時の処理
-    //if ( m_Position.x < -WORLD_WIDTH / 2 ) {
-    //    m_Position.x = -WORLD_WIDTH / 2;
-    //    m_Target.x = -WORLD_WIDTH / 2;
-    //}
-    //if ( m_Position.x > WORLD_WIDTH / 2 ) {
-    //    m_Position.x = WORLD_WIDTH / 2;
-    //    m_Target.x = WORLD_WIDTH / 2;
-    //}
-    //if ( m_Position.y < 0 ) {
-    //    m_Position.y = 0;
-    //    m_Target.y = 0;
-    //}
-    //if ( m_Position.y > WORLD_HEIGHT / 2 ) {
-    //    m_Position.y = WORLD_HEIGHT / 2;
-    //    m_Target.y = WORLD_HEIGHT / 2;
-    //}
+      //プレイヤーが壁に到着した時の処理
+    if ( caPx < -WORLD_WIDTH / 2 ) {        
+        caPx = -WORLD_WIDTH / 2;
+        caTx = -WORLD_WIDTH / 2;
+
+        m_Position = XMVectorSetX ( m_Position , caPx );    //カメラの座標Ｘを更新
+        m_Target = XMVectorSetX ( m_Target , caTx );        //ターゲットの座標Ｘを更新
+    }
+    if ( caPx > WORLD_WIDTH / 2 ) {        
+        caPx = WORLD_WIDTH / 2;
+        caTx = WORLD_WIDTH / 2;
+
+        m_Position = XMVectorSetX ( m_Position , caPx );    //カメラの座標Ｘを更新
+        m_Target = XMVectorSetX ( m_Target , caTx );        //ターゲットの座標Ｘを更新
+    }
+    if ( caPy < 0 ) {       
+        caPy = 0;
+        caTy = 0;
+
+        m_Position = XMVectorSetY ( m_Position , caPy );    //カメラの座標Yを更新
+        m_Target = XMVectorSetY ( m_Target , caTy );        //ターゲットの座標Yを更新
+    }
+    if ( caPy > WORLD_HEIGHT / 2 ) {        
+        caPy = WORLD_HEIGHT / 2;
+        caTy = WORLD_HEIGHT / 2;
+
+        m_Position = XMVectorSetY ( m_Position , caPy );    //カメラの座標Yを更新
+        m_Target = XMVectorSetY ( m_Target , caTy );        //ターゲットの座標Yを更新
+    }
 }
 
 void Camera::SetPosition(XMVECTOR v)
 {
-    m_position = v;
+    m_Position = v;
 }
 
 void Camera::SetTarget(XMVECTOR v)
 {
-    m_target = v;
+    m_Target = v;
 }

@@ -152,7 +152,7 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 			}
 			case PLAYER:
 			{
-				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, BLOCKSIZE, BLOCKSIZE);
+				auto* newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
@@ -162,7 +162,7 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 			}
 			case INCLINED_PLATFORM:
 			{
-				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
+				auto* newChip = Application::GetInstance()->AddObject<GameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
