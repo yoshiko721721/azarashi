@@ -11,7 +11,7 @@ DirectX::XMMATRIX Camera::m_viewMatrix;//Œü‚«‚â‰ñ“]—¦‚È‚Ç‚ğŒvZ‚µA•`‰æ“à—e‚ğŒˆ‚
 const int WORLD_WIDTH = 50;      // ƒ[ƒ‹ƒh‚Ì‰¡•AƒeƒXƒg—p’l
 const int WORLD_HEIGHT = 60;     // ƒ[ƒ‹ƒh‚Ìc•AƒeƒXƒg—p’l
 
-extern auto* newChip;			//ŠO•”‚©‚çƒvƒŒƒCƒ„[‚ğƒJƒƒ‰‚É
+extern GamePointer* newChip;			//ŠO•”‚©‚çƒvƒŒƒCƒ„[‚ğƒJƒƒ‰‚É
 
 DirectX::XMMATRIX Camera::GetViewMatrix()
 {
