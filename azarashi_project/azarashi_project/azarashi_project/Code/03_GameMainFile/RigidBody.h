@@ -16,6 +16,11 @@ enum AZA_MODE_NUMMBER {
 	MODENUM = 2
 };
 
+enum BODY_BEHAVIOR {
+	BOUND = 0,
+	ROLLING = 1,
+};
+
 const float g = 9.81f;			//重力加速度
 const float restitution = 0.6;	//反発係数
 
@@ -27,15 +32,14 @@ private:
 	float mass;				//質量
 	float time;				//時間によって進む量が変わるため
 	float mag;				//ゲームを自然にみせるための倍率
-	float fainalNormalAngle;		//衝突が起こった時の最終的な法線角度
 	bool edgeFlg;
 
 
 public:
 
+	float fainalNormalAngle;		//衝突が起こった時の最終的な法線角度
 	Vector2 vector;					//方向
 	float vectorNum;				//総合的な速度
-
 	Vector2 normalVector;			//法線ベクトル
 
 	//========================================
@@ -48,9 +52,9 @@ public:
 	//=======================================
 	//			条件を満たした時に反映するもの
 	//=======================================
-	void Repulsion();				//反発
+	void Repulsion();															//反発
 	void AddForce(float forceX, float forceY);									//力を加える
-	void HorizonUpdate(Object& block, float friction);	//角度を考慮する計算
+	void HorizonUpdate(float friction, float speed);							//角度を考慮する計算
 	void DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber);		//減速処理
 
 	bool isHorizonOrVertical(float boxAngle);									//0度に対して水平か垂直かの確認
@@ -77,5 +81,4 @@ public:
 	float GetMag();					//ゲームを自然にみせるための倍率
 	float GetFainalAngle();			//法線の角度を返す
 };
-
 

@@ -77,8 +77,8 @@ namespace Math
 	float CalculateVelocityBeforeImpact(float setHeight, float gravity);							//衝突前の速度計算
 	double calculateRestitutionCoefficient(const std::function<float()>& velocityProvider);	//衝突後の速度計算
 	float ConvertAbsoluteValue(float AbsValue);													//絶対値
-	float VectorLength(const Vector2& vector);													//ベクトルの長さを計算
+	float VectorLength(Vector2& vector);													//ベクトルの長さを計算
 	float CalcSquareRoot(float x, float y);													//平方根を求める
-	Vector2 Normalize(const Vector2& vector);													//ベクトルを正規化
+	Vector2 Normalize(Vector2& vector);													//ベクトルを正規化
 	Vector2 CalculateNormal(const Vector2& point1, const Vector2& point2);						//法線ベクトルを計算する
 };

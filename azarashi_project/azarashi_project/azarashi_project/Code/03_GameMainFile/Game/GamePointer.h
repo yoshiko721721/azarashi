@@ -18,7 +18,6 @@ struct Circle
 class GamePointer :public Object
 {
 public:
-	RigidBody body;
 
 	GamePointer() {};
 	GamePointer(float posX, float posY, float sizeX, float sizeY) : Object(posX, posY, sizeX, sizeY) {};
@@ -34,17 +33,25 @@ public:
 	AZA_MODE_NUMMBER azaNum = STAND;
 	AZA_MODE_NUMMBER oldAzaNum = azaNum;
 
+
 	bool isChangeMode();									//アザラシのモード比較
 	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット
 
 	void CorrectPosition(Object* m_Block, XMFLOAT2 clossPoint, float distanceSquared, float angle);		//座標の補正
 
-	float damping = 0.9f;
+	float damping = 0.9f;									//減速係数
+
 private:
 	Circle circle;
-	const float AZARASHI_MODE[MODENUM] = { 0.3 , 0.2 };	// 摩擦係数
+	RigidBody body;
+	const float AZARASHI_MODE[MODENUM] = { 0.1 , 0.9 };	// 摩擦係数
 
-	bool old = false;
+	BODY_BEHAVIOR behavior = BOUND;		//アザラシの挙動の状態
+	int boundCounter = 0;				//一定回数バウンドしたら転がる状態になる
+	float oldVectorNum = 0;				//vectorの差を出すための保存用
+
+	bool old = false;		//当たり判定の分別　瞬間的か継続的か
 	bool now = false;
 	//const float gravity = -0.4f;					// 重力の力
+
 };

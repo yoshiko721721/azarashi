@@ -56,8 +56,10 @@ float Math::ConvertAbsoluteValue(float AbsValue)
 }
 
 
-float Math::VectorLength(const Vector2& vector)
+float Math::VectorLength(Vector2& vector)
 {
+    vector.x = ConvertAbsoluteValue(vector.x);
+    vector.y = ConvertAbsoluteValue(vector.y);
     return sqrt(vector.x * vector.x + vector.y * vector.y);
 }
 
@@ -66,12 +68,10 @@ float Math::CalcSquareRoot(float x, float y)
     return sqrt(x * x + y * y);
 }
 
-Vector2 Math::Normalize(const Vector2& vector)
+Vector2 Math::Normalize(Vector2& vector)
 {
     float length = VectorLength(vector);
-    if (length == 0) {
-        return { 0,0 };
-    }
+
     return { vector.x / length , vector.y / length };
 }
 

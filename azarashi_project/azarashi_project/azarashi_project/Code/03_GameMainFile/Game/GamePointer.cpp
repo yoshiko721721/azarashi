@@ -2,6 +2,9 @@
 #include "../../03_GameMainFile/Math.h"
 
 using DirectX::XMFLOAT3;
+const float LIMMIT = 0.1;
+const float ROLLINGSPEED = 5.0f;
+
 
 //=========================================
 //				‰Šú‰»ˆ—
@@ -34,31 +37,44 @@ void GamePointer::Update(ContactPointVector collision, Object& block)//Player‚Ìƒ
 	now = collision.checkCollision;
 
 	//©—R—‰º
-	body.FreeFall(body.GetTime());
+	if (!now && behavior == BOUND) {
+		body.FreeFall(body.GetTime());
+	}
+
 
 	//Õ“Ë‚µ‚Ä‚¢‚é‚Ìˆ—
 	if (now)
 	{
-
 		body.CalcFainalNormalAngle(collision.closspoint, *this, block);	//–@ü‚ÌŠp“x‚ğŒvZ
-		body.HorizonUpdate(block, AZARASHI_MODE[azaNum]);			//“]‚ª‚éˆ—
+
+		switch (behavior) {
+		case BOUND:
+			body.Repulsion();			//”½”­
+			if ((oldVectorNum - body.vectorNum) < LIMMIT && (oldVectorNum - body.vectorNum) > -LIMMIT) {
+				behavior = ROLLING;
+				body.vector.x = 0;
+				body.vector.y = 0;
+			}
+			break;
+		case ROLLING:
+			body.HorizonUpdate(AZARASHI_MODE[azaNum], ROLLINGSPEED);			//“]‚ª‚éˆ—
+			break;
+		}
 
 		//ƒWƒƒƒ“ƒv
 		if (Input::GetKeyTrigger(VK_RETURN)) {
-			body.AddForce(0.0f, 15.0f);
+			body.AddForce(0.0f, 10.0f);
+			behavior = BOUND;
 		}
-
-
-
-		body.DampingVector(damping, azaNum);
-		body.Repulsion();			//”½”­
+		//body.DampingVector(damping, azaNum);
 
 		//À•W‚ğ•â³
-		GamePointer::CorrectPosition(&block, collision.closspoint,
+		CorrectPosition(&block, collision.closspoint,
 			collision.DistanceSquared, block.GetAngle());
-
 	}
-
+	else {
+		behavior = BOUND;
+	}
 
 	//ƒ‚[ƒhØ‚è‘Ö‚¦
 	if (Input::GetKeyPress(VK_T)) {
@@ -72,14 +88,16 @@ void GamePointer::Update(ContactPointVector collision, Object& block)//Player‚Ìƒ
 	if (isChangeMode()) {
 		switch (azaNum) {
 		case CIRCLE: Initialize(AZARASHI_PICTURE_CIRCLE); break;
-		case STAND:  Initialize(AZARASHI_PICTURE_STAND);
-			SetAngle(block.GetAngle());			  break;
+		case STAND:  Initialize(AZARASHI_PICTURE_STAND);  break;
 		}
 	}
 
-	//“–‚½‚è”»’è‚Ì‹L˜^
+	//ˆê‰ñ‘O‚Ì“–‚½‚è”»’è‚ğ‹L‰¯
 	old = now;
+	oldVectorNum = body.vectorNum;
 	SetPos(GetPos().x + body.GetVector().x, GetPos().y + body.GetVector().y, 0);
+
+	//std::cout << "now = " << now << std::endl ;
 
 }
 
@@ -125,17 +143,37 @@ void GamePointer::SetAzaNum(AZA_MODE_NUMMBER m_AzaNum)
 /// @brief À•W‚Ì•â³
 /// @param m_Block	“–‚½‚Á‚½ƒuƒƒbƒN‚Ìˆø”
 /// @param clossPoint ‰~‚ÆlŠpŒ`‚ÌÚ’n“_
-/// @param distanceSquared ‰~‚Ì’†SÀ•W‚ÆclossPoint‚Ì‹——£‚Ì2æ
+/// @param distanceSquared ‰~‚Ì’†SÀ•W‚ÆclossPoint‚Ì‹——£ 
 /// @param angle block‚ÌŠp“x
 void GamePointer::CorrectPosition(Object* m_Block, XMFLOAT2 clossPoint, float distanceSquared, float angle)
 {
-	float distance = sqrt(distanceSquared);				//³®‚È‹——£‚É‚·‚é
-	float overlap = (GetSize().y / 2) - distance;		//‰~‚Ì”¼Œa
+	// ³®‚È‹——£‚ğŒvZ
+	float distance = sqrt(distanceSquared);
+
+	// ‰~‚Ìd‚È‚è‹——£‚ğŒvZ
+	float overlap = (GetSize().y / 2) - distance;
+
+	// lŠpŒ`‚Ì–@ü‚ğŒvZiŠp“x‚ğl—¶j
+	// ƒuƒƒbƒN‚Ì‰ñ“]Šp“x‚ÉŠî‚Ã‚­–@ü‚ÌŒvZ
+	XMFLOAT2 blockNormal = {
+		cos(body.fainalNormalAngle),
+		sin(body.fainalNormalAngle)
+	};
+
+	// Ú“_‚©‚ç‰~‚Ì’†S‚Ö‚ÌƒxƒNƒgƒ‹‚ğŒvZ
 	XMFLOAT2 direction = { GetPos().x - clossPoint.x, GetPos().y - clossPoint.y };
 	float length = sqrt(direction.x * direction.x + direction.y * direction.y);
-	direction = { direction.x / length, direction.y / length };
 
+	if (length > 0.0f) {
+		direction = { direction.x / length, direction.y / length };
+	}
 
-	SetPos(GetPos().x + direction.x * overlap, GetPos().y + direction.y * overlap, 0);
+	// –@ü•ûŒü‚Æ‚Ì“àÏ‚ğŒvZ‚µ‚Ä•â³•ûŒü‚ğ’²®
+	float dotProduct = direction.x * blockNormal.x + direction.y * blockNormal.y;
+	if (dotProduct < 0) {
+		blockNormal = { -blockNormal.x, -blockNormal.y };
+	}
+
+	// •â³‚ğ“K—p
+	SetPos(GetPos().x + blockNormal.x * overlap, GetPos().y + blockNormal.y * overlap, 0);
 }
-
