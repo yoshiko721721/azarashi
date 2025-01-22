@@ -25,7 +25,11 @@ void Camera::Init()
 void Camera::Update()
 {
     m_viewMatrix = XMMatrixLookAtLH(m_position, m_target, m_upDirection);
-//    XMVECTOR playerPos = AZARASHI->GetPos ( );
+
+    //float CameraMoveCounter = 0.0f;	//カメラフォーローカウンター
+    //float CmCnt = 0.0f;	//カメラフォーローカウンター
+    //bool FollowPlayer = false;	//プレイヤーフォーローフラグ
+    //XMVECTOR playerPos = AZARASHI->GetPos ( );
     constexpr float smoothSpeedX = 0.02f; // Xフォーロー速度
     constexpr float smoothSpeedY = 0.03f; // Yフォーロー速度
 
@@ -33,8 +37,32 @@ void Camera::Update()
     //m_Position.x = m_Position.x + ( playerPos.x - m_Position.x ) * smoothSpeedX;
     //m_Target.x = m_Position.x;
 
+    // プレイヤーがウィンドウの半分以上にいる時カウント
+    ////if ( playerPos.y > m_Scale.y / 2 ) {
+    ////	if ( CmCnt == 0.0f )
+    ////	{
+    ////		CmCnt = 2.0f;
+    ////	}
+    ////}
+
+    ////if ( CmCnt > 0.0f ) {
+    ////	CmCnt -= 1.0f / 60.0f;  // １秒60フレーム
+    ////	if ( CmCnt <= 0.0f ) {
+    ////		FollowPlayer = true;
+    ////	}
+    ////}
+
+    ////if ( playerPos.y - m_Position.y==0.0f )
+    ////{
+    ////	FollowPlayer = false;
+    ////}
+
+        // 徐々にフォーロー
+    ////if ( FollowPlayer )
+    ////{
     //m_Position.y = m_Position.y + ( playerPos.y - m_Position.y ) * smoothSpeedY;
     //m_Target.y = m_Position.y;
+   ////}
 
      // プレイヤーが壁に到着した時の処理
     //if ( m_Position.x < -WORLD_WIDTH / 2 ) {
