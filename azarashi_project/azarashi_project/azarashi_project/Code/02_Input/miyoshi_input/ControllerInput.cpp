@@ -1,8 +1,8 @@
 #include "../miyoshi_input/ControllerInput.h"
-#include "SDL.h"
-#include "SDL_main.h"
-#include "SDL_gamecontroller.h"
-#include "SDL_joystick.h"
+#include "../SDL2.1/include/SDL.h"
+#include "../SDL2.1/include/SDL_main.h"
+#include "../SDL2.1/include/SDL_gamecontroller.h"
+#include "../SDL2.1/include/SDL_joystick.h"
 //#include <DirectX.h>
 
 SDL_Event Controller::Input::e;
