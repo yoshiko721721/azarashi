@@ -1,4 +1,5 @@
 #include "object.h"
+#include "../07_Camera/Camera.h"
 
 Object::Object(float posX, float posY, float sizeX, float sizeY)
 {
@@ -62,6 +63,9 @@ void Object::Draw() {
 	//プロジェクション変換行列を作成
 	cb.matrixProj = DirectX::XMMatrixOrthographicLH(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);
 	cb.matrixProj = DirectX::XMMatrixTranspose(cb.matrixProj);
+
+	//ビュー変換行列を作成
+	cb.matrixView = Camera::GetViewMatrix();
 
 	//ワールド変換行列の作成
 	//→オブジェクトの位置・大きさ・向きを指定
