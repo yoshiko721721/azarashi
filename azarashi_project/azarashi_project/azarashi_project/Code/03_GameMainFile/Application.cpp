@@ -6,6 +6,7 @@
 #include "../03_GameMainFile/Game/GameScene.h"
 #include "../03_GameMainFile/Title/TitleScene.h"
 #include "../03_GameMainFile/StageSelectScene/StageSelectScene.h"
+#include "Load/LoadScene.h"
 #include "Test/TestStageScene_Nakae.h"
 #include "Test/TestScene_You.h"
 
@@ -74,6 +75,10 @@ void Application::ChangeScene(SceneList sName)
 	{
 		case TITLESCENE:
 			m_Instance->m_Scene = new TitleScene; // ƒƒ‚ƒŠ‚ðŠm•Û
+			m_Scene->Init();
+			break;
+		case LOADSCENE:
+			m_Instance->m_Scene = new LoadScene; // ƒƒ‚ƒŠ‚ðŠm•Û
 			m_Scene->Init();
 			break;
 		/*case STAGESELECTSCENE:

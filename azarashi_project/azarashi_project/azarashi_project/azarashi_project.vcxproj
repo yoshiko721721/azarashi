@@ -46,9 +46,12 @@
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Load\LoadBackGround.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Load\LoadScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\main.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Math.cpp" />
     <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -62,9 +65,11 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleBackgroundPAB.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Title\TitleCamera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleLogo.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
@@ -79,6 +84,7 @@
     <ClCompile Include="Code\10_Timer\Timer.cpp" />
     <ClCompile Include="Code\11_Pause\pause.cpp" />
     <ClCompile Include="Code\12_CSVMapLoader\CSVMapLoader.cpp" />
+    <ClCompile Include="Code\13_Effect\FadeEffect.cpp" />
     <ClCompile Include="Code\ReadMeText.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -110,8 +116,11 @@
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
+    <ClInclude Include="Code\03_GameMainFile\Load\LoadBackGround.h" />
+    <ClInclude Include="Code\03_GameMainFile\Load\LoadScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Math.h" />
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
     <ClInclude Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -125,12 +134,13 @@
     <ClInclude Include="Code\03_GameMainFile\Title\TitleBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleBackgroundPAB.h" />
     <ClInclude Include="Code\03_GameMainFile\Title\TitleCamera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleLogo.h" />
     <ClInclude Include="Code\03_GameMainFile\Title\TitleScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Title\You_Fade\Fade.h" />
-    <ClInclude Include="Code\03_GameMainFile\You_Load\Load.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
     <ClInclude Include="Code\07_Camera\Camera.h">
@@ -146,6 +156,7 @@
     <ClInclude Include="Code\10_Timer\Timer.h" />
     <ClInclude Include="Code\11_Pause\pause.h" />
     <ClInclude Include="Code\12_CSVMapLoader\CSVMapLoader.h" />
+    <ClInclude Include="Code\13_Effect\FadeEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Code\04_hlsl\PixelShader.hlsl">

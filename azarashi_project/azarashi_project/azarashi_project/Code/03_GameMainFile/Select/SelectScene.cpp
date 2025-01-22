@@ -3,11 +3,12 @@
 
 void SelectScene::Init()
 {
-	
+	backGround.Init();
 }
 
 void SelectScene::Update()
 {
+	backGround.Update();
 	/*if (Input::GetKeyPress(VK_A))
 	{
 		Application::GetInstance()->ChangeScene(GAMESCENE);
@@ -16,10 +17,10 @@ void SelectScene::Update()
 
 void SelectScene::Draw()
 {
-	
+	backGround.Draw();
 }
 
 void SelectScene::Uninit()
 {
-
+	backGround.Uninit();
 }

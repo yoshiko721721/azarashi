@@ -204,6 +204,24 @@
     <ClCompile Include="Code\03_GameMainFile\Test\TestScene_You.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleBackgroundPAB.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleLogo.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\13_Effect\FadeEffect.cpp">
+      <Filter>ソース ファイル\Basic.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Load\LoadBackGround.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Load\LoadScene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectBackGround.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -314,11 +332,26 @@
     <ClInclude Include="Code\03_GameMainFile\Title\You_Fade\Fade.h">
       <Filter>ヘッダー ファイル\Basic.h</Filter>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\You_Load\Load.h">
-      <Filter>ヘッダー ファイル\MainGame.h\Load</Filter>
-    </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Test\TestScene_You.h">
       <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleLogo.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TitleBackgroundPAB.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\13_Effect\FadeEffect.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Load\LoadBackGround.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Load\LoadScene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectBackGround.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
