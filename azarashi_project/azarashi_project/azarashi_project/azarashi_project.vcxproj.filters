@@ -201,12 +201,6 @@
     <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Title\You_Fade\Fade.cpp">
-      <Filter>ソース ファイル\Basic.cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\You_Load\Load.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Load</Filter>
-    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Test\TestScene_You.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Test</Filter>
     </ClCompile>
