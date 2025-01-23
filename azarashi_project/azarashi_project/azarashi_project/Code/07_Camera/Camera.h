@@ -1,5 +1,8 @@
 #pragma once
 #include"../02_Input/input.h"
+#include "../03_GameMainFile/Game/GamePointer.h"
+#include "../12_CSVMapLoader/CSVMapLoader.h"
+#include "../03_GameMainFile/Application.h"
 
 class Camera
 {

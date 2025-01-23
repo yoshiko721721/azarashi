@@ -11,109 +11,116 @@ DirectX::XMMATRIX Camera::m_viewMatrix;//Œü‚«‚â‰ñ“]—¦‚È‚Ç‚ğŒvZ‚µA•`‰æ“à—e‚ğŒˆ‚
 const int WORLD_WIDTH = 50;      // ƒ[ƒ‹ƒh‚Ì‰¡•AƒeƒXƒg—p’l
 const int WORLD_HEIGHT = 60;     // ƒ[ƒ‹ƒh‚Ìc•AƒeƒXƒg—p’l
 
-//extern GamePointer* newChip;			//ŠO•”‚©‚çƒvƒŒƒCƒ„[‚ğƒJƒƒ‰‚É
+//const int BLOCKSIZE = 128;
 
-DirectX::XMMATRIX Camera::GetViewMatrix()
+//float x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;//‚Ç‚±‚©‚çƒXƒ^[ƒg‚·‚é‚©‚Ç‚¤‚©(•ÏX‰Â”\«‚‚ß)
+//float y = SCREEN_HEIGHT / 2 - BLOCKSIZE / 2;//‚Ç‚±‚©‚çƒXƒ^[ƒg‚·‚é‚©‚Ç‚¤‚©(•ÏX‰Â”\«‚‚ß)
+
+extern GamePointer* AZARASHI; /*= Application::GetInstance ( )->AddObject<GamePointer> ( x , y , BLOCKSIZE , BLOCKSIZE );*/
+//ŠO•”‚©‚çƒvƒŒƒCƒ„[‚ğƒJƒƒ‰‚É
+
+DirectX::XMMATRIX Camera::GetViewMatrix ( )
 {
-    return m_viewMatrix;
+	return m_viewMatrix;
 }
 
-void Camera::Init()
+void Camera::Init ( )
 {
-    m_viewMatrix = XMMatrixLookAtLH(m_Position, m_Target, m_upDirection);
+	m_viewMatrix = XMMatrixLookAtLH ( m_Position , m_Target , m_upDirection );
+
 }
 
-void Camera::Update()
+void Camera::Update ( )
 {
-    m_viewMatrix = XMMatrixLookAtLH(m_Position, m_Target, m_upDirection);
+	m_viewMatrix = XMMatrixLookAtLH ( m_Position , m_Target , m_upDirection );
 
-    //float CameraMoveCounter = 0.0f;	//ƒJƒƒ‰ƒtƒH[ƒ[ƒJƒEƒ“ƒ^[
-    //float CmCnt = 0.0f;	//ƒJƒƒ‰ƒtƒH[ƒ[ƒJƒEƒ“ƒ^[
-    //bool FollowPlayer = false;	//ƒvƒŒƒCƒ„[ƒtƒH[ƒ[ƒtƒ‰ƒO
-    //XMFLOAT3 playerPos = newChip->GetPos ( );       //ƒvƒŒƒCƒ„[‚ÌÀ•W‚ğƒQƒbƒg
-    float caPx = XMVectorGetX ( m_Position);    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğƒQƒbƒg
-    float caPy = XMVectorGetY ( m_Position);    //ƒJƒƒ‰‚ÌÀ•WY‚ğƒQƒbƒg
-    float caPz = XMVectorGetZ ( m_Position);    //ƒJƒƒ‰‚ÌÀ•WZ‚ğƒQƒbƒg
-    float caTx = XMVectorGetX ( m_Target );     //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğƒQƒbƒg
-    float caTy = XMVectorGetY ( m_Target );     //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğƒQƒbƒg
-    float caTz = XMVectorGetZ ( m_Target );     //ƒ^[ƒQƒbƒg‚ÌÀ•WZ‚ğƒQƒbƒg
-    constexpr float smoothSpeedX = 0.02f; // XƒtƒH[ƒ[‘¬“x
-    constexpr float smoothSpeedY = 0.03f; // YƒtƒH[ƒ[‘¬“x
+	//float CameraMoveCounter = 0.0f;	//ƒJƒƒ‰ƒtƒH[ƒ[ƒJƒEƒ“ƒ^[
+	//float CmCnt = 0.0f;	//ƒJƒƒ‰ƒtƒH[ƒ[ƒJƒEƒ“ƒ^[
+	//bool FollowPlayer = false;	//ƒvƒŒƒCƒ„[ƒtƒH[ƒ[ƒtƒ‰ƒO
+	XMFLOAT3 playerPos = AZARASHI->GetPos ( );       //ƒvƒŒƒCƒ„[‚ÌÀ•W‚ğƒQƒbƒg
+	float caPx = XMVectorGetX ( m_Position );    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğƒQƒbƒg
+	float caPy = XMVectorGetY ( m_Position );    //ƒJƒƒ‰‚ÌÀ•WY‚ğƒQƒbƒg
+	float caPz = XMVectorGetZ ( m_Position );    //ƒJƒƒ‰‚ÌÀ•WZ‚ğƒQƒbƒg
+	float caTx = XMVectorGetX ( m_Target );     //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğƒQƒbƒg
+	float caTy = XMVectorGetY ( m_Target );     //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğƒQƒbƒg
+	float caTz = XMVectorGetZ ( m_Target );     //ƒ^[ƒQƒbƒg‚ÌÀ•WZ‚ğƒQƒbƒg
+	constexpr float smoothSpeedX = 0.02f; // XƒtƒH[ƒ[‘¬“x
+	constexpr float smoothSpeedY = 0.03f; // YƒtƒH[ƒ[‘¬“x
 
-    // ƒvƒŒƒCƒ„[‚ğƒtƒHƒ[
-    //caPx = caPx + ( playerPos.x - caPx ) * smoothSpeedX;
-    //caTx = caPx;
-    
-    //m_Position = XMVectorSetX ( m_Position , caPx );    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğXV
-    //m_Target = XMVectorSetX ( m_Target , caTx );        //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğXV
+	// ƒvƒŒƒCƒ„[‚ğƒtƒHƒ[
+	//caPx = caPx + ( playerPos.x - caPx ) * smoothSpeedX;
+	//caTx = caPx;
 
-    // ƒvƒŒƒCƒ„[‚ªƒEƒBƒ“ƒhƒE‚Ì”¼•ªˆÈã‚É‚¢‚éƒJƒEƒ“ƒg
-    ////if ( playerPos.y > SCREEN_HEIGHT / 2 ) {
-    ////	if ( CmCnt == 0.0f )
-    ////	{
-    ////		CmCnt = 2.0f;
-    ////	}
-    ////}
+	//m_Position = XMVectorSetX ( m_Position , caPx );    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğXV
+	//m_Target = XMVectorSetX ( m_Target , caTx );        //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğXV
 
-    ////if ( CmCnt > 0.0f ) {
-    ////	CmCnt -= 1.0f / 60.0f;  // ‚P•b60ƒtƒŒ[ƒ€
-    ////	if ( CmCnt <= 0.0f ) {
-    ////		FollowPlayer = true;
-    ////	}
-    ////}
+	// ƒvƒŒƒCƒ„[‚ªƒEƒBƒ“ƒhƒE‚Ì”¼•ªˆÈã‚É‚¢‚éƒJƒEƒ“ƒg
+	////if ( playerPos.y > SCREEN_HEIGHT / 2 ) {
+	////	if ( CmCnt == 0.0f )
+	////	{
+	////		CmCnt = 2.0f;
+	////	}
+	////}
 
-    ////if ( playerPos.y - caPy==0.0f )
-    ////{
-    ////	FollowPlayer = false;
-    ////}
+	////if ( CmCnt > 0.0f ) {
+	////	CmCnt -= 1.0f / 60.0f;  // ‚P•b60ƒtƒŒ[ƒ€
+	////	if ( CmCnt <= 0.0f ) {
+	////		FollowPlayer = true;
+	////	}
+	////}
 
-        // ™X‚ÉƒtƒH[ƒ[
-    ////if ( FollowPlayer )
-    ////{
-    //caPy = caPy + ( playerPos.y - caPy ) * smoothSpeedY;
-    //caTy = caPy;
-    //m_Position = XMVectorSetY ( m_Position , caPy );    //ƒJƒƒ‰‚ÌÀ•WY‚ğXV
-    //m_Target = XMVectorSetY ( m_Target , caTy );        //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğXV
+	////if ( playerPos.y - caPy==0.0f )
+	////{
+	////	FollowPlayer = false;
+	////}
+
+		// ™X‚ÉƒtƒH[ƒ[
+	////if ( FollowPlayer )
+	////{
+	//caPy = caPy + ( playerPos.y - caPy ) * smoothSpeedY;
+	//caTy = caPy;
+	//m_Position = XMVectorSetY ( m_Position , caPy );    //ƒJƒƒ‰‚ÌÀ•WY‚ğXV
+	//m_Target = XMVectorSetY ( m_Target , caTy );        //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğXV
 
    ////}
 
-      //ƒvƒŒƒCƒ„[‚ª•Ç‚É“’…‚µ‚½‚Ìˆ—
-    //if ( caPx < -WORLD_WIDTH / 2 ) {        
-    //    caPx = -WORLD_WIDTH / 2;
-    //    caTx = -WORLD_WIDTH / 2;
+	  //ƒvƒŒƒCƒ„[‚ª•Ç‚É“’…‚µ‚½‚Ìˆ—
+	//if ( caPx < -WORLD_WIDTH / 2 ) {        
+	//    caPx = -WORLD_WIDTH / 2;
+	//    caTx = -WORLD_WIDTH / 2;
 
-    //    m_Position = XMVectorSetX ( m_Position , caPx );    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğXV
-    //    m_Target = XMVectorSetX ( m_Target , caTx );        //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğXV
-    //}
-    //if ( caPx > WORLD_WIDTH / 2 ) {        
-    //    caPx = WORLD_WIDTH / 2;
-    //    caTx = WORLD_WIDTH / 2;
+	//    m_Position = XMVectorSetX ( m_Position , caPx );    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğXV
+	//    m_Target = XMVectorSetX ( m_Target , caTx );        //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğXV
+	//}
+	//if ( caPx > WORLD_WIDTH / 2 ) {        
+	//    caPx = WORLD_WIDTH / 2;
+	//    caTx = WORLD_WIDTH / 2;
 
-    //    m_Position = XMVectorSetX ( m_Position , caPx );    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğXV
-    //    m_Target = XMVectorSetX ( m_Target , caTx );        //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğXV
-    //}
-    //if ( caPy < 0 ) {       
-    //    caPy = 0;
-    //    caTy = 0;
+	//    m_Position = XMVectorSetX ( m_Position , caPx );    //ƒJƒƒ‰‚ÌÀ•W‚w‚ğXV
+	//    m_Target = XMVectorSetX ( m_Target , caTx );        //ƒ^[ƒQƒbƒg‚ÌÀ•W‚w‚ğXV
+	//}
+	//if ( caPy < 0 ) {       
+	//    caPy = 0;
+	//    caTy = 0;
 
-    //    m_Position = XMVectorSetY ( m_Position , caPy );    //ƒJƒƒ‰‚ÌÀ•WY‚ğXV
-    //    m_Target = XMVectorSetY ( m_Target , caTy );        //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğXV
-    //}
-    //if ( caPy > WORLD_HEIGHT / 2 ) {        
-    //    caPy = WORLD_HEIGHT / 2;
-    //    caTy = WORLD_HEIGHT / 2;
+	//    m_Position = XMVectorSetY ( m_Position , caPy );    //ƒJƒƒ‰‚ÌÀ•WY‚ğXV
+	//    m_Target = XMVectorSetY ( m_Target , caTy );        //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğXV
+	//}
+	//if ( caPy > WORLD_HEIGHT / 2 ) {        
+	//    caPy = WORLD_HEIGHT / 2;
+	//    caTy = WORLD_HEIGHT / 2;
 
-    //    m_Position = XMVectorSetY ( m_Position , caPy );    //ƒJƒƒ‰‚ÌÀ•WY‚ğXV
-    //    m_Target = XMVectorSetY ( m_Target , caTy );        //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğXV
-    //}
+	//    m_Position = XMVectorSetY ( m_Position , caPy );    //ƒJƒƒ‰‚ÌÀ•WY‚ğXV
+	//    m_Target = XMVectorSetY ( m_Target , caTy );        //ƒ^[ƒQƒbƒg‚ÌÀ•WY‚ğXV
+	//}
 }
 
-void Camera::SetPosition(XMVECTOR v)
+void Camera::SetPosition ( XMVECTOR v )
 {
-    m_Position = v;
+	m_Position = v;
 }
 
-void Camera::SetTarget(XMVECTOR v)
+void Camera::SetTarget ( XMVECTOR v )
 {
-    m_Target = v;
+	m_Target = v;
 }
