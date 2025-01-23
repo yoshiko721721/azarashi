@@ -5,8 +5,10 @@
 // サウンドファイル
 typedef enum
 {
-	SOUND_LABEL_BGM1=0,		
-	SOUND_LABEL_SE1,			
+	SOUND_LABEL_BGM1=0,//タイトルBGM
+	SOUND_LABEL_BGM2 ,//ステージBGM
+	SOUND_LABEL_SE1,		
+	SOUND_LABEL_SE2,
 
 	SOUND_LABEL_MAX,
 } SOUND_LABEL;
@@ -23,7 +25,9 @@ private:
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
 		{"Asset/sound/BGM/Title_Stageselect.wav", true},
+		{"Asset/sound/BGM/stage.wav", true},
 		{"Asset/sound/SE/Cursor_Select.wav", false},
+		{"Asset/sound/SE/Cursor_Move.wav", false},
 	};
 
 	IXAudio2* m_pXAudio2 = NULL;

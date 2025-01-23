@@ -1,6 +1,8 @@
 #include"TitleScene.h"
 #include"../../03_GameMainFile/Application.h"
 
+extern Sound sound;
+
 void TitleScene::Init()
 {
 	backGroundpab.Init();
@@ -24,6 +26,7 @@ void TitleScene::Update()
 			{
 				if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
 				{
+					sound.Play(SOUND_LABEL_SE1);
 					isFading = true;
 					fade.SetisFading(isFading);
 					fade.SetMode(FADEOUT);

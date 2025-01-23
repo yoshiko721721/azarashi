@@ -8,6 +8,8 @@
 #include "Stage3UI.h"
 #include "Stage4UI.h"
 #include "SelectCursorL.h"
+#include "SelectCursorR.h"
+#include "SelectPlayer.h"
 #include "../../09_Sound/sound.h"
 
 class SelectScene : public Scene
@@ -23,10 +25,12 @@ private:
 	Stage3UI stage3UI;
 	Stage4UI stage4UI;
 	SelectCursorL cursorL;
+	SelectCursorR cursorR;
+	SelectPlayer selectPlayer;
 	FadeEffect fade;  //フェード用の黒い画像など
-	Sound sound;
 	bool isFading = true;//フェードが終わっているか
 	int selectPage = 0;
+	int selectStage = 0;
 public:
 	void Init();		//初期化
 	void Update();		//更新

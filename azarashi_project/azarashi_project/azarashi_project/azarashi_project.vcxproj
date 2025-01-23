@@ -53,6 +53,7 @@
     <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorL.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorR.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectPlayer.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\Stage1UI.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectCursorL.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectCursorR.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectPlayer.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\Stage1UI.h" />

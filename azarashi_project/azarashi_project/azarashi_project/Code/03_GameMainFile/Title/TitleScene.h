@@ -15,7 +15,6 @@ private:
 	TitleBackGround backGround;  //タイトル背景
 	TitleBackGroundPAB backGroundpab;//タイトルのボタン指示
 	TitleLogo titleLogo;//タイトルロゴ
-	Sound sound;
 	FadeEffect fade;
 	bool isFading = true;//フェードが終わっているか
 	//Fade fade;

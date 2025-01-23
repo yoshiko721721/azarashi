@@ -14,6 +14,8 @@
 
 Application* Application::m_Instance;		//インスタンス
 
+Sound sound;
+
 Application::Application()
 {
 
@@ -23,6 +25,7 @@ void Application::Init(HWND hWnd)
 {
 	m_Instance = new Application;
 	D3D_Create(hWnd);							//DirectXを初期化
+	sound.Init();
 	srand((unsigned)time(NULL));
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) < 0)
 	{
@@ -61,7 +64,7 @@ void Application::Uninit(void)
 {
 
 	m_Instance->m_Scene->Uninit();
-
+	sound.Uninit();
 	D3D_Release();			//DirectXを終了
 }
 

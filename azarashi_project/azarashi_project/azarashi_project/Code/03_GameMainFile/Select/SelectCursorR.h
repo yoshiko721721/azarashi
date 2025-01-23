@@ -3,13 +3,13 @@
 #include "../../02_Input/input.h"
 #include "../../02_Input/miyoshi_input/ControllerInput.h"
 #include <vector> 
-class SelectPlayer :public Object
+class SelectCursorR :public Object
 {
 private:
 
 public:
-	SelectPlayer() {}
-	~SelectPlayer() { Uninit(); }
+	SelectCursorR() {}
+	~SelectCursorR() { Uninit(); }
 	void Init();
 	void Update(int); //çXêV
 };
