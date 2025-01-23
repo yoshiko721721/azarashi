@@ -28,6 +28,8 @@ cbuffer ConstBuffer : register(b0)
     matrix matrixTex;
     //プロジェクション変換行列
     matrix matrixProj;
+    //ビュー変換行列
+    matrix matrixView;
     //ワールド変換行列
     matrix matrixWorld;
 }
@@ -39,6 +41,7 @@ VS_OUT vs_main(VS_IN input)
     
     //ワールド変換行列を頂点座標にかけて、移動、回転、拡大縮小する
     output.pos = mul(input.pos, matrixWorld);
+    output.pos = mul(output.pos, matrixView);
     //頂点座標に投影行列を掛けて、平面上の座標にする
     output.pos = mul(output.pos, matrixProj);
     

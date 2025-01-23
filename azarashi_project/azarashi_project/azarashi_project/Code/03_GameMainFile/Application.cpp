@@ -10,6 +10,7 @@
 #include "Select/SelectScene.h"
 #include "Test/TestStageScene_Nakae.h"
 #include "Test/TestScene_You.h"
+#include "../07_Camera/Camera.h"
 
 Application* Application::m_Instance;		//インスタンス
 
@@ -36,12 +37,15 @@ void Application::Init(HWND hWnd)
 	m_Instance->m_Scene = new TitleScene;
 	m_Instance->m_Scene->Init();
 
+	Camera::Init();
+
 }
 
 
 void Application::Update(void)
 {
 	Input::Update();
+	Camera::Update();
 	m_Instance->m_Scene->Update();
 }
 

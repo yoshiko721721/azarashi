@@ -81,7 +81,7 @@
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
     <ClCompile Include="Code\07_Camera\Camera.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\07_Camera\CameraManager.cpp" />
     <ClCompile Include="Code\08_Collider\Base_collision.cpp" />
@@ -158,7 +158,7 @@
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
     <ClInclude Include="Code\07_Camera\Camera.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\07_Camera\CameraManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

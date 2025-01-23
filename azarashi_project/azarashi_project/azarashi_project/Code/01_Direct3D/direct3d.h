@@ -35,6 +35,8 @@ struct ConstBuffer
 	DirectX::XMMATRIX matrixTex;
 	//プロジェクション変換行列
 	DirectX::XMMATRIX matrixProj;
+	//ビュー変換行列
+	DirectX::XMMATRIX matrixView;
 	//ワールド変換行列
 	DirectX::XMMATRIX matrixWorld;
 };
