@@ -22,7 +22,7 @@ private:
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
-		{"Asset/sound/BGM/sample000.wav", true},
+		{"Asset/sound/BGM/Title_Stageselect.wav", true},
 		{"Asset/sound/SE/Cursor_Select.wav", false},
 	};
 

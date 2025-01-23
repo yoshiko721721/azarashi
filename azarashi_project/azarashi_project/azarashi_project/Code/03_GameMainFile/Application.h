@@ -23,6 +23,7 @@ public:
 	void ChangeScene(SceneList sName); // シーンを変更
 	void DeleteObject(Object* pt); // オブジェクトを削除する
 	void DeleteAllObject(); // オブジェクトをすべて削除する
+	Scene* GetCurrentScene();
 
 	// オブジェクトを追加する(※テンプレート関数なのでここに直接記述)
 	template<typename T, typename... Args>

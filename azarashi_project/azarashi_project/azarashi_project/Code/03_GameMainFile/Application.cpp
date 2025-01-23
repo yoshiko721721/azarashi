@@ -70,6 +70,11 @@ Application* Application::GetInstance()
 	return m_Instance;
 }
 
+Scene* Application::GetCurrentScene(void)
+{
+	return m_Scene;
+}
+
 void Application::ChangeScene(SceneList sName)
 {
 	//m_Scene‚Ì’†g‚ªnullptr‚¶‚á–³‚¢‚È‚ç

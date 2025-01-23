@@ -12,6 +12,7 @@ void SelectScene::Init()
 	cursorL.Init();
 	fade.Init();
 	sound.Init();
+	sound.Play(SOUND_LABEL_BGM1);
 }
 
 void SelectScene::Update()
