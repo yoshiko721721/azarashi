@@ -52,7 +52,14 @@
     <ClCompile Include="Code\03_GameMainFile\Math.cpp" />
     <ClCompile Include="Code\03_GameMainFile\RigidBody.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectBackGround.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorL.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectPlayer.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage1UI.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage3UI.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage4UI.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\World_UI.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage2UI.cpp" />
     <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -121,7 +128,14 @@
     <ClInclude Include="Code\03_GameMainFile\Math.h" />
     <ClInclude Include="Code\03_GameMainFile\RigidBody.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectBackGround.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectCursorL.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectPlayer.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage1UI.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage2UI.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage3UI.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage4UI.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\World_UI.h" />
     <ClInclude Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

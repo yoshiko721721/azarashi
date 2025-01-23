@@ -112,35 +112,36 @@ int CSVMapLoader::PrintValueAt(int row, int col)
     return data[row][col];
 }
 
-void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects)
+GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects)
 {
+	GamePointer* p_player = nullptr;
 	//128*128なので縦はMAX8マス横はMAX15マス
 	int Platformcount = 1;//壁やらなんやらは何マス繋がっておかれているのかを調べる
 	int count = 0;//確認用
 	float x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
 	float y = SCREEN_HEIGHT / 2 - BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
-	for (int i = 0; i < rowCount; i++)//CSVに入っているマス分回すんだぜ
+	for (int i = 0; i < rowCount; i++)//CSVに入っているマス分回す
 	{
 		for (int j = 0; j < colCount; j++)
 		{
 			switch (data[i][j])
 			{
-			case NULLSPACE:
+			case NULLSPACE://なにもないなら
 			{
 				count++;
 				break;
 			}
-			case FLOOR:
+			case FLOOR://床なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, BLOCKSIZE, BLOCKSIZE);
-				newChip->SetTexture(textures[data[i][j]]);
-				newChip->Init();
+				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, BLOCKSIZE, BLOCKSIZE);//m
+				newChip->SetTexture(textures[data[i][j]]);//テクスチャをSetする
+				newChip->Init();//初期化
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
 				count++;
 				break;
 			}
-			case WALL:
+			case WALL://壁なら
 			{
 				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
@@ -150,22 +151,26 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 				count++;
 				break;
 			}
-			case PLAYER:
+			case PLAYER://プレイヤーなら
 			{
 				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
-				//x += 64;
+				//プレイヤーのみ複製します
+				p_player = newChip;
+				//x += 64
 				count++;
 				break;
 			}
-			case INCLINED_PLATFORM:
+
+			case INCLINED_PLATFORM://傾く床なら
 			{
 				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
+				
 				//x += 64;
 				count++;
 				break;
@@ -190,7 +195,7 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 				count++;
 				break;
 			}*/
-			case HEAYVMOVING_PLATFORM:
+			case HEAYVMOVING_PLATFORM://動く床(重い)なら
 			{
 				auto newChip = Application::GetInstance()->AddObject<MoveGameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
@@ -200,7 +205,7 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 				count++;
 				break;
 			}
-			case LIGHTMOVING_PLATFORM:
+			case LIGHTMOVING_PLATFORM://動く床(軽い)なら
 			{
 				auto newChip = Application::GetInstance()->AddObject<MoveGameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
@@ -285,6 +290,7 @@ void CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObje
 		x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;
 	}
 
+	return p_player;
 }
 
 //中身の数字に沿ってUVでカットするのはどうだ(MapChipの話) 2024/12/18

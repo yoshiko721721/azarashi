@@ -51,7 +51,7 @@ public:
     ~CSVMapLoader(); bool FileOpen(std::string fileName); //ファイル開く 
     void CountRowsAndColumns(); //行数列数数える 
     int PrintValueAt(int row, int col);
-    void AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects);
+    GamePointer* AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects);
     void FileClose(); //ファイル閉じる 
     
     ID3D11ShaderResourceView* LoadTexture(const wchar_t* filename); 

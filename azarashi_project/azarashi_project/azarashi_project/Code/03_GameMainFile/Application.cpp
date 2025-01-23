@@ -7,6 +7,7 @@
 #include "../03_GameMainFile/Title/TitleScene.h"
 #include "../03_GameMainFile/StageSelectScene/StageSelectScene.h"
 #include "Load/LoadScene.h"
+#include "Select/SelectScene.h"
 #include "Test/TestStageScene_Nakae.h"
 #include "Test/TestScene_You.h"
 
@@ -29,6 +30,8 @@ void Application::Init(HWND hWnd)
 	}
 
 	InitializeController();
+	SDL_Joystick* joystick = SDL_JoystickOpen(0);
+	//SDL_GameController* controller = SDL_GameControllerOpen(0);
 	//初期シーンをセット
 	m_Instance->m_Scene = new TitleScene;
 	m_Instance->m_Scene->Init();
@@ -79,6 +82,10 @@ void Application::ChangeScene(SceneList sName)
 			break;
 		case LOADSCENE:
 			m_Instance->m_Scene = new LoadScene; // メモリを確保
+			m_Scene->Init();
+			break;
+		case SELECTSCENE:
+			m_Instance->m_Scene = new SelectScene; // メモリを確保
 			m_Scene->Init();
 			break;
 		/*case STAGESELECTSCENE:

@@ -15,7 +15,7 @@ private:
 	Timer timer;
 	TestFloor testFloor;
 	TestWall testWall;
-	GamePointer Player;
+	GamePointer* p_Player;
 	//PauseText pauseText;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures をメンバ変数として宣言 
 	CSVMapLoader csvMapLoader;
@@ -33,6 +33,8 @@ public:
 	void Update(); //更新 
 	void Draw(); //描画 
 	void Uninit(); //終了
+	GamePointer* GetPlayer();
+	void SetPlayer();
 	//void AddObject();
 };
 

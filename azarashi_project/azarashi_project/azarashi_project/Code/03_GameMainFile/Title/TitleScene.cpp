@@ -34,10 +34,10 @@ void TitleScene::Update()
 	}
 	else
 	{
-		isFading = fade.Update(0.03);
+		isFading = fade.Update(0.08);
 		if (isFading == false && fade.GetMode() == FADEOUT)
 		{
-			Application::GetInstance()->ChangeScene(TESTSCENE);
+			Application::GetInstance()->ChangeScene(SELECTSCENE);
 		}
 
 	}

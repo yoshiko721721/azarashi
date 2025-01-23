@@ -222,6 +222,27 @@
     <ClCompile Include="Code\03_GameMainFile\Select\SelectBackGround.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\World_UI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage1UI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage2UI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage3UI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\Stage4UI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorL.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectPlayer.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -351,6 +372,27 @@
       <Filter>ヘッダー ファイル\MainGame.h\Load</Filter>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Select\SelectBackGround.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\World_UI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage1UI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage2UI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage3UI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\Stage4UI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectCursorL.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectPlayer.h">
       <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
     </ClInclude>
   </ItemGroup>

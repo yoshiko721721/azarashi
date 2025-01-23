@@ -110,6 +110,7 @@ namespace Controller
 		static void Update(); //更新
 		static SDL_Event e;
 		static SDL_GameController* controller;
+		static SDL_Joystick* joystick;
 		//static SDL_Event e;
 
 		//キー入力

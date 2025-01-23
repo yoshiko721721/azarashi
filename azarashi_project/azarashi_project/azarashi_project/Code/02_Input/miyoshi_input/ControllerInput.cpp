@@ -7,6 +7,7 @@
 
 SDL_Event Controller::Input::e;
 SDL_GameController* Controller::Input::controller = nullptr;
+SDL_Joystick* Controller::Input::joystick = nullptr;
 
 //コントローラー入力情報を保存する変数
 XINPUT_STATE Controller::Input::controllerState;

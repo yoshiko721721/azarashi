@@ -28,8 +28,7 @@ void TestStageScene_Nakae::Init()
 	}
 
 	csvMapLoader.LoadTextures(); //texturesベクターを渡さずに呼び出し
-
-	csvMapLoader.AddObject(&m_MySceneObjects);
+	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
 	//csvMapLoader.PrintValueAt(3, 6);
 }
 
@@ -45,6 +44,7 @@ void TestStageScene_Nakae::Update()
 		{
 			o->Update(); // 各オブジェクトの描画メソッドを呼び出
 		}
+	 	//DirectX::XMFLOAT3 pos = Player.GetPos();
 		/*for (auto& o : m_MySceneObjects)
 		{
 			o->Update(); // 各オブジェクトの描画メソッドを呼び出
@@ -88,6 +88,16 @@ void TestStageScene_Nakae::Uninit()
 	{
 		Application::GetInstance()->DeleteObject(o.get()); // .get()を追加
 	}
+}
+
+void TestStageScene_Nakae::SetPlayer()
+{
+
+}
+
+GamePointer* TestStageScene_Nakae::GetPlayer()
+{
+	return p_Player;
 }
 
 /*void TestStageScene_Nakae::AddObject()

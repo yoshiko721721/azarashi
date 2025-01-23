@@ -18,13 +18,13 @@ void TitleBackGroundPAB::Update(void)
 
 	if (titleBackGroundCount == 120)
 	{
-		if (Color.w == 0)
+		if (Color.w == 0.5)
 		{
 			Color.w = 1.0f;
 		}
 		else if (Color.w == 1)
 		{
-			Color.w = 0.0f;
+			Color.w = 0.5f;
 		}
 
 		titleBackGroundCount = 0;

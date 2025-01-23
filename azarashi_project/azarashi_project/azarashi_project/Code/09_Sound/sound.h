@@ -22,8 +22,8 @@ private:
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
-		{"bgm/bgm1.wav", true},
-		{"se/se1.wav", false},
+		{"Asset/sound/BGM/sample000.wav", true},
+		{"Asset/sound/SE/Cursor_Select.wav", false},
 	};
 
 	IXAudio2* m_pXAudio2 = NULL;

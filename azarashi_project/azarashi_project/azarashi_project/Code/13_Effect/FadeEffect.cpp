@@ -9,7 +9,7 @@ void FadeEffect::Init ( ) {
 	SetSize ( SCREEN_WIDTH , SCREEN_HEIGHT , 0.0f ); //大きさを設定
 	fademode = FADEIN;			//フェードモードを初期化
 	fadeInCounter = 0.0f;			//フェイド・インカウントを初期化
-	fadeOutCounter = 0.25f;		//フェイド・アウトカウントを初期
+	fadeOutCounter = 0.0f;//フェイド・アウトカウントを初期
 	a = 1.0f;			//透明度変数を初期化
 	isFading = true;
 }
@@ -38,7 +38,7 @@ bool FadeEffect::Update ( float fadeTime )
 		case FADEOUT:		//フェイドを終了
 			fadeOutCounter += fadeTime / 60.0f;		//一秒毎0.4マイナス
 			//フェード画面がだんだん薄くなて、表示しないように
-			a = fadeOutCounter;
+			a += fadeOutCounter;
 			SetColor(1.0f, 1.0f, 1.0f, a);
 			if (a > 1.0f)					//フェード・インが一定時間経た
 			{
