@@ -14,6 +14,8 @@ void GameScene::Init()
 	pointer.Init();
 	block.Init();
 
+	Camera::Lock ( &pointer );
+
 }
 void GameScene::Update()
 {
@@ -47,4 +49,9 @@ void GameScene::Uninit()
 	pointer.Uninit();
 	block.Uninit();
 
+}
+
+GamePointer GameScene::GetPlayer ( )
+{
+	return pointer;
 }

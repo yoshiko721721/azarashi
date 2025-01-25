@@ -7,14 +7,23 @@
 
 class Camera
 {
+private:
+    static Object* lockObj ;
+
 public:
+    Camera ();
     static void Init ( );
+
 
     static DirectX::XMMATRIX GetViewMatrix ( );      //”’l‚ğæ‚Á‚Ä‚­‚é
 
     static void Update ( );
     static void SetPosition ( DirectX::XMVECTOR );
     static void SetTarget ( DirectX::XMVECTOR );
+
+    static void Lock ( Object* obj );
+    static void Unlock ( );
+
 
 protected:
     static DirectX::XMVECTOR m_Position;//camera‚ÌˆÊ’u—p‚Ì•Ï”

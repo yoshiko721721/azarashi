@@ -145,7 +145,7 @@ void SelectScene::Update()
 		isFading = fade.Update(0.08);
 		if (isFading == false && fade.GetMode() == FADEOUT)
 		{
-			Application::GetInstance()->ChangeScene(TESTSCENE);
+			Application::GetInstance()->ChangeScene(TESTSCENE02);
 		}
 	}
 }

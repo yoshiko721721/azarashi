@@ -61,11 +61,12 @@ void Object::Draw() {
 	//定数バッファを計算
 	ConstBuffer cb;
 	//プロジェクション変換行列を作成
-	cb.matrixProj = DirectX::XMMatrixOrthographicLH(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);
+	cb.matrixProj = DirectX::XMMatrixOrthographicLH(SCREEN_WIDTH, SCREEN_HEIGHT, -300.0f, 300.0f);
 	cb.matrixProj = DirectX::XMMatrixTranspose(cb.matrixProj);
 
 	//ビュー変換行列を作成
 	cb.matrixView = Camera::GetViewMatrix();
+	cb.matrixView = DirectX::XMMatrixTranspose ( cb.matrixView );
 
 	//ワールド変換行列の作成
 	//→オブジェクトの位置・大きさ・向きを指定

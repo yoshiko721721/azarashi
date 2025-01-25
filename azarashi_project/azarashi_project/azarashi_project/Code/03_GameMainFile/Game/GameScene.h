@@ -22,6 +22,8 @@ public:
 	void Update();		//XV
 	void Draw();		//•`‰æ
 	void Uninit();		//I—¹
+
+	GamePointer GetPlayer ( );
 };
 
 

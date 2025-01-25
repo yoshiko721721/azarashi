@@ -1,5 +1,6 @@
 #include"TestScene_You.h"
 #include"../../03_GameMainFile/Application.h"
+#include "../../07_Camera/Camera.h"
 
 
 
@@ -27,6 +28,7 @@ void TestScene_You::Init()
 
 	csvMapLoader.LoadTextures ( ); //texturesベクターを渡さずに呼び出し
 	p_Player = csvMapLoader.AddObject ( &m_MySceneObjects );
+	Camera::Lock ( p_Player );
 	//csvMapLoader.PrintValueAt(3, 6);
 }
 void TestScene_You::Update()
