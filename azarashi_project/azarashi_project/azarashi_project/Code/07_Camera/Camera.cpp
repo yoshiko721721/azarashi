@@ -1,10 +1,7 @@
 #include "Camera.h"
-<<<<<<< HEAD
 #include <vector>
 //#include "../03_GameMainFile/Test/TestStageScene_Nakae.h"
-=======
 #include "../03_GameMainFile/Game/GamePointer.h"
->>>>>>> 86866ea420006ec2dbe2649bcc07cf0feb073572
 
 using namespace DirectX;
 
@@ -22,11 +19,8 @@ const int WORLD_HEIGHT = 60;     // ワールドの縦幅、テスト用値
 //float x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
 //float y = SCREEN_HEIGHT / 2 - BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
 
-<<<<<<< HEAD
 //GamePointer* p_Player; /*= Application::GetInstance ( )->AddObject<GamePointer> ( x , y , BLOCKSIZE , BLOCKSIZE );*/
-=======
 //extern GamePointer* AZARASHI; /*= Application::GetInstance ( )->AddObject<GamePointer> ( x , y , BLOCKSIZE , BLOCKSIZE );*/
->>>>>>> 86866ea420006ec2dbe2649bcc07cf0feb073572
 //外部からプレイヤーをカメラに
 
 DirectX::XMMATRIX Camera::GetViewMatrix ( )
@@ -47,7 +41,6 @@ void Camera::Init ( )
 void Camera::Update ( )
 {
 
-<<<<<<< HEAD
 
 	////float CameraMoveCounter = 0.0f;	//カメラフォーローカウンター
 	////float CmCnt = 0.0f;	//カメラフォーローカウンター
@@ -167,7 +160,6 @@ void Camera::Update ( )
 		}
 	
 	}
-=======
 	//float CameraMoveCounter = 0.0f;	//カメラフォーローカウンター
 	//float CmCnt = 0.0f;	//カメラフォーローカウンター
 	//bool FollowPlayer = false;	//プレイヤーフォーローフラグ
@@ -247,7 +239,6 @@ void Camera::Update ( )
 	//    m_Position = XMVectorSetY ( m_Position , caPy );    //カメラの座標Yを更新
 	//    m_Target = XMVectorSetY ( m_Target , caTy );        //ターゲットの座標Yを更新
 	//}
->>>>>>> 86866ea420006ec2dbe2649bcc07cf0feb073572
 }
 
 void Camera::SetPosition ( XMVECTOR v )
