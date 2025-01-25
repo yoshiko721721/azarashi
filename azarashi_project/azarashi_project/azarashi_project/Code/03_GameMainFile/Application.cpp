@@ -87,7 +87,7 @@ void Application::ChangeScene(SceneList sName)
 		m_Instance->m_Scene = nullptr;
 	}
 
-	switch (sName)
+	switch(sName)
 	{
 		case TITLESCENE:
 			m_Instance->m_Scene = new TitleScene(false); // メモリを確保
@@ -117,15 +117,19 @@ void Application::ChangeScene(SceneList sName)
 			break;
 		}
 		case TESTSCENE02:
+		{
 			std::vector<ID3D11ShaderResourceView*> textures2;
-			m_Instance->m_Scene = new TestScene_You ( textures2 ); // メモリを確保
+			m_Instance->m_Scene = new TestScene_You(textures2); // メモリを確保
 			m_Scene->Init();
 			break;
-	case TESTSCENE03:
+		}
+		case TESTSCENE03:
+		{
 			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
 			m_Instance->m_Scene = new TestSceneNishiguchi(textures); // メモリを確保
-			m_Scene->Init();
+			m_Instance->m_Scene->Init();
 			break;
+		}
 	}
 }
 
