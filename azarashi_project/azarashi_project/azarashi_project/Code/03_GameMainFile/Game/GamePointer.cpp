@@ -47,7 +47,7 @@ void GamePointer::Update()//Playerのアップデート
 
 	//自由落下
 	if (!now && behavior == BOUND) {
-		body.FreeFall(body.GetTime());
+			body.FreeFall(body.GetTime());
 	}
 
 
@@ -103,6 +103,21 @@ void GamePointer::Update()//Playerのアップデート
 
 	//一回前のベクトルを記憶
 	oldVectorNum = body.vectorNum;
+
+
+	static bool flag = false;
+
+	if ( Input::GetKeyTrigger ( VK_I ) )
+	{
+		flag = true;
+	}
+
+	if ( Input::GetKeyTrigger ( VK_SPACE ) )
+	{
+		flag = false;
+	}
+
+	if (!flag )
 	SetPos(GetPos().x + body.GetVector().x, GetPos().y + body.GetVector().y, 0);
 
 	//std::cout << "now = " << now << std::endl ;

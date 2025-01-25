@@ -249,8 +249,8 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TeamLogo.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Code\06_Scene\TestSceneNishiguchi.cpp">
-      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    <ClCompile Include="Code\03_GameMainFile\Game\BreakBlock.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -410,8 +410,8 @@
     <ClInclude Include="Code\03_GameMainFile\Title\TeamLogo.h">
       <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Code\06_Scene\TestSceneNishiguchi.h">
-      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    <ClInclude Include="Code\03_GameMainFile\Game\BreakBlock.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
