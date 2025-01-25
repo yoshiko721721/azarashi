@@ -7,13 +7,13 @@
 class Camera
 {
 public:
-    static void Init();
-   
-    static DirectX::XMMATRIX GetViewMatrix();      //数値を取ってくる
+    static void Init ( );
 
-    static void Update();
-    static void SetPosition(DirectX::XMVECTOR);
-    static void SetTarget(DirectX::XMVECTOR);
+    static DirectX::XMMATRIX GetViewMatrix ( );      //数値を取ってくる
+
+    static void Update ( );
+    static void SetPosition ( DirectX::XMVECTOR );
+    static void SetTarget ( DirectX::XMVECTOR );
 
 protected:
     static DirectX::XMVECTOR m_Position;//cameraの位置用の変数
