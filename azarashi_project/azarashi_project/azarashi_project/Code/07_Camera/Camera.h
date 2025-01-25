@@ -3,6 +3,7 @@
 #include "../03_GameMainFile/Game/GamePointer.h"
 #include "../12_CSVMapLoader/CSVMapLoader.h"
 #include "../03_GameMainFile/Application.h"
+#include "../03_GameMainFile/Test/TestScene_You.h"
 
 class Camera
 {
