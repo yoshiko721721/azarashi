@@ -16,7 +16,7 @@ void TitleBackGroundPAB::Update(void)
 	DirectX::XMFLOAT4 Color = GetColor();
 	titleBackGroundCount++;
 
-	if (titleBackGroundCount == 120)
+	if (titleBackGroundCount == 60)
 	{
 		if (Color.w == 0.5)
 		{

@@ -15,6 +15,7 @@ void SelectScene::Init()
 	cursorR.Init();
 	selectPlayer.Init();
 	fade.Init();
+	sound.Play(SOUND_LABEL_BGM1);
 }
 
 void SelectScene::Update()
@@ -43,7 +44,7 @@ void SelectScene::Update()
 					if (selectPage > MAX_PAGE)
 					{
 						selectPage  = 0;
-						selectStage = 1;
+						selectStage = 0;
 						selectPlayer.Update(selectStage);
 					}
 						
@@ -61,7 +62,7 @@ void SelectScene::Update()
 					if (selectPage < 0)
 					{
 						selectPage  = 3;
-						selectStage = 4;
+						//selectStage = 4;
 						selectPlayer.Update(selectStage);
 					}
 						//selectPage = 3;
@@ -93,6 +94,30 @@ void SelectScene::Update()
 						selectStage = 0;
 					}
 						
+					selectPlayer.Update(selectStage);
+				}
+
+				if (e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP) //Lボタンで前のワールドに進むよ
+				{
+					sound.Play(SOUND_LABEL_SE2);
+					selectStage++;
+					if (selectStage > MAX_PAGE)
+					{
+						selectStage = 0;
+					}
+
+					selectPlayer.Update(selectStage);
+				}
+
+				if (e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN) //Lボタンで前のワールドに進むよ
+				{
+					sound.Play(SOUND_LABEL_SE2);
+					selectStage++;
+					if (selectStage > MAX_PAGE)
+					{
+						selectStage = 0;
+					}
+
 					selectPlayer.Update(selectStage);
 				}
 
@@ -151,4 +176,5 @@ void SelectScene::Uninit()
 	cursorR.Uninit();
 	selectPlayer.Uninit();
 	backGround.Uninit();
+	sound.Stop(SOUND_LABEL_BGM1);
 }

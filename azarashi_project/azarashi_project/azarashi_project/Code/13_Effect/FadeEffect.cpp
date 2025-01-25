@@ -31,6 +31,7 @@ bool FadeEffect::Update ( float fadeTime )
 			{
 				//fademode = FadeOut;	//モードチェンジ
 				isFading = false;
+				fadeInCounter = 0;
 				return isFading;
 			}
 			return isFading;
@@ -43,6 +44,7 @@ bool FadeEffect::Update ( float fadeTime )
 			if (a > 1.0f)					//フェード・インが一定時間経た
 			{
 				isFading = false;
+				fadeOutCounter = 0;
 				return isFading;
 			}
 			//色を設定

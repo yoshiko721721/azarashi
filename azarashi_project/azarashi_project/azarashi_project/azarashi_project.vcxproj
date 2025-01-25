@@ -70,6 +70,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Test\TestWall.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Title\TeamLogo.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -147,6 +148,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Test\TestWall.h" />
+    <ClInclude Include="Code\03_GameMainFile\Title\TeamLogo.h" />
     <ClInclude Include="Code\03_GameMainFile\Title\TitleBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

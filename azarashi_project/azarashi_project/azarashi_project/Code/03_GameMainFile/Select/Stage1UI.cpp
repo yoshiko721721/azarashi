@@ -5,7 +5,6 @@ void Stage1UI::Init()
 	{
 		textures[i] = LoadTexture(imgname[i]);
 	}*/
-	
 	//SetTexture(textures[0]);
 	Initialize(imgname[0]);   //”wŒi‚ğ‰Šú‰»
 	SetPos(-620.0f,50.0f, 0.0f);      //ˆÊ’u‚ğİ’è
