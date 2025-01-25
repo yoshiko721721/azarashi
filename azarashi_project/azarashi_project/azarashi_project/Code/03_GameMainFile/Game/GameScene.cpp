@@ -20,7 +20,7 @@ void GameScene::Update()
 	//°‚É“–‚½‚Á‚½@Õ“Ë”»’è
 	collision = BoxCollider::ColliderWithCircle(&pointer, &block);
 
-	pointer.Update(collision, block);
+	pointer.Update();
 	block.Update();
 
 	//‰¡ˆÚ“®‚Æ˜A“®‚µ‚½‰æ‘œ‚Ì‰ñ“]

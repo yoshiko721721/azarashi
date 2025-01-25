@@ -23,7 +23,7 @@ public:
 	GamePointer(float posX, float posY, float sizeX, float sizeY) : Object(posX, posY, sizeX, sizeY) {};
 	~GamePointer() { Uninit(); };
 	void Init();  //初期化
-	void Update(ContactPointVector contactPointVector, Object& block);//更新
+	void Update();//更新
 
 
 	float GetCircleRadius();		//半径のゲッター
@@ -37,21 +37,23 @@ public:
 	bool isChangeMode();									//アザラシのモード比較
 	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット
 
-	void CorrectPosition(Object* m_Block, XMFLOAT2 clossPoint, float distanceSquared, float angle);		//座標の補正
+	void CorrectPosition(Object* m_Block, XMFLOAT2 clossPoint, float distanceSquared);		//座標の補正
 
 	float damping = 0.9f;									//減速係数
 
 private:
-	Circle circle;
-	RigidBody body;
+	Circle circle;				//
+	RigidBody body;										//物理挙動を持たせる
 	const float AZARASHI_MODE[MODENUM] = { 0.1 , 0.9 };	// 摩擦係数
 
 	BODY_BEHAVIOR behavior = BOUND;		//アザラシの挙動の状態
 	int boundCounter = 0;				//一定回数バウンドしたら転がる状態になる
 	float oldVectorNum = 0;				//vectorの差を出すための保存用
 
-	bool old = false;		//当たり判定の分別　瞬間的か継続的か
 	bool now = false;
-	//const float gravity = -0.4f;					// 重力の力
+	ContactPointVector collision;
+	float blockAngle;
+
+	Object* m_Block = nullptr;
 
 };

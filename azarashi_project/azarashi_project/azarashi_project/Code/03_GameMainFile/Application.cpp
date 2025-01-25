@@ -116,7 +116,8 @@ void Application::ChangeScene(SceneList sName)
 			break;
 		}
 		case TESTSCENE02:
-			m_Instance->m_Scene = new TestScene_You; // ƒƒ‚ƒŠ‚ğŠm•Û
+			std::vector<ID3D11ShaderResourceView*> textures2;
+			m_Instance->m_Scene = new TestScene_You ( textures2 ); // ƒƒ‚ƒŠ‚ğŠm•Û
 			m_Scene->Init();
 			break;
 	}
