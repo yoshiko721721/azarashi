@@ -5,6 +5,7 @@
 #include "../../09_Sound/sound.h"
 #include "TitleLogo.h"
 #include "../../13_Effect/FadeEffect.h"
+#include "TeamLogo.h"
 //#include "You_Fade/Fade.h"
 //#include "../You_Load/Load.h"
 
@@ -16,12 +17,16 @@ private:
 	TitleBackGroundPAB backGroundpab;//タイトルのボタン指示
 	TitleLogo titleLogo;//タイトルロゴ
 	FadeEffect fade;
+	TeamLogo teamLogo;
 	bool isFading = true;//フェードが終わっているか
 	//Fade fade;
 	//Load load;
-
+	bool isFirst; //初めてタイトルを起動するかどうか
 public:
-	TitleScene(){};
+	TitleScene(bool isFrstTitle)
+	{
+		isFirst = isFrstTitle;
+	};
 	~TitleScene() {  }
 	void Init();		//初期化
 	void Update();		//更新

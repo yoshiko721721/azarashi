@@ -11,6 +11,8 @@ private:
 
 	std::vector<std::unique_ptr<Object>> m_Objects; // オブジェクト
 
+	bool isFirstTimeOpening = true;
+
 public:
 	Application();
 	static void Init(HWND hWnd);	//初期化
@@ -24,6 +26,14 @@ public:
 	void DeleteObject(Object* pt); // オブジェクトを削除する
 	void DeleteAllObject(); // オブジェクトをすべて削除する
 	Scene* GetCurrentScene();
+	bool GetisFirstOpening()
+	{
+		return isFirstTimeOpening = true;
+	}
+	void SetisFirstOpening(bool isFirst)
+	{
+		isFirstTimeOpening = isFirst;
+	}
 
 	// オブジェクトを追加する(※テンプレート関数なのでここに直接記述)
 	template<typename T, typename... Args>

@@ -243,6 +243,12 @@
     <ClCompile Include="Code\03_GameMainFile\Select\SelectPlayer.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorR.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Title\TeamLogo.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -394,6 +400,12 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Select\SelectPlayer.h">
       <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectCursorR.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Title\TeamLogo.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

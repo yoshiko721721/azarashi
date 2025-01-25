@@ -3,11 +3,14 @@
 
 extern Sound sound;
 
+int teamLogoCount = 0;
+
 void TitleScene::Init()
 {
 	backGroundpab.Init();
 	backGround.Init();
 	titleLogo.Init();
+	teamLogo.Init();
 	fade.Init();
 	//sound.Init();
 	//sound.Play(SOUND_LABEL_BGM1);
@@ -15,42 +18,83 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-	SDL_Event& e = Controller::Input::e;
-	if (!isFading)
+	if (isFirst)
 	{
-		while (SDL_PollEvent(&e) != 0)
+		if (!isFading)
 		{
-			Controller::Input::e = e; // イベントをController::Input::eに設定 
-			backGroundpab.Update();
-			if (e.type == SDL_CONTROLLERBUTTONDOWN)
+			teamLogoCount++;
+			if(teamLogoCount == 90)
 			{
-				if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
-				{
-					sound.Play(SOUND_LABEL_SE1);
-					isFading = true;
-					fade.SetisFading(isFading);
-					fade.SetMode(FADEOUT);
-					//Application::GetInstance()->ChangeScene(TESTSCENE);
-				}
+				isFading = true;
+				fade.SetisFading(isFading);
+				fade.SetMode(FADEOUT);
 			}
+			return;
+		}
+		else
+		{
+			isFading = fade.Update(0.06);
+			if (isFading == false && fade.GetMode() == FADEOUT)
+			{
+				fade.SetMode(FADEIN);
+				isFirst = false;
+				isFading = true;
+				fade.SetisFading(isFading);
+				sound.Play(SOUND_LABEL_BGM1);
+			}
+			return;
 		}
 	}
 	else
 	{
-		isFading = fade.Update(0.08);
-		if (isFading == false && fade.GetMode() == FADEOUT)
+		backGroundpab.Update();
+		SDL_Event& e = Controller::Input::e;
+		if (!isFading)
 		{
-			Application::GetInstance()->ChangeScene(SELECTSCENE);
+			while (SDL_PollEvent(&e) != 0)
+			{
+				Controller::Input::e = e; // イベントをController::Input::eに設定
+				if (e.type == SDL_CONTROLLERBUTTONDOWN)
+				{
+					if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
+					{
+						sound.Play(SOUND_LABEL_SE1);
+						isFading = true;
+						fade.SetisFading(isFading);
+						fade.SetMode(FADEOUT);
+						//Application::GetInstance()->ChangeScene(TESTSCENE);
+					}
+				}
+			}
 		}
+		else
+		{
+			isFading = fade.Update(0.06);
+			if (!isFading)
+			{
 
+			}
+			if (isFading == false && fade.GetMode() == FADEOUT)
+			{
+				Application::GetInstance()->ChangeScene(SELECTSCENE);
+			}
+
+		}
 	}
 }
 
 void TitleScene::Draw()
 {
-	backGround.Draw();
-	backGroundpab.Draw();
-	titleLogo.Draw();
+	if (isFirst)
+	{
+		teamLogo.Draw();
+	}
+	if (!isFirst)
+	{
+		backGround.Draw();
+		backGroundpab.Draw();
+		titleLogo.Draw();
+	}
 	fade.Draw();
 }
 
@@ -60,7 +104,7 @@ void TitleScene::Uninit()
 	backGround.Uninit();
 	titleLogo.Uninit();
 	fade.Uninit();
-	//sound.Stop(SOUND_LABEL_BGM1);
+	sound.Stop(SOUND_LABEL_BGM1);
 }
 
 

@@ -37,7 +37,7 @@ void Application::Init(HWND hWnd)
 	SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	//SDL_GameController* controller = SDL_GameControllerOpen(0);
 	//初期シーンをセット
-	m_Instance->m_Scene = new TitleScene;
+	m_Instance->m_Scene = new TitleScene(true);
 	m_Instance->m_Scene->Init();
 
 	Camera::Init();
@@ -89,7 +89,7 @@ void Application::ChangeScene(SceneList sName)
 	switch (sName)
 	{
 		case TITLESCENE:
-			m_Instance->m_Scene = new TitleScene; // メモリを確保
+			m_Instance->m_Scene = new TitleScene(false); // メモリを確保
 			m_Scene->Init();
 			break;
 		case LOADSCENE:
