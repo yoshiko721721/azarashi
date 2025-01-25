@@ -16,7 +16,7 @@ const int WORLD_HEIGHT = 60;     // ワールドの縦幅、テスト用値
 //float x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
 //float y = SCREEN_HEIGHT / 2 - BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
 
-extern GamePointer* AZARASHI; /*= Application::GetInstance ( )->AddObject<GamePointer> ( x , y , BLOCKSIZE , BLOCKSIZE );*/
+//extern GamePointer* AZARASHI; /*= Application::GetInstance ( )->AddObject<GamePointer> ( x , y , BLOCKSIZE , BLOCKSIZE );*/
 //外部からプレイヤーをカメラに
 
 DirectX::XMMATRIX Camera::GetViewMatrix ( )
@@ -37,7 +37,7 @@ void Camera::Update ( )
 	//float CameraMoveCounter = 0.0f;	//カメラフォーローカウンター
 	//float CmCnt = 0.0f;	//カメラフォーローカウンター
 	//bool FollowPlayer = false;	//プレイヤーフォーローフラグ
-	XMFLOAT3 playerPos = AZARASHI->GetPos ( );       //プレイヤーの座標をゲット
+	//XMFLOAT3 playerPos = AZARASHI->GetPos ( );       //プレイヤーの座標をゲット
 	float caPx = XMVectorGetX ( m_Position );    //カメラの座標Ｘをゲット
 	float caPy = XMVectorGetY ( m_Position );    //カメラの座標Yをゲット
 	float caPz = XMVectorGetZ ( m_Position );    //カメラの座標Zをゲット
