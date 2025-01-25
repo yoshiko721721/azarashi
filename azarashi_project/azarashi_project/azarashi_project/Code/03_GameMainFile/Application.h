@@ -55,7 +55,7 @@ public:
 			if (T* derivedObj = dynamic_cast<T*>(o.get())) {
 				res.emplace_back(derivedObj);
 			}
-		}
+		}	
 		return res;
 	}
 

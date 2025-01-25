@@ -11,6 +11,7 @@
 #include "Test/TestStageScene_Nakae.h"
 #include "Test/TestScene_You.h"
 #include "../07_Camera/Camera.h"
+#include "../06_Scene/TestSceneNishiguchi.h"
 
 Application* Application::m_Instance;		//インスタンス
 
@@ -117,6 +118,11 @@ void Application::ChangeScene(SceneList sName)
 		}
 		case TESTSCENE02:
 			m_Instance->m_Scene = new TestScene_You; // メモリを確保
+			m_Scene->Init();
+			break;
+	case TESTSCENE03:
+			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
+			m_Instance->m_Scene = new TestSceneNishiguchi(textures); // メモリを確保
 			m_Scene->Init();
 			break;
 	}

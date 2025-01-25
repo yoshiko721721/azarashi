@@ -249,6 +249,9 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TeamLogo.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Code\06_Scene\TestSceneNishiguchi.cpp">
+      <Filter>ソース ファイル\MainGame.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -406,6 +409,9 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Title\TeamLogo.h">
       <Filter>ヘッダー ファイル\MainGame.h\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\06_Scene\TestSceneNishiguchi.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
