@@ -37,7 +37,7 @@ void Application::Init(HWND hWnd)
 	SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	//SDL_GameController* controller = SDL_GameControllerOpen(0);
 	//初期シーンをセット
-	m_Instance->m_Scene = new TitleScene(false);
+	m_Instance->m_Scene = new TitleScene(true);
 	m_Instance->m_Scene->Init();
 
 	Camera::Init();
@@ -47,13 +47,9 @@ void Application::Init(HWND hWnd)
 
 void Application::Update(void)
 {
-	//Input::Update();
-	//Camera::Update();
-	//SDL_Event& e = Controller::Input::e;
-	//while (SDL_PollEvent(&e) != 0)
-	//{
-		m_Instance->m_Scene->Update();
-	//}
+	Input::Update();
+	Camera::Update();
+	m_Instance->m_Scene->Update();
 }
 
 void Application::Draw(void) {
@@ -152,6 +148,4 @@ void Application::DeleteAllObject()
 
 	m_Instance->m_Objects.clear(); //全て削除
 	m_Instance->m_Objects.shrink_to_fit();
-
-	SDL_Quit();
 }

@@ -44,6 +44,9 @@ void TestStageScene_Nakae::Update()
 		{
 			o->Update(); // 各オブジェクトの描画メソッドを呼び出
 		}
+
+		//p_Player->Update()
+	 	//DirectX::XMFLOAT3 pos = Player.GetPos();
 		/*for (auto& o : m_MySceneObjects)
 		{
 			o->Update(); // 各オブジェクトの描画メソッドを呼び出

@@ -3,7 +3,6 @@
 #include "../../02_Input/input.h"
 #include "../../03_GameMainFile/RigidBody.h"
 #include"../../08_Collider/Base_collision.h"
-#include "../../02_Input/miyoshi_input/ControllerInput.h"
 #include "GameBlock.h"
 
 #define AZARASHI_PICTURE_CIRCLE L"Asset/pic/azarasi.png"

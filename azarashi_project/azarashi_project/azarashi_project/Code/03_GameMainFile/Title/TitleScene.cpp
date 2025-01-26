@@ -18,8 +18,6 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-	input.Update();
-
 	if (isFirst)
 	{
 		if (!isFading)
@@ -50,23 +48,15 @@ void TitleScene::Update()
 	else
 	{
 		backGroundpab.Update();
-		if (Controller::Input::GetKeyTrigger(VK_RETURN))
-		{
-			sound.Play(SOUND_LABEL_SE1);
-			isFading = true;
-			fade.SetisFading(isFading);
-			fade.SetMode(FADEOUT);
-
-		}
+		SDL_Event& e = Controller::Input::e;
 		if (!isFading)
 		{
-			SDL_Event& e = Controller::Input::e;
 			while (SDL_PollEvent(&e) != 0)
 			{
 				Controller::Input::e = e; // ƒCƒxƒ“ƒg‚ðController::Input::e‚ÉÝ’è
 				if (e.type == SDL_CONTROLLERBUTTONDOWN)
 				{
-					if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B || Controller::Input::GetKeyTrigger(VK_B))
+					if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
 					{
 						sound.Play(SOUND_LABEL_SE1);
 						isFading = true;
@@ -86,7 +76,7 @@ void TitleScene::Update()
 			}
 			if (isFading == false && fade.GetMode() == FADEOUT)
 			{
-				Application::GetInstance()->ChangeScene(TESTSCENE);
+				Application::GetInstance()->ChangeScene(SELECTSCENE);
 			}
 
 		}
