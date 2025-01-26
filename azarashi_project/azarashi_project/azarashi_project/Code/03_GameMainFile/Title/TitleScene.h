@@ -1,4 +1,5 @@
 #pragma once
+#include "../..\02_Input/input.h"
 #include "../../06_Scene/Scene.h"
 #include "TitleBackGround.h"
 #include "TitleBackGroundPAB.h"
@@ -21,6 +22,7 @@ private:
 	bool isFading = true;//フェードが終わっているか
 	//Fade fade;
 	//Load load;
+	Controller::Input input;
 	bool isFirst; //初めてタイトルを起動するかどうか
 public:
 	TitleScene(bool isFrstTitle)

@@ -103,8 +103,8 @@ namespace Controller
 		////シングルトンからアクセスを許可
 		//friend class Singleton<Input>;
 
-		Input(); //コンストラクタ
 	public:
+		Input(); //コンストラクタ
 
 		~Input(); //デストラクタ
 		static void Update(); //更新

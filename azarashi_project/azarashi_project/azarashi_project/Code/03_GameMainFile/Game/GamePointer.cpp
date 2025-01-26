@@ -62,7 +62,7 @@ void GamePointer::Update(ContactPointVector collision, Object& block)//Player‚Ìƒ
 		}
 
 		//ƒWƒƒƒ“ƒv
-		if (Input::GetKeyTrigger(VK_RETURN)) {
+		if (Controller::Input::GetKeyTrigger(VK_RETURN)) {
 			body.AddForce(0.0f, 10.0f);
 			behavior = BOUND;
 		}
@@ -77,7 +77,7 @@ void GamePointer::Update(ContactPointVector collision, Object& block)//Player‚Ìƒ
 	}
 
 	//ƒ‚[ƒhØ‚è‘Ö‚¦
-	if (Input::GetKeyPress(VK_T)) {
+	if (Controller::Input::GetKeyPress(VK_T)) {
 		SetAzaNum(CIRCLE);
 	}
 	else {

@@ -28,7 +28,7 @@ public:
 	Scene* GetCurrentScene();
 	bool GetisFirstOpening()
 	{
-		return isFirstTimeOpening = true;
+		return isFirstTimeOpening;
 	}
 	void SetisFirstOpening(bool isFirst)
 	{

@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include "../03_GameMainFile/Application.h"
 #include "../01_Direct3D/direct3d.h"
+//#include "SDL.h"
+//#include "SDL_main.h"
 
 
 // É}ÉNÉçíËã`
