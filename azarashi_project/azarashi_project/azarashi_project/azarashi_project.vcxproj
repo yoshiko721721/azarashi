@@ -30,6 +30,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Application.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\BreakBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -82,6 +83,7 @@
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Code\06_Scene\Scene.cpp" />
+    <ClCompile Include="Code\06_Scene\TestSceneNishiguchi.cpp" />
     <ClCompile Include="Code\07_Camera\Camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -111,6 +113,7 @@
     <ClInclude Include="Code\03_GameMainFile\Application.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\BreakBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\GameBackGround.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -161,6 +164,7 @@
     <ClInclude Include="Code\03_GameMainFile\Title\You_Fade\Fade.h" />
     <ClInclude Include="Code\05_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Code\06_Scene\Scene.h" />
+    <ClInclude Include="Code\06_Scene\TestSceneNishiguchi.h" />
     <ClInclude Include="Code\07_Camera\Camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

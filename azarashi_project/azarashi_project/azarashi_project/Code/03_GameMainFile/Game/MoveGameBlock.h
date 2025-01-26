@@ -1,11 +1,11 @@
 #pragma once
-#include "../../01_Direct3D/Object.h"
+#include "../../03_GameMainFile/Game/GameBlock.h"
 #include "../../02_Input/input.h"
 
-class MoveGameBlock : public Object {
+class MoveGameBlock : public GameBlock {
 public:
     // コンストラクタ: 傾きの閾値を指定可能
-    MoveGameBlock(float posX, float posY, float sizeX, float sizeY) : Object(posX, posY, sizeX, sizeY) {};
+    MoveGameBlock(float posX, float posY, float sizeX, float sizeY) : GameBlock(posX, posY, sizeX, sizeY) {};
     MoveGameBlock(float moveThreshold);
     ~MoveGameBlock() { Uninit(); }
 

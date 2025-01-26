@@ -1,19 +1,17 @@
-#include"TestScene_You.h"
-#include"../../03_GameMainFile/Application.h"
+#include"TestSceneNishiguchi.h"
 
-TestScene_You::TestScene_You(std::vector<ID3D11ShaderResourceView*>& textures) : textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
+TestSceneNishiguchi::TestSceneNishiguchi(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
 {
 
 
 }
 
-
-void TestScene_You::Init()
-{
+void TestSceneNishiguchi::Init()
+{	
 	//testFloor.Init();
 	//testWall.Init();
 	//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
-	//SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
+    //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
 	m_MySceneObjects.emplace_back(Application::GetInstance()->AddObject<GameBackGround>());//地形
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();
@@ -33,7 +31,7 @@ void TestScene_You::Init()
 	//csvMapLoader.PrintValueAt(3, 6);
 }
 
-void TestScene_You::Update()
+void TestSceneNishiguchi::Update()
 {
 	SDL_Event& e = Controller::Input::e;
 	while (SDL_PollEvent(&e) != 0)
@@ -47,13 +45,13 @@ void TestScene_You::Update()
 		}
 
 		//p_Player->Update()
-		//DirectX::XMFLOAT3 pos = Player.GetPos();
+	 	//DirectX::XMFLOAT3 pos = Player.GetPos();
 		/*for (auto& o : m_MySceneObjects)
 		{
 			o->Update(); // 各オブジェクトの描画メソッドを呼び出
 		}*/
 		if (e.type == SDL_CONTROLLERBUTTONDOWN)
-		{
+		{	
 			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
 			{
 				std::cout << "Xボタンが押されました！" << std::endl;
@@ -65,7 +63,7 @@ void TestScene_You::Update()
 }
 
 
-void TestScene_You::Draw()
+void TestSceneNishiguchi::Draw()
 {
 	//testFloor.Draw();
 	//testWall.Draw();
@@ -81,7 +79,7 @@ void TestScene_You::Draw()
 	//timer.Draw();*/
 }
 
-void TestScene_You::Uninit()
+void TestSceneNishiguchi::Uninit()
 {
 	testFloor.Uninit();
 	testWall.Uninit();
@@ -93,12 +91,12 @@ void TestScene_You::Uninit()
 	}
 }
 
-void TestScene_You::SetPlayer()
+void TestSceneNishiguchi::SetPlayer()
 {
 
 }
 
-GamePointer* TestScene_You::GetPlayer()
+GamePointer* TestSceneNishiguchi::GetPlayer()
 {
 	return p_Player;
 }

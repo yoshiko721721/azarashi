@@ -1,5 +1,8 @@
 #include "GamePointer.h"
 #include "../../03_GameMainFile/Math.h"
+#include "../../08_Collider/BoxCollider.h"
+#include"../Application.h"
+#include<vector>
 
 using DirectX::XMFLOAT3;
 const float LIMMIT = 0.1;
@@ -30,22 +33,28 @@ void GamePointer::Init()
 //				XVˆ—					
 //===========================================
 
-void GamePointer::Update(ContactPointVector collision, Object& block)//Player‚ÌƒAƒbƒvƒf[ƒg
+void GamePointer::Update()//Player‚ÌƒAƒbƒvƒf[ƒg
 {
-
-	Vector2 blockPos = { block.GetPos().x, block.GetPos().y };
-	now = collision.checkCollision;
+	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
+	for (auto& block : blocks) {
+		collision = BoxCollider::ColliderWithCircle(this, block);
+		if ( collision.checkCollision) {
+			now = collision.checkCollision;
+			m_Block = block;
+			break;
+		}
+	}
 
 	//©—R—‰º
 	if (!now && behavior == BOUND) {
-		body.FreeFall(body.GetTime());
+			body.FreeFall(body.GetTime());
 	}
 
 
 	//Õ“Ë‚µ‚Ä‚¢‚é‚Ìˆ—
 	if (now)
 	{
-		body.CalcFainalNormalAngle(collision.closspoint, *this, block);	//–@ü‚ÌŠp“x‚ğŒvZ
+		body.CalcFainalNormalAngle(collision.closspoint, *this, *m_Block);	//–@ü‚ÌŠp“x‚ğŒvZ
 
 		switch (behavior) {
 		case BOUND:
@@ -69,11 +78,11 @@ void GamePointer::Update(ContactPointVector collision, Object& block)//Player‚Ìƒ
 		//body.DampingVector(damping, azaNum);
 
 		//À•W‚ğ•â³
-		CorrectPosition(&block, collision.closspoint,
-			collision.DistanceSquared, block.GetAngle());
+		CorrectPosition(m_Block, collision.closspoint,collision.DistanceSquared);
 	}
 	else {
 		behavior = BOUND;
+		now = false;
 	}
 
 	//ƒ‚[ƒhØ‚è‘Ö‚¦
@@ -92,9 +101,23 @@ void GamePointer::Update(ContactPointVector collision, Object& block)//Player‚Ìƒ
 		}
 	}
 
-	//ˆê‰ñ‘O‚Ì“–‚½‚è”»’è‚ğ‹L‰¯
-	old = now;
+	//ˆê‰ñ‘O‚ÌƒxƒNƒgƒ‹‚ğ‹L‰¯
 	oldVectorNum = body.vectorNum;
+
+
+	static bool flag = false;
+
+	if ( Input::GetKeyTrigger ( VK_I ) )
+	{
+		flag = true;
+	}
+
+	if ( Input::GetKeyTrigger ( VK_SPACE ) )
+	{
+		flag = false;
+	}
+
+	if (!flag )
 	SetPos(GetPos().x + body.GetVector().x, GetPos().y + body.GetVector().y, 0);
 
 	//std::cout << "now = " << now << std::endl ;
@@ -145,7 +168,7 @@ void GamePointer::SetAzaNum(AZA_MODE_NUMMBER m_AzaNum)
 /// @param clossPoint ‰~‚ÆlŠpŒ`‚ÌÚ’n“_
 /// @param distanceSquared ‰~‚Ì’†SÀ•W‚ÆclossPoint‚Ì‹——£ 
 /// @param angle block‚ÌŠp“x
-void GamePointer::CorrectPosition(Object* m_Block, XMFLOAT2 clossPoint, float distanceSquared, float angle)
+void GamePointer::CorrectPosition(Object* m_Block, XMFLOAT2 clossPoint, float distanceSquared)
 {
 	// ³®‚È‹——£‚ğŒvZ
 	float distance = sqrt(distanceSquared);

@@ -11,6 +11,7 @@
 #include "Test/TestStageScene_Nakae.h"
 #include "Test/TestScene_You.h"
 #include "../07_Camera/Camera.h"
+#include "../06_Scene/TestSceneNishiguchi.h"
 
 Application* Application::m_Instance;		//インスタンス
 
@@ -37,7 +38,7 @@ void Application::Init(HWND hWnd)
 	SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	//SDL_GameController* controller = SDL_GameControllerOpen(0);
 	//初期シーンをセット
-	m_Instance->m_Scene = new TitleScene(true);
+	m_Instance->m_Scene = new TitleScene(false);
 	m_Instance->m_Scene->Init();
 
 	Camera::Init();
@@ -86,7 +87,7 @@ void Application::ChangeScene(SceneList sName)
 		m_Instance->m_Scene = nullptr;
 	}
 
-	switch (sName)
+	switch(sName)
 	{
 		case TITLESCENE:
 			m_Instance->m_Scene = new TitleScene(false); // メモリを確保
@@ -94,11 +95,11 @@ void Application::ChangeScene(SceneList sName)
 			break;
 		case LOADSCENE:
 			m_Instance->m_Scene = new LoadScene; // メモリを確保
-			m_Scene->Init();
+			m_Instance->m_Scene->Init();
 			break;
 		case SELECTSCENE:
 			m_Instance->m_Scene = new SelectScene; // メモリを確保
-			m_Scene->Init();
+			m_Instance->m_Scene->Init();
 			break;
 		/*case STAGESELECTSCENE:
 			m_Instance->m_Scene = new StageSelectScene; // メモリを確保
@@ -106,19 +107,29 @@ void Application::ChangeScene(SceneList sName)
 			break;*/
 		case GAMESCENE:
 			m_Instance->m_Scene = new GameScene; // メモリを確保
-			m_Scene->Init();
+			m_Instance->m_Scene->Init();
 			break;
 		case TESTSCENE:
 		{
 			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
 			m_Instance->m_Scene = new TestStageScene_Nakae(textures); // メモリを確保
-			m_Scene->Init();
+			m_Instance->m_Scene->Init();
 			break;
 		}
 		case TESTSCENE02:
-			m_Instance->m_Scene = new TestScene_You; // メモリを確保
+		{
+			std::vector<ID3D11ShaderResourceView*> textures2;
+			m_Instance->m_Scene = new TestScene_You(textures2); // メモリを確保
 			m_Scene->Init();
 			break;
+		}
+		case TESTSCENE03:
+		{
+			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
+			m_Instance->m_Scene = new TestSceneNishiguchi(textures); // メモリを確保
+			m_Instance->m_Scene->Init();
+			break;
+		}
 	}
 }
 
