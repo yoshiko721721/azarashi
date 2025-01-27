@@ -12,18 +12,17 @@ void LoadBackGround::Init()
 	switch (random_number)
 	{
 	case 0:
-		Initialize(L"Asset/pic/Background_Title.png");   //”wŒi‚ğ‰Šú‰»
+		Initialize(L"Asset/pic/Loading01.png");   //”wŒi‚ğ‰Šú‰»
 		break;
 	case 1:
-		Initialize(L"Asset/pic/Background_Title.png");   //”wŒi‚ğ‰Šú‰»
+		Initialize(L"Asset/pic/Loading02.png");   //”wŒi‚ğ‰Šú‰»
 		break; 
 	case 2:
-		Initialize(L"Asset/pic/Background_Title.png");   //”wŒi‚ğ‰Šú‰»
+		Initialize(L"Asset/pic/Loading03.png");   //”wŒi‚ğ‰Šú‰»
 		break;
 	default:
 		break;
 	}
-
 	
 	SetPos(0.0f, 0.0f, 0.0f);      //ˆÊ’u‚ğİ’è
 	SetSize(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f);  //‘å‚«‚³‚ğİ’è
@@ -34,5 +33,4 @@ void LoadBackGround::Init()
 void LoadBackGround::Update(void)
 {
 	
-
 }

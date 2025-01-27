@@ -54,17 +54,7 @@ float Snowman::GetFrictionRasistance()
 
 bool Snowman::CheckCollisionWithGround()
 {
-    // コリジョン用のBoxColliderを取得
-    BoxCollider* collider = GetCollider();
 
-    // コリジョンが設定されているかを確認
-    if (collider) {
-        // "Ground" というタグを持つオブジェクトと衝突しているかを判定
-        if (collider->IsCollidingWith("Ground")) {
-            return true; // 衝突している場合は true を返す
-        }
-    }
-    return false;
 }
 
 
