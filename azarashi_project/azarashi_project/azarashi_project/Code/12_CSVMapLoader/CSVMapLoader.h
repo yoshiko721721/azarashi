@@ -25,7 +25,7 @@
 #include"../03_GameMainFile/Game/Gimmick/Snowman.h"
 #include "../03_GameMainFile/Test/TestWall.h"
 #include "../03_GameMainFile/Test/Testfloor.h"
-#include "../03_GameMainFile/Test/TestPointer.h"
+//#include "../03_GameMainFile/Test/TestPointer.h"
 
 const int BLOCKSIZE = 128;
 
