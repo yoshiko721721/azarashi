@@ -2,6 +2,8 @@
 #include "../../03_GameMainFile/Application.h"
 
 extern Sound sound;
+extern int stagePage;
+extern int stageCount;
 
 void SelectScene::Init()
 {
@@ -25,112 +27,111 @@ void SelectScene::Update()
 	float alphaR = 0;
 	float alphaL = 0;
 
-	//SDL_Event& e = Controller::Input::e;
 	if (!isFading)
 	{
-			//Controller::Input::e = e; // イベントをController::Input::eに設定 
-			backGround.Update();
 			cursorR.Update(alphaR);
+		backGround.Update();
 
-			if (Input::GetButtonTrigger(XINPUT_B))
+		if (Input::GetButtonTrigger(XINPUT_B))
+		{
+			sound.Play(SOUND_LABEL_SE1);
+			isFading = true;
+			fade.SetisFading(isFading);
+			fade.SetMode(FADEOUT);
+			//Application::GetInstance()->ChangeScene(TESTSCENE);
+		}
+
+		if (Input::GetButtonTrigger(XINPUT_RIGHT_SHOULDER))
+		{
+			sound.Play(SOUND_LABEL_SE1);
+			
+			if (selectPage < MAX_PAGE)//ページがMAXになったら
 			{
-				isFading = true;
-				fade.SetisFading(isFading);
-				fade.SetMode(FADEOUT);
-				//Application::GetInstance()->ChangeScene(TESTSCENE);
+				selectPage++;			//ページ移動
+				alphaR = 1.0;
 			}
 
-			if (Input::GetButtonTrigger(XINPUT_RIGHT_SHOULDER))
-			{
-				sound.Play(SOUND_LABEL_SE1);
-				
-				if (selectPage < MAX_PAGE)//ページがMAXになったら
-				{
-					selectPage++;			//ページ移動
-					alphaR = 1.0;
-				}
+			worldUI.Update(selectPage);
+			stage1UI.Update(selectPage);
+			stage2UI.Update(selectPage);
+			stage3UI.Update(selectPage);
+			stage4UI.Update(selectPage);
+		}
 
-				worldUI.Update(selectPage);
-				stage1UI.Update(selectPage);
-				stage2UI.Update(selectPage);
-				stage3UI.Update(selectPage);
-				stage4UI.Update(selectPage);
+		if (Input::GetButtonTrigger(XINPUT_LEFT_SHOULDER))
+		{
+			sound.Play(SOUND_LABEL_SE1);
+			if (selectPage > 0)
+			{
+				selectPage--;
 			}
+				//selectPage = 3;
+			worldUI.Update(selectPage);
+			stage1UI.Update(selectPage);
+			stage2UI.Update(selectPage);
+			stage3UI.Update(selectPage);
+			stage4UI.Update(selectPage);
+		}
 
-			if (Input::GetButtonTrigger(XINPUT_LEFT_SHOULDER))
+		if (Input::GetButtonTrigger(XINPUT_LEFT))
+		{
+			sound.Play(SOUND_LABEL_SE2);
+			selectStage--;
+			if (selectStage < 0)
 			{
-				sound.Play(SOUND_LABEL_SE1);
-				if (selectPage > 0)
-				{
-					selectPage--;
-				}
-					//selectPage = 3;
-				worldUI.Update(selectPage);
-				stage1UI.Update(selectPage);
-				stage2UI.Update(selectPage);
-				stage3UI.Update(selectPage);
-				stage4UI.Update(selectPage);
+				selectStage = 3;
 			}
-
-			if (Input::GetButtonTrigger(XINPUT_LEFT))
-			{
-				sound.Play(SOUND_LABEL_SE2);
-				selectStage--;
-				if (selectStage < 0)
-				{
-					selectStage = 3;
-				}
-						
-				selectPlayer.Update(selectStage);
-			}
-
-			if (Input::GetButtonTrigger(XINPUT_RIGHT))
-			{
-				sound.Play(SOUND_LABEL_SE2);
-				selectStage++;
-				if (selectStage > MAX_PAGE)
-				{
-					selectStage = 0;
-				}
 					
-				selectPlayer.Update(selectStage);
-			}
+			selectPlayer.Update(selectStage);
+		}
 
-			if (Input::GetButtonTrigger(XINPUT_UP))
+		if (Input::GetButtonTrigger(XINPUT_RIGHT))
+		{
+			sound.Play(SOUND_LABEL_SE2);
+			selectStage++;
+			if (selectStage > MAX_PAGE)
 			{
-				sound.Play(SOUND_LABEL_SE2);
-				selectStage = 4;
-				selectPlayer.Update(selectStage);
-			}
-
-			if (Input::GetButtonTrigger(XINPUT_DOWN))
-			{
-				sound.Play(SOUND_LABEL_SE2);
 				selectStage = 0;
-				selectPlayer.Update(selectStage);
 			}
+				
+			selectPlayer.Update(selectStage);
+		}
 
-			if (selectPage == 0)
-			{
-				alphaR = 1.0;
-				alphaL = 0.0;
-			}
-			else if (selectPage == 3)
-			{
-				alphaR = 0.0;
-				alphaL = 1.0;
-			}
-			else
-			{
-				alphaR = 1.0;
-				alphaL = 1.0;
-			}
-			cursorL.Update(alphaL);
-			cursorR.Update(alphaR);
-			//}
+		if (Input::GetButtonTrigger(XINPUT_UP))
+		{
+			sound.Play(SOUND_LABEL_SE2);
+			selectStage = 4;
+			selectPlayer.Update(selectStage);
+		}
+
+		if (Input::GetButtonTrigger(XINPUT_DOWN))
+		{
+			sound.Play(SOUND_LABEL_SE2);
+			selectStage = 0;
+			selectPlayer.Update(selectStage);
+		}
+
+		if (selectPage == 0)
+		{
+			alphaR = 1.0;
+			alphaL = 0.0;
+		}
+		else if (selectPage == 3)
+		{
+			alphaR = 0.0;
+			alphaL = 1.0;
+		}
+		else
+		{
+			alphaR = 1.0;
+			alphaL = 1.0;
+		}
+		cursorL.Update(alphaL);
+		cursorR.Update(alphaR);
+		//}
 			//if (e.type == SDL_JOYAXISMOTION)
 			//{
-				/*if (e.jaxis.axis == 0)
+			/*if (e.jaxis.axis == 0)
 				{ // X軸
 
 				}
@@ -138,14 +139,16 @@ void SelectScene::Update()
 				{ // Y軸
 					
 				}*/
-			//}
+		//}
 		//}
 	}
 	else
 	{
 		isFading = fade.Update(0.08);
 		if (isFading == false && fade.GetMode() == FADEOUT && selectStage != 4)
-		{
+		{	
+			stageCount = selectStage;
+			stagePage = selectPage;
 			Application::GetInstance()->ChangeScene(LOADSCENE);
 		}
 
