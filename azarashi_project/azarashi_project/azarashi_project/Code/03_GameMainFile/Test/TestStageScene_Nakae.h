@@ -19,7 +19,6 @@ private:
 	//Wall testWall;
 	GamePointer* p_Player;
 	//GamePointer Player;
-	TestPointer testPointer;
 	//PauseText pauseText;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures ‚ğƒƒ“ƒo•Ï”‚Æ‚µ‚ÄéŒ¾ 
 	CSVMapLoader csvMapLoader;

@@ -12,7 +12,7 @@ void TitleScene::Init()
 	titleLogo.Init();
 	teamLogo.Init();
 	fade.Init();
-	sound.Play(SOUND_LABEL_BGM1);
+	//sound.Play(SOUND_LABEL_BGM1);
 	//sound.Init();
 	//sound.Play(SOUND_LABEL_BGM1);
 }
@@ -42,7 +42,7 @@ void TitleScene::Update()
 				isFirst = false;
 				isFading = true;
 				fade.SetisFading(isFading);
-				sound.Play(SOUND_LABEL_BGM1);
+				//csound.Play(SOUND_LABEL_BGM1);
 			}
 			return;
 		}
