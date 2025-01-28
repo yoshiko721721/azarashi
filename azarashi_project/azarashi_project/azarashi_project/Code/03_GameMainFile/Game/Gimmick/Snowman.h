@@ -1,22 +1,26 @@
 #pragma once
 #include "../../../01_Direct3D/Object.h"
 #include "../../../02_Input/Input.h"
+#include "../../RigidBody.h"
 
 class Snowman : public Object {
 public:
-    Snowman() : frictionRasistance(0.0f), angle(0.0f), isFalling(false), velocityY(0.0f) {}
-    ~Snowman() { Uninit(); }
-    void Init();  // 初期化
-    void Update();// 更新
+    Snowman();
+    ~Snowman();
 
-    float GetFrictionRasistance();
+    void Init();   
+    void Update(); 
+
+    float GetFrictionResistance(); // 摩擦抵抗を取得
 
 private:
-    float frictionRasistance;  // 摩擦係数
+    float frictionResistance;  // 摩擦抵抗値
     float angle;               // 現在の角度
     bool isFalling;            // 落下中フラグ
     float velocityY;           // 落下速度
 
-    bool CheckCollisionWithGround(); // 衝突判定
-    void Destroy();                  // 破壊処理
+    RigidBody rigidBody;       // 物理挙動を管理するRigidBody
+
+    bool CheckCollisionWithGround(); // 地面との衝突判定
+    void Destroy();                  // オブジェクトの破壊処理
 };
