@@ -19,6 +19,9 @@ Application* Application::m_Instance;		//インスタンス
 
 Sound sound;
 
+int stagePage = 0;
+int stageCount = 0;
+
 Application::Application()
 {
 
@@ -111,10 +114,94 @@ void Application::ChangeScene(SceneList sName)
 			m_Instance->m_Scene = new GameScene; // メモリを確保
 			m_Instance->m_Scene->Init();
 			break;
+		case STAGESCENE:
+		{
+			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
+			switch (stagePage)
+			{
+			case 0:
+				if (stageCount == 0)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 1)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 2)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 3)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				break;
+			case 1:
+				if (stageCount == 0)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 1)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 2)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 3)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				break;
+			case 2:
+				if (stageCount == 0)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 1)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 2)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 3)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				break;
+			case 3:
+				if (stageCount == 0)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 1)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 2)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				else if (stageCount == 3)
+				{
+					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+				}
+				break;
+			default:
+				break;
+			}
+					
+			m_Instance->m_Scene->Init();
+			break;
+		}
 		case TESTSCENE:
 		{
 			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
-			m_Instance->m_Scene = new StageScene(textures); // メモリを確保
+			m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
 			m_Instance->m_Scene->Init();
 			break;
 		}

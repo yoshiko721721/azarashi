@@ -14,16 +14,6 @@ void TestStageScene_Nakae::Init()
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();
 	csvMapLoader.FileClose();
-	std::cout << "行数: " << csvMapLoader.rowCount << std::endl; std::cout << "列数: " << csvMapLoader.colCount << std::endl; // データを表示 
-	for (const auto& row : csvMapLoader.data)
-	{
-		for (const auto& value : row)
-		{
-			std::cout << value << " ";
-		}
-		std::cout << std::endl;
-	}
-
 	csvMapLoader.LoadTextures(); //texturesベクターを渡さずに呼び出し
 	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
 	//Player.Init();
@@ -53,7 +43,6 @@ void TestStageScene_Nakae::Update()
 		}
 	}
 }
-
 
 void TestStageScene_Nakae::Draw()
 {

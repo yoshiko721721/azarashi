@@ -4,6 +4,9 @@ CSVMapLoader::~CSVMapLoader()
 
 }
 
+//---------------------------------------------------
+//ファイルを開く関数
+//---------------------------------------------------
 bool CSVMapLoader::FileOpen(std::string fileName)
 {
     file.open(fileName); // クラスメンバーのfileを初期化 
@@ -15,11 +18,17 @@ bool CSVMapLoader::FileOpen(std::string fileName)
     return true;
 }
 
+//---------------------------------------------------
+//ファイルを閉じる関数
+//---------------------------------------------------
 void CSVMapLoader::FileClose()
 {
     file.close();
 }
 
+//---------------------------------------------------
+//ファイル内の数値を2次元配列に移す関数
+//---------------------------------------------------
 void CSVMapLoader::CountRowsAndColumns()
 {
     while (std::getline(file, line))
@@ -44,6 +53,9 @@ void CSVMapLoader::CountRowsAndColumns()
 
 }
 
+//--------------------------------------------------------
+//画像のテクスチャをロードする関数
+//--------------------------------------------------------
 ID3D11ShaderResourceView* CSVMapLoader::LoadTexture(const wchar_t* filename)
 {
     HRESULT hr = DirectX::CreateWICTextureFromFile(g_pDevice, filename, NULL, &m_pTextureView);
@@ -54,6 +66,9 @@ ID3D11ShaderResourceView* CSVMapLoader::LoadTexture(const wchar_t* filename)
     return m_pTextureView;
 }
 
+//--------------------------------------------------------
+//ステージ製作に必要な画像のテクスチャをロードする関数
+//--------------------------------------------------------
 void CSVMapLoader::LoadTextures()
 {
     std::cout << "Loading textures..." << std::endl;
@@ -103,42 +118,41 @@ void CSVMapLoader::LoadTextures()
 	std::cout << "四角い岩を読み込みました" << std::endl;*/
 }
 
-int CSVMapLoader::GetStageWidth(int row, int col)
+//--------------------------------------------------------
+//ステージの横幅を取ってくる関数
+//--------------------------------------------------------
+void CSVMapLoader::SetStageWidth()
 {
-	int width = 0;
-    if (row < data.size() && col < data[row].size()) {
-        width = data[row][col];
-    }
-    else {
-        std::cerr << "Error: Index out of range" << std::endl;
-    }
-
-    return width;
+	stagewide = data[2][1];
 }
 
-int CSVMapLoader::GetStageHeight (int row, int col)
+//--------------------------------------------------------
+//ステージの縦幅を取ってくる関数
+//--------------------------------------------------------
+void CSVMapLoader::SetStageHeight()
 {
-	int heigh = 0;
-	if (row < data.size() && col < data[row].size())
-	{
-		heigh = data[row][col];
-	}
-	else 
-	{
-		std::cerr << "Error: Index out of range" << std::endl;
-	}
-
-	return heigh;
+	stagehigt = data[1][1];
 }
 
+//--------------------------------------------------------
+//ステージの縦幅を取ってくる関数
+//--------------------------------------------------------
+void CSVMapLoader::CalculateStageCenter()
+{
+	startX = colCount * 128 / 2 - 64;	//X軸のスタート時点
+	startY = rowCount * 128 / 2 - 64;	//Y軸のスタート地点
+}
+
+//--------------------------------------------------------
+//ステージにオブジェクトを並べていく関数
+//--------------------------------------------------------
 GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects)
 {
 	GamePointer* p_player = nullptr;
-	//128*128なので縦はMAX8マス横はMAX15マス
-	//int Platformcount = 1;//壁やらなんやらは何マス繋がっておかれているのかを調べる
+	CalculateStageCenter();
 	int count = 0;//確認用
-	float x = SCREEN_WIDTH  * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
-	float y = SCREEN_HEIGHT * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
+	float x = -startX;//どこからスタートするかどうか(変更可能性高め)
+	float y = -startY;//どこからスタートするかどうか(変更可能性高め)
 	for (int i = rowCount - 1; i > -1; i--)//CSVに入っているマス分回す
 	{
 		for (int j = 0; j < colCount; j++)
@@ -152,7 +166,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case FLOOR://床なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 1152, BLOCKSIZE, stagewide, stagehigt);//m
+				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 1152, BLOCKSIZE, 0, 0);//m
 				newChip->SetTexture(textures[data[i][j]]);//テクスチャをSetする
 				newChip->Init();//初期化
 				m_MySceneObjects->emplace_back(newChip);
@@ -162,7 +176,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case WALL://壁なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE,stagewide,stagehigt);
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, 256, BLOCKSIZE,stagewide,stagehigt);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
@@ -306,7 +320,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			x += BLOCKSIZE;
 		}
 		y += BLOCKSIZE;
-		x  = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;
+		x  = -startX;
 	}
 
 	return p_player;

@@ -52,9 +52,10 @@ class CSVMapLoader
 public:
     CSVMapLoader() : textures(BlockType_MAX, nullptr) {} // コンストラクタで初期化
     ~CSVMapLoader(); bool FileOpen(std::string fileName); //ファイル開く 
+    void CalculateStageCenter();
     void CountRowsAndColumns(); //行数列数数える 
-    int GetStageWidth(int row, int col);
-    int GetStageHeight(int row, int col);
+    void SetStageWidth();
+    void SetStageHeight();
     GamePointer* AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects);
     void FileClose(); //ファイル閉じる 
     
@@ -68,11 +69,16 @@ public:
     ID3D11ShaderResourceView* m_pTextureView; //textureの保存場所 
 
     std::string line; //文字列保存場所 
+private:
+
     int rowCount = 0; //行列 
     int colCount = 0; //列数
 
-    int stagewide = 0;
-    int stagehigt = 0;
+    int stagewide;
+    int stagehigt;
+
+    int startX;
+    int startY;
 };
 
 
