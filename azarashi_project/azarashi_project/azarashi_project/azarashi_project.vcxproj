@@ -42,11 +42,16 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Floor.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Wall.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-1Scene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-2Scene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\StageExplanation.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Load\LoadBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Load\LoadScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\main.cpp" />
@@ -57,6 +62,7 @@
     <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorR.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectPlayer.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\SelectScene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectTitleBackUI.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\Stage1UI.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\Stage3UI.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Select\Stage4UI.cpp" />
@@ -65,7 +71,8 @@
     <ClCompile Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Test\Testfloor.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Test\TestFloor.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Test\TestPointer.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Test\TestScene_You.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -101,6 +108,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\01_Direct3D\BackGround.h" />
     <ClInclude Include="Code\01_Direct3D\direct3d.h" />
     <ClInclude Include="Code\01_Direct3D\Object.h" />
     <ClInclude Include="Code\01_Direct3D\Singleton.h" />
@@ -125,9 +133,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Floor.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Wall.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-1Scene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-2Scene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\StageExplanation.h" />
     <ClInclude Include="Code\03_GameMainFile\Load\LoadBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Load\LoadScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Math.h" />
@@ -137,6 +150,7 @@
     <ClInclude Include="Code\03_GameMainFile\Select\SelectCursorR.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectPlayer.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\SelectScene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectTitleBackUI.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\Stage1UI.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\Stage2UI.h" />
     <ClInclude Include="Code\03_GameMainFile\Select\Stage3UI.h" />
@@ -145,7 +159,8 @@
     <ClInclude Include="Code\03_GameMainFile\StageSelectScene\StageSelectScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Test\Testfloor.h" />
+    <ClInclude Include="Code\03_GameMainFile\Test\TestFloor.h" />
+    <ClInclude Include="Code\03_GameMainFile\Test\TestPointer.h" />
     <ClInclude Include="Code\03_GameMainFile\Test\TestScene_You.h" />
     <ClInclude Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

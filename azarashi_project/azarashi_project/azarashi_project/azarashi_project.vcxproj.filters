@@ -180,7 +180,7 @@
     <ClCompile Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.cpp">
       <Filter>ソース ファイル\MainGame.cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Test\Testfloor.cpp">
+    <ClCompile Include="Code\03_GameMainFile\Test\TestFloor.cpp">
       <Filter>ソース ファイル\MainGame.cpp</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Test\TestWall.cpp">
@@ -251,6 +251,30 @@
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\BreakBlock.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\06_Scene\TestSceneNishiguchi.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Wall.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Floor.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Test\TestPointer.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-1Scene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-2Scene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\StageExplanation.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectTitleBackUI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,7 +362,7 @@
     <ClInclude Include="Code\03_GameMainFile\Test\TestStageScene_Nakae.h">
       <Filter>ヘッダー ファイル\MainGame.h</Filter>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Test\Testfloor.h">
+    <ClInclude Include="Code\03_GameMainFile\Test\TestFloor.h">
       <Filter>ヘッダー ファイル\MainGame.h</Filter>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Test\TestWall.h">
@@ -412,6 +436,33 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\BreakBlock.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\06_Scene\TestSceneNishiguchi.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Wall.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Floor.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Test\TestPointer.h">
+      <Filter>ヘッダー ファイル\MainGame.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-1Scene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-2Scene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\StageExplanation.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\01_Direct3D\BackGround.h">
+      <Filter>ヘッダー ファイル\Basic.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Select\SelectTitleBackUI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Select</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

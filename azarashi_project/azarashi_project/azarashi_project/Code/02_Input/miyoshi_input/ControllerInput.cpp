@@ -79,6 +79,51 @@ void Controller::Input::Update()
 	}
 }
 
+/*void Controller::Input::ControllerUpdate()
+{
+	if (SDL_PollEvent(&e) != 0)
+	{
+		if (e.type == SDL_CONTROLLERBUTTONDOWN)
+		{
+			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_A)
+			{
+				push_A = true;
+			}
+			else
+			{
+				push_A = false;
+			}
+
+			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
+			{
+				push_B = true;
+			}
+			else
+			{
+				push_B = false;
+			}
+
+			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_X)
+			{
+				push_X = true;
+			}
+			else
+			{
+				push_X = false;
+			}
+
+			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_Y)
+			{
+				push_Y = true;
+			}
+			else
+			{
+				push_Y = false;
+			}
+		}
+	}
+}*/
+
 //キー入力
 bool Controller::Input::GetKeyPress(int key, float second) //プレス
 {

@@ -8,8 +8,7 @@ void SelectCursorR::Init()
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//角度を設定
 }
 
-void SelectCursorR::Update(int selectPage)//背景のアップデート(いらない気がする)
+void SelectCursorR::Update(int a)//背景のアップデート(いらない気がする)
 {
-
-
+	SetColor(1.0f, 1.0f, 1.0f, a);//角度を設定
 }

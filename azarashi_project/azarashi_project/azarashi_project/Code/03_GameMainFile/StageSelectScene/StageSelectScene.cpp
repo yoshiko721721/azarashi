@@ -32,7 +32,8 @@ void StageSelectScene::Update() {
     std::cout << "StageSelectScene Update" << std::endl;
 
     // プレイヤーの入力をチェック
-    if (XINPUT_RIGHT) {
+    if (XINPUT_RIGHT)
+    {
         selectedStage = (selectedStage - 1 + totalStages) % totalStages;
     }
     else if (XINPUT_LEFT) {

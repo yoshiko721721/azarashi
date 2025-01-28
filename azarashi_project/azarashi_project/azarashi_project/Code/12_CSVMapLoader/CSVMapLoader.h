@@ -14,8 +14,8 @@
 #include "../03_GameMainFile/Application.h"
 #include "../03_GameMainFile/Game/GameBackGround.h"
 #include "../03_GameMainFile/Game/GamePointer.h"
-#include "../03_GameMainFile/Test/TestWall.h"
-#include "../03_GameMainFile/Test/Testfloor.h"
+#include "../03_GameMainFile/Game/Gimmick/Wall.h"
+#include "../03_GameMainFile/Game/Gimmick/Floor.h"
 #include "../03_GameMainFile/Game/GameBlock.h"
 #include "../01_Direct3D/direct3d.h"
 #include "../01_Direct3D/Object.h"
@@ -23,6 +23,9 @@
 #include "../03_GameMainFile/Game/GameBlock.h"
 #include "../03_GameMainFile/Game/MoveGameBlock.h"
 #include"../03_GameMainFile/Game/Gimmick/Snowman.h"
+#include "../03_GameMainFile/Test/TestWall.h"
+#include "../03_GameMainFile/Test/Testfloor.h"
+#include "../03_GameMainFile/Test/TestPointer.h"
 
 const int BLOCKSIZE = 128;
 
@@ -50,7 +53,8 @@ public:
     CSVMapLoader() : textures(BlockType_MAX, nullptr) {} // コンストラクタで初期化
     ~CSVMapLoader(); bool FileOpen(std::string fileName); //ファイル開く 
     void CountRowsAndColumns(); //行数列数数える 
-    int PrintValueAt(int row, int col);
+    int GetStageWidth(int row, int col);
+    int GetStageHeight(int row, int col);
     GamePointer* AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects);
     void FileClose(); //ファイル閉じる 
     
@@ -66,6 +70,9 @@ public:
     std::string line; //文字列保存場所 
     int rowCount = 0; //行列 
     int colCount = 0; //列数
+
+    int stagewide = 0;
+    int stagehigt = 0;
 };
 
 

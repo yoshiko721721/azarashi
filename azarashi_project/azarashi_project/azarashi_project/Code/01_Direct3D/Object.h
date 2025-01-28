@@ -17,10 +17,7 @@ private:
 		{  0.5f, -0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f},
 	};
 
-	//頂点バッファ
-	ID3D11Buffer* m_pVertexBuffer;
-	//テクスチャ用変数
-	ID3D11ShaderResourceView* m_pTextureView;
+	
 
 	//座標
 	DirectX::XMFLOAT3 pos = { 0.0f, 0.0f, 0.0f };
@@ -34,6 +31,12 @@ private:
 	//テクスチャが縦横に何分割されているか
 	int splitX = 1;
 	int splitY = 1;
+
+protected:
+//頂点バッファ
+	ID3D11Buffer* m_pVertexBuffer;
+	//テクスチャ用変数
+	ID3D11ShaderResourceView* m_pTextureView;
 
 public:
 	//右上から何話目を切り抜いて表示するか
@@ -58,4 +61,14 @@ public:
 	XMFLOAT3 GetSize(void);		//大きさをゲット
 	float GetAngle(void);				//角度をゲット
 	XMFLOAT4 GetColor(void);	//色をゲット
+
+	int GetSplitX(void)
+	{
+		return splitX;
+	}
+
+	int GetSplitY(void)
+	{
+		return splitY;
+	}
 };

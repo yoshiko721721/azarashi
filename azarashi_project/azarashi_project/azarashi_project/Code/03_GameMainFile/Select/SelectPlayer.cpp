@@ -39,6 +39,12 @@ void SelectPlayer::Update(int selectStage)//背景のアップデート(いらない気がする)
 		pos.y = -190;
 		break;
 	}
+	case 4:
+	{
+		pos.x = -800;
+		pos.y =  425;
+		break;
+	}
 	default:
 		break;
 	}
