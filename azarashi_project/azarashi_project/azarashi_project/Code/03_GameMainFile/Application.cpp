@@ -9,9 +9,11 @@
 #include "Load/LoadScene.h"
 #include "Select/SelectScene.h"
 #include "Test/TestStageScene_Nakae.h"
+#include "Game/Stage1-1Scene.h"
 #include "Test/TestScene_You.h"
 #include "../07_Camera/Camera.h"
 #include "../06_Scene/TestSceneNishiguchi.h"
+#include "StageSelectScene/StageSelectScene.h"
 
 Application* Application::m_Instance;		//インスタンス
 
@@ -112,7 +114,7 @@ void Application::ChangeScene(SceneList sName)
 		case TESTSCENE:
 		{
 			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
-			m_Instance->m_Scene = new TestStageScene_Nakae(textures); // メモリを確保
+			m_Instance->m_Scene = new StageScene(textures); // メモリを確保
 			m_Instance->m_Scene->Init();
 			break;
 		}

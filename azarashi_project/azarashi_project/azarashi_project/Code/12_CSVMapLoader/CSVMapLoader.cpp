@@ -38,6 +38,10 @@ void CSVMapLoader::CountRowsAndColumns()
         data.push_back(row); 
         rowCount++; 
     }
+
+	stagewide = data[1][1];
+	stagehigt = data[1][2];
+
 }
 
 ID3D11ShaderResourceView* CSVMapLoader::LoadTexture(const wchar_t* filename)
@@ -99,28 +103,43 @@ void CSVMapLoader::LoadTextures()
 	std::cout << "四角い岩を読み込みました" << std::endl;*/
 }
 
-int CSVMapLoader::PrintValueAt(int row, int col)
+int CSVMapLoader::GetStageWidth(int row, int col)
 {
+	int width = 0;
     if (row < data.size() && col < data[row].size()) {
-        int value = data[row][col];
-        std::cout << "Value at [" << row << "][" << col << "]: " << value << std::endl;
+        width = data[row][col];
     }
     else {
         std::cerr << "Error: Index out of range" << std::endl;
     }
 
-    return data[row][col];
+    return width;
+}
+
+int CSVMapLoader::GetStageHeight (int row, int col)
+{
+	int heigh = 0;
+	if (row < data.size() && col < data[row].size())
+	{
+		heigh = data[row][col];
+	}
+	else 
+	{
+		std::cerr << "Error: Index out of range" << std::endl;
+	}
+
+	return heigh;
 }
 
 GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MySceneObjects)
 {
 	GamePointer* p_player = nullptr;
 	//128*128なので縦はMAX8マス横はMAX15マス
-	int Platformcount = 1;//壁やらなんやらは何マス繋がっておかれているのかを調べる
+	//int Platformcount = 1;//壁やらなんやらは何マス繋がっておかれているのかを調べる
 	int count = 0;//確認用
-	float x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
-	float y = SCREEN_HEIGHT / 2 - BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
-	for (int i = 0; i < rowCount; i++)//CSVに入っているマス分回す
+	float x = SCREEN_WIDTH  * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
+	float y = SCREEN_HEIGHT * -1 / 2 + BLOCKSIZE / 2;//どこからスタートするかどうか(変更可能性高め)
+	for (int i = rowCount - 1; i > -1; i--)//CSVに入っているマス分回す
 	{
 		for (int j = 0; j < colCount; j++)
 		{
@@ -128,12 +147,12 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			{
 			case NULLSPACE://なにもないなら
 			{
-				count++;
+				//count++;
 				break;
 			}
 			case FLOOR://床なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, BLOCKSIZE, BLOCKSIZE);//m
+				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 1152, BLOCKSIZE, stagewide, stagehigt);//m
 				newChip->SetTexture(textures[data[i][j]]);//テクスチャをSetする
 				newChip->Init();//初期化
 				m_MySceneObjects->emplace_back(newChip);
@@ -143,12 +162,12 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case WALL://壁なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE);
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE,stagewide,stagehigt);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
-				count++;
+				//count++;
 				break;
 			}
 			case PLAYER://プレイヤーなら
@@ -160,7 +179,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 				//プレイヤーのみ複製します
 				p_player = newChip;
 				//x += 64
-				count++;
+				//count++;
 				break;
 			}
 
@@ -172,29 +191,29 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 				m_MySceneObjects->emplace_back(newChip);
 				
 				//x += 64;
-				count++;
+				//count++;
 				break;
 			}
-			/*case FLAT_PLATFORM:
+			case FLAT_PLATFORM:
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, 64, 64);
+				auto newChip = Application::GetInstance()->AddObject<MoveGameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
-				count++;
+				//count++;
 				break;
-			}*/
-			/*case BREAK_PLATFORM:
+			}
+			case BREAK_PLATFORM:
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE);
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE, stagewide, stagehigt);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
-				count++;
+				//count++;
 				break;
-			}*/
+			}
 			case HEAYVMOVING_PLATFORM://動く床(重い)なら
 			{
 				auto newChip = Application::GetInstance()->AddObject<MoveGameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
@@ -202,7 +221,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
-				count++;
+				//count++;
 				break;
 			}
 			case LIGHTMOVING_PLATFORM://動く床(軽い)なら
@@ -286,8 +305,8 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}*/
 			x += BLOCKSIZE;
 		}
-		y -= BLOCKSIZE;
-		x = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;
+		y += BLOCKSIZE;
+		x  = SCREEN_WIDTH * -1 / 2 + BLOCKSIZE / 2;
 	}
 
 	return p_player;

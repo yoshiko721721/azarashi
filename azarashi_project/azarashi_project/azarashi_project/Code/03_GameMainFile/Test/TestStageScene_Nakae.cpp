@@ -9,11 +9,8 @@ TestStageScene_Nakae::TestStageScene_Nakae(std::vector<ID3D11ShaderResourceView*
 
 void TestStageScene_Nakae::Init()
 {	
-	//testFloor.Init();
-	//testWall.Init();
-	//std::vector<ID3D11ShaderResourceView*> textures(BlockType_MAX); // ベクターを初期化 
-    //SVMapLoader csvMapLoader(textures); // textures ベクターを渡して初期化 
-	m_MySceneObjects.emplace_back(Application::GetInstance()->AddObject<GameBackGround>());//地形
+	//m_MySceneObjects.emplace_back(Application::GetInstance()->AddObject<GameBackGround>());//地形
+	backGround.Init();
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();
 	csvMapLoader.FileClose();
@@ -29,33 +26,27 @@ void TestStageScene_Nakae::Init()
 
 	csvMapLoader.LoadTextures(); //texturesベクターを渡さずに呼び出し
 	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
-	//csvMapLoader.PrintValueAt(3, 6);
+	//Player.Init();
+	Camera::Lock(p_Player);
 }
 
 void TestStageScene_Nakae::Update()
 {
+	backGround.Update();
 	SDL_Event& e = Controller::Input::e;
-	while (SDL_PollEvent(&e) != 0)
+	for (auto& o : m_MySceneObjects)
+	{
+			o->Update(); // 各オブジェクトの描画メソッドを呼び出
+	}
+	if (SDL_PollEvent(&e) != 0)
 	{
 		Controller::Input::e = e; // イベントをController::Input::eに設定 
-		//testWall.Update();
-		//testFloor.Update();
-		for (auto& o : m_MySceneObjects)
-		{
-			o->Update(); // 各オブジェクトの描画メソッドを呼び出
-		}
-
-		//p_Player->Update()
-	 	//DirectX::XMFLOAT3 pos = Player.GetPos();
-		/*for (auto& o : m_MySceneObjects)
-		{
-			o->Update(); // 各オブジェクトの描画メソッドを呼び出
-		}*/
+		
+		//Player.Update();
 		if (e.type == SDL_CONTROLLERBUTTONDOWN)
 		{	
 			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
 			{
-				std::cout << "Xボタンが押されました！" << std::endl;
 				Application::GetInstance()->ChangeScene(GAMESCENE);
 				return;
 			}
@@ -66,30 +57,23 @@ void TestStageScene_Nakae::Update()
 
 void TestStageScene_Nakae::Draw()
 {
-	//testFloor.Draw();
-	//testWall.Draw();
+	backGround.Draw();
 	for (auto& o : m_MySceneObjects)
 	{
 		o->Draw(); // 各オブジェクトの描画メソッドを呼び出
 	}
-	/*if (pause.isPaused() == true)
-	{
-		pauseText.Draw();
-	}*/
-
-	//timer.Draw();*/
+	//Player.Draw();
 }
 
 void TestStageScene_Nakae::Uninit()
-{
-	testFloor.Uninit();
-	testWall.Uninit();
-	//pauseText.Uninit();
-	// このシーンのオブジェクトを削除する 
+{	
+	backGround.Uninit();
 	for (auto& o : m_MySceneObjects)
 	{
 		Application::GetInstance()->DeleteObject(o.get()); // .get()を追加
 	}
+
+	Camera::UnLock();
 }
 
 void TestStageScene_Nakae::SetPlayer()

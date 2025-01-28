@@ -82,6 +82,13 @@ bool GetGyroData(SDL_GameController* controller, float* gyroData);
 #define VK_Y 0x59
 #define VK_Z 0x5A
 
+enum PUSH_TYPE
+{
+	PUPS_A = 0,
+	PUPS_B = 0,
+	PUPS_X = 0,
+	PUPS_Y = 0
+};
 
 namespace Controller
 {
@@ -108,6 +115,7 @@ namespace Controller
 
 		~Input(); //デストラクタ
 		static void Update(); //更新
+		static void ControllerUpdate(){}
 		static SDL_Event e;
 		static SDL_GameController* controller;
 		static SDL_Joystick* joystick;
@@ -131,9 +139,12 @@ namespace Controller
 		static bool GetButtonTrigger(WORD btn); //トリガー(押し始めた時)
 		static bool GetButtonRelease(WORD btn); //リリース(押し終わった時)
 
+		static int push;
 
-
-
+		static bool push_A; //Aボタンを押したかどうか
+		static bool push_B; //Bボタンを押したかどうか
+		static bool push_X; //Xボタンを押したかどうか
+		static bool push_Y; //Yボタンを押したかどうか
 
 		//振動(コントローラー)
 		//flame：振動を継続する時間(単位：フレーム)

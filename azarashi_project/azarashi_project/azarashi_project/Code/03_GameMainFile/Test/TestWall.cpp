@@ -11,21 +11,27 @@ void TestWall::Init()
 
 void TestWall::Update()
 {
-     SDL_Event& e = Controller::Input::e;
-     if (e.type == SDL_CONTROLLERBUTTONDOWN)
-     {
-        if (e.cbutton.button == SDL_CONTROLLER_BUTTON_X)
-        {
-            float angle = 0; // スケーリング係数を調整 
-            SetAngle(angle);
-        }
-     }
+    
+    if (Input::GetButtonTrigger(XINPUT_X))
+    {
+        float angle = 0; // スケーリング係数を調整 
+        SetAngle(angle);
+    }
 
     float gyroData[3] = {0}; // x, y, z軸
     if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
     {
         float angle = GetAngle();
         angle += gyroData[1] * 1.0f; // スケーリング係数を調整 
+        if (angle > 30)
+        {
+            angle = 30;
+        }
+        else if (angle < -30)
+        {
+            angle = -30;
+        }
+
         SetAngle(angle);
     }
 }

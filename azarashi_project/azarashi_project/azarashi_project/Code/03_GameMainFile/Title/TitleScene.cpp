@@ -12,6 +12,7 @@ void TitleScene::Init()
 	titleLogo.Init();
 	teamLogo.Init();
 	fade.Init();
+	sound.Play(SOUND_LABEL_BGM1);
 	//sound.Init();
 	//sound.Play(SOUND_LABEL_BGM1);
 }
@@ -22,6 +23,7 @@ void TitleScene::Update()
 	{
 		if (!isFading)
 		{
+			sound.Stop(SOUND_LABEL_BGM1);
 			teamLogoCount++;
 			if(teamLogoCount == 90)
 			{
@@ -48,24 +50,18 @@ void TitleScene::Update()
 	else
 	{
 		backGroundpab.Update();
-		SDL_Event& e = Controller::Input::e;
+
 		if (!isFading)
 		{
-			while (SDL_PollEvent(&e) != 0)
+
+			if (Input::GetButtonTrigger(XINPUT_B))
 			{
-				Controller::Input::e = e; // ƒCƒxƒ“ƒg‚ðController::Input::e‚ÉÝ’è
-				if (e.type == SDL_CONTROLLERBUTTONDOWN)
-				{
-					if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
-					{
-						sound.Play(SOUND_LABEL_SE1);
-						isFading = true;
-						fade.SetisFading(isFading);
-						fade.SetMode(FADEOUT);
-						//Application::GetInstance()->ChangeScene(TESTSCENE);
-					}
-				}
+				sound.Play(SOUND_LABEL_SE1);
+				isFading = true;
+				fade.SetisFading(isFading);
+				fade.SetMode(FADEOUT);
 			}
+
 		}
 		else
 		{

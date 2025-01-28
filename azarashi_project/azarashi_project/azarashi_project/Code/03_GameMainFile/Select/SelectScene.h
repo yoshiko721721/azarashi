@@ -11,6 +11,7 @@
 #include "SelectCursorR.h"
 #include "SelectPlayer.h"
 #include "../../09_Sound/sound.h"
+#include "SelectTitleBackUI.h"
 
 class SelectScene : public Scene
 {
@@ -27,6 +28,8 @@ private:
 	SelectCursorL cursorL;
 	SelectCursorR cursorR;
 	SelectPlayer selectPlayer;
+	TitleBackUI titleBackUI;
+
 	FadeEffect fade;  //フェード用の黒い画像など
 	bool isFading = true;//フェードが終わっているか
 	int selectPage = 0;
