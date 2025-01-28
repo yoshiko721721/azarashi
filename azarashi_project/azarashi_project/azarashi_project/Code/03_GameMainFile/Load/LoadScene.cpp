@@ -11,11 +11,10 @@ void LoadScene::Init()
 void LoadScene::Update()
 {
 	loadSceneCount++;
-	SDL_Event& e = Controller::Input::e;
 	if (loadSceneCount >= 120)
 	{
 		backGroundpab.Update();
-		if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B){
+		if (Input::GetButtonTrigger(XINPUT_B)){
 
 			Application::GetInstance()->ChangeScene(GAMESCENE);
 		}

@@ -8,7 +8,7 @@ void LoadBackGround::Init()
 	std::srand(std::time(0));
 
 	// —”‚ğ¶¬
-	int random_number = std::rand() % 3;
+	int random_number = std::rand() % 5;
 	switch (random_number)
 	{
 	case 0:
@@ -16,9 +16,15 @@ void LoadBackGround::Init()
 		break;
 	case 1:
 		Initialize(L"Asset/pic/Loading02.png");   //”wŒi‚ğ‰Šú‰»
-		break; 
+		break;
 	case 2:
 		Initialize(L"Asset/pic/Loading03.png");   //”wŒi‚ğ‰Šú‰»
+		break;
+	case 3:
+		Initialize(L"Asset/pic/Loading04.png");   //”wŒi‚ğ‰Šú‰»
+		break;
+	case 4:
+		Initialize(L"Asset/pic/Loading05.png");   //”wŒi‚ğ‰Šú‰»
 		break;
 	default:
 		break;
