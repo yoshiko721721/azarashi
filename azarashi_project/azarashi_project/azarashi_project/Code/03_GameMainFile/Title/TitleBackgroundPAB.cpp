@@ -31,3 +31,34 @@ void TitleBackGroundPAB::Update(void)
 	}
 	SetColor(Color.x,Color.y,Color.z,Color.w);
 }
+
+/*
+bool wflg = true;
+
+void TitleBackGroundPAB::Update(void)
+{
+	DirectX::XMFLOAT4 Color = GetColor();
+	titleBackGroundCount++;
+
+	if (titleBackGroundCount == 1)
+	{
+		if (Color.w <= 0.5)
+		{
+			wflg = true;
+		}
+		else if (Color.w >= 1)
+		{
+			wflg = false;
+		}
+		if (wflg == true) {
+			Color.w += 0.01;
+		}
+		else if(wflg == false)
+		{
+			Color.w -= 0.01;
+		}
+		titleBackGroundCount = 0;
+	}
+	SetColor(Color.x,Color.y,Color.z,Color.w);
+}
+*/

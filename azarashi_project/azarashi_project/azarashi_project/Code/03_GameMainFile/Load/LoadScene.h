@@ -1,11 +1,13 @@
 #pragma once
 #include "../../06_Scene/Scene.h"
 #include "LoadBackGround.h"
+#include "../Title/TitleBackGroundPAB.h"
 
 class LoadScene : public Scene
 {
 private:
 	LoadBackGround backGround;
+	TitleBackGroundPAB backGroundpab;
 public:
 	LoadScene() {};
 	~LoadScene() {  }
