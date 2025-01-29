@@ -23,8 +23,8 @@ void LoadScene::Update()
 
 void LoadScene::Draw()
 {
-	backGroundpab.Object::Draw();
 	backGround.Object::Draw();
+	backGroundpab.Object::Draw();
 }
 void LoadScene::Uninit()
 {
