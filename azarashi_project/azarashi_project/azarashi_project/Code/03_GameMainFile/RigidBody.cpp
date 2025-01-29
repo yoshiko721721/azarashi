@@ -1,18 +1,14 @@
 #include "RigidBody.h"
 #include "../08_Collider/BoxCollider.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace Math;
-
-void RigidBody::Update()
-{
-	//TimeCounter(FRAMERATE);
-}
+using namespace DirectX;
 
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //				時間
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-
 
 /// <summary>
 /// 角度を反映した処理
@@ -29,11 +25,16 @@ void RigidBody::TimeCounter()
 {
 	time = (1 / FRAMERATE);
 }
-
 //時間のリセット
 void RigidBody::TimeReset()
 {
 	time = 0.01f;
+}
+
+
+
+RigidBody::RigidBody()
+{
 }
 
 //自由落下
@@ -41,48 +42,33 @@ void RigidBody::FreeFall(float time)
 {
 	vector.y += -0.5 * g * time * mag;	//速度
 }
-
 //反発の計算
 void RigidBody::Repulsion()
 {
-	vectorNum = CalcSquareRoot(vector.x, vector.y);
 
-	float reflectedX = vectorNum * cos(fainalNormalAngle);
-	float reflectedY = vectorNum * sin(fainalNormalAngle);
+	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
 
-	vector.x = reflectedX * restitution;
-	vector.y = reflectedY * restitution;
+	Vector2 refrected = { vectorNum * cos(finalNormalAngle), vectorNum * sin(finalNormalAngle) };
+	vector = refrected * restitution;
 
-	vectorNum = CalcSquareRoot(vector.x, vector.y);
-
-	if (vectorNum < 0.8) {
-		//vector.x = 0;
-		//vector.y = 0;
-	}
-
+	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
 
 }
-
 //力の追加
 void RigidBody::AddForce(float forceX, float forceY)
 {
-	float forceNum = CalcSquareRoot(forceX, forceY);
-
-	vector.x += forceNum * cos(fainalNormalAngle);
-	vector.y += forceNum * sin(fainalNormalAngle);
+	vector.x += forceX;
+	vector.y += forceY;
 }
 
 //転がる処理
-void RigidBody::HorizonUpdate(float friction, float speed)
+void RigidBody::HorizonUpdate(Object& player, Object& block, float friction, float speed)
 {
-
 	Vector2 velocity = 0;
+	velocity.x = cosf(-finalNormalAngle) * speed * (1 - friction);
+	velocity.y = sinf(-finalNormalAngle) * speed * (1 - friction);
 
-	velocity.x = cosf(-fainalNormalAngle) * speed * (1 - friction);
-	velocity.y = sinf(-fainalNormalAngle) * speed * (1 - friction);
-
-	vector.x = velocity.x;
-	vector.y = velocity.y;
+	vector = velocity;
 
 }
 
@@ -95,10 +81,9 @@ void RigidBody::DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber)
 		vector.x -= vector.x * (1 - m_damping);
 	}
 }
-
 bool RigidBody::isHorizonOrVertical(float boxAngle)
 {
-	boxAngle = fmod(boxAngle, 360);
+	boxAngle = NormalizeDegree(boxAngle);
 	if (boxAngle == 0 || boxAngle == 90 ||
 		boxAngle == 180 || boxAngle == 270) {
 		return true;
@@ -110,50 +95,47 @@ bool RigidBody::isHorizonOrVertical(float boxAngle)
 /// @param clossPoint 接地点
 /// @param circle 円の情報
 /// @param block 四角形の情報
-void RigidBody::CalcFainalNormalAngle(XMFLOAT2 clossPoint, Object& circle, Object& block)
+
+void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block)
 {
-	Vector2 normal = { circle.GetPos().x - clossPoint.x , circle.GetPos().y - clossPoint.y }; //接地点から円の中心へのベクトルを計算
+	// 接地点から円の中心へのベクトルを計算
+	Vector2 normal = { circle.GetPos().x - collision.closspoint.x , circle.GetPos().y - collision.closspoint.y };
 
-	float normalAngle = atan2(normal.y, normal.x);				//法線ベクトルの角度
-	normalAngle = Math::MaintenanceRadian(normalAngle);			//角度のメンテナンス
+	//法線ベクトルの角度
+	Radian nrmAngleR = NormalizeRadian(atan2(normal.y, normal.x));	//0~360に正規化		
+	Degree nrmAngleD = ConvertToDegree((nrmAngleR));
 
-	normalVector = Math::Normalize(normal);						//絶対値で正規化
-	normalVector = { normalVector.x * cos(normalAngle),
-					 normalVector.y * sin(normalAngle) };
+	switch (collision.checkCollision) {
+	case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90 + block.GetAngle(), 180 + block.GetAngle())); break;
+	case LEFTDOWN:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 180 + block.GetAngle(), 270 + block.GetAngle())); break;
+	case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0 + block.GetAngle(), 90 + block.GetAngle())); break;
+	case RIGHTDOWN: nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 270 + block.GetAngle(), 360 + block.GetAngle())); break;
+	}
 
-	fainalNormalAngle = normalAngle;
-
-	std::cout << "接地点 x = " << clossPoint.x << "\t";
-	std::cout << "接地点 y = " << clossPoint.y << "\t";
-	std::cout << "法線の角度 : " << normalAngle * Math::ConvertDegreeToMethod() << "\n";
+	//最終的な角度
+	finalNormalAngle = NormalizeRadian(nrmAngleR);	//正規化
 
 }
-
-
 
 //==============================================
 //				セッター
 //==============================================
-
 //方向
 void RigidBody::SetVector(float setVX, float setVY)
 {
 	vector.x = setVX;
 	vector.y = setVY;
 }
-
 //時間
 void RigidBody::SetTime(float setTime)
 {
 	time = setTime;
 }
-
 //質量
 void RigidBody::SetMass(float setMass)
 {
 	mass = setMass;
 }
-
 //都合のいい倍率
 void RigidBody::SetMag(float setMag)
 {
@@ -163,14 +145,11 @@ void RigidBody::SetMag(float setMag)
 //==============================================
 //				ゲッター
 //==============================================
-
-
 //方向
 Vector2 RigidBody::GetVector()
 {
 	return vector;
 }
-
 //時間
 float RigidBody::GetTime()
 {
@@ -181,14 +160,12 @@ float RigidBody::GetMass()
 {
 	return mass;
 }
-
 //都合のいい倍率
 float RigidBody::GetMag()
 {
 	return mag;
 }
-
-float RigidBody::GetFainalAngle()
+float RigidBody::GetFinalAngle()
 {
-	return fainalNormalAngle;
+	return finalNormalAngle;
 }

@@ -1,8 +1,6 @@
 #include "BoxCollider.h"
 #include <algorithm>
 
-// スコープを付けてhitcorners を定義 
-DirectX::XMFLOAT2 BoxCollider::hitcorners[4];
 
 //--------------------------------------------------------------
 //傾きに合わせて長方形の角度計算関数(回転座標)
@@ -16,11 +14,6 @@ DirectX::XMFLOAT2 BoxCollider::RotatePosition(/*矩形の中心座標*/DirectX::XMFLOAT
     return result;
 }
 
-// ベクトルの内積を計算 
-float BoxCollider::dotProduct(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2)
-{ 
-    return v1.x * v2.x + v1.y * v2.y; 
-}
 
 //--------------------------------------------------------------
 //円と四角の当たり判定関数
@@ -37,29 +30,29 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_B
 
     //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
     DirectX::XMFLOAT2 halfsize = { p_Box->GetSize().x / 2, p_Box->GetSize().y / 2 };//OK
-
+    DirectX::XMFLOAT2 hitCorners[4];
     //幅の半分と高さの半分の数値を使って長方形の頂点の座標を計算する(o^―^o)
-    hitcorners[0] = { -halfsize.x , -halfsize.y };
-    hitcorners[1] = {  halfsize.x , -halfsize.y };
-    hitcorners[2] = {  halfsize.x ,  halfsize.y };
-    hitcorners[3] = { -halfsize.x ,  halfsize.y };//OK
+    hitCorners[0] = { -halfsize.x , -halfsize.y }; // AS
+    hitCorners[1] = { halfsize.x , -halfsize.y }; // SD
+    hitCorners[2] = { halfsize.x ,   halfsize.y }; // WD
+    hitCorners[3] = { -halfsize.x ,   halfsize.y }; // WA
 
     //回転後、平行移動後の座標に変換(四つ角すべて)
     for (int i = 0; i < 4; i++) {
-        hitcorners[i] = RotatePosition(hitcorners[i], angle);//長方形の各角を回転させる
-        hitcorners[i].x += p_Box->GetPos().x;//変換した矩形のXに矩形の中心座標Xを足す
-        hitcorners[i].y += p_Box->GetPos().y;//変換した矩形のYに矩形の中心座標Yを足す
-       
+        hitCorners[i] = RotatePosition(hitCorners[i], angle);//長方形の各角を回転させる
+        hitCorners[i].x += p_Box->GetPos().x;//変換した矩形のXに矩形の中心座標Xを足す
+        hitCorners[i].y += p_Box->GetPos().y;//変換した矩形のYに矩形の中心座標Yを足す
+
     }//OK
 
-    DirectX::XMFLOAT2 normalizedVector = {0.0f,0.0f};
+    DirectX::XMFLOAT2 normalizedVector = { 0.0f,0.0f };
     DirectX::XMFLOAT2 closestPoint = { 0.0f,0.0f };
 
-     // 各辺と円との距離を判定
-    for(int i = 0; i < 4; i++)
+    // 各辺と円との距離を判定
+    for (int i = 0; i < 4; i++)
     {
-        DirectX::XMFLOAT2 p1 = hitcorners[i];
-        DirectX::XMFLOAT2 p2 = hitcorners[(i + 1) % 4];
+        DirectX::XMFLOAT2 p1 = hitCorners[i];
+        DirectX::XMFLOAT2 p2 = hitCorners[(i + 1) % 4];
 
         // 辺の方向ベクトル
         DirectX::XMFLOAT2 edge = { p2.x - p1.x, p2.y - p1.y };//角から角のベクトルを図るよ
@@ -71,19 +64,27 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_B
         // 最近接点と円の中心の距離を計算
         float distanceSquared = (closestPoint.x - circlepos.x) * (closestPoint.x - circlepos.x) + (closestPoint.y - circlepos.y) * (closestPoint.y - circlepos.y);//返す値
         float radius = circlesize.y / 2.0;
-        // 距離が半径以下なら当たりと判定
         if (distanceSquared <= radius * radius)
         {
-            //DirectX::XMFLOAT2 vectorToCenter = { closestPoint.x - circlepos.x , closestPoint.y - circlepos.y };
-            //float length = sqrt(vectorToCenter.x * vectorToCenter.x + vectorToCenter.y * vectorToCenter.y);
-            //DirectX::XMFLOAT2 normalizedVector = { vectorToCenter.x / length, vectorToCenter.y / length };
-            //closscircle = closestPoint;
-            //distancesquared = distanceSquared;
+            float clossPointNum = Math::CalcSquareRoot(closestPoint.x, closestPoint.y);
+            for (int j = 0; j < 4; ++j) {
+                float hitCornerNum = Math::CalcSquareRoot(hitCorners[j].x, hitCorners[j].y);
+                float distanceNum = clossPointNum - hitCornerNum;
+                if (distanceNum < 0.0001 && distanceNum > -0.0001) {
+                    switch (j) {
+                    case 0: return{ LEFTDOWN  , closestPoint , distanceSquared };     break;
+                    case 1: return{ RIGHTDOWN , closestPoint , distanceSquared };     break;
+                    case 2: return{ RIGHTUP   , closestPoint , distanceSquared };     break;
+                    case 3: return{ LEFTUP    , closestPoint , distanceSquared };     break;
+                    }
+                }
+            }
 
-            return { true, closestPoint , distanceSquared };
+            return { COLLISION, closestPoint ,distanceSquared };
+
         }
     }
-    return { false };
+    return { NO_COLLISION, closestPoint , -1 };
 };
 //--------------------------------------------------------------
 //四角と四角の当たり判定関数
@@ -107,7 +108,7 @@ bool BoxCollider::ColliderWithBox(Object* p_Box1, Object* p_Box2)
 //-------------------当たり判定を持っている方の矩形計算--------------------------------
     //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
     DirectX::XMFLOAT2 halfsize1 = { boxsize1.x / 2,boxsize1.y / 2 };//OK
-
+    DirectX::XMFLOAT2 hitcorners[4];
     //幅の半分と高さの半分の数値を使って長方形の頂点の座標を計算する(o^―^o)
     hitcorners[0] = { -halfsize1.x , -halfsize1.y };
     hitcorners[1] = {  halfsize1.x , -halfsize1.y };

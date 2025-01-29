@@ -6,11 +6,20 @@
 #include <math.h>
 using namespace std;
 
+enum ClossPoint {
+	NO_COLLISION,
+	COLLISION,
+	LEFTUP,
+	RIGHTUP,
+	LEFTDOWN,
+	RIGHTDOWN
+};
+
 struct  ContactPointVector
 {
-	bool checkCollision;			//当たったかどうかを返すbool
+	ClossPoint checkCollision;			//当たったかどうかを返すbool
 	DirectX::XMFLOAT2 closspoint;	//円の接地点
-	float DistanceSquared;			//接地点から円の中心の正規化されたベクトル
+	float distanceSquared;			//接地点から円の中心の正規化されたベクトル
 };
 
 class BaseCollider

@@ -33,36 +33,37 @@ private:
 	float time;				//時間によって進む量が変わるため
 	float mag;				//ゲームを自然にみせるための倍率
 	bool edgeFlg;
-
+	float oldNormalAngle = 0;
 
 public:
 
-	float fainalNormalAngle;		//衝突が起こった時の最終的な法線角度
-	Vector2 vector;					//方向
+	float finalNormalAngle;		//衝突が起こった時の最終的な法線角度
 	float vectorNum;				//総合的な速度
-	Vector2 normalVector;			//法線ベクトル
+	Vector2 vector = 0;					//方向
+	Vector2 normalVector = 0;			//法線ベクトル
+
+	RigidBody();
 
 	//========================================
 	//			常に必要・反映されるもの
 	//========================================
-	void Update();	//更新処理
 	void FreeFall(float setTime);				//自由落下
 
 
 	//=======================================
 	//			条件を満たした時に反映するもの
 	//=======================================
-	void Repulsion();															//反発
+	void Repulsion();				//反発
 	void AddForce(float forceX, float forceY);									//力を加える
-	void HorizonUpdate(float friction, float speed);							//角度を考慮する計算
+	void HorizonUpdate(Object& player, Object& block, float friction, float speed);	//角度を考慮する計算
 	void DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber);		//減速処理
 
 	bool isHorizonOrVertical(float boxAngle);									//0度に対して水平か垂直かの確認
-	void CalcFainalNormalAngle(XMFLOAT2 collision, Object& circle, Object& block);
-
+	void CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block);
 
 	//角度に添ったベクトル変換
 	void VectorPruductAngle(Vector2* m_Vector, float angle, float friction);
+
 
 	//ストップウォッチ
 	void TimeCounter();
@@ -79,6 +80,6 @@ public:
 	float GetMass();				//質量
 	float GetTime();				//時間
 	float GetMag();					//ゲームを自然にみせるための倍率
-	float GetFainalAngle();			//法線の角度を返す
+	float GetFinalAngle();			//法線の角度を返す
 };
 

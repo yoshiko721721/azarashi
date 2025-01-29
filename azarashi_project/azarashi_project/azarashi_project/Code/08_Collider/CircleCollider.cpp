@@ -80,11 +80,11 @@ ContactPointVector CircleCollider::ColliderWithBox(Object* p_Box, Object* p_Circ
             //closscircle = closestPoint;
             //distancesquared = distanceSquared;
 
-            return { true, closestPoint , distanceSquared};
+            return { COLLISION, closestPoint , distanceSquared};
         }
     }
 
-    return { false };
+    return { NO_COLLISION };
 };
 //--------------------------------------------------------------
 //lŠp‚ÆlŠp‚Ì“–‚½‚è”»’èŠÖ”

@@ -29,7 +29,7 @@ public:
 	float GetCircleRadius();		//半径のゲッター
 	float GetFrictionResistance();	//摩擦抵抗のゲッター
 
-	void  RotateTexture(const float sub);					//画像を丁度よく回転
+	void  RotateTexture();					//画像を丁度よく回転
 	AZA_MODE_NUMMBER azaNum = STAND;
 	AZA_MODE_NUMMBER oldAzaNum = azaNum;
 
@@ -37,7 +37,7 @@ public:
 	bool isChangeMode();									//アザラシのモード比較
 	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット
 
-	void CorrectPosition(Object* m_Block, XMFLOAT2 clossPoint, float distanceSquared);		//座標の補正
+	void CorrectPosition(Object& block, ContactPointVector collision, float angle);		//座標の補正
 
 	float damping = 0.9f;									//減速係数
 

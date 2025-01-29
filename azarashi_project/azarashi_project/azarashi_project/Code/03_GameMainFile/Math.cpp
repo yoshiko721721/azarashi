@@ -1,34 +1,19 @@
 #include "Math.h"
 
-
-float Math::MaintenanceRadian(float radian)
+Radian Math::ConvertToRadian(Degree degree)
 {
-    if (radian < 0) {
-
-        radian += Math::tau;
-    }
-    else if (radian > Math::tau) {
-
-        radian = fmod(radian, Math::tau);
-    }
-
-    return radian;
+    return degree * (PI / 180);
 }
 
-float Math::ConvertDegreeToRadian()
+Degree Math::ConvertToDegree(Radian radian)
 {
-    return PI / 180;
-}
-
-float Math::ConvertDegreeToMethod()
-{
-    return 180 / PI;
+    return radian * (180 / PI);
 }
 
 //二つの速度から反発係数 e を返す
 float Math::CoefficientOfRestitution(float v_Initial, float v_After) {
     float e = v_After / v_Initial;
-    return ConvertAbsoluteValue(e);
+    return abs(e);
 }
 
 // 衝突前の速度を計算する関数
@@ -36,8 +21,8 @@ float Math::CalculateVelocityBeforeImpact(float setHeight, float gravity)
 {
     //必ず正の値(絶対値)にして返す
 
-    float temp = sqrt(2 * gravity * ConvertAbsoluteValue(setHeight));
-    temp = ConvertAbsoluteValue(temp);
+    float temp = sqrt(2 * gravity * abs(setHeight));
+    temp = abs(temp);
     return temp;
 }
 
@@ -48,19 +33,12 @@ double Math::calculateRestitutionCoefficient(const std::function<float()>& veloc
     return velocityAfter;
 }
 
-//絶対値にして返す
-float Math::ConvertAbsoluteValue(float AbsValue)
+Vector2 Math::CalcNormal(const Vector2& point1, const Vector2& point2)
 {
-    AbsValue = (AbsValue >= 0) ? AbsValue : -AbsValue;
-    return AbsValue;
-}
-
-
-float Math::VectorLength(Vector2& vector)
-{
-    vector.x = ConvertAbsoluteValue(vector.x);
-    vector.y = ConvertAbsoluteValue(vector.y);
-    return sqrt(vector.x * vector.x + vector.y * vector.y);
+    Vector2 normal = 0;
+    normal.x = point2.y - point1.y;
+    normal.y = point1.x - point2.x;
+    return normal.Normalize();
 }
 
 float Math::CalcSquareRoot(float x, float y)
@@ -68,17 +46,22 @@ float Math::CalcSquareRoot(float x, float y)
     return sqrt(x * x + y * y);
 }
 
-Vector2 Math::Normalize(Vector2& vector)
+Radian Math::NormalizeRadian(Radian radian)
 {
-    float length = VectorLength(vector);
-
-    return { vector.x / length , vector.y / length };
+    if (radian < 0)
+        return radian + TAU;
+    else if (radian >= TAU)
+        return fmod(radian, TAU);
+    else
+        return radian;
 }
 
-Vector2 Math::CalculateNormal(const Vector2& point1, const Vector2& point2)
+Degree Math::NormalizeDegree(Degree degree)
 {
-    Vector2 normal;
-    normal.x = point2.y - point1.y;
-    normal.y = point1.x - point2.x;
-    return Normalize(normal);
+    if (degree < 0)
+        return degree + 360;
+    else if (degree >= 360)
+        return fmod(degree, 360);
+    else
+        return degree;
 }

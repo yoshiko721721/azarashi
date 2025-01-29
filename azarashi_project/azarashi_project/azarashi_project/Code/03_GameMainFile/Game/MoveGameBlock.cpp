@@ -1,6 +1,12 @@
 #include "MoveGameBlock.h"
 #include "../../08_Collider/BoxCollider.h"
 
+MoveGameBlock::MoveGameBlock(float posX, float posY, float sizeX, float sizeY)
+{
+    SetPos(posX, posY, 0); 
+    SetSize(sizeX, sizeY, 0); 
+}
+
 MoveGameBlock::MoveGameBlock(float moveThreshold)
     : moveThreshold(moveThreshold), moveSpeed(5.0f) { // デフォルトの移動速度を設定
 }
@@ -33,9 +39,7 @@ void MoveGameBlock::Update() {
     else if (Input::GetKeyPress(VK_SPACE)) {
         SetAngle(0);
     }
+
+    GameBlock::CorrectPointerPosition();
 }
 
-float MoveGameBlock::GetFrictionRasistance()
-{
-    return frictionRasistance;
-}

@@ -25,7 +25,7 @@ void GameScene::Update()
 
 	//‰¡ˆÚ“®‚Æ˜A“®‚µ‚½‰æ‘œ‚Ì‰ñ“]
 	if (pointer.azaNum == CIRCLE) {
-		pointer.RotateTexture(block.GetFrictionRasistance());
+		pointer.RotateTexture();
 	}
 
 	if (Input::GetKeyTrigger(VK_S)) {

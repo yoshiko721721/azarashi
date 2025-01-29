@@ -12,7 +12,7 @@ Stone::~Stone() {
 
 void Stone::Update() {
     // Update the physics (RigidBody) of the stone object
-    rigidBody->Update();
+
     // You can add additional behavior specific to the Stone class here if needed
 }
 
