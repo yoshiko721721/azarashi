@@ -14,6 +14,9 @@ public:
         centerX = setcenterX;
         centerY = setcenterY;
 
+        resetPosX = startX;
+        resetPosY = startY;
+
         SetPos(pos.x, pos.y, pos.z);
         SetSize(size.x, size.y, size.z);
     }
@@ -22,6 +25,9 @@ public:
 	void Init();  //‰Šú‰»
 	void Update();//XV
 private:
-    int centerX;
-    int centerY;
+    int centerX = 1;
+    int centerY = 1;
+
+    float resetPosX;
+    float resetPosY;
 };

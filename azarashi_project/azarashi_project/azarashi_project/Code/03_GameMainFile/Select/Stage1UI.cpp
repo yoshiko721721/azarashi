@@ -1,4 +1,4 @@
-#include "Stage1UI.h"
+ #include "Stage1UI.h"
 void Stage1UI::Init()
 {
 	/*for (int i = 0; i < 4; i++)

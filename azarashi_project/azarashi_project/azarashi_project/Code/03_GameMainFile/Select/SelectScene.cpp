@@ -20,6 +20,11 @@ void SelectScene::Init()
 	titleBackUI.Init();
 	titleBackUI.Init();
 	//sound.Play(SOUND_LABEL_BGM1);
+	selectPage = 0;
+	selectStage = 0;
+
+	isFading = true;
+	fade.SetMode(FADEIN);
 }
 
 void SelectScene::Update()
@@ -29,10 +34,10 @@ void SelectScene::Update()
 
 	if (!isFading)
 	{
-			cursorR.Update(alphaR);
+		cursorR.Update(alphaR);
 		backGround.Update();
 
-		if (Input::GetButtonTrigger(XINPUT_B))
+		if (Input::GetButtonTrigger(XINPUT_B) || Input::GetKeyTrigger(VK_RETURN))
 		{
 			sound.Play(SOUND_LABEL_SE1);
 			isFading = true;

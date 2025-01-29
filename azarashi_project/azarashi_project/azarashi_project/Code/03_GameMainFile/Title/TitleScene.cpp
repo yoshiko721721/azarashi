@@ -54,7 +54,7 @@ void TitleScene::Update()
 		if (!isFading)
 		{
 
-			if (Input::GetButtonTrigger(XINPUT_B))
+			if (Input::GetButtonTrigger(XINPUT_B) || Input::GetKeyTrigger(VK_RETURN))
 			{
 				sound.Play(SOUND_LABEL_SE1);
 				isFading = true;

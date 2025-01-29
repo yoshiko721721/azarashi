@@ -166,6 +166,10 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case FLOOR://床なら
 			{
+				/*for (int k = 0; data[i][j] == data[i][j + i]; i++)
+				{ 
+				
+				}*/
 				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 1152, BLOCKSIZE, 0, 0);//m
 				newChip->SetTexture(textures[data[i][j]]);//テクスチャをSetする
 				newChip->Init();//初期化
@@ -176,8 +180,8 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case WALL://壁なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, 256, BLOCKSIZE,stagewide,stagehigt);
-				newChip->SetTexture(textures[data[i][j]]);
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y - 64, BLOCKSIZE, 3584 ,0,0);//壁を生成
+				newChip->SetTexture(textures[data[i][j]]);//textureをセット
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
@@ -187,7 +191,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			case PLAYER://プレイヤーなら
 			{
 				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, BLOCKSIZE, BLOCKSIZE);
-				newChip->SetTexture(textures[data[i][j]]);
+				newChip->SetTexture(textures[data[i][j]]);//textureをセット
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//プレイヤーのみ複製します

@@ -11,7 +11,6 @@ void GameBackGround::Init()
 
 void GameBackGround::Update(void)//背景のアップデート(いらない気がする)
 {
-
 	DirectX::XMFLOAT3 pos = GetPos();
 	SetPos(pos.x, pos.y, pos.z);
 }
