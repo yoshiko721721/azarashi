@@ -14,9 +14,9 @@ void LoadScene::Update()
 	if (loadSceneCount >= 120)
 	{
 		backGroundpab.Update();
-		if (Input::GetButtonTrigger(XINPUT_B)){
+		if (Input::GetButtonTrigger(XINPUT_B) || Input::GetKeyTrigger(VK_RETURN)){
 
-			Application::GetInstance()->ChangeScene(GAMESCENE);
+			Application::GetInstance()->ChangeScene(STAGESCENE);
 		}
 	}
 }

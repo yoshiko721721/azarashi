@@ -10,12 +10,14 @@
 #include "PauseBackGround.h"
 #include "../../11_Pause/PauseUI.h"
 #include "../../11_Pause/PauseCursor.h"
+#include "../Test/TestPointer.h"
 
 class Stage1_1Scene : public Scene
 {
 private:
 	Object sample;
 
+	TestPointer Test;
 	Pause pause;
 	PauseCursor selectPlayer;
 	//Timer timer;
@@ -34,7 +36,7 @@ private:
 
 public:
 	std::vector<std::unique_ptr<Object>> m_MySceneObjects; // このシーンのオブジェクト 
-	std::string fileName = "Code/12_CSVMapLoader/test.csv"; //ステージサイズ
+	std::string fileName = "Code/12_CSVMapLoader/Stage1_1.csv"; //ステージサイズ
 	Stage1_1Scene(std::vector<ID3D11ShaderResourceView*>& textures);
 	void Init(); //初期化 
 	void Update(); //更新 

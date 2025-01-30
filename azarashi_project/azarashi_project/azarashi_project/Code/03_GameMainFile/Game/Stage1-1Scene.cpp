@@ -16,11 +16,14 @@ void Stage1_1Scene::Init()
 	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
 	SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
 
+
+
 	backGround.Init();
 	stageExplanationUI.Init();
 	pauseBackGround.Init();
 	pauseUI.Init();
 	selectPlayer.Init();
+	Test.Init();
 	selectPlayer.SetPos(0, 0, 0);
 	Camera::Lock(p_Player);
 }
@@ -102,7 +105,9 @@ void Stage1_1Scene::Draw()
 	{
 		o->Draw(); // 各オブジェクトの描画メソッドを呼び出
 	}
-	
+
+	Test.Draw();
+
 	if (stageExplanation)
 	{
 		pauseBackGround.Draw();
@@ -115,6 +120,7 @@ void Stage1_1Scene::Draw()
 		pauseBackGround.Draw();
 		pauseUI.Draw();
 	}
+	
 
 }
 
@@ -125,6 +131,7 @@ void Stage1_1Scene::Uninit()
 	stageExplanationUI.Uninit();
 	pauseBackGround.Uninit();
 	pauseUI.Uninit();
+	Test.Uninit();
 	//Player.Uninit();
 	for (auto& o : m_MySceneObjects)
 	{

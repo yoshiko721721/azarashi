@@ -6,7 +6,7 @@
 class TestFloor:public GameBlock
 {
 public:
-    TestFloor(float startX, float startY, float sizex, float sizey, float setcenterX, float setcenterY)
+    TestFloor(float startX, float startY, float sizex, float sizey, float setcenterX, float setcenterY/*, float floorcenterX, float floorcenterY*/ )
     {
         DirectX::XMFLOAT3 pos = { startX ,startY ,0.0f };
         DirectX::XMFLOAT3 size = { sizex ,sizey ,0.0f };
@@ -16,6 +16,9 @@ public:
 
         resetPosX = startX;
         resetPosY = startY;
+
+        //floorCenterX = floorcenterX;
+        //floorCenterY = floorcenterY;
 
         SetPos(pos.x, pos.y, pos.z);
         SetSize(size.x, size.y, size.z);
@@ -30,4 +33,7 @@ private:
 
     float resetPosX;
     float resetPosY;
+
+    float floorCenterX;
+    float floorCenterY;
 };

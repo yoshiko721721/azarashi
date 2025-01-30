@@ -288,6 +288,12 @@
     <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp">
       <Filter>ソース ファイル\Pause</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\GameBlock_stop.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Goal.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -487,6 +493,12 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h">
       <Filter>ヘッダー ファイル\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameBlock_stop.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Goal.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ MoveGameBlock::MoveGameBlock(float moveThreshold)
 
 void MoveGameBlock::Init() {
         Initialize(L"Asset/pic/Box.png");   //”wŒi‚ğ‰Šú‰»
-        SetSize(600.0f, 50.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
+        //SetSize(600.0f, 50.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
         SetAngle(90.0f);                //Šp“x‚ğİ’è
         SetColor(1.0f, 1.0f, 1.0f, 1.0f);//Šp“x‚ğİ’è
     }
