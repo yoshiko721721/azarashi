@@ -11,5 +11,5 @@ public:
 	PauseCursor() {}
 	~PauseCursor() { Uninit(); }
 	void Init();
-	void Update(); //更新
+	void Update(bool pause); //更新
 };
