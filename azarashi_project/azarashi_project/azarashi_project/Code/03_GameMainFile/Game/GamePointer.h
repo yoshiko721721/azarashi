@@ -28,7 +28,6 @@ public:
 	AZA_MODE_NUMMBER azaNum = STAND;
 	AZA_MODE_NUMMBER oldAzaNum = azaNum;
 
-
 	bool isChangeMode();									//アザラシのモード比較
 	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット
 

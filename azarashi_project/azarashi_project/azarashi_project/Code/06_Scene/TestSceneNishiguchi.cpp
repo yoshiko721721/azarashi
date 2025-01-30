@@ -1,4 +1,5 @@
 #include"TestSceneNishiguchi.h"
+#include "../07_Camera/Camera.h"
 
 TestSceneNishiguchi::TestSceneNishiguchi(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
 {
@@ -21,11 +22,14 @@ void TestSceneNishiguchi::Init()
 	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
 	b_Block = Application::GetInstance()->GetObjects<GameBlock>();
 	for (auto block : b_Block) {
+		block->SetPos(1000,0,0);
 		block[0].SetPos(0, -400, 0);
 		block[0].SetAngle(0);
+
 	}
+
 	//csvMapLoader.PrintValueAt(3, 6);
-	
+	Camera::Lock(p_Player);
 }
 
 void TestSceneNishiguchi::Update()

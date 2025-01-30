@@ -17,6 +17,7 @@ public:
 	void Update();//çXêV
 
 	float GetFrictionRasistance();
+	float GetOldAngle();
 protected:
 	void CorrectPointerPosition(float angle);
 	void CorrectStonePosition(float angle);

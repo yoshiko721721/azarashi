@@ -55,6 +55,11 @@ float GameBlock::GetFrictionRasistance()
 	return frictionRasistance;
 }
 
+float GameBlock::GetOldAngle()
+{
+	return oldAngle;
+}
+
 void GameBlock::CorrectPointerPosition(float angle)
 {
 	std::vector<GamePointer*> pointers = Application::GetInstance()->GetObjects<GamePointer>();
