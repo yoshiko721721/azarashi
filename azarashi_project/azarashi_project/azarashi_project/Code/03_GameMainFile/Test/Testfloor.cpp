@@ -4,6 +4,8 @@
 
 extern float gyroData[3]; // x, y, z軸
 
+float nokosuAngle_Floor; //すみません後で名前ちゃんと考えます
+
 void TestFloor::Init()
 {
 	Initialize(L"asset/pic/Box.png");   //背景を初期化
@@ -32,20 +34,39 @@ void TestFloor::Update()
         SetPos(resetPosX, resetPosY, 0);
         SetAngle(0);
     }
+    
+
+    float angle = GetAngle();
+    DirectX::XMFLOAT3 pos = GetPos();
+
+    if (angle < 30 && angle > -30)
+    {
+        float nowAngle = gyroData[1] * 180.0 / M_PI;
+        nokosuAngle_Floor = angle + nowAngle * 0.02f;
+
+        if (nokosuAngle_Floor > 30)
+        {
+            nokosuAngle_Floor = 29;
+            return;
+        }
+        else if (nokosuAngle_Floor < -30)
+        {
+            nokosuAngle_Floor = -29;
+            return;
+        }
+
+        //SetAngle(angle);
+    }
 
    // float gyroData[3] = { 0 }; // x, y, z軸
    //if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
    // {
-        float angle = GetAngle();
-        DirectX::XMFLOAT3 pos = GetPos();
 
-        //float gyroangle = angle;
-        //std::cerr << gyroData[1] << std::endl;
-        //std::cout << "お邪魔アイテムを読み込めました" << std::endl;
+        float nowAngle = gyroData[1] * 180.0 / M_PI;
 
-        angle = gyroData[1] * 0.75f; // スケーリング係数を調整 
+        nowAngle = nowAngle * 0.02f; // スケーリング係数を調整 
 
-        float radians = angle * M_PI / 180.0;
+        float radians = nowAngle * M_PI / 180.0;
         float cosA = cos(radians);
         float sinA = sin(radians);
         //std::cout << "ラジアン: " << radians << std::endl;
@@ -63,22 +84,22 @@ void TestFloor::Update()
         pos.y = rotatedY + centerY;
 
         // 角度をラジアンで計算
-        float angleRadians = atan2(pos.y + resetPosY, pos.x + resetPosX);
+        //float angleRadians = atan2(pos.y + resetPosY, pos.x + resetPosX);
 
         // ラジアンを度数に変換
-        float angleDegrees = angleRadians * 180.0 / M_PI;
+        //float angleDegrees = angleRadians * 180.0 / M_PI;
 
-        if (angle > 30)
+        /*if (angle > 30)
         {
             angle = 30;
         }
         else if (angle < -30)
         {
             angle = -30;
-        }
+        }*/
 
         //angle += gyroData[1] * 1.0f;
-        SetAngle(angleDegrees + 90);
+        SetAngle(nokosuAngle_Floor);
         SetPos(pos.x, pos.y, pos.z);
    // }
 }

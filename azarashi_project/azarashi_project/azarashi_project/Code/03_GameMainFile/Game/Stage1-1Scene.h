@@ -10,12 +10,14 @@
 #include "PauseBackGround.h"
 #include "../../11_Pause/PauseUI.h"
 #include "../../11_Pause/PauseCursor.h"
+#include "../Test/TestPointer.h"
 
 class Stage1_1Scene : public Scene
 {
 private:
 	Object sample;
 
+	TestPointer Test;
 	Pause pause;
 	PauseCursor selectPlayer;
 	//Timer timer;

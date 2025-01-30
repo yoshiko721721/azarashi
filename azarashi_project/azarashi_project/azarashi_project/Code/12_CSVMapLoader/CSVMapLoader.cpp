@@ -182,27 +182,6 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 					k++;
 
 				}
-				/*DirectX::XMFLOAT2 pos =
-				if (fastFloor)
-				{
-					int k = 1;
-					while (data[i][j] == data[i - k][j])
-					{
-						//data[i - k][j] = 0;
-						k++;
-						if (i - k == -1)
-						{
-							break;
-						}
-					}
-
-
-				}*/
-
-				/*for (int k = 0; data[i][j] == data[i][j + i]; i++)
-				{ 
-				
-				}*/
 				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE, 0, 0);//m
 				newChip->SetTexture(FloorBlockTextures[k]);//テクスチャをSetする
 				newChip->Init();//初期化
@@ -244,7 +223,12 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 				//count++;
 				break;
 			}
+			case GOAL:
+			{
 
+
+
+			}
 			case INCLINED_PLATFORM://傾く床なら
 			{
 				int k = 1;
