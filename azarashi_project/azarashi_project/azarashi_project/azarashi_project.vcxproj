@@ -43,11 +43,13 @@
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Floor.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\GameBlock_stop.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Wall.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Goal.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Stage1-1Scene.cpp" />
@@ -138,9 +140,11 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Floor.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameBlock_stop.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Wall.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Goal.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Stage1-1Scene.h" />

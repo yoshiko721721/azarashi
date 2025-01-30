@@ -116,6 +116,13 @@ void CSVMapLoader::LoadTextures()
 
 	textures[SQUARE_ROCK] = LoadTexture(L"asset/pic/InclinedPlatform.png");
 	std::cout << "四角い岩を読み込みました" << std::endl;*/
+
+	FloorBlockTextures[9] = LoadTexture(L"asset/pic/Floor_09.png");
+	FloorBlockTextures[11] = LoadTexture(L"asset/pic/Floor_11.png");
+
+	WallBlockTextures[9] = LoadTexture(L"asset/pic/Wall_09.png");
+
+	inclined_PlatformTextures[3] = LoadTexture(L"asset/pic/Block_01_03.png");
 }
 
 //--------------------------------------------------------
@@ -150,6 +157,8 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 {
 	GamePointer* p_player = nullptr;
 	CalculateStageCenter();
+	bool fastWall = true;
+	bool fastFloor = true;
 	int count = 0;//確認用
 	float x = -startX;//どこからスタートするかどうか(変更可能性高め)
 	float y = -startY;//どこからスタートするかどうか(変更可能性高め)
@@ -166,12 +175,36 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case FLOOR://床なら
 			{
+				int k = 1;
+				while (data[i][j] == data[i][j + k])
+				{
+					data[i][j + k] = 0;
+					k++;
+
+				}
+				/*DirectX::XMFLOAT2 pos =
+				if (fastFloor)
+				{
+					int k = 1;
+					while (data[i][j] == data[i - k][j])
+					{
+						//data[i - k][j] = 0;
+						k++;
+						if (i - k == -1)
+						{
+							break;
+						}
+					}
+
+
+				}*/
+
 				/*for (int k = 0; data[i][j] == data[i][j + i]; i++)
 				{ 
 				
 				}*/
-				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x, y, 1152, BLOCKSIZE, 0, 0);//m
-				newChip->SetTexture(textures[data[i][j]]);//テクスチャをSetする
+				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE, 0, 0);//m
+				newChip->SetTexture(FloorBlockTextures[k]);//テクスチャをSetする
 				newChip->Init();//初期化
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
@@ -180,8 +213,19 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case WALL://壁なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y - 64, BLOCKSIZE, 3584 ,0,0);//壁を生成
-				newChip->SetTexture(textures[data[i][j]]);//textureをセット
+				int k = 1;
+				while (data[i][j] == data[i - k][j])
+				{
+					data[i - k][j] = 0;
+					k++;
+					if (i - k == -1)
+					{
+						break;
+					}
+				}
+
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y + 128 * (k /2) , BLOCKSIZE, BLOCKSIZE * k,0,0);//壁を生成
+				newChip->SetTexture(WallBlockTextures[k]);//textureをセット
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
@@ -191,7 +235,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			case PLAYER://プレイヤーなら
 			{
 				auto newChip = Application::GetInstance()->AddObject<GamePointer>(x, y, BLOCKSIZE, BLOCKSIZE);
-				newChip->SetTexture(textures[data[i][j]]);//textureをセット
+				//newChip->SetTexture(textures[data[i][j]]);//textureをセット
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//プレイヤーのみ複製します
@@ -203,8 +247,16 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 
 			case INCLINED_PLATFORM://傾く床なら
 			{
-				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
-				newChip->SetTexture(textures[data[i][j]]);
+				int k = 1;
+				while (data[i][j] == data[i][j + k])
+				{
+					data[i][j + k] = 0;
+					k++;
+
+				}
+
+				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE);
+				newChip->SetTexture(inclined_PlatformTextures[k]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				
@@ -214,8 +266,16 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case FLAT_PLATFORM:
 			{
-				auto newChip = Application::GetInstance()->AddObject<MoveGameBlock>(x, y, BLOCKSIZE, BLOCKSIZE);
-				newChip->SetTexture(textures[data[i][j]]);
+				int k = 1;
+				while (data[i][j] == data[i][j + k])
+				{
+					data[i][j + k] = 0;
+					k++;
+
+				}
+
+				auto newChip = Application::GetInstance()->AddObject<GameBlock_stop>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE);
+				newChip->SetTexture(inclined_PlatformTextures[k]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;
@@ -224,7 +284,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case BREAK_PLATFORM:
 			{
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y, BLOCKSIZE, BLOCKSIZE, stagewide, stagehigt);
+				auto newChip = Application::GetInstance()->AddObject<BreakBlock>(x, y, BLOCKSIZE, BLOCKSIZE, stagewide, stagehigt);
 				newChip->SetTexture(textures[data[i][j]]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);

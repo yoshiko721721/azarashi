@@ -12,11 +12,14 @@
 // 関数のプロトタイプ宣言
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+float gyroData[3] = { 0 }; // x, y, z軸
+
 //--------------------------------------------------------------------------------------
 // エントリポイント＝一番最初に実行される関数
 //--------------------------------------------------------------------------------------
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
+
 	// ウィンドウクラス情報をまとめる
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
@@ -82,7 +85,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 	//時間（単位：カウント）取得
 	QueryPerformanceCounter(&liWork);
 	long long oldCount = liWork.QuadPart;	//前回計測時の時間
-	long long nowCount = oldCount;			//今回計測時の時間
+	long long nowCount = oldCount;			//今回計測時の時間]
+
+	InitializeController();
+	SDL_Joystick* joystick = SDL_JoystickOpen(0);
+	// ジャイロセンサーを有効化
+	SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
 
 	// ゲームループ
 	while (1)
@@ -111,7 +119,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 				}
 			}*/
 
-			//Controller::Input::ControllerUpdate();
+			SDL_Event& e = Controller::Input::e;
+			if (SDL_PollEvent(&e) != 0)
+			{
+				if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
+				{
+					//std::cout << "ジャイロ数値: " << gyroData[0] << std::endl;
+				}
+			}
 
 			QueryPerformanceCounter(&liWork);	//現在時間を取得
 			nowCount = liWork.QuadPart;
@@ -141,6 +156,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 	app.Uninit();
 
 	UnregisterClass(CLASS_NAME, hInstance);
+
 
 	return (int)msg.wParam;
 }

@@ -16,6 +16,8 @@ void Stage1_1Scene::Init()
 	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
 	SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
 
+
+
 	backGround.Init();
 	stageExplanationUI.Init();
 	pauseBackGround.Init();
