@@ -19,36 +19,39 @@ void TestSceneNishiguchi::Init()
 
 	csvMapLoader.LoadTextures(); //texturesベクターを渡さずに呼び出し
 	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
+	b_Block = Application::GetInstance()->GetObjects<GameBlock>();
+	for (auto block : b_Block) {
+		block[0].SetPos(0, -400, 0);
+		block[0].SetAngle(0);
+	}
 	//csvMapLoader.PrintValueAt(3, 6);
+	
 }
 
 void TestSceneNishiguchi::Update()
 {
 	SDL_Event& e = Controller::Input::e;
-	while (SDL_PollEvent(&e) != 0)
+	Controller::Input::e = e; // イベントをController::Input::eに設定 
+	//testWall.Update();
+	//testFloor.Update();
+	for (auto& o : m_MySceneObjects)
 	{
-		Controller::Input::e = e; // イベントをController::Input::eに設定 
-		//testWall.Update();
-		//testFloor.Update();
-		for (auto& o : m_MySceneObjects)
-		{
-			o->Update(); // 各オブジェクトの描画メソッドを呼び出
-		}
+		o->Update(); // 各オブジェクトの描画メソッドを呼び出
+	}
 
-		//p_Player->Update()
-	 	//DirectX::XMFLOAT3 pos = Player.GetPos();
-		/*for (auto& o : m_MySceneObjects)
+	//p_Player->Update()
+ 	//DirectX::XMFLOAT3 pos = Player.GetPos();
+	/*for (auto& o : m_MySceneObjects)
+	{
+		o->Update(); // 各オブジェクトの描画メソッドを呼び出
+	}*/
+	if (e.type == SDL_CONTROLLERBUTTONDOWN)
+	{	
+		if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
 		{
-			o->Update(); // 各オブジェクトの描画メソッドを呼び出
-		}*/
-		if (e.type == SDL_CONTROLLERBUTTONDOWN)
-		{	
-			if (e.cbutton.button == SDL_CONTROLLER_BUTTON_B)
-			{
-				std::cout << "Xボタンが押されました！" << std::endl;
-				Application::GetInstance()->ChangeScene(GAMESCENE);
-				return;
-			}
+			std::cout << "Xボタンが押されました！" << std::endl;
+			Application::GetInstance()->ChangeScene(GAMESCENE);
+			return;
 		}
 	}
 }

@@ -18,7 +18,9 @@ public:
 
 	float GetFrictionRasistance();
 protected:
-	void CorrectPointerPosition();
+	void CorrectPointerPosition(float angle);
+	void CorrectStonePosition(float angle);
+	void CorrectSnowmanPosition(float angle);
 
 private:
 	ContactPointVector collision;

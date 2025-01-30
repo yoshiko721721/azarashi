@@ -43,6 +43,9 @@ void GamePointer::Update()//Playerのアップデート
 			m_Block = block;
 			break;
 		}
+		else {
+			now = false;
+		}
 	}
 
 	//自由落下
@@ -55,11 +58,6 @@ void GamePointer::Update()//Playerのアップデート
 	if (now)
 	{
 		body.CalcFinalNormalAngle(collision, *this, *m_Block);	//法線の角度を計算
-
-		//座標を補正
-		/*CorrectPosition(block, collision.closspoint,
-						collision.distanceSquared, block.GetAngle());*/
-
 
 		switch (behavior) {
 		case BOUND:

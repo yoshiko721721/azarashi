@@ -16,6 +16,7 @@ private:
 	TestFloor testFloor;
 	TestWall testWall;
 	GamePointer* p_Player;
+	vector<GameBlock*> b_Block;
 	//PauseText pauseText;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures ‚ğƒƒ“ƒo•Ï”‚Æ‚µ‚ÄéŒ¾ 
 	CSVMapLoader csvMapLoader;

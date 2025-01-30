@@ -40,6 +40,6 @@ void MoveGameBlock::Update() {
         SetAngle(0);
     }
 
-    GameBlock::CorrectPointerPosition();
+    GameBlock::Update();
 }
 

@@ -43,7 +43,9 @@ Vector2 Math::CalcNormal(const Vector2& point1, const Vector2& point2)
 
 float Math::CalcSquareRoot(float x, float y)
 {
-    return sqrt(x * x + y * y);
+    if (x == 0) { return y; }
+    if (y == 0) { return x; }
+    else { return sqrt(x * x + y * y); }
 }
 
 Radian Math::NormalizeRadian(Radian radian)

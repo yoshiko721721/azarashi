@@ -2,5 +2,5 @@
 
 void Floor::Update()
 {
-	GameBlock::CorrectPointerPosition();
+	GameBlock::Update();
 }
