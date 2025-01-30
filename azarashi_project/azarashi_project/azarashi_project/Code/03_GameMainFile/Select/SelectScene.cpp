@@ -46,7 +46,7 @@ void SelectScene::Update()
 			//Application::GetInstance()->ChangeScene(TESTSCENE);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_RIGHT_SHOULDER) || Input::GetKeyTrigger(VK_RIGHT))
+		if (Input::GetButtonTrigger(XINPUT_RIGHT_SHOULDER))
 		{
 			sound.Play(SOUND_LABEL_SE1);
 			
@@ -63,7 +63,7 @@ void SelectScene::Update()
 			stage4UI.Update(selectPage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_LEFT_SHOULDER) || Input::GetKeyTrigger(VK_LEFT))
+		if (Input::GetButtonTrigger(XINPUT_LEFT_SHOULDER))
 		{
 			sound.Play(SOUND_LABEL_SE1);
 			if (selectPage > 0)
@@ -78,7 +78,7 @@ void SelectScene::Update()
 			stage4UI.Update(selectPage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_LEFT) || Input::GetKeyTrigger(VK_A))
+		if (Input::GetButtonTrigger(XINPUT_LEFT))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage--;
@@ -90,7 +90,7 @@ void SelectScene::Update()
 			selectPlayer.Update(selectStage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_RIGHT) || Input::GetKeyTrigger(VK_D))
+		if (Input::GetButtonTrigger(XINPUT_RIGHT))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage++;
@@ -102,14 +102,14 @@ void SelectScene::Update()
 			selectPlayer.Update(selectStage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_UP) || Input::GetKeyTrigger(VK_W))
+		if (Input::GetButtonTrigger(XINPUT_UP))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage = 4;
 			selectPlayer.Update(selectStage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_DOWN) || Input::GetKeyTrigger(VK_S))
+		if (Input::GetButtonTrigger(XINPUT_DOWN))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage = 0;

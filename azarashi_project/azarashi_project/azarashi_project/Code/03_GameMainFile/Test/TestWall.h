@@ -14,8 +14,8 @@ public:
         centerX = setcenterX;
         centerY = setcenterY;
 
-        resetPosX = startX;//-640
-        resetPosY = startY;//128
+        resetPosX = startX;
+        resetPosY = startY;
 
         SetPos(pos.x, pos.y, pos.z);
         SetSize(size.x, size.y, size.z);
