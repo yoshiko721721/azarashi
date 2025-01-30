@@ -6,8 +6,8 @@ void StageExplanation::Init()
 		textures[i] = LoadTexture(imgname[i]);
 	}*/
 
-	//SetTexture(textures[0]);
-	Initialize(L"Asset/pic/Explanation_text.png");   //”wŒi‚ğ‰Šú‰»
+	//SetTexture(textures[0])   //”wŒi‚ğ‰Šú‰»
+	Initialize(L"Asset/pic/Explanation_text.png");
 	SetPos(0.0f, 0.0f, 0.0f);      //ˆÊ’u‚ğİ’è
 	SetSize(1920.0f, 1080.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
 	SetAngle(0.0f);                //Šp“x‚ğİ’è

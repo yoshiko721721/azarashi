@@ -3,6 +3,7 @@
 #include "SDL_main.h"
 #include "SDL_gamecontroller.h"
 #include "SDL_joystick.h"
+#include <iostream>
 //#include <DirectX.h>
 
 SDL_Event Controller::Input::e;
@@ -207,8 +208,7 @@ SDL_GameController* InitializeController()//コントローラー初期化
 		if (SDL_IsGameController(i)) {
 			Controller::Input::controller = SDL_GameControllerOpen(i);
 			if (Controller::Input::controller) {
-				//std::cout << "Controller connected: " << SDL_GameControllerName(controller) << std::endl;
-				SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
+				std::cout << "Controller connected: " << SDL_GameControllerName(Controller::Input::controller) << std::endl;
 				break;
 			}
 		}

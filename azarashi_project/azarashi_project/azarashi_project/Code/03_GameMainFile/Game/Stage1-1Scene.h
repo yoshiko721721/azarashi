@@ -7,6 +7,10 @@
 #include "../Game/MoveGameBlock.h"
 #include "../../07_Camera/Camera.h"
 #include "StageExplanation.h"
+#include "../../11_Pause/pause.h"
+#include "PauseBackGround.h"
+#include "../../11_Pause/PauseUI.h"
+#include "../../11_Pause/PauseCursor.h"
 
 class Stage1_1Scene : public Scene
 {
@@ -14,11 +18,14 @@ private:
 	Object sample;
 
 	Pause pause;
-	Timer timer;
+	PauseCursor selectPlayer;
+	//Timer timer;
 	GameBackGround backGround;
 	GamePointer* p_Player;
+	PauseBackGround pauseBackGround;
 	//TestPointer testPointer;
 	StageExplanation stageExplanationUI;
+	PauseUI pauseUI;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures ‚ğƒƒ“ƒo•Ï”‚Æ‚µ‚ÄéŒ¾ 
 	CSVMapLoader csvMapLoader;
 	SDL_Event e;

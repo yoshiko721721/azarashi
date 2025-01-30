@@ -5,6 +5,7 @@
 #include "GameCamera.h"
 #include "GamePointer.h"
 #include "GameBlock.h"
+#include "../../07_Camera/Camera.h"
 
 class GameScene : public Scene
 {

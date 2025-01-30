@@ -102,6 +102,17 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 		}
 		else
 		{
+			/*SDL_Event& e = Controller::Input::e;
+			if (SDL_PollEvent(&e) != 0)
+			{
+				if (e.type == SDL_CONTROLLERBUTTONDOWN)
+				{
+					int a = 1;
+				}
+			}*/
+
+			//Controller::Input::ControllerUpdate();
+
 			QueryPerformanceCounter(&liWork);	//åªç›éûä‘ÇéÊìæ
 			nowCount = liWork.QuadPart;
 			//1/60Ç™åoâﬂÇµÇΩÇ©ÅH

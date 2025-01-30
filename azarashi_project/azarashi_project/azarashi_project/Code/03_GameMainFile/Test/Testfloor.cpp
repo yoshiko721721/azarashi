@@ -1,50 +1,102 @@
-#include "TestFloor.h"
+ï»¿#include "TestFloor.h"
 #include "../../03_GameMainFile/Application.h" 
 #include <DirectXMath.h>
 void TestFloor::Init()
 {
-	Initialize(L"asset/pic/Box.png");   //”wŒi‚ğ‰Šú‰»
-	//SetPos(0.0f, 0.0f, 0.0f);      //ˆÊ’u‚ğİ’è
-	//SetSize(320.0f, 64.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
-	SetAngle(0.0f);                //Šp“x‚ğİ’è
-	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//Šp“x‚ğİ’è
+	Initialize(L"asset/pic/Box.png");   //èƒŒæ™¯ã‚’åˆæœŸåŒ–
+	//SetPos(0.0f, 0.0f, 0.0f);      //ä½ç½®ã‚’è¨­å®š
+	//SetSize(320.0f, 64.0f, 0.0f);  //å¤§ãã•ã‚’è¨­å®š
+	SetAngle(0.0f);                //è§’åº¦ã‚’è¨­å®š
+	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//è§’åº¦ã‚’è¨­å®š
 
 	/*if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) < 0)
 	{
-		//std::cerr << "SDL‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½BSDL_Error: " << SDL_GetError() << std::endl;
+		//std::cerr << "SDLã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€‚SDL_Error: " << SDL_GetError() << std::endl;
 		return;
 	}
 
 	InitializeController();
 
-	// ƒWƒƒƒCƒƒZƒ“ƒT[‚ğ—LŒø‰»
+	// ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µãƒ¼ã‚’æœ‰åŠ¹åŒ–
 	SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE);*/
 }
 
 void TestFloor::Update()
 {
-
+    SDL_Event& e = Controller::Input::e;
     if (Input::GetButtonTrigger(XINPUT_X))
     {
-        float angle = 0; // ƒXƒP[ƒŠƒ“ƒOŒW”‚ğ’²® 
+        float angle = 0; // ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ä¿‚æ•°ã‚’èª¿æ•´ 
+        SetPos(resetPosX,resetPosY,0);
         SetAngle(angle);
-    }
+    } 
+    
+    float gyroData[3] = { 0 }; // x, y, zè»¸
 
-    float gyroData[3] = { 0 }; // x, y, z²
-    if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
+    if (SDL_PollEvent(&e) != 0)
     {
-        float angle = GetAngle();
-        angle += gyroData[1] * 1.0f; // ƒXƒP[ƒŠƒ“ƒOŒW”‚ğ’²® 
-        if (angle > 30)
+        if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
         {
-            angle = 30;
-        }
-        else if (angle < -30)
-        {
-            angle = -30;
-        }
+            float angle = GetAngle();
+            DirectX::XMFLOAT3 pos = GetPos();
 
-        SetAngle(angle);
+            //float gyroangle = angle;
+            //std::cerr << gyroData[1] << std::endl;
+            //std::cout << "ãŠé‚ªé­”ã‚¢ã‚¤ãƒ†ãƒ ã‚’èª­ã¿è¾¼ã‚ã¾ã—ãŸ" << std::endl;
+
+            angle = gyroData[1] * 0.75f; // ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ä¿‚æ•°ã‚’èª¿æ•´ 
+
+            float radians = angle * M_PI / 180.0;
+            float cosA = cos(radians);
+            float sinA = sin(radians);
+            std::cout << "ã‚¸ãƒ£ã‚¤ãƒ­æ•°å€¤: " << gyroData[1] << std::endl;
+
+            //åº§æ¨™ã‚’åŸç‚¹ã«ã™ã‚‹
+            double tempX = pos.x - centerX;
+            double tempY = pos.y - centerY;
+
+            //å›è»¢ã•ã›ã‚‹
+            double rotatedX = tempX * cosA - tempY * sinA;
+            double rotatedY = tempX * sinA + tempY * cosA;
+
+            //positionã«å…¥ã‚Œã‚‹
+            pos.x = rotatedX + centerX;
+            pos.y = rotatedY + centerY;
+
+            // è§’åº¦ã‚’ãƒ©ã‚¸ã‚¢ãƒ³ã§è¨ˆç®—
+            float angleRadians = atan2(pos.y - centerY, pos.x - centerX);
+
+            // ãƒ©ã‚¸ã‚¢ãƒ³ã‚’åº¦æ•°ã«å¤‰æ›
+            float angleDegrees = angleRadians * 180.0 / M_PI;
+
+            if (angleDegrees > 30)
+            {
+                angleDegrees = 30;
+            }
+            else if (angleDegrees < -30)
+            {
+                angleDegrees = - 30;
+            }
+
+            //angle += gyroData[1] * 1.0f;
+            /*oldgyroData[0] = gyroData[0];
+            oldgyroData[1] = gyroData[1];
+            oldgyroData[2] = gyroData[2];*/
+            SetAngle(angleDegrees);
+            SetPos(pos.x, pos.y, pos.z);
+            /*float angle = GetAngle();
+            angle += gyroData[1] * 1.0f; // ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ä¿‚æ•°ã‚’èª¿æ•´
+            if (angle > 30)
+            {
+                angle = 30;
+            }
+            else if (angle < -30)
+            {
+                angle = -30;
+            }
+
+            SetAngle(angle);*/
+        }
     }
 }
 
