@@ -7,7 +7,6 @@
 #include "../Game/MoveGameBlock.h"
 #include "../../07_Camera/Camera.h"
 #include "StageExplanation.h"
-#include "../../11_Pause/pause.h"
 #include "PauseBackGround.h"
 #include "../../11_Pause/PauseUI.h"
 #include "../../11_Pause/PauseCursor.h"

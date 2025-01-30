@@ -8,12 +8,7 @@
 #define AZARASHI_PICTURE_CIRCLE L"Asset/pic/azarasi.png"
 #define AZARASHI_PICTURE_STAND  L"Asset/pic/point.png"
 
-struct Circle
-{
-	float radius; // ”¼Œa
-	float velocityX; // ‚’¼•ûŒü‚Ì‘¬“x
-	float velocityY; // ‚’¼•ûŒü‚Ì‘¬“x
-};
+
 
 class GamePointer :public Object
 {

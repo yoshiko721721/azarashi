@@ -5,13 +5,6 @@
 #include"../../../08_Collider/Base_collision.h"
 #include "../GameBlock.h"
 
-struct Circle
-{
-	float radius; // ”¼Œa
-	float velocityX; // ‚’¼•ûŒü‚Ì‘¬“x
-	float velocityY; // ‚’¼•ûŒü‚Ì‘¬“x
-};
-
 class Stone :public Object
 {
 public:

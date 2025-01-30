@@ -279,6 +279,15 @@
     <ClCompile Include="Code\03_GameMainFile\Load\LoadBackgroundPAB.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Load</Filter>
     </ClCompile>
+    <ClCompile Include="Code\11_Pause\PauseCursor.cpp">
+      <Filter>ソース ファイル\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\11_Pause\PauseUI.cpp">
+      <Filter>ソース ファイル\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp">
+      <Filter>ソース ファイル\Pause</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -469,6 +478,15 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Load\LoadBackgroundPAB.h">
       <Filter>ヘッダー ファイル\MainGame.h\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\11_Pause\PauseUI.h">
+      <Filter>ヘッダー ファイル\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\11_Pause\PauseCursor.h">
+      <Filter>ヘッダー ファイル\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h">
+      <Filter>ヘッダー ファイル\Pause</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

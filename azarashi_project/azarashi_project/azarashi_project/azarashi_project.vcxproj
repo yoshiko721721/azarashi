@@ -49,6 +49,7 @@
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Wall.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Stage1-1Scene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Stage1-2Scene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\StageExplanation.cpp" />
@@ -102,6 +103,8 @@
     <ClCompile Include="Code\09_Sound\sound.cpp" />
     <ClCompile Include="Code\10_Timer\Timer.cpp" />
     <ClCompile Include="Code\11_Pause\pause.cpp" />
+    <ClCompile Include="Code\11_Pause\PauseCursor.cpp" />
+    <ClCompile Include="Code\11_Pause\PauseUI.cpp" />
     <ClCompile Include="Code\12_CSVMapLoader\CSVMapLoader.cpp" />
     <ClCompile Include="Code\13_Effect\FadeEffect.cpp" />
     <ClCompile Include="Code\ReadMeText.cpp">
@@ -139,6 +142,7 @@
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Wall.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Stage1-1Scene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Stage1-2Scene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\StageExplanation.h" />
@@ -194,6 +198,8 @@
     <ClInclude Include="Code\09_Sound\sound.h" />
     <ClInclude Include="Code\10_Timer\Timer.h" />
     <ClInclude Include="Code\11_Pause\pause.h" />
+    <ClInclude Include="Code\11_Pause\PauseCursor.h" />
+    <ClInclude Include="Code\11_Pause\PauseUI.h" />
     <ClInclude Include="Code\12_CSVMapLoader\CSVMapLoader.h" />
     <ClInclude Include="Code\13_Effect\FadeEffect.h" />
   </ItemGroup>

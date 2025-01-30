@@ -5,6 +5,13 @@
 using DirectX::XMFLOAT3;
 using DirectX::XMFLOAT4;
 
+struct Circle
+{
+	float radius; // ”¼Œa
+	float velocityX; // ‚’¼•ûŒü‚Ì‘¬“x
+	float velocityY; // ‚’¼•ûŒü‚Ì‘¬“x
+};
+
 class Object {
 
 private:
