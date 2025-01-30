@@ -36,6 +36,7 @@ void Application::Init(HWND hWnd)
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) < 0)
 	{
 		std::cerr << "SDLの初期化に失敗しました。SDL_Error: " << SDL_GetError() << std::endl;
+		
 		return;
 	}
 
@@ -43,7 +44,7 @@ void Application::Init(HWND hWnd)
 	SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	//SDL_GameController* controller = SDL_GameControllerOpen(0);
 	//初期シーンをセット
-	m_Instance->m_Scene = new TitleScene(false);
+	m_Instance->m_Scene = new TitleScene(true);
 	m_Instance->m_Scene->Init();
 
 	Camera::Init();
@@ -88,6 +89,7 @@ void Application::ChangeScene(SceneList sName)
 {
 	//m_Sceneの中身がnullptrじゃ無いなら
 	if (m_Instance->m_Scene != nullptr) {
+		m_Instance->m_Scene->Uninit();
 		delete m_Instance->m_Scene;
 		m_Instance->m_Scene = nullptr;
 	}
@@ -117,7 +119,7 @@ void Application::ChangeScene(SceneList sName)
 		case STAGESCENE:
 		{
 			std::vector<ID3D11ShaderResourceView*> textures; // 適切なテクスチャの初期化を行う
-			switch (stagePage)
+			switch (stagePage)//
 			{
 			case 0:
 				if (stageCount == 0)
