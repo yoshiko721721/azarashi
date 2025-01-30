@@ -24,7 +24,11 @@ void LoadScene::Update()
 void LoadScene::Draw()
 {
 	backGround.Object::Draw();
-	backGroundpab.Object::Draw();
+
+	if (loadSceneCount >= 120)
+	{	
+			backGroundpab.Object::Draw();
+	}
 }
 void LoadScene::Uninit()
 {
