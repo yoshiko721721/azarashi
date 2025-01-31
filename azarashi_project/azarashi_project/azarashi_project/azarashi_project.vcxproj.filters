@@ -132,16 +132,17 @@
     <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
+=======
+    <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp">
+>>>>>>> Stashed changes
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GamePointer.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Title\TitleCamera.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
     </ClCompile>
     <ClCompile Include="Code\07_Camera\Camera.cpp">
@@ -237,9 +238,6 @@
     <ClCompile Include="Code\03_GameMainFile\Select\SelectPlayer.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorR.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Title\TeamLogo.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
     </ClCompile>
@@ -285,6 +283,7 @@
     <ClCompile Include="Code\03_GameMainFile\Game\Goal.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game\Block</Filter>
     </ClCompile>
@@ -302,6 +301,19 @@
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Test\TestWall.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Test</Filter>
+=======
+    <ClCompile Include="Code\03_GameMainFile\Game\GameClearUI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameStartUI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Select\SelectCursorR.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameGimmickUI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+>>>>>>> Stashed changes
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -479,6 +491,7 @@
     <ClInclude Include="Code\03_GameMainFile\Game\Goal.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="Code\03_GameMainFile\Game\GameBlock.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game\Block</Filter>
     </ClInclude>
@@ -508,6 +521,16 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game\Block</Filter>
+=======
+    <ClInclude Include="Code\03_GameMainFile\Game\GameClearUI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameStartUI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameGimmickUI.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+>>>>>>> Stashed changes
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
