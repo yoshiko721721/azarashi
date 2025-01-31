@@ -80,7 +80,7 @@ void GamePointer::Update()//Playerのアップデート
 			}
 
 			//ジャンプ
-			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_B)) {
+			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) {
 				body.AddForce(0.0f, 25.0f);
 				behavior = BOUND;
 			}
@@ -97,7 +97,7 @@ void GamePointer::Update()//Playerのアップデート
 
 	//モード切り替え
 	if (Input::GetKeyPress(VK_T) ||
-		(Input::GetButtonPress(XINPUT_LEFT_SHOULDER))) {
+		(Input::GetButtonPress(XINPUT_LEFT_SHOULDER) || Input::GetButtonPress(XINPUT_RIGHT_SHOULDER))) {
 		SetAzaNum(CIRCLE);
 	}
 	else {
