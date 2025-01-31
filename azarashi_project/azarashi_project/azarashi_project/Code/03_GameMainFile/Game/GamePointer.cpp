@@ -36,6 +36,7 @@ void GamePointer::Init()
 
 void GamePointer::Update()//Playerのアップデート
 {
+	Controller::Input::Update();
 	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
 	int hitObj = 0;
 	for (auto& block : blocks) {
@@ -96,11 +97,12 @@ void GamePointer::Update()//Playerのアップデート
 
 
 	//モード切り替え
-	if (Input::GetKeyPress(VK_T) ||
-		(Input::GetButtonPress(XINPUT_LEFT_SHOULDER) || Input::GetButtonPress(XINPUT_RIGHT_SHOULDER))) {
+	if ((Controller::Input::GetLeftTrigger() > 0 && Controller::Input::GetLeftTrigger() <= 1) && (Controller::Input::GetRightTrigger() >= 0 && Controller::Input::GetRightTrigger() <= 1))
+	{
 		SetAzaNum(CIRCLE);
 	}
-	else {
+	else 
+	{
 		SetAzaNum(STAND);
 	}
 	//モードチェンジ
