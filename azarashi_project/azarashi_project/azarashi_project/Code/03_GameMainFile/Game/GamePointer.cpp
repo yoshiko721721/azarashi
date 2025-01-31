@@ -80,7 +80,7 @@ void GamePointer::Update()//Playerのアップデート
 			}
 
 			//ジャンプ
-			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_X)) {
+			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_B)) {
 				body.AddForce(0.0f, 25.0f);
 				behavior = BOUND;
 			}
@@ -89,9 +89,9 @@ void GamePointer::Update()//Playerのアップデート
 			CorrectPosition(*m_Block, myCollision, m_Block->GetAngle());
 
 		}
-		else {
-			behavior = BOUND;
-		}
+	}
+	else {
+		behavior = BOUND;
 	}
 
 

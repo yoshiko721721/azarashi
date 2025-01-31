@@ -45,7 +45,7 @@ void GameBlock::Update(void)//足場のアップデート
 
 	size_t sizeCast = pointers.size() + stones.size() + snowmans.size();
 	int objSize = static_cast<int>(sizeCast);
-	bool myHit[8], otherHit[8];
+	bool myHit[8], otherHit[8], blockHit = false;
 	for (int i = 0; i < 8; ++i)
 	{
 		myHit[i] = false;
