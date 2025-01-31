@@ -23,7 +23,7 @@ void Stage1_1Scene::Init()
 	pauseBackGround.Init();
 	pauseUI.Init();
 	selectPlayer.Init();
-	Test.Init();
+	//Test.Init();
 	selectPlayer.SetPos(0, 0, 0);
 	clearUI.Init();
 	gimmickUI.Init();
@@ -144,6 +144,7 @@ void Stage1_1Scene::Update()//8,6
 				fade.SetMode(FADEOUT);
 				if (fade.Update(0.06))
 				{
+					sound.Stop(SOUND_LABEL_BGM2);
 					Application::GetInstance()->ChangeScene(SELECTSCENE);
 				}
 			}

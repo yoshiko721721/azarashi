@@ -1,15 +1,15 @@
-#include "Stage1-3Scene.h" 
+#include "Stage2-1Scene.h" 
 #include "../../03_GameMainFile/Application.h" 
 
 extern Sound sound;
 
-Stage1_3Scene::Stage1_3Scene(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
+Stage2_1Scene::Stage2_1Scene(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
 {
 
 
 }
 
-void Stage1_3Scene::Init()
+void Stage2_1Scene::Init()
 {
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();	//行列を数える
@@ -27,12 +27,13 @@ void Stage1_3Scene::Init()
 	selectPlayer.SetPos(0, 0, 0);
 	clearUI.Init();
 	gimmickUI.Init();
+	menu.Init();
 	//goal.Init();
 	sound.Play(SOUND_LABEL_BGM2);
 	Camera::Lock(p_Player);
 }
 
-void Stage1_3Scene::Update()//8,6
+void Stage2_1Scene::Update()//8,6
 {
 	if (stageExplanation)
 	{
@@ -61,6 +62,10 @@ void Stage1_3Scene::Update()//8,6
 					{
 						// Goalクラス特有の処理をここに記述
 						isGoalAchieved = goal->GetGoal(); // 例: Goalクラスの特別なメソッドを呼び出し
+						if (isGoalAchieved)
+						{
+							sound.Play(SOUND_LABEL_SE5);
+						}
 					}
 				}
 
@@ -150,7 +155,7 @@ void Stage1_3Scene::Update()//8,6
 	}
 }
 
-void Stage1_3Scene::Draw()
+void Stage2_1Scene::Draw()
 {
 	backGround.Draw();
 	
@@ -160,6 +165,7 @@ void Stage1_3Scene::Draw()
 		o->Draw(); // 各オブジェクトの描画メソッドを呼び出
 	}
 	gimmickUI.Draw();
+	menu.Draw();
 	Test.Draw();
 
 	if (stageExplanation)
@@ -183,7 +189,7 @@ void Stage1_3Scene::Draw()
 	fade.Draw();
 }
 
-void Stage1_3Scene::Uninit()
+void Stage2_1Scene::Uninit()
 {
 	p_Player = nullptr;
 	Camera::UnLock();
@@ -195,6 +201,7 @@ void Stage1_3Scene::Uninit()
 	pauseUI.Uninit();
 	Test.Uninit();
 	gimmickUI.Uninit();
+	menu.Uninit();
 	clearUI.Uninit();
 	//Player.Uninit();
 	for (auto& o : m_MySceneObjects)

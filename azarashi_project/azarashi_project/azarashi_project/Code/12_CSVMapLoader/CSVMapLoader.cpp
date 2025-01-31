@@ -81,6 +81,7 @@ void CSVMapLoader::LoadTextures()
         std::cerr << "Error: textures vector size is less than BlockType_MAX" << std::endl;
         return;
     }
+
 	textures[NULLSPACE] = LoadTexture(L"asset/pic/empty.png");
 	std::cout << "‰½‚à‚È‚¢“Ç‚Ýž‚ß‚Ü‚µ‚½" << std::endl;
 
@@ -102,14 +103,14 @@ void CSVMapLoader::LoadTextures()
 	textures[FLAT_PLATFORM] = LoadTexture(L"asset/pic/Block_04.png");
 	std::cout << "ŒX‚©‚È‚¢‘«ê“Ç‚Ýž‚ß‚Ü‚µ‚½" << std::endl;
 
-	textures[BREAK_PLATFORM] = LoadTexture(L"asset/pic/Block_03.png");
+	/*textures[BREAK_PLATFORM] = LoadTexture(L"asset/pic/Block_03.png");
 	std::cout << "•ö‚ê‚é°‚ð“Ç‚Ýž‚ß‚Ü‚µ‚½" << std::endl;
 
 	textures[HEAYVMOVING_PLATFORM] = LoadTexture(L"asset/pic/Block_02.png");
 	std::cout << "“®‚­°(d‚¢)“Ç‚Ýž‚ß‚Ü‚µ‚½" << std::endl;
 
 	textures[LIGHTMOVING_PLATFORM] = LoadTexture(L"asset/pic/Block_05.png");
-	std::cout << "“®‚­°(Œy‚¢)“Ç‚Ýž‚ß‚Ü‚µ‚½" << std::endl;
+	std::cout << "“®‚­°(Œy‚¢)“Ç‚Ýž‚ß‚Ü‚µ‚½" << std::endl;*/
 
 	/*textures[OBSTACLE_ITEM] = LoadTexture(L"asset/pic/Ojama.png");
 	std::cout << "‚¨Ž×–‚ƒAƒCƒeƒ€‚ð“Ç‚Ýž‚ß‚Ü‚µ‚½" << std::endl;*/

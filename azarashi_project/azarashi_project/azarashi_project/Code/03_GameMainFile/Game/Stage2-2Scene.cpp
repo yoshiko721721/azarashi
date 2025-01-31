@@ -1,19 +1,19 @@
-#include "Stage1-3Scene.h" 
+#include "Stage2-2Scene.h" 
 #include "../../03_GameMainFile/Application.h" 
 
 extern Sound sound;
 
-Stage1_3Scene::Stage1_3Scene(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
+Stage2_2Scene::Stage2_2Scene(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
 {
 
 
 }
 
-void Stage1_3Scene::Init()
+void Stage2_2Scene::Init()
 {
 	bool Fopen = csvMapLoader.FileOpen(fileName);
-	csvMapLoader.CountRowsAndColumns();	//行列を数える
-	csvMapLoader.FileClose();///ファイルとじる
+	csvMapLoader.CountRowsAndColumns();
+	csvMapLoader.FileClose();
 	csvMapLoader.LoadTextures(); //texturesベクターを渡さずに呼び出し
 	p_Player = csvMapLoader.AddObject(&m_MySceneObjects);
 	SDL_GameControllerSetSensorEnabled(Controller::Input::controller, SDL_SENSOR_GYRO, SDL_TRUE);
@@ -28,11 +28,10 @@ void Stage1_3Scene::Init()
 	clearUI.Init();
 	gimmickUI.Init();
 	//goal.Init();
-	sound.Play(SOUND_LABEL_BGM2);
 	Camera::Lock(p_Player);
 }
 
-void Stage1_3Scene::Update()//8,6
+void Stage2_2Scene::Update()//8,6
 {
 	if (stageExplanation)
 	{
@@ -70,54 +69,48 @@ void Stage1_3Scene::Update()//8,6
 				/*{
 					isGoalAchieved = true;
 					return;
-				}*/ 
+				}*/
 			}
 			else
 			{
-				if (Input::GetButtonTrigger(XINPUT_START) || Input::GetKeyTrigger(VK_P))
-				{
-					pause.maladaptive();
-				}
-
 				//selectPlayer.SetPos(-600, 300, 0);
 				DirectX::XMFLOAT3 pos = selectPlayer.GetPos();
 				if (Input::GetButtonTrigger(XINPUT_UP) || Input::GetKeyTrigger(VK_UP))
 				{
-					if (pos.y < 250)
+					if (pos.y < 300)
 					{
-						pos.y += 250;
+						pos.y += 300;
 					}
 					//return;
 				}
 				if (Input::GetButtonTrigger(XINPUT_DOWN) || Input::GetKeyTrigger(VK_DOWN))
 				{
-					if (pos.y > -250)
+					if (pos.y > -300)
 					{
-						pos.y -= 250;
+						pos.y -= 300;
 					}
 					//return;
 				}
 				if (Input::GetButtonTrigger(XINPUT_B) || Input::GetKeyTrigger(VK_RETURN))
 				{
-					if (pos.y == 250)
+					if (pos.y == 300)
 					{
 						pause.maladaptive();
 					}
-					else if (pos.y == -250)
+					else if (pos.y == -300)
+					{
+						pause.maladaptive();
+						Application::GetInstance()->ChangeScene(STAGESCENE);
+					}
+					else if (pos.y == 0)
 					{
 						pause.maladaptive();
 						Application::GetInstance()->ChangeScene(SELECTSCENE);
 						Camera::UnLock();
 					}
-					else if (pos.y == 0)
-					{
-						pause.maladaptive();
-						Application::GetInstance()->ChangeScene(LOADSCENE);
-						Camera::UnLock();
-					}
 
 				}
-				selectPlayer.SetPos(-317, pos.y, pos.z);
+				selectPlayer.SetPos(pos.x, pos.y, pos.z);
 			}
 
 		}
@@ -133,7 +126,7 @@ void Stage1_3Scene::Update()//8,6
 			if (countStay == 120)
 			{
 				//sound.
-				
+
 				fade.SetisFading(true);
 				//sound.Play(SOUND_LABEL_SE5);
 				fade.SetMode(FADEOUT);
@@ -144,16 +137,16 @@ void Stage1_3Scene::Update()//8,6
 				}
 			}
 
-			
+
 		}
-		
+
 	}
 }
 
-void Stage1_3Scene::Draw()
+void Stage2_2Scene::Draw()
 {
 	backGround.Draw();
-	
+
 	//Player.Draw();
 	for (auto& o : m_MySceneObjects)
 	{
@@ -170,23 +163,21 @@ void Stage1_3Scene::Draw()
 
 	if (pause.isPaused())
 	{
+		selectPlayer.Draw();
 		pauseBackGround.Draw();
 		pauseUI.Draw();
-		selectPlayer.Draw();
 	}
-	
+
 	if (isGoalAchieved == true)
 	{
 		clearUI.Draw();
 	}
-	
+
 	fade.Draw();
 }
 
-void Stage1_3Scene::Uninit()
+void Stage2_2Scene::Uninit()
 {
-	p_Player = nullptr;
-	Camera::UnLock();
 	fade.Uninit();
 	selectPlayer.Uninit();
 	backGround.Uninit();
@@ -201,5 +192,5 @@ void Stage1_3Scene::Uninit()
 	{
 		Application::GetInstance()->DeleteObject(o.get()); // .get()を追加
 	}
-	//Camera::UnLock();
+	Camera::UnLock();
 }

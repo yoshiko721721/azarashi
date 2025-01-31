@@ -132,16 +132,10 @@
     <ClCompile Include="Code\03_GameMainFile\Game\GameBackGround.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GamePointer.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackGround.cpp">
-      <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\03_GameMainFile\Title\TitleCamera.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Title</Filter>
     </ClCompile>
     <ClCompile Include="Code\07_Camera\Camera.cpp">
@@ -316,6 +310,18 @@
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\Menu.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage2-1Scene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage2-2Scene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage2-3Scene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage2-4Scene.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -537,6 +543,18 @@
       <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\Menu.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage2-4Scene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage2-1Scene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage2-3Scene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage2-2Scene.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
     </ClInclude>
   </ItemGroup>

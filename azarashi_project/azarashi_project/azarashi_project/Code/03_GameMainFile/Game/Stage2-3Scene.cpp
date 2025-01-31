@@ -1,15 +1,15 @@
-#include "Stage1-3Scene.h" 
+#include "Stage2-3Scene.h" 
 #include "../../03_GameMainFile/Application.h" 
 
 extern Sound sound;
 
-Stage1_3Scene::Stage1_3Scene(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
+Stage2_3Scene::Stage2_3Scene(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
 {
 
 
 }
 
-void Stage1_3Scene::Init()
+void Stage2_3Scene::Init()
 {
 	bool Fopen = csvMapLoader.FileOpen(fileName);
 	csvMapLoader.CountRowsAndColumns();	//行列を数える
@@ -32,7 +32,7 @@ void Stage1_3Scene::Init()
 	Camera::Lock(p_Player);
 }
 
-void Stage1_3Scene::Update()//8,6
+void Stage2_3Scene::Update()//8,6
 {
 	if (stageExplanation)
 	{
@@ -150,7 +150,7 @@ void Stage1_3Scene::Update()//8,6
 	}
 }
 
-void Stage1_3Scene::Draw()
+void Stage2_3Scene::Draw()
 {
 	backGround.Draw();
 	
@@ -183,7 +183,7 @@ void Stage1_3Scene::Draw()
 	fade.Draw();
 }
 
-void Stage1_3Scene::Uninit()
+void Stage2_3Scene::Uninit()
 {
 	p_Player = nullptr;
 	Camera::UnLock();
