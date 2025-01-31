@@ -157,6 +157,8 @@ void Stage2_3Scene::Update()//8,6
 				if (fade.Update(0.06))
 				{
 					sound.Stop(SOUND_LABEL_BGM2);
+					sound.Play(SOUND_LABEL_BGM1);
+
 					Application::GetInstance()->ChangeScene(SELECTSCENE);
 				}
 			}
