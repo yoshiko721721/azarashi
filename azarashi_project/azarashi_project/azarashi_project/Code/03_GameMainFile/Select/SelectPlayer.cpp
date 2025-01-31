@@ -17,32 +17,32 @@ void SelectPlayer::Update(int selectStage)//背景のアップデート(いらない気がする)
 	{
 	case 0:
 	{
-		pos.x = -620;
-		pos.y =   30;
+		pos.x = -580.0f;
+		pos.y =   50.0f;
 		break;
 	}
 	case 1:
 	{
-		pos.x = -240;
-		pos.y = -190;
+		pos.x = -200;
+		pos.y = -170.0f;
 		break;
 	}
 	case 2:
 	{
-		pos.x =  240;
-		pos.y =   30;
+		pos.x = 200.0f;
+		pos.y =   50;
 		break;
 	}
 	case 3:
 	{
-		pos.x =  620;
-		pos.y = -190;
+		pos.x =  580.0f;
+		pos.y = -170.0f;
 		break;
 	}
 	case 4:
 	{
-		pos.x = -800;
-		pos.y =  425;
+		pos.x = -710.0f;
+		pos.y =  395;
 		break;
 	}
 	default:

@@ -1,9 +1,9 @@
 #pragma once
-#include "../../01_Direct3D/Object.h"
+#include "../../01_Direct3D/BackGround.h"
 #include "../../02_Input/input.h"
 #include "../../02_Input/miyoshi_input/ControllerInput.h"
 #include <vector> 
-class Stage4UI :public Object
+class Stage4UI :public BackGround
 {
 private:
 	const wchar_t* imgname[4] = //ã‚ÌWorld‚Ì•\¦UI‚Ì‰æ‘œƒpƒX

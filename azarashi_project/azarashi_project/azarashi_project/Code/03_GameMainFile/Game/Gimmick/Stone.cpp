@@ -8,7 +8,6 @@ using DirectX::XMFLOAT3;
 const float LIMMIT = 0.1;
 const float ROLLINGSPEED = 5.0f;
 
-
 //=========================================
 //				‰Šú‰»ˆ—
 //=========================================

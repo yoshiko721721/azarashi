@@ -11,8 +11,8 @@ void Stage4UI::Init()
 
 	//SetTexture(textures[0]);
 	Initialize(imgname[0]);   //”wŒi‚ğ‰Šú‰»
-	SetPos(620.0f, -170.0f, 0.0f);      //ˆÊ’u‚ğİ’è
-	SetSize(600.0f, 600.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
+	SetPos(580.0f, -170.0f, 0.0f);      //ˆÊ’u‚ğİ’è
+	SetSize(500.0f, 500.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
 	SetAngle(0.0f);                //Šp“x‚ğİ’è
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//Šp“x‚ğİ’è
 }

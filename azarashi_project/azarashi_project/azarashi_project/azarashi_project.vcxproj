@@ -38,6 +38,8 @@
     <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameClearUI.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\GameGimmickUI.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\GamePointer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -51,7 +53,7 @@
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Wall.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Goal.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp" />
@@ -138,18 +140,20 @@
     <ClInclude Include="Code\03_GameMainFile\Game\GameCamera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameClearUI.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\GamePointer.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Floor.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameBlock_stop.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameGimmickUI.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Wall.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Goal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h" />

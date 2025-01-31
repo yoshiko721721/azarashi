@@ -1,4 +1,5 @@
 #include "PauseBackGround.h"
+
 void PauseBackGround::Init()
 {
 	/*for (int i = 0; i < 4; i++)

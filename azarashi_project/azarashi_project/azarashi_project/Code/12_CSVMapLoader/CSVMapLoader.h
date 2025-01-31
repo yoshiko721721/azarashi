@@ -27,6 +27,7 @@
 #include "../03_GameMainFile/Test/Testfloor.h"
 #include "../03_GameMainFile/Game/BreakBlock.h"
 #include "../03_GameMainFile/Game/Gimmick/GameBlock_stop.h"
+#include "../03_GameMainFile/Game/Goal.h"
 //#include "../03_GameMainFile/Test/TestPointer.h"
 
 const int BLOCKSIZE = 128;
@@ -52,7 +53,8 @@ enum BlockType//１
 class CSVMapLoader 
 {
 public:
-    CSVMapLoader() : textures(BlockType_MAX, nullptr) , FloorBlockTextures(15, nullptr), WallBlockTextures(30, nullptr), inclined_PlatformTextures(6, nullptr) {} // コンストラクタで初期化
+    CSVMapLoader() : textures(BlockType_MAX, nullptr) , FloorBlockTextures(15, nullptr), WallBlockTextures(30, nullptr), 
+        inclined_PlatformTextures(6, nullptr), Flat_PlatformTextures(6, nullptr){} // コンストラクタで初期化
     ~CSVMapLoader(); bool FileOpen(std::string fileName); //ファイル開く 
     void CalculateStageCenter();
     void CountRowsAndColumns(); //行数列数数える 
@@ -69,7 +71,7 @@ public:
     std::vector<ID3D11ShaderResourceView*> FloorBlockTextures; // 床情報を格納するベクター
     std::vector<ID3D11ShaderResourceView*> WallBlockTextures; // 壁情報を格納するベクター
     std::vector<ID3D11ShaderResourceView*> inclined_PlatformTextures; // 傾く床
-
+    std::vector<ID3D11ShaderResourceView*> Flat_PlatformTextures; // 傾く床
     
     // 必要なサイズを指定して初期化 
     ID3D11ShaderResourceView* m_pTextureView; //textureの保存場所 

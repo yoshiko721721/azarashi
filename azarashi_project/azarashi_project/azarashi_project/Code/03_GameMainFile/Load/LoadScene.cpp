@@ -5,6 +5,7 @@ int loadSceneCount = 0;
 
 void LoadScene::Init()
 {
+	loadSceneCount = 0;
 	backGround.Init();
 	backGroundpab.Init();
 }
@@ -23,11 +24,11 @@ void LoadScene::Update()
 
 void LoadScene::Draw()
 {
-	backGround.Object::Draw();
+	backGround.Draw();
 
 	if (loadSceneCount >= 120)
 	{	
-			backGroundpab.Object::Draw();
+			backGroundpab.Draw();
 	}
 }
 void LoadScene::Uninit()

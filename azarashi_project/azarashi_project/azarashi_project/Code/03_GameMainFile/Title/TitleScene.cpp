@@ -42,7 +42,7 @@ void TitleScene::Update()
 				isFirst = false;
 				isFading = true;
 				fade.SetisFading(isFading);
-				//csound.Play(SOUND_LABEL_BGM1);
+				sound.Play(SOUND_LABEL_BGM1);
 			}
 			return;
 		}
@@ -100,7 +100,7 @@ void TitleScene::Uninit()
 	backGround.Uninit();
 	titleLogo.Uninit();
 	fade.Uninit();
-	sound.Stop(SOUND_LABEL_BGM1);
+	//sound.Stop(SOUND_LABEL_BGM1);
 }
 
 

@@ -3,8 +3,8 @@
 #include <d3d11.h>
 #include <DirectXMath.h>
 
-#define SCREEN_WIDTH (1920)	// ウインドウの幅
-#define SCREEN_HEIGHT (1080)	// ウインドウの高さ
+#define SCREEN_WIDTH (1728)	// ウインドウの幅
+#define SCREEN_HEIGHT (972)	// ウインドウの高さ
 
 //関数のプロトタイプ宣言
 HRESULT D3D_Create(HWND hwnd);
