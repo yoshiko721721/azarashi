@@ -8,6 +8,7 @@ using DirectX::XMFLOAT3;
 const float LIMMIT = 0.1;
 const float ROLLINGSPEED = 5.0f;
 
+extern Sound sound;
 
 //=========================================
 //				初期化処理
@@ -81,7 +82,9 @@ void GamePointer::Update()//Playerのアップデート
 			}
 
 			//ジャンプ
-			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) {
+			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) 
+			{
+				sound.Play(SOUND_LABEL_SE4);
 				body.AddForce(0.0f, 23.0f);
 				behavior = BOUND;
 			}

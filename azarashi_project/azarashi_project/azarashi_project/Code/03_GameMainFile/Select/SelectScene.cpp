@@ -52,8 +52,8 @@ void SelectScene::Update()
 			
 			if (selectPage < MAX_PAGE)//ページがMAXになったら
 			{
-				selectPage++;			//ページ移動
-				alphaR = 1.0;
+				//selectPage++;			//ページ移動
+				//alphaR = 1.0;
 			}
 
 			worldUI.Update(selectPage);
@@ -68,7 +68,7 @@ void SelectScene::Update()
 			sound.Play(SOUND_LABEL_SE1);
 			if (selectPage > 0)
 			{
-				selectPage--;
+				//selectPage--;
 			}
 				//selectPage = 3;
 			worldUI.Update(selectPage);
@@ -118,10 +118,10 @@ void SelectScene::Update()
 
 		if (selectPage == 0)
 		{
-			alphaR = 1.0;
+			alphaR = 0.0;
 			alphaL = 0.0;
 		}
-		else if (selectPage == 1)
+		else if (selectPage == 0)
 		{
 			alphaR = 0.0;
 			alphaL = 1.0;
@@ -159,6 +159,8 @@ void SelectScene::Update()
 
 		if (isFading == false && fade.GetMode() == FADEOUT && selectStage == 4)
 		{
+			sound.Stop(SOUND_LABEL_BGM1);
+			sound.Play(SOUND_LABEL_BGM1);
 			Application::GetInstance()->ChangeScene(TITLESCENE);
 		}
 	}
@@ -172,8 +174,8 @@ void SelectScene::Draw()
 	stage3UI.Draw();
 	stage4UI.Draw();
 	worldUI.Draw();
-	cursorL.Draw();
-	cursorR.Draw();
+	//cursorL.Draw();
+	//cursorR.Draw();
 	titleBackUI.Draw();
 	selectPlayer.Draw();
 	fade.Draw();
