@@ -8,7 +8,7 @@ float nokosuAngle_Wall; //‚·‚İ‚Ü‚¹‚ñŒã‚Å–¼‘O‚¿‚á‚ñ‚Æl‚¦‚Ü‚·
 
 void TestWall::Init()
 {
-	Initialize(L"asset/pic/block_bronze.png");   //”wŒi‚ğ‰Šú‰»
+	Initialize(L"asset/pic/Wall.png");   //”wŒi‚ğ‰Šú‰»
 	//SetPos(100.0f, 64.0f, 0.0f);      //ˆÊ’u‚ğİ’è
 	//SetSize(64.0f, 64.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
 	SetAngle(0.0f);                //Šp“x‚ğİ’è
