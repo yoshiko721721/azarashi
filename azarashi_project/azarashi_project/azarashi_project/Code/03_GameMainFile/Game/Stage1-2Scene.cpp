@@ -109,11 +109,11 @@ void Stage1_2Scene::Update()//8,6
 				}
 				if (Input::GetButtonTrigger(XINPUT_B) || Input::GetKeyTrigger(VK_RETURN))
 				{
-					if (pos.y == 300)
+					if (pos.y == 250)
 					{
 						pause.maladaptive();
 					}
-					else if (pos.y == -300)
+					else if (pos.y == -250)
 					{
 						pause.maladaptive();
 						Application::GetInstance()->ChangeScene(STAGESCENE);
@@ -126,7 +126,7 @@ void Stage1_2Scene::Update()//8,6
 					}
 
 				}
-				selectPlayer.SetPos(pos.x, pos.y, pos.z);
+				selectPlayer.SetPos(-317, pos.y, pos.z);
 			}
 
 		}

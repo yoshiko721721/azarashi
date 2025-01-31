@@ -64,6 +64,7 @@
     <ClCompile Include="Code\03_GameMainFile\Game\Stage2-2Scene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Stage2-3Scene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Stage2-4Scene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage4.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\StageExplanation.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Load\LoadBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Load\LoadBackgroundPAB.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Code\03_GameMainFile\Game\Stage2-2Scene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Stage2-3Scene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Stage2-4Scene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage4.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\StageExplanation.h" />
     <ClInclude Include="Code\03_GameMainFile\Load\LoadBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Load\LoadBackgroundPAB.h" />

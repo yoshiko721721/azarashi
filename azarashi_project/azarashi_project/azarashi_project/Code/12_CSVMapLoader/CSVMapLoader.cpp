@@ -125,7 +125,8 @@ void CSVMapLoader::LoadTextures()
 	FloorBlockTextures[11] = LoadTexture(L"asset/pic/Floor_11.png");
 
 	WallBlockTextures[9]   = LoadTexture(L"asset/pic/Wall_09.png");
-	WallBlockTextures[10] = LoadTexture(L"asset/pic/Wall_09.png");
+	WallBlockTextures[6] = LoadTexture(L"asset/pic/Wall_06.png");
+	WallBlockTextures[12] = LoadTexture(L"asset/pic/Wall_12.png");
 
 	inclined_PlatformTextures[1] = LoadTexture(L"asset/pic/Block_01.png");  //傾く床の各パーツ(2マス)　
 	inclined_PlatformTextures[2] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_02.png");  //傾く床の各パーツ(2マス)　
@@ -218,7 +219,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 					}
 				}
 
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y + 128 * (k /2) , BLOCKSIZE, BLOCKSIZE * k,0,0);//壁を生成
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y + 128 * (k /2) -64 , BLOCKSIZE, BLOCKSIZE * k,0,0);//壁を生成
 				newChip->SetTexture(WallBlockTextures[k]);//textureをセット
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);

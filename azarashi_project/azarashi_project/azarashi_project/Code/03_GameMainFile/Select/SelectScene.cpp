@@ -16,6 +16,7 @@ void SelectScene::Init()
 	cursorL.Init();
 	cursorR.Init();
 	selectPlayer.Init();
+	muriyari.Init();
 	fade.Init();
 	titleBackUI.Init();
 	titleBackUI.Init();
@@ -52,11 +53,11 @@ void SelectScene::Update()
 			
 			if (selectPage < MAX_PAGE)//ページがMAXになったら
 			{
-				//selectPage++;			//ページ移動
-				//alphaR = 1.0;
+				selectPage++;			//ページ移動
+				alphaR = 1.0;
 			}
 
-			worldUI.Update(selectPage);
+			 worldUI.Update(selectPage);
 			stage1UI.Update(selectPage);
 			stage2UI.Update(selectPage);
 			stage3UI.Update(selectPage);
@@ -71,7 +72,7 @@ void SelectScene::Update()
 				//selectPage--;
 			}
 				//selectPage = 3;
-			worldUI.Update(selectPage);
+			 worldUI.Update(selectPage);
 			stage1UI.Update(selectPage);
 			stage2UI.Update(selectPage);
 			stage3UI.Update(selectPage);
@@ -173,6 +174,7 @@ void SelectScene::Draw()
 	stage2UI.Draw();
 	stage3UI.Draw();
 	stage4UI.Draw();
+	muriyari.Draw();
 	worldUI.Draw();
 	//cursorL.Draw();
 	//cursorR.Draw();
@@ -186,6 +188,7 @@ void SelectScene::Uninit()
 	fade.Uninit();
 	worldUI.Uninit();
 	stage1UI.Uninit();
+	muriyari.Uninit();
 	stage2UI.Uninit();
 	stage3UI.Uninit();
 	stage4UI.Uninit();
