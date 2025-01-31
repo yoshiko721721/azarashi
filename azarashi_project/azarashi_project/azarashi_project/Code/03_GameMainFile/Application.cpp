@@ -11,6 +11,8 @@
 #include "Test/TestStageScene_Nakae.h"
 #include "Game/Stage1-1Scene.h"
 #include "Game/Stage1-2Scene.h"
+#include "Game/Stage1-3Scene.h"
+#include "Game/Stage1-4Scene.h"
 #include "Test/TestScene_You.h"
 #include "../07_Camera/Camera.h"
 #include "../06_Scene/TestSceneNishiguchi.h"

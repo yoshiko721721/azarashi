@@ -5,10 +5,10 @@
 #include "../../03_GameMainFile/RigidBody.h"
 #include"../../08_Collider/Base_collision.h"
 #include "GameBlock.h"
+#include "../../09_Sound/sound.h"
 
 #define AZARASHI_PICTURE_CIRCLE L"Asset/pic/Player_Round.png"
 #define AZARASHI_PICTURE_STAND  L"Asset/pic/azarasi.png"
-
 
 
 class GamePointer :public Object
@@ -28,6 +28,10 @@ public:
 	void  RotateTexture();					//画像を丁度よく回転
 	AZA_MODE_NUMMBER azaNum = STAND;
 	AZA_MODE_NUMMBER oldAzaNum = azaNum;
+
+	//テクスチャ用変数
+	ID3D11ShaderResourceView* texture_Circle;
+	ID3D11ShaderResourceView* texture_Stand;
 
 	bool isChangeMode();									//アザラシのモード比較
 	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット

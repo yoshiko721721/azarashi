@@ -55,10 +55,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Menu.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Stage1-1Scene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Stage1-2Scene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-3Scene.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-4Scene.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\StageExplanation.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Load\LoadBackGround.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Load\LoadBackgroundPAB.cpp" />
@@ -155,10 +158,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Menu.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Stage1-1Scene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Stage1-2Scene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-3Scene.h" />
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-4Scene.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\StageExplanation.h" />
     <ClInclude Include="Code\03_GameMainFile\Load\LoadBackGround.h" />
     <ClInclude Include="Code\03_GameMainFile\Load\LoadBackgroundPAB.h" />

@@ -94,7 +94,7 @@ void SelectScene::Update()
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage++;
-			if (selectStage > MAX_PAGE)
+			if (selectStage > MAX_STAGE)
 			{
 				selectStage = 0;
 			}
@@ -121,7 +121,7 @@ void SelectScene::Update()
 			alphaR = 1.0;
 			alphaL = 0.0;
 		}
-		else if (selectPage == 3)
+		else if (selectPage == 1)
 		{
 			alphaR = 0.0;
 			alphaL = 1.0;

@@ -11,7 +11,7 @@ typedef enum
 	SOUND_LABEL_SE2,	//アザラシが動く音(Select)
 	SOUND_LABEL_SE3,	//ボタン押したときの音
 	SOUND_LABEL_SE4,	//ジャンプ案
-	//SOUND_LABEL_SE5,	//クリア音
+	SOUND_LABEL_SE5,	//クリア音
 
 	SOUND_LABEL_MAX,
 } SOUND_LABEL;
@@ -33,7 +33,7 @@ private:
 		{"Asset/sound/SE/Cursor_Move.wav", false},
 		{"Asset/sound/SE/Press_Any_Button.wav", false},
 		{"Asset/sound/SE/Jump.wav", false},
-		//{"Asset/sound/SE/軽いノリのアイキャッチ.mp3", false},
+		{"Asset/sound/SE/軽いノリのアイキャッチ.wav", false},
 	};
 
 	IXAudio2* m_pXAudio2 = NULL;

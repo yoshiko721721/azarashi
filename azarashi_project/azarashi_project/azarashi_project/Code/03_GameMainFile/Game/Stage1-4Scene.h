@@ -18,7 +18,7 @@
 #include "Gimmick/GameGimmickUI.h"
 #include "../../09_Sound/sound.h"
 
-class Stage1_2Scene : public Scene
+class Stage1_4Scene : public Scene
 {
 private:
 	Object sample;
@@ -36,7 +36,7 @@ private:
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures をメンバ変数として宣言 
 	CSVMapLoader csvMapLoader;
 	SDL_Event e;
-	DirectX::XMFLOAT2 centerPos{ 0,0 };
+	DirectX::XMFLOAT2 centerPos{0,0};
 
 	bool stageExplanation = true;
 
@@ -46,11 +46,10 @@ private:
 
 public:
 	std::vector<std::unique_ptr<Object>> m_MySceneObjects; // このシーンのオブジェクト 
-	std::string fileName = "Code/12_CSVMapLoader/Stage1_2.csv"; //ステージサイズ
-	Stage1_2Scene(std::vector<ID3D11ShaderResourceView*>& textures);
+	std::string fileName = "Code/12_CSVMapLoader/Stage1_4.csv"; //ステージサイズ
+	Stage1_4Scene(std::vector<ID3D11ShaderResourceView*>& textures);
 	void Init(); //初期化 
 	void Update(); //更新 
 	void Draw(); //描画 
 	void Uninit(); //終了
 };
-

@@ -303,6 +303,21 @@
     <ClCompile Include="Code\03_GameMainFile\Test\TestWall.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameClearUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GameGimmickUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-4Scene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Stage1-3Scene.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\Menu.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -508,6 +523,21 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GameClearUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameGimmickUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-3Scene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Stage1-4Scene.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\Menu.h">
+      <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

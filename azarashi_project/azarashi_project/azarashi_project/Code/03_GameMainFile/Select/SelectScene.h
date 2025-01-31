@@ -16,7 +16,8 @@
 class SelectScene : public Scene
 {
 private:
-	const int MAX_PAGE = 3;
+	const int MAX_PAGE = 1;
+	const int MAX_STAGE = 3;
 	Object sample;
 	//std::vector<Object*> m_MySceneObjects; // このシーンのオブジェクト
 	SelectBackGround backGround;  //背景
