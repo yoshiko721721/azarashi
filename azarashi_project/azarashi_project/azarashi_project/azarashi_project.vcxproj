@@ -22,7 +22,7 @@
     <ClCompile Include="Code\01_Direct3D\direct3d.cpp" />
     <ClCompile Include="Code\01_Direct3D\Object.cpp" />
     <ClCompile Include="Code\02_Input\input.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -35,13 +35,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameBlock.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\Game\GameClearUI.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\Game\GameGimmickUI.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Game\GameCamera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GamePointer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\GameScene.cpp" />
-    <ClCompile Include="Code\03_GameMainFile\Game\GameStartUI.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Floor.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\GameBlock_stop.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Snowman.cpp">
@@ -50,13 +50,8 @@
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Stone.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Wall.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Goal.cpp">
-<<<<<<< Updated upstream
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-=======
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
->>>>>>> Stashed changes
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp" />
@@ -95,6 +90,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Title\TitleBackgroundPAB.cpp" />
+    <ClCompile Include="Code\03_GameMainFile\Title\TitleCamera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Title\TitleLogo.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Title\TitleScene.cpp" />
     <ClCompile Include="Code\05_WICTextureLoader\WICTextureLoader.cpp" />
@@ -140,26 +138,18 @@
     <ClInclude Include="Code\03_GameMainFile\Game\GameCamera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Code\03_GameMainFile\Game\GameClearUI.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\GamePointer.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\GameScene.h" />
-    <ClInclude Include="Code\03_GameMainFile\Game\GameStartUI.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Floor.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameBlock_stop.h" />
-    <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\GameGimmickUI.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Snowman.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Stone.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Wall.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Goal.h">
-<<<<<<< Updated upstream
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-=======
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
->>>>>>> Stashed changes
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h" />
@@ -228,15 +218,11 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ps_main</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ps_main</EntryPointName>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
     <FxCompile Include="Code\04_hlsl\VertexShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vs_main</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vs_main</EntryPointName>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -296,11 +282,6 @@
     <ExternalIncludePath>C:\hidapi-win\include;C:\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>C:\SDL2.1\lib\x64;C:\hidapi-win\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\SDL2.1\include;C:\hidapi-win\include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>C:\hidapi-win\include;C:\SDL2.1\include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>C:\SDL2.1\lib\x64;C:\hidapi-win\x64;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -357,11 +338,10 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CoreLibraryDependencies);SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
