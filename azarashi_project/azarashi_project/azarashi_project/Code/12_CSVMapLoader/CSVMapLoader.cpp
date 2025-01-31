@@ -127,11 +127,13 @@ void CSVMapLoader::LoadTextures()
 	WallBlockTextures[9]   = LoadTexture(L"asset/pic/Wall_09.png");
 	WallBlockTextures[10] = LoadTexture(L"asset/pic/Wall_09.png");
 
+	inclined_PlatformTextures[1] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_02.png");  //傾く床の各パーツ(2マス)　
 	inclined_PlatformTextures[2] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_02.png");  //傾く床の各パーツ(2マス)　
 	inclined_PlatformTextures[3] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_03.png");  //傾く床の各パーツ(3マス)
 	inclined_PlatformTextures[4] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_04.png");  //傾く床の各パーツ(4マス)
 	inclined_PlatformTextures[5] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_05.png");  //傾く床の各パーツ(5マス)
 
+	Flat_PlatformTextures[1] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_02.png");  //傾かない床の各パーツ(2マス)
 	Flat_PlatformTextures[2] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_02.png");  //傾かない床の各パーツ(2マス)
 	Flat_PlatformTextures[3] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_03.png");  //傾かない床の各パーツ(3マス)
 	Flat_PlatformTextures[4] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_04.png");  //傾かない床の各パーツ(4マス)
@@ -257,17 +259,16 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 				}
 				int l;
 
-				if (x <= -1)
+				/*if (x <= -1)
 				{
 					l = -2;
 				}
 				else if (x >= 0)
 				{
 					l = 2;
-				}
+				}*/
 
-
-				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x * (k / l), y, BLOCKSIZE * k, BLOCKSIZE);
+				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE);
 				newChip->SetTexture(inclined_PlatformTextures[k]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
