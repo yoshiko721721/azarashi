@@ -123,12 +123,15 @@ void Stage1_3Scene::Update()//8,6
 					{
 						pause.maladaptive();
 						Application::GetInstance()->ChangeScene(SELECTSCENE);
+						sound.Stop(SOUND_LABEL_BGM2);
+						sound.Play(SOUND_LABEL_BGM1);
 						Camera::UnLock();
 					}
 					else if (pos.y == 0)
 					{
 						pause.maladaptive();
 						Application::GetInstance()->ChangeScene(LOADSCENE);
+						sound.Stop(SOUND_LABEL_BGM2);
 						Camera::UnLock();
 					}
 
