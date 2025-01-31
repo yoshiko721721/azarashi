@@ -27,6 +27,7 @@ void GamePointer::Init()
 	body.SetMag(7.0f);					  //倍率を設定
 	body.SetVector(0.0f, 0.0f);
 
+	now = 0;
 }
 
 //===========================================
@@ -36,60 +37,67 @@ void GamePointer::Init()
 void GamePointer::Update()//Playerのアップデート
 {
 	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
+	int hitObj = 0;
 	for (auto& block : blocks) {
 		collision = BoxCollider::ColliderWithCircle(this, block);
 		if ( collision.checkCollision != NO_COLLISION) {
-			now = true;
 			m_Block = block;
-			break;
-		}
-		else {
-			now = false;
+			myCollision = collision;
+			if (hitObj < 2) {
+				m_Blocks[hitObj] = block;
+				hitObj++;
+			}
+			NowHitsCounter(1);
 		}
 	}
 
 	//自由落下
-	if (!now && behavior == BOUND) {
+	if (hitObj == 0 && behavior == BOUND) {
 			body.FreeFall(body.GetTime());
 	}
 
 
 	//衝突しているの処理
-	if (now)
+	if (now == 1)
 	{
-		body.CalcFinalNormalAngle(collision, *this, *m_Block);	//法線の角度を計算
+		
+		if (m_Block != nullptr)
+		{
+			body.CalcFinalNormalAngle(myCollision, *this, *m_Block);	//法線の角度を計算
 
-		switch (behavior) {
-		case BOUND:
-			body.Repulsion();			//反発
-			if ((oldVectorNum - body.vectorNum) < LIMMIT && (oldVectorNum - body.vectorNum) > -LIMMIT) {
-				behavior = ROLLING;
-				body.vector.x = 0;
-				body.vector.y = 0;
+			switch (behavior) {
+			case BOUND:
+				body.Repulsion();			//反発
+				if ((oldVectorNum - body.vectorNum) < LIMMIT && (oldVectorNum - body.vectorNum) > -LIMMIT) {
+					behavior = ROLLING;
+					body.vector.x = 0;
+					body.vector.y = 0;
+				}
+				break;
+			case ROLLING:
+				body.HorizonUpdate(*this, *m_Block, AZARASHI_MODE[azaNum], ROLLINGSPEED);			//転がる処理
+				break;
 			}
-			break;
-		case ROLLING:
-			body.HorizonUpdate(*this, *m_Block, AZARASHI_MODE[azaNum], ROLLINGSPEED);			//転がる処理
-			break;
-		}
 
-		//ジャンプ
-		if (Input::GetKeyTrigger(VK_RETURN)) {
-			body.AddForce(0.0f, 25.0f);
+			//ジャンプ
+			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_X)) {
+				body.AddForce(0.0f, 25.0f);
+				behavior = BOUND;
+			}
+
+			//座標を補正
+			CorrectPosition(*m_Block, myCollision, m_Block->GetAngle());
+
+		}
+		else {
 			behavior = BOUND;
 		}
-
-		//座標を補正
-		CorrectPosition(*m_Block, collision, m_Block->GetAngle());
-
-	}
-	else {
-		behavior = BOUND;
 	}
 
 
 	//モード切り替え
-	if (Input::GetKeyPress(VK_T)) {
+	if (Input::GetKeyPress(VK_T) ||
+		(Input::GetButtonPress(XINPUT_LEFT_SHOULDER))) {
 		SetAzaNum(CIRCLE);
 	}
 	else {
@@ -111,6 +119,7 @@ void GamePointer::Update()//Playerのアップデート
 	//一回前の当たり判定を記憶
 	oldVectorNum = body.vectorNum;
 	SetPos(GetPos().x + body.GetVector().x, GetPos().y + body.GetVector().y, 0);
+	now = 0;
 }
 
 float GamePointer::GetCircleRadius()
@@ -168,8 +177,24 @@ void GamePointer::CorrectPosition(Object& block, ContactPointVector collision, f
 		cos(body.GetFinalAngle()),
 		sin(body.GetFinalAngle())
 	};
-	cout << "法線ベクトル = " << Math::ConvertToDegree(body.GetFinalAngle()) << "\n";
-
 	SetPos(GetPos().x + blockNormal.x * overlap, GetPos().y + blockNormal.y * overlap, 0);
 
+}
+
+int GamePointer::GetNowHits()
+{
+	return now;
+}
+
+void GamePointer::NowHitsCounter(int count)
+{
+	now += count;
+}
+
+Object* GamePointer::GetHitGameBlock(int objCount)
+{
+	if (objCount < 2) {
+		return m_Blocks[objCount];
+	}
+	return nullptr;
 }

@@ -5,8 +5,8 @@
 #include"../../08_Collider/Base_collision.h"
 #include "GameBlock.h"
 
-#define AZARASHI_PICTURE_CIRCLE L"Asset/pic/azarasi.png"
-#define AZARASHI_PICTURE_STAND  L"Asset/pic/point.png"
+#define AZARASHI_PICTURE_CIRCLE L"Asset/pic/Player_Round.png"
+#define AZARASHI_PICTURE_STAND  L"Asset/pic/Player_Idle.png"
 
 
 
@@ -33,6 +33,11 @@ public:
 
 	void CorrectPosition(Object& block, ContactPointVector collision, float angle);		//座標の補正
 
+	int GetNowHits();
+	void NowHitsCounter(int count);
+
+	Object* GetHitGameBlock(int objCount);
+
 	float damping = 0.9f;									//減速係数
 
 private:
@@ -44,10 +49,11 @@ private:
 	int boundCounter = 0;				//一定回数バウンドしたら転がる状態になる
 	float oldVectorNum = 0;				//vectorの差を出すための保存用
 
-	bool now = false;
+	int now ;
 	ContactPointVector collision;
+	ContactPointVector myCollision;
 	float blockAngle;
 
 	Object* m_Block = nullptr;
-
+	Object* m_Blocks[2] = { nullptr,nullptr };
 };

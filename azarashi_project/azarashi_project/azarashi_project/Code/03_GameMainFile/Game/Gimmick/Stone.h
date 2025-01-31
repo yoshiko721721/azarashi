@@ -23,21 +23,27 @@ public:
 
 	void CorrectPosition(Object& block, ContactPointVector collision, float angle);		//À•W‚Ì•â³
 
+	int GetNowHits();
+	void NowHitsCounter(int count);
+
+	Object* GetHitGameBlock(int objCount);
+
+
 	float damping = 0.9f;									//Œ¸‘¬ŒW”
 
 private:
 	Circle circle;				//
 	RigidBody body;										//•¨—‹““®‚ğ‚½‚¹‚é
-	const float Stone_Friction = { 0.3 };	// –€CŒW”
+	const float Stone_Friction = { 0.7 };	// –€CŒW”
 
 	BODY_BEHAVIOR behavior = BOUND;		//Î‚Ì‹““®‚Ìó‘Ô
 	int boundCounter = 0;				//ˆê’è‰ñ”ƒoƒEƒ“ƒh‚µ‚½‚ç“]‚ª‚éó‘Ô‚É‚È‚é
 	float oldVectorNum = 0;				//vector‚Ì·‚ğo‚·‚½‚ß‚Ì•Û‘¶—p
 
-	bool now = false;
+	int now;
 	ContactPointVector collision;
 	float blockAngle;
 
 	Object* m_Block = nullptr;
-
+	Object* m_Blocks[2] = { nullptr,nullptr };
 };

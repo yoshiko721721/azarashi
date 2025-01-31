@@ -26,6 +26,7 @@ void Stone::Init()
 	body.SetMag(7.0f);					  //倍率を設定
 	body.SetVector(0.0f, 0.0f);
 
+	now = 0;
 }
 
 //===========================================
@@ -35,23 +36,31 @@ void Stone::Init()
 void Stone::Update()//Playerのアップデート
 {
 	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
+	int hitObj = 0;
 	for (auto& block : blocks) {
 		collision = BoxCollider::ColliderWithCircle(this, block);
 		if (collision.checkCollision != NO_COLLISION) {
-			now = true;
 			m_Block = block;
-			break;
+			if (hitObj < 2) {
+				m_Blocks[hitObj] = block;
+				hitObj++;
+			}
+			NowHitsCounter(1);
 		}
+	}
+	switch (hitObj) {
+	case 0: m_Blocks[0] = nullptr;
+	case 1: m_Blocks[1] = nullptr;
 	}
 
 	//自由落下
-	if (!now && behavior == BOUND) {
+	if (now < 1 && behavior == BOUND) {
 		body.FreeFall(body.GetTime());
 	}
 
 
 	//衝突しているの処理
-	if (now)
+	if (now == 1)
 	{
 		body.CalcFinalNormalAngle(collision, *this, *m_Block);	//法線の角度を計算
 
@@ -134,4 +143,22 @@ void Stone::CorrectPosition(Object& block, ContactPointVector collision, float a
 
 	SetPos(GetPos().x + blockNormal.x * overlap, GetPos().y + blockNormal.y * overlap, 0);
 
+}
+
+int Stone::GetNowHits()
+{
+	return now;
+}
+
+void Stone::NowHitsCounter(int count)
+{
+	now += count;
+}
+
+Object* Stone::GetHitGameBlock(int objCount)
+{
+	if (objCount < 2) {
+		return m_Blocks[objCount];
+	}
+	return nullptr;
 }

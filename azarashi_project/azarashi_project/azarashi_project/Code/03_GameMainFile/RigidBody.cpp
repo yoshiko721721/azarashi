@@ -47,6 +47,7 @@ void RigidBody::Repulsion()
 {
 
 	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
+	if (vectorNum < 0) { vectorNum *= -1; }
 
 	Vector2 refrected = { vectorNum * cos(finalNormalAngle), vectorNum * sin(finalNormalAngle) };
 	vector = refrected * restitution;

@@ -51,7 +51,7 @@
     <ClCompile Include="Code\03_GameMainFile\Game\Gimmick\Wall.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\Goal.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Code\03_GameMainFile\Game\MoveGameBlock.cpp" />
     <ClCompile Include="Code\03_GameMainFile\Game\PauseBackGround.cpp" />
@@ -149,7 +149,7 @@
     <ClInclude Include="Code\03_GameMainFile\Game\Gimmick\Wall.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\Goal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\MoveGameBlock.h" />
     <ClInclude Include="Code\03_GameMainFile\Game\PauseBackGround.h" />
