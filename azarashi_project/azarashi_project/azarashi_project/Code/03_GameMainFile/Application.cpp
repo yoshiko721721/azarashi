@@ -163,42 +163,42 @@ void Application::ChangeScene(SceneList sName)
 					m_Instance->m_Scene = new Stage2_4Scene(textures); // メモリを確保
 				}
 				break;
-			case 2:
-				if (stageCount == 0)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 1)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 2)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 3)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				break;
-			case 3:
-				if (stageCount == 0)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 1)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 2)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 3)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				break;
+			//case 2:
+			//	if (stageCount == 0)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 1)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 2)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 3)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	break;
+			//case 3:
+			//	if (stageCount == 0)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 1)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 2)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 3)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	break;
 			default:
 				break;
 			}
