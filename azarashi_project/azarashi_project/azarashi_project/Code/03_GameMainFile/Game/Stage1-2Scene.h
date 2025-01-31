@@ -17,6 +17,8 @@
 #include "../../13_Effect/FadeEffect.h"
 #include "Gimmick/GameGimmickUI.h"
 #include "../../09_Sound/sound.h"
+#include "GoUI.h"
+#include "Menu.h"
 
 class Stage1_2Scene : public Scene
 {
@@ -25,6 +27,9 @@ private:
 	GameClearUI clearUI;
 	GameGimmickUI gimmickUI;
 	TestPointer Test;
+	GoUI go;
+	Menu menu;
+
 	Pause pause;
 	FadeEffect fade;
 	PauseCursor selectPlayer;
@@ -46,7 +51,7 @@ private:
 
 public:
 	std::vector<std::unique_ptr<Object>> m_MySceneObjects; // このシーンのオブジェクト 
-	std::string fileName = "Code/12_CSVMapLoader/Stage1_1.csv"; //ステージサイズ
+	std::string fileName = "Code/12_CSVMapLoader/test.csv"; //ステージサイズ
 	Stage1_2Scene(std::vector<ID3D11ShaderResourceView*>& textures);
 	void Init(); //初期化 
 	void Update(); //更新 

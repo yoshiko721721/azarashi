@@ -255,8 +255,19 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 					k++;
 
 				}
+				int l;
 
-				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE);
+				if (x <= -1)
+				{
+					l = -2;
+				}
+				else if (x >= 0)
+				{
+					l = 2;
+				}
+
+
+				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x + 128 * (k / l), y, BLOCKSIZE * k, BLOCKSIZE);
 				newChip->SetTexture(inclined_PlatformTextures[k]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);

@@ -17,6 +17,8 @@
 #include "../../13_Effect/FadeEffect.h"
 #include "Gimmick/GameGimmickUI.h"
 #include "../../09_Sound/sound.h"
+#include "Menu.h"
+#include "GoUI.h"
 
 class Stage2_2Scene : public Scene
 {
@@ -26,12 +28,15 @@ private:
 	GameGimmickUI gimmickUI;
 	TestPointer Test;
 	Pause pause;
+	GoUI go;
 	FadeEffect fade;
 	PauseCursor selectPlayer;
 	GameBackGround backGround;
 	GamePointer* p_Player;
 	PauseBackGround pauseBackGround;
 	StageExplanation stageExplanationUI;
+	Menu menu;
+
 	PauseUI pauseUI;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures ‚ğƒƒ“ƒo•Ï”‚Æ‚µ‚ÄéŒ¾ 
 	CSVMapLoader csvMapLoader;

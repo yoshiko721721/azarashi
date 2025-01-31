@@ -12,6 +12,9 @@ void GameClearUI::Init()
 	SetSize(0.0f, 0.0f, 0.0f);  //大きさを設定
 	SetAngle(0.0f);                //角度を設定
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//角度を設定
+
+	ClearCountX = 0;
+	ClearCountY = 0;
 }
 
 void GameClearUI::Update()//背景のアップデート(いらない気がする)

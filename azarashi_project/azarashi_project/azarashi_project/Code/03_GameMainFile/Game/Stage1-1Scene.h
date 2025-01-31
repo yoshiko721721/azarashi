@@ -18,12 +18,14 @@
 #include "Gimmick/GameGimmickUI.h"
 #include "../../09_Sound/sound.h"
 #include "Menu.h"
+#include "GoUI.h"
 
 class Stage1_1Scene : public Scene
 {
 private:
 	Object sample;
 	GameClearUI clearUI;
+	GoUI go;
 	GameGimmickUI gimmickUI;
 	TestPointer Test;
 	Pause pause;

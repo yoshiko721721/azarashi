@@ -3,6 +3,8 @@
 
 extern Sound sound;
 
+int Go1_1count = 0;
+
 Stage1_1Scene::Stage1_1Scene(std::vector<ID3D11ShaderResourceView*>& textures) :textures(textures)// , moveGameBlock(2.0f) // 初期化リストを使用してメンバ変数を初期化
 {
 
@@ -23,13 +25,13 @@ void Stage1_1Scene::Init()
 	pauseBackGround.Init();
 	pauseUI.Init();
 	selectPlayer.Init();
+	go.Init();
 	//Test.Init();
 	selectPlayer.SetPos(0, 0, 0);
 	clearUI.Init();
 	gimmickUI.Init();
 	menu.Init();
 	//goal.Init();
-	sound.Play(SOUND_LABEL_BGM2);
 	Camera::Lock(p_Player);
 }
 
@@ -49,6 +51,17 @@ void Stage1_1Scene::Update()//8,6
 	{
 		if (isGoalAchieved == false)
 		{
+			if (Go1_1count <= 120)
+			{
+				Go1_1count++;
+				go.Update();
+				return;
+			}
+			else if(Go1_1count == 120)
+			{
+				Go1_1count = 121;
+			}
+
 			if (!pause.isPaused())
 			{
 				pause.apply();
@@ -185,6 +198,12 @@ void Stage1_1Scene::Draw()
 	{
 		clearUI.Draw();
 	}
+
+	if (Go1_1count <= 120)
+	{
+
+		go.Draw();
+	}
 	
 	fade.Draw();
 }
@@ -203,10 +222,12 @@ void Stage1_1Scene::Uninit()
 	gimmickUI.Uninit();
 	menu.Uninit();
 	clearUI.Uninit();
+	go.Uninit();
 	//Player.Uninit();
 	for (auto& o : m_MySceneObjects)
 	{
 		Application::GetInstance()->DeleteObject(o.get()); // .get()を追加
 	}
 	//Camera::UnLock();
+	Go1_1count = 0;
 }

@@ -17,6 +17,8 @@
 #include "../../13_Effect/FadeEffect.h"
 #include "Gimmick/GameGimmickUI.h"
 #include "../../09_Sound/sound.h"
+#include "Menu.h"
+#include "GoUI.h"
 
 class Stage2_4Scene : public Scene
 {
@@ -26,6 +28,8 @@ private:
 	GameGimmickUI gimmickUI;
 	TestPointer Test;
 	Pause pause;
+	GoUI go;
+	Menu menu;
 	FadeEffect fade;
 	PauseCursor selectPlayer;
 	GameBackGround backGround;

@@ -18,6 +18,7 @@
 #include "Gimmick/GameGimmickUI.h"
 #include "../../09_Sound/sound.h"
 #include "Menu.h"
+#include "GoUI.h"
 
 class Stage2_1Scene : public Scene
 {
@@ -28,6 +29,7 @@ private:
 	TestPointer Test;
 	Pause pause;
 	Menu menu;
+	GoUI go;
 	FadeEffect fade;
 	PauseCursor selectPlayer;
 	GameBackGround backGround;

@@ -204,6 +204,7 @@ void Application::ChangeScene(SceneList sName)
 			}
 					
 			m_Instance->m_Scene->Init();
+			sound.Play(SOUND_LABEL_BGM2);
 			break;
 		}
 		case TESTSCENE:

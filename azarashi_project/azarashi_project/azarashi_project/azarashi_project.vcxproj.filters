@@ -324,6 +324,9 @@
     <ClCompile Include="Code\03_GameMainFile\Game\Stage2-4Scene.cpp">
       <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Code\03_GameMainFile\Game\GoUI.cpp">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\01_Direct3D\direct3d.h">
@@ -556,6 +559,9 @@
     </ClInclude>
     <ClInclude Include="Code\03_GameMainFile\Game\Stage2-2Scene.h">
       <Filter>ヘッダー ファイル\MainGame.h\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\03_GameMainFile\Game\GoUI.h">
+      <Filter>ソース ファイル\MainGame.cpp\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

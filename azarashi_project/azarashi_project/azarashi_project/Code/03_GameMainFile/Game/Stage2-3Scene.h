@@ -17,13 +17,18 @@
 #include "../../13_Effect/FadeEffect.h"
 #include "Gimmick/GameGimmickUI.h"
 #include "../../09_Sound/sound.h"
+#include "Menu.h"
+#include "GoUI.h"
 
 class Stage2_3Scene : public Scene
 {
 private:
 	Object sample;
 	GameClearUI clearUI;
+	GoUI go;
 	GameGimmickUI gimmickUI;
+	Menu menu;
+
 	TestPointer Test;
 	Pause pause;
 	FadeEffect fade;
