@@ -2,9 +2,9 @@
 void PauseCursor::Init()
 {
 	//SetTexture(textures[0]);
-	Initialize(L"Asset/pic/PauseCursor.png");   //”wŒi‚ğ‰Šú‰»
+	Initialize(L"Asset/pic/azarasi.png");   //”wŒi‚ğ‰Šú‰»
 	SetPos(0.0f, 0.0f, 0.0f);      //ˆÊ’u‚ğİ’è
-	SetSize(200.0f, 200.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
+	SetSize(100.0f, 100.0f, 0.0f);  //‘å‚«‚³‚ğİ’è
 	SetAngle(0.0f);                //Šp“x‚ğİ’è
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);//Šp“x‚ğİ’è
 }

@@ -1,7 +1,7 @@
 #include "pause.h"
 
 void Pause::apply() {
-	if (Input::GetKeyTrigger(VK_P)) {
+	if (Input::GetButtonTrigger(XINPUT_START)) {
 		paused = true;
 	}
 
