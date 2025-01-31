@@ -82,7 +82,7 @@ void GamePointer::Update()//Playerのアップデート
 
 			//ジャンプ
 			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) {
-				body.AddForce(0.0f, 24.0f);
+				body.AddForce(0.0f, 23.0f);
 				behavior = BOUND;
 			}
 
