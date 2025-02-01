@@ -24,19 +24,32 @@ public:
 
 	float GetFrictionRasistance();
 	float GetOldAngle();
+
+	bool CheckCollision(Object& obj1, Object& obj2,Vector2& mtv);
+
+
+	static float unificationFloorAngle;
+	static float unificationWallAngle;
+	static bool isCorrect;
+
 protected:
 	void CorrectPointerPosition(float angle);
 	void CorrectStonePosition(float angle);
 	void CorrectSnowmanPosition(float angle);
-
 	void CorrectAngle(ContactPointVector collision, Object pointer);
+	void CorrectAngle(Object& collision, Object& pointer);
+	void CorrectBlockPosition(Object& perBlock,Object& haveBlock);
 
+	//“_‚Æ’¼ü‚Ì‹——£‚ğŒvZ‚·‚éŠÖ”
+	//lŠpŒ`“¯m‚ÌÅ’Z‹——£‚ğŒvZ‚·‚éŠÖ”
 private:
 	ContactPointVector myCollision;
 	ContactPointVector otherCollision[2];
 	HowHitPoints hitPoint = NO_HIT;
 	Object* hitObject[2];
-
+	Object* m_Block;
+	Object  oldMyBlock;
+	Vector2 mtv;
 	float oldAngle = GetAngle();
 	float frictionRasistance;	//–€CŒW”
 };

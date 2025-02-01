@@ -27,6 +27,7 @@ public:
 	~TestFloor() { Uninit(); }
 	void Init();  //‰Šú‰»
 	void Update();//XV
+
 private:
     int centerX = 1;
     int centerY = 1;

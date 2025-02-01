@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Code\01_Direct3D\direct3d.cpp" />
     <ClCompile Include="Code\01_Direct3D\Object.cpp" />
+    <ClCompile Include="Code\01_Direct3D\textureManager.cpp" />
     <ClCompile Include="Code\02_Input\input.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
@@ -121,6 +122,7 @@
     <ClInclude Include="Code\01_Direct3D\direct3d.h" />
     <ClInclude Include="Code\01_Direct3D\Object.h" />
     <ClInclude Include="Code\01_Direct3D\Singleton.h" />
+    <ClInclude Include="Code\01_Direct3D\textureManager.h" />
     <ClInclude Include="Code\02_Input\input.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

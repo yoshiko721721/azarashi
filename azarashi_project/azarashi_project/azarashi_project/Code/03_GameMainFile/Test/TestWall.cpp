@@ -1,5 +1,6 @@
 #include "TestWall.h"
 #include "../../02_Input/miyoshi_input/ControllerInput.h"
+#include "../../03_GameMainFile/Application.h"
 
 extern float gyroData[3]; // x, y, z軸
 
@@ -50,6 +51,40 @@ void TestWall::Update()
     // float gyroData[3] = { 0 }; // x, y, z軸
     //if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
     // {
+#ifdef _DEBUG
+
+    vector<GameBlock*>	 gameBlocks = Application::GetInstance()->GetObjects<GameBlock>();
+
+
+    if (Input::GetKeyPress(VK_LEFT)) {
+        SetAngle(GetAngle() + 3);
+        //オブジェクトの確認
+        bool blockHit = false;
+        for (auto block : gameBlocks) {
+            if (block != this && blockHit == false) {
+                if (BoxCollider::ColliderWithBox(block, this)) {
+                    blockHit = true;
+                    CorrectBlockPosition(*this, *block);
+                }
+            }
+        }
+    }
+    if (Input::GetKeyPress(VK_RIGHT)) {
+        SetAngle(GetAngle() - 3);
+        //オブジェクトの確認
+        bool blockHit = false;
+        for (auto block : gameBlocks) {
+            if (block != this && blockHit == false) {
+                if (BoxCollider::ColliderWithBox(block, this)) {
+                    blockHit = true;
+                    CorrectBlockPosition(*this, *block);
+                }
+            }
+        }
+    }
+
+#endif
+
 
     float nowAngle = gyroData[1] * 180.0 / M_PI;
 

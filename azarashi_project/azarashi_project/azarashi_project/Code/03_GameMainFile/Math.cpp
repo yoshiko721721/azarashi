@@ -48,6 +48,11 @@ float Math::CalcSquareRoot(float x, float y)
     else { return sqrt(x * x + y * y); }
 }
 
+float Math::dot(Vector2 v1, Vector2 v2)
+{
+    return v1.x * v2.x + v1.y * v2.y ;
+}
+
 Radian Math::NormalizeRadian(Radian radian)
 {
     if (radian < 0)

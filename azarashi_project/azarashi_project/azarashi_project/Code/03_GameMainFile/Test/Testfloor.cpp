@@ -42,16 +42,16 @@ void TestFloor::Update()
     if (angle < 30 && angle > -30)
     {
         float nowAngle = gyroData[1] * 180.0 / M_PI;
-        nokosuAngle_Floor = angle + nowAngle * 0.02f;
+        unificationFloorAngle = angle + nowAngle * 0.02f;
 
-        if (nokosuAngle_Floor > 30)
+        if (unificationFloorAngle > 30)
         {
-            nokosuAngle_Floor = 29;
+            unificationFloorAngle = 29;
             return;
         }
-        else if (nokosuAngle_Floor < -30)
+        else if (unificationFloorAngle < -30)
         {
-            nokosuAngle_Floor = -29;
+            unificationFloorAngle = -29;
             return;
         }
 
@@ -99,7 +99,7 @@ void TestFloor::Update()
         }*/
 
         //angle += gyroData[1] * 1.0f;
-        SetAngle(nokosuAngle_Floor);
+        SetAngle(unificationFloorAngle);
         SetPos(pos.x, pos.y, pos.z);
    // }
 }

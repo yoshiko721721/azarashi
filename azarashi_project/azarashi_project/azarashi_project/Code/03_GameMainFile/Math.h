@@ -61,6 +61,7 @@ namespace Math
 	double calculateRestitutionCoefficient(const std::function<float()>& velocityProvider);	//衝突後の速度計算
 	Vector2 CalcNormal(const Vector2& point1, const Vector2& point2);						//法線ベクトルを計算する
 	float CalcSquareRoot(float x, float y);
+	float dot(Vector2 v1,Vector2 v2);
 
 	//float Vector2Point(const Vector2 v1, const Vector2 v2) { return static_cast<float>(v1.x * v2.x + v1.y * v2.y) ; }	//接線ベクトル
 	//Vector2 Vector2Lerp (const Vector2 v1, const Vector2 v2, float t)  { return v1 + (v2 - v1) * t; }
