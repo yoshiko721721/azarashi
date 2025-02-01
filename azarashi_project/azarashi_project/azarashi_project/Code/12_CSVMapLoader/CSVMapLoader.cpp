@@ -81,6 +81,7 @@ void CSVMapLoader::LoadTextures()
         std::cerr << "Error: textures vector size is less than BlockType_MAX" << std::endl;
         return;
     }
+
 	textures[NULLSPACE] = LoadTexture(L"asset/pic/empty.png");
 	std::cout << "何もない読み込めました" << std::endl;
 
@@ -89,6 +90,9 @@ void CSVMapLoader::LoadTextures()
 
     textures[FLOOR] = LoadTexture(L"asset/pic/Floor.png");
     std::cout << "床を読み込めました" << std::endl;
+
+	textures[GOAL] = LoadTexture(L"asset/pic/Goal.PNG");
+	std::cout << "ゴールを読み込めました" << std::endl;
 
     textures[WALL] = LoadTexture(L"asset/pic/Wall.png");
     std::cout << "壁読み込めました" << std::endl;
@@ -99,17 +103,17 @@ void CSVMapLoader::LoadTextures()
 	textures[FLAT_PLATFORM] = LoadTexture(L"asset/pic/Block_04.png");
 	std::cout << "傾かない足場読み込めました" << std::endl;
 
-	textures[BREAK_PLATFORM] = LoadTexture(L"asset/pic/Block_03.png");
+	/*textures[BREAK_PLATFORM] = LoadTexture(L"asset/pic/Block_03.png");
 	std::cout << "崩れる床を読み込めました" << std::endl;
 
 	textures[HEAYVMOVING_PLATFORM] = LoadTexture(L"asset/pic/Block_02.png");
 	std::cout << "動く床(重い)読み込めました" << std::endl;
 
 	textures[LIGHTMOVING_PLATFORM] = LoadTexture(L"asset/pic/Block_05.png");
-	std::cout << "動く床(軽い)読み込めました" << std::endl;
+	std::cout << "動く床(軽い)読み込めました" << std::endl;*/
 
-	textures[OBSTACLE_ITEM] = LoadTexture(L"asset/pic/Ojama.png");
-	std::cout << "お邪魔アイテムを読み込めました" << std::endl;
+	/*textures[OBSTACLE_ITEM] = LoadTexture(L"asset/pic/Ojama.png");
+	std::cout << "お邪魔アイテムを読み込めました" << std::endl;*/
 
 	/*textures[ROUND_ROCK] = LoadTexture(L"asset/pic/block_bronze.png");
 	std::cout << "丸い岩を読み込みました" << std::endl;
@@ -117,12 +121,24 @@ void CSVMapLoader::LoadTextures()
 	textures[SQUARE_ROCK] = LoadTexture(L"asset/pic/InclinedPlatform.png");
 	std::cout << "四角い岩を読み込みました" << std::endl;*/
 
-	FloorBlockTextures[9] = LoadTexture(L"asset/pic/Floor_09.png");
+	FloorBlockTextures[9]  = LoadTexture(L"asset/pic/Floor_09.png");
 	FloorBlockTextures[11] = LoadTexture(L"asset/pic/Floor_11.png");
 
-	WallBlockTextures[9] = LoadTexture(L"asset/pic/Wall_09.png");
+	WallBlockTextures[9]   = LoadTexture(L"asset/pic/Wall_09.png");
+	WallBlockTextures[6] = LoadTexture(L"asset/pic/Wall_06.png");
+	WallBlockTextures[12] = LoadTexture(L"asset/pic/Wall_12.png");
 
-	inclined_PlatformTextures[3] = LoadTexture(L"asset/pic/Block_01_03.png");
+	inclined_PlatformTextures[1] = LoadTexture(L"asset/pic/Block_01.png");  //傾く床の各パーツ(2マス)　
+	inclined_PlatformTextures[2] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_02.png");  //傾く床の各パーツ(2マス)　
+	inclined_PlatformTextures[3] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_03.png");  //傾く床の各パーツ(3マス)
+	inclined_PlatformTextures[4] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_04.png");  //傾く床の各パーツ(4マス)
+	inclined_PlatformTextures[5] = LoadTexture(L"asset/pic/Block/Block_01/Block_01_05.png");  //傾く床の各パーツ(5マス)
+
+	Flat_PlatformTextures[1] = LoadTexture(L"asset/pic/Block_04.png");  //傾かない床の各パーツ(2マス)
+	Flat_PlatformTextures[2] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_02.png");  //傾かない床の各パーツ(2マス)
+	Flat_PlatformTextures[3] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_03.png");  //傾かない床の各パーツ(3マス)
+	Flat_PlatformTextures[4] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_04.png");  //傾かない床の各パーツ(4マス)
+	Flat_PlatformTextures[5] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_05.png");  //傾かない床の各パーツ(5マス)
 }
 
 //--------------------------------------------------------
@@ -180,8 +196,8 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 				{
 					data[i][j + k] = 0;
 					k++;
-
 				}
+
 				auto newChip = Application::GetInstance()->AddObject<TestFloor>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE, 0, 0);//m
 				newChip->SetTexture(FloorBlockTextures[k]);//テクスチャをSetする
 				newChip->Init();//初期化
@@ -203,7 +219,7 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 					}
 				}
 
-				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y + 128 * (k /2) , BLOCKSIZE, BLOCKSIZE * k,0,0);//壁を生成
+				auto newChip = Application::GetInstance()->AddObject<TestWall>(x, y + 128 * (k /2) -64 , BLOCKSIZE, BLOCKSIZE * k,0,0);//壁を生成
 				newChip->SetTexture(WallBlockTextures[k]);//textureをセット
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
@@ -225,9 +241,13 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case GOAL:
 			{
-
-
-
+				auto newChip = Application::GetInstance()->AddObject<Goal>(x, y, BLOCKSIZE, BLOCKSIZE);
+				newChip->SetTexture(textures[data[i][j]]);//textureをセット
+				newChip->SetPos(x, y, 0);
+				newChip->Init();
+				m_MySceneObjects->emplace_back(newChip);
+				//プレイヤーのみ複製します
+				break;
 			}
 			case INCLINED_PLATFORM://傾く床なら
 			{
@@ -238,6 +258,16 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 					k++;
 
 				}
+				int l;
+
+				/*if (x <= -1)
+				{
+					l = -2;
+				}
+				else if (x >= 0)
+				{
+					l = 2;
+				}*/
 
 				auto newChip = Application::GetInstance()->AddObject<GameBlock>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE);
 				newChip->SetTexture(inclined_PlatformTextures[k]);

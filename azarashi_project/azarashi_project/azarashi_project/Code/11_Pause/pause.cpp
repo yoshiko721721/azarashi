@@ -1,16 +1,15 @@
 #include "pause.h"
 
 void Pause::apply() {
-	if (Input::GetKeyTrigger(VK_P)) {
+	if (Input::GetButtonTrigger(XINPUT_START) || Input::GetKeyTrigger(VK_P)) {
 		paused = true;
 	}
 
 }
 
-void Pause::maladaptive() {
-	if (Input::GetKeyTrigger(VK_K)) {
+void Pause::maladaptive()
+{
 		paused = false;
-	}
 }
 
 bool Pause::isPaused() const {

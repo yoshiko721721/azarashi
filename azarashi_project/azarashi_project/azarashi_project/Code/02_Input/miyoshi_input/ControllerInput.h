@@ -44,6 +44,8 @@ bool GetGyroData(SDL_GameController* controller, float* gyroData);
 #define XINPUT_RIGHT_THUMB    0x0080 //右スティック押し込み
 #define XINPUT_LEFT_SHOULDER  0x0100 //L
 #define XINPUT_RIGHT_SHOULDER 0x0200 //R
+#define XINPUT_LEFT_TRIGGER   0x0400 //L2
+#define XINPUT_RIGHT_TRIGGER  0x0800 //R2
 
 #define VK_0 0x30
 #define VK_1 0x31
@@ -133,6 +135,8 @@ namespace Controller
 		//トリガー(コントローラー)
 		static float GetLeftTrigger(void);
 		static float GetRightTrigger(void);
+		static bool GetLeftTriggerPress(float threshold = 0.1f);
+		static bool GetRightTriggerPress(float threshold = 0.1f);
 
 		//ボタン入力(コントローラー)
 		static bool GetButtonPress(WORD btn);   //プレス(押している間ずっと)

@@ -11,20 +11,30 @@
 #include "../../11_Pause/PauseUI.h"
 #include "../../11_Pause/PauseCursor.h"
 #include "../Test/TestPointer.h"
+#include "Goal.h"
+#include "GameClearUI.h"
+#include "GameStartUI.h"
+#include "../../13_Effect/FadeEffect.h"
+#include "Gimmick/GameGimmickUI.h"
+#include "../../09_Sound/sound.h"
+#include "Menu.h"
+#include "GoUI.h"
 
 class Stage1_1Scene : public Scene
 {
 private:
 	Object sample;
-
+	GameClearUI clearUI;
+	GoUI go;
+	GameGimmickUI gimmickUI;
 	TestPointer Test;
 	Pause pause;
+	Menu menu;
+	FadeEffect fade;
 	PauseCursor selectPlayer;
-	//Timer timer;
 	GameBackGround backGround;
 	GamePointer* p_Player;
 	PauseBackGround pauseBackGround;
-	//TestPointer testPointer;
 	StageExplanation stageExplanationUI;
 	PauseUI pauseUI;
 	std::vector<ID3D11ShaderResourceView*>& textures; // textures をメンバ変数として宣言 
@@ -33,6 +43,10 @@ private:
 	DirectX::XMFLOAT2 centerPos{0,0};
 
 	bool stageExplanation = true;
+
+	bool isGoalAchieved = false;
+
+	int countStay = 0;//待つときのcount
 
 public:
 	std::vector<std::unique_ptr<Object>> m_MySceneObjects; // このシーンのオブジェクト 

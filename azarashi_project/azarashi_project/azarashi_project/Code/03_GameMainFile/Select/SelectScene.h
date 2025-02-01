@@ -12,12 +12,15 @@
 #include "SelectPlayer.h"
 #include "../../09_Sound/sound.h"
 #include "SelectTitleBackUI.h"
+#include "../Game/Stage4.h"
 
 class SelectScene : public Scene
 {
 private:
-	const int MAX_PAGE = 3;
+	const int MAX_PAGE = 1;
+	const int MAX_STAGE = 3;
 	Object sample;
+	Stage4 muriyari;
 	//std::vector<Object*> m_MySceneObjects; // このシーンのオブジェクト
 	SelectBackGround backGround;  //背景
 	WorldUI worldUI;

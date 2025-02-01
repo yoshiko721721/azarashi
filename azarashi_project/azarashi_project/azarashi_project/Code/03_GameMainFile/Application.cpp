@@ -10,6 +10,13 @@
 #include "Select/SelectScene.h"
 #include "Test/TestStageScene_Nakae.h"
 #include "Game/Stage1-1Scene.h"
+#include "Game/Stage1-2Scene.h"
+#include "Game/Stage1-3Scene.h"
+#include "Game/Stage1-4Scene.h"
+#include "Game/Stage2-1Scene.h"
+#include "Game/Stage2-2Scene.h"
+#include "Game/Stage2-3Scene.h"
+#include "Game/Stage2-4Scene.h"
 #include "Test/TestScene_You.h"
 #include "../07_Camera/Camera.h"
 #include "../06_Scene/TestSceneNishiguchi.h"
@@ -43,7 +50,7 @@ void Application::Init(HWND hWnd)
 	SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	//SDL_GameController* controller = SDL_GameControllerOpen(0);
 	//初期シーンをセット
-	m_Instance->m_Scene = new TitleScene(false);
+	m_Instance->m_Scene = new TitleScene(true);
 	m_Instance->m_Scene->Init();
 
 	Camera::Init();
@@ -86,6 +93,7 @@ Scene* Application::GetCurrentScene(void)
 
 void Application::ChangeScene(SceneList sName)
 {
+	m_Instance->m_Scene->Uninit();
 	//m_Sceneの中身がnullptrじゃ無いなら
 	if (m_Instance->m_Scene != nullptr) {
 		delete m_Instance->m_Scene;
@@ -126,76 +134,77 @@ void Application::ChangeScene(SceneList sName)
 				}
 				else if (stageCount == 1)
 				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+					m_Instance->m_Scene = new Stage1_2Scene(textures); // メモリを確保
 				}
 				else if (stageCount == 2)
 				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+					m_Instance->m_Scene = new Stage1_3Scene(textures); // メモリを確保
 				}
 				else if (stageCount == 3)
 				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+					m_Instance->m_Scene = new Stage1_4Scene(textures); // メモリを確保
 				}
 				break;
 			case 1:
 				if (stageCount == 0)
 				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+					m_Instance->m_Scene = new Stage2_1Scene(textures); // メモリを確保
 				}
 				else if (stageCount == 1)
 				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+					m_Instance->m_Scene = new Stage2_2Scene(textures); // メモリを確保
 				}
 				else if (stageCount == 2)
 				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+					m_Instance->m_Scene = new Stage2_3Scene(textures); // メモリを確保
 				}
 				else if (stageCount == 3)
 				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+					m_Instance->m_Scene = new Stage2_4Scene(textures); // メモリを確保
 				}
 				break;
-			case 2:
-				if (stageCount == 0)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 1)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 2)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 3)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				break;
-			case 3:
-				if (stageCount == 0)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 1)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 2)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				else if (stageCount == 3)
-				{
-					m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
-				}
-				break;
+			//case 2:
+			//	if (stageCount == 0)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 1)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 2)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 3)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	break;
+			//case 3:
+			//	if (stageCount == 0)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 1)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 2)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	else if (stageCount == 3)
+			//	{
+			//		m_Instance->m_Scene = new Stage1_1Scene(textures); // メモリを確保
+			//	}
+			//	break;
 			default:
 				break;
 			}
 					
 			m_Instance->m_Scene->Init();
+			sound.Play(SOUND_LABEL_BGM2);
 			break;
 		}
 		case TESTSCENE:

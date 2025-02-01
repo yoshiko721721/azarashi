@@ -184,6 +184,18 @@ float Controller::Input::GetRightTrigger(void)
 	return Rt / 255.0f;
 }
 
+// 左トリガーが一定の値を超えたか判定
+bool Controller::Input::GetLeftTriggerPress(float threshold)
+{
+	return GetLeftTrigger() > threshold;
+}
+
+// 右トリガーが一定の値を超えたか判定
+bool Controller::Input::GetRightTriggerPress(float threshold)
+{
+	return GetRightTrigger() > threshold;
+}
+
 //ボタン入力
 bool Controller::Input::GetButtonPress(WORD btn) //プレス
 {

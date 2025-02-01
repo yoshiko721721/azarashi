@@ -16,6 +16,7 @@ void SelectScene::Init()
 	cursorL.Init();
 	cursorR.Init();
 	selectPlayer.Init();
+	muriyari.Init();
 	fade.Init();
 	titleBackUI.Init();
 	titleBackUI.Init();
@@ -56,7 +57,7 @@ void SelectScene::Update()
 				alphaR = 1.0;
 			}
 
-			worldUI.Update(selectPage);
+			 worldUI.Update(selectPage);
 			stage1UI.Update(selectPage);
 			stage2UI.Update(selectPage);
 			stage3UI.Update(selectPage);
@@ -68,17 +69,17 @@ void SelectScene::Update()
 			sound.Play(SOUND_LABEL_SE1);
 			if (selectPage > 0)
 			{
-				selectPage--;
+				//selectPage--;
 			}
 				//selectPage = 3;
-			worldUI.Update(selectPage);
+			 worldUI.Update(selectPage);
 			stage1UI.Update(selectPage);
 			stage2UI.Update(selectPage);
 			stage3UI.Update(selectPage);
 			stage4UI.Update(selectPage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_LEFT))
+		if (Input::GetButtonTrigger(XINPUT_LEFT) || Input::GetKeyTrigger(VK_LEFT))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage--;
@@ -90,11 +91,11 @@ void SelectScene::Update()
 			selectPlayer.Update(selectStage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_RIGHT))
+		if (Input::GetButtonTrigger(XINPUT_RIGHT) || Input::GetKeyTrigger(VK_RIGHT))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage++;
-			if (selectStage > MAX_PAGE)
+			if (selectStage > MAX_STAGE)
 			{
 				selectStage = 0;
 			}
@@ -102,14 +103,14 @@ void SelectScene::Update()
 			selectPlayer.Update(selectStage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_UP))
+		if (Input::GetButtonTrigger(XINPUT_UP) || Input::GetKeyTrigger(VK_UP))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage = 4;
 			selectPlayer.Update(selectStage);
 		}
 
-		if (Input::GetButtonTrigger(XINPUT_DOWN))
+		if (Input::GetButtonTrigger(XINPUT_DOWN) || Input::GetKeyTrigger(VK_DOWN))
 		{
 			sound.Play(SOUND_LABEL_SE2);
 			selectStage = 0;
@@ -118,10 +119,10 @@ void SelectScene::Update()
 
 		if (selectPage == 0)
 		{
-			alphaR = 1.0;
+			alphaR = 0.0;
 			alphaL = 0.0;
 		}
-		else if (selectPage == 3)
+		else if (selectPage == 0)
 		{
 			alphaR = 0.0;
 			alphaL = 1.0;
@@ -159,6 +160,8 @@ void SelectScene::Update()
 
 		if (isFading == false && fade.GetMode() == FADEOUT && selectStage == 4)
 		{
+			sound.Stop(SOUND_LABEL_BGM1);
+			sound.Play(SOUND_LABEL_BGM1);
 			Application::GetInstance()->ChangeScene(TITLESCENE);
 		}
 	}
@@ -171,9 +174,10 @@ void SelectScene::Draw()
 	stage2UI.Draw();
 	stage3UI.Draw();
 	stage4UI.Draw();
+	muriyari.Draw();
 	worldUI.Draw();
-	cursorL.Draw();
-	cursorR.Draw();
+	//cursorL.Draw();
+	//cursorR.Draw();
 	titleBackUI.Draw();
 	selectPlayer.Draw();
 	fade.Draw();
@@ -184,6 +188,7 @@ void SelectScene::Uninit()
 	fade.Uninit();
 	worldUI.Uninit();
 	stage1UI.Uninit();
+	muriyari.Uninit();
 	stage2UI.Uninit();
 	stage3UI.Uninit();
 	stage4UI.Uninit();

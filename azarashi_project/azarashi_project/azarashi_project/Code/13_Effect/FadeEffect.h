@@ -1,4 +1,5 @@
 #pragma once
+#include "../01_Direct3D/BackGround.h"
 #include "../01_Direct3D/direct3d.h"
 #include "../01_Direct3D/Object.h"
 #include "../05_WICTextureLoader/WICTextureLoader.h" // テクスチャ読み込みライブラリ
@@ -9,7 +10,7 @@ enum Mode			//フェイドモードを列挙
 	FADEOUT ,
 };
 
-class FadeEffect :public Object
+class FadeEffect :public BackGround
 {
 private:
 

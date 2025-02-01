@@ -1,0 +1,27 @@
+1.Playstation5のコントローラーを準備する
+
+2.https://github.com/nefarius/ViGEmBus/releases をブラウザで開いてリスト上にある ViGEmBus_1.22.0_x64_x86_arm64.exe をダウンロードする
+
+セットアップウィザードが表示されるので、nextを押す、保存するファイルを選んでnextを押す
+
+3.https://github.com/csutorasa/XOutput/releases をブラウザで開き XOutput.zip をダウンロードし適当な場所に保存する
+
+4.zipを解凍し、中にあるXoutput.exeを起動、コントローラーをUSBで接続、
+
+Xoutput画面上部に　Controlloer が追加させるので追加されたコントローラーのEditを選択、コントローラーの入出力を確認をする
+
+5.確認ができたら画面下部のAbb controllerを選択、Game controllerにControllerが追加されます。
+
+6.追加されたControllerのEditを選択、表示されたウィンドウの一番下まで行きConfigure All を選択、
+
+ボタン設定のウィンドウが表示されるので画面上で点滅しているボタンを、ウィンドウ上部のバーが溜まり次のボタン設定に切り替わるまで押し続ける
+
+(AボタンとBボタンを逆にしたいときは、ボタン設定の時に選択を逆にすることで可能)
+
+設定が終われば、RTとRYの入力が逆になっているので、Invertをクリックして修正する、
+
+画面下部に行き、Other settingの一つ下のcontrollerを one に変更する、終わればウィンドウを閉じる
+
+7.元のウィンドウに戻るので、先ほど設定した one の欄にあるStartを選択することで設定完了です。
+
+後は、ゲームを開いてプレイするだけです!
