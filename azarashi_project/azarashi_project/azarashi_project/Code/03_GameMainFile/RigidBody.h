@@ -59,10 +59,8 @@ public:
 	void DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber);		//減速処理
 
 	bool isHorizonOrVertical(float boxAngle);									//0度に対して水平か垂直かの確認
-	void CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block);
-
-	//角度に添ったベクトル変換
-	void VectorPruductAngle(Vector2* m_Vector, float angle, float friction);
+	void CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block);		//法線ベクトルの計算
+	void VectorPruductAngle(Vector2* m_Vector, float angle, float friction);	//角度に添ったベクトル変換
 
 
 	//ストップウォッチ

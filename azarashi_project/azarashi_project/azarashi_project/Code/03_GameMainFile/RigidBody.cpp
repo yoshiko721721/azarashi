@@ -45,13 +45,14 @@ void RigidBody::FreeFall(float time)
 //反発の計算
 void RigidBody::Repulsion()
 {
-
+	//速度ベクトルから長さを計算
 	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
-	if (vectorNum < 0) { vectorNum *= -1; }
+	if (vectorNum < 0) { vectorNum *= -1; }	//負の数になった場合は * -1をする
 
+	//反発の移動量を計算
 	Vector2 refrected = { vectorNum * cos(finalNormalAngle), vectorNum * sin(finalNormalAngle) };
 	vector = refrected * restitution;
-
+	//vevtorに代入
 	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
 
 }
@@ -66,13 +67,15 @@ void RigidBody::AddForce(float forceX, float forceY)
 void RigidBody::HorizonUpdate(Object& player, Object& block, float friction, float speed)
 {
 	Vector2 velocity = 0;
-	velocity.x = cosf(-finalNormalAngle) * speed * (1 - friction);
-	velocity.y = sinf(-finalNormalAngle) * speed * (1 - friction);
+	//速度を計算
+	velocity.x = cosf( - finalNormalAngle) * speed * (1 - friction);
+	velocity.y = sinf( - finalNormalAngle) * speed * (1 - friction);
 
 	vector = velocity;
 
 }
 
+//使ってない
 void RigidBody::DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber)
 {
 	if (m_Mode_Nummber == STAND) {
@@ -82,6 +85,7 @@ void RigidBody::DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber)
 		vector.x -= vector.x * (1 - m_damping);
 	}
 }
+//使ってない
 bool RigidBody::isHorizonOrVertical(float boxAngle)
 {
 	boxAngle = NormalizeDegree(boxAngle);
@@ -106,15 +110,16 @@ void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circl
 	Radian nrmAngleR = NormalizeRadian(atan2(normal.y, normal.x));	//0~360に正規化		
 	Degree nrmAngleD = ConvertToDegree((nrmAngleR));
 
+	// 衝突位置に応じて法線ベクトルの角度を制限
 	switch (collision.checkCollision) {
-	case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90 + block.GetAngle(), 180 + block.GetAngle())); break;
+	case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90  + block.GetAngle(), 180 + block.GetAngle())); break;
 	case LEFTDOWN:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 180 + block.GetAngle(), 270 + block.GetAngle())); break;
-	case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0 + block.GetAngle(), 90 + block.GetAngle())); break;
+	case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0   + block.GetAngle(), 90 + block.GetAngle())); break;
 	case RIGHTDOWN: nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 270 + block.GetAngle(), 360 + block.GetAngle())); break;
 	}
 
-	//最終的な角度
-	finalNormalAngle = NormalizeRadian(nrmAngleR);	//正規化
+	// 最終的な法線ベクトルの角度を正規化して保持
+	finalNormalAngle = NormalizeRadian(nrmAngleR);
 
 }
 
