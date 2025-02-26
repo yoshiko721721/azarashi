@@ -31,27 +31,27 @@ void TestFloor::Update()
     //SDL_Event& e = Controller::Input::e;
     if (Input::GetButtonTrigger(XINPUT_X))
     {
-        SetPos(resetPosX, resetPosY, 0);
-        SetAngle(0);
+        SetPos(resetPosX, resetPosY, 0.0f);
+        SetAngle(0.0f);
     }
     
 
     float angle = GetAngle();
     DirectX::XMFLOAT3 pos = GetPos();
 
-    if (angle < 30 && angle > -30)
+    if (angle < 30.0f && angle > -30.0f)
     {
-        float nowAngle = gyroData[1] * 180.0 / M_PI;
+        float nowAngle = gyroData[1] * 180.0f / M_PI;
         unificationFloorAngle = angle + nowAngle * 0.02f;
 
-        if (unificationFloorAngle > 30)
+        if (unificationFloorAngle > 30.0f)
         {
-            unificationFloorAngle = 29;
+            unificationFloorAngle = 29.0f;
             return;
         }
-        else if (unificationFloorAngle < -30)
+        else if (unificationFloorAngle < -30.0f)
         {
-            unificationFloorAngle = -29;
+            unificationFloorAngle = -29.0f;
             return;
         }
 
@@ -62,11 +62,11 @@ void TestFloor::Update()
    //if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
    // {
 
-        float nowAngle = gyroData[1] * 180.0 / M_PI;
+        float nowAngle = gyroData[1] * 180.0f / M_PI;
 
         nowAngle = nowAngle * 0.02f; // スケーリング係数を調整 
 
-        float radians = nowAngle * M_PI / 180.0;
+        float radians = nowAngle * M_PI / 180.0f;
         float cosA = cos(radians);
         float sinA = sin(radians);
         //std::cout << "ラジアン: " << radians << std::endl;
@@ -87,7 +87,7 @@ void TestFloor::Update()
         //float angleRadians = atan2(pos.y + resetPosY, pos.x + resetPosX);
 
         // ラジアンを度数に変換
-        //float angleDegrees = angleRadians * 180.0 / M_PI;
+        //float angleDegrees = angleRadians * 180.0f / M_PI;
 
         /*if (angle > 30)
         {

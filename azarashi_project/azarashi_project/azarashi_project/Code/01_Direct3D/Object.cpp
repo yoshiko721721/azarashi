@@ -4,8 +4,8 @@
 
 Object::Object(float posX, float posY, float sizeX, float sizeY)
 {
-	SetPos(posX, posY, 0);
-	SetSize(sizeX, sizeY, 0);
+	SetPos(posX, posY, 0.0f);
+	SetSize(sizeX, sizeY, 0.0f);
 }
 
 void Object::Initialize(const wchar_t* imgname, int sx, int sy)

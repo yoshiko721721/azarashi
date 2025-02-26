@@ -34,11 +34,11 @@ public:
 private:
 	Circle circle;				//
 	RigidBody body;										//物理挙動を持たせる
-	const float Stone_Friction = { 0.7 };	// 摩擦係数
+	const float Stone_Friction = { 0.7f };	// 摩擦係数
 
 	BODY_BEHAVIOR behavior = BOUND;		//石の挙動の状態
 	int boundCounter = 0;				//一定回数バウンドしたら転がる状態になる
-	float oldVectorNum = 0;				//vectorの差を出すための保存用
+	float oldVectorNum = 0.0f;				//vectorの差を出すための保存用
 
 	int now;
 	ContactPointVector collision;

@@ -44,7 +44,7 @@ struct Vector2 {
 		return { x * cosA - y * sinA, x * sinA + y * cosA };
 	}
 
-
+	
 
 };
 

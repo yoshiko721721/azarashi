@@ -45,8 +45,8 @@ protected:
 
 public:
 	//‰Eã‚©‚ç‰½˜b–Ú‚ğØ‚è”²‚¢‚Ä•\¦‚·‚é‚©
-	float numU = 0;
-	float numV = 0;
+	float numU = 0.0f;
+	float numV = 0.0f;
 
 	Object() {}
 	Object(float posX, float posY, float sizeX, float sizeY);

@@ -2,12 +2,12 @@
 
 Radian Math::ConvertToRadian(Degree degree)
 {
-    return degree * (PI / 180);
+    return degree * (PI / 180.0f);
 }
 
 Degree Math::ConvertToDegree(Radian radian)
 {
-    return radian * (180 / PI);
+    return radian * (180.0f / PI);
 }
 
 //ìÒÇ¬ÇÃë¨ìxÇ©ÇÁîΩî≠åWêî e Çï‘Ç∑
@@ -35,7 +35,7 @@ double Math::calculateRestitutionCoefficient(const std::function<float()>& veloc
 
 Vector2 Math::CalcNormal(const Vector2& point1, const Vector2& point2)
 {
-    Vector2 normal = 0;
+    Vector2 normal = 0.0f;
     normal.x = point2.y - point1.y;
     normal.y = point1.x - point2.x;
     return normal.Normalize();
@@ -43,8 +43,8 @@ Vector2 Math::CalcNormal(const Vector2& point1, const Vector2& point2)
 
 float Math::CalcSquareRoot(float x, float y)
 {
-    if (x == 0) { return y; }
-    if (y == 0) { return x; }
+    if (x == 0.0f) { return y; }
+    if (y == 0.0f) { return x; }
     else { return sqrt(x * x + y * y); }
 }
 
@@ -55,7 +55,7 @@ float Math::dot(Vector2 v1, Vector2 v2)
 
 Radian Math::NormalizeRadian(Radian radian)
 {
-    if (radian < 0)
+    if (radian < 0.0f)
         return radian + TAU;
     else if (radian >= TAU)
         return fmod(radian, TAU);
@@ -65,10 +65,10 @@ Radian Math::NormalizeRadian(Radian radian)
 
 Degree Math::NormalizeDegree(Degree degree)
 {
-    if (degree < 0)
-        return degree + 360;
-    else if (degree >= 360)
-        return fmod(degree, 360);
+    if (degree < 0.0f)
+        return degree + 360.0f;
+    else if (degree >= 360.0f)
+        return fmod(degree, 360.0f);
     else
         return degree;
 }

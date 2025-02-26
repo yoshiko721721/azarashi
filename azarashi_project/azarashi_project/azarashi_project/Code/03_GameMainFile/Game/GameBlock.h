@@ -8,9 +8,9 @@ const float groundY = 0.0f; // 地面のY座標
 const float groundX = 0.0f; // 地面のY座標
 
 enum HowHitPoints {
-	NO_HIT,
-	MY_ONLY,
-	DOUBLE_HITS
+	HIT_NO,
+	HIT_ONE,
+	HIT_DOUBLE
 };
 
 class GameBlock :public Object
@@ -26,7 +26,6 @@ public:
 	float GetOldAngle();
 
 	bool CheckCollision(Object& obj1, Object& obj2,Vector2& mtv);
-
 
 	static float unificationFloorAngle;
 	static float unificationWallAngle;
@@ -45,7 +44,7 @@ protected:
 private:
 	ContactPointVector myCollision;
 	ContactPointVector otherCollision[2];
-	HowHitPoints hitPoint = NO_HIT;
+	HowHitPoints hitPoint = HIT_NO;
 	Object* hitObject[2];
 	Object* m_Block;
 	Object  oldMyBlock;

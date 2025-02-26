@@ -17,7 +17,7 @@ using namespace DirectX;
 /// <param name="m_Angle"></param>
 void RigidBody::VectorPruductAngle(Vector2* m_Vector, float m_Angle, float friction)
 {
-
+	
 }
 
 //タイマー
@@ -47,11 +47,13 @@ void RigidBody::Repulsion()
 {
 	//速度ベクトルから長さを計算
 	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
-	if (vectorNum < 0) { vectorNum *= -1; }	//負の数になった場合は * -1をする
+	Vector2 refrected = { vectorNum * cos(finalNormalAngle), 
+						  vectorNum * sin(finalNormalAngle) };
 
 	//反発の移動量を計算
-	Vector2 refrected = { vectorNum * cos(finalNormalAngle), vectorNum * sin(finalNormalAngle) };
-	vector = refrected * restitution;
+	vector.x = - refrected.x * (1.0f - restitution) ;
+	vector.y = - refrected.y * (1.0f - restitution) ;
+
 	//vevtorに代入
 	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
 
@@ -88,6 +90,7 @@ void RigidBody::DampingVector(float m_damping, AZA_MODE_NUMMBER m_Mode_Nummber)
 //使ってない
 bool RigidBody::isHorizonOrVertical(float boxAngle)
 {
+	//
 	boxAngle = NormalizeDegree(boxAngle);
 	if (boxAngle == 0 || boxAngle == 90 ||
 		boxAngle == 180 || boxAngle == 270) {

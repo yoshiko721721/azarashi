@@ -96,22 +96,22 @@ void GameBlock::Update(void)//ë´èÍÇÃÉAÉbÉvÉfÅ[Ég
 				else {
 					otherHit[j] = true;
 				}
-				if(hitPoint != DOUBLE_HITS)
+				if(hitPoint != HIT_DOUBLE)
 				{
 					if (myHit[i] && otherHit[i])
 					{
-						hitPoint = DOUBLE_HITS;
+						hitPoint = HIT_DOUBLE;
 						hitObject[j] = comparisonBlocks[i];
 						j++;
 					}
 					else if (myHit[i]) 
 					{
-							hitPoint = MY_ONLY;
+							hitPoint = HIT_ONE;
 					}
 				}			
 			}
 		}
-		if (hitPoint != DOUBLE_HITS) {
+		if (hitPoint != HIT_DOUBLE) {
 		for (auto stone : stones) {
 			myCollision = BoxCollider::ColliderWithCircle(stone, this);
 			Object* comparisonBlocks[2];
@@ -134,16 +134,16 @@ void GameBlock::Update(void)//ë´èÍÇÃÉAÉbÉvÉfÅ[Ég
 				else {
 					otherHit[j] = true;
 				}
-				if (hitPoint != DOUBLE_HITS)
+				if (hitPoint != HIT_DOUBLE)
 				{
 					if (myHit[i] && otherHit[i])
 					{
-						hitPoint = DOUBLE_HITS;
+						hitPoint = HIT_DOUBLE;
 						hitObject[j] = comparisonBlocks[i];
 						j++;
 					}
 					else if (myHit[i]) {
-							hitPoint = MY_ONLY;
+							hitPoint = HIT_ONE;
 						
 					}
 				}
@@ -166,7 +166,7 @@ void GameBlock::Update(void)//ë´èÍÇÃÉAÉbÉvÉfÅ[Ég
 		{
 			angle = -29;
 		}
-		if (hitPoint == DOUBLE_HITS) {
+		if (hitPoint == HIT_DOUBLE) {
 			CorrectAngle(myCollision, *hitObject[0]);
 		}
 		else {
@@ -239,8 +239,8 @@ bool GameBlock::CheckCollision(Object& perBlock, Object& haveBlock, Vector2& mtv
 								 {  haveHalfSize.x * haveAngle.x,   haveHalfSize.y * haveAngle.y},		//âEè„
 								 { -haveHalfSize.x * haveAngle.x,   haveHalfSize.y * haveAngle.y} };	//ç∂è„
 
-	Vector2 axes[4] = { {perHitCorner[1].x - perHitCorner[0].x , perHitCorner[0].y - perHitCorner[0].y },
-						{perHitCorner[1].x - perHitCorner[2].x , perHitCorner[1].y - perHitCorner[1].y },
+	Vector2 axes[4] = { { perHitCorner[1].x -  perHitCorner[0].x , perHitCorner[0].y -  perHitCorner[0].y },
+						{ perHitCorner[1].x -  perHitCorner[2].x , perHitCorner[1].y -  perHitCorner[1].y },
 						{haveHitCorner[1].x - haveHitCorner[0].x ,haveHitCorner[2].y - haveHitCorner[2].y },
 						{haveHitCorner[1].x - haveHitCorner[2].x ,haveHitCorner[3].y - haveHitCorner[3].y } };
 
@@ -249,7 +249,7 @@ bool GameBlock::CheckCollision(Object& perBlock, Object& haveBlock, Vector2& mtv
 	axes[2] = axes[2].Normalize();
 	axes[3] = axes[3].Normalize();
 
-	float minOverlap = 100000;
+	float minOverlap = 100000.0f;
 	Vector2 smallestAxis;
 
 	for (int i = 0; i < 4; ++i) {
@@ -291,13 +291,13 @@ void GameBlock::CorrectPointerPosition(float angle)
 	for (auto pointer : pointers) {
 		myCollision = BoxCollider::ColliderWithCircle(pointer, this);
 		if (myCollision.checkCollision != NO_COLLISION) {
-			if (pointer->GetPos().x > GetPos().x && angle > 0 ||
-				pointer->GetPos().x < GetPos().x && angle < 0) {
+			if (pointer->GetPos().x > GetPos().x && angle > 0.0f ||
+				pointer->GetPos().x < GetPos().x && angle < 0.0f) {
 				Vector2 pos = { pointer->GetPos().x - GetPos().x , pointer->GetPos().y - GetPos ().y };
 
 				pos.y = pos.x * sin(Math::ConvertToRadian(angle)) + pos.y * cos  (Math::ConvertToRadian(angle));
 
-				pointer->SetPos(pointer->GetPos().x, GetPos().y + pos.y, 0);
+				pointer->SetPos(pointer->GetPos().x, GetPos().y + pos.y, 0.0f);
 			}
 		}
 	}
@@ -308,13 +308,13 @@ void GameBlock::CorrectStonePosition(float angle)
 	for (auto stone : stones) {
 		myCollision = BoxCollider::ColliderWithCircle(stone, this);
 		if (myCollision.checkCollision != NO_COLLISION) {
-			if (stone->GetPos().x > GetPos().x && angle > 0 ||
-				stone->GetPos().x < GetPos().x && angle < 0) {
+			if (stone->GetPos().x > GetPos().x && angle > 0.0f ||
+				stone->GetPos().x < GetPos().x && angle < 0.0f) {
 				Vector2 pos = { stone->GetPos().x - GetPos().x , stone->GetPos().y - GetPos().y };
 
 				pos.y = pos.x * sin(Math::ConvertToRadian(angle)) + pos.y * cos(Math::ConvertToRadian(angle));
 
-				stone->SetPos(stone->GetPos().x, GetPos().y + pos.y, 0);
+				stone->SetPos(stone->GetPos().x, GetPos().y + pos.y, 0.0f);
 			}
 		}
 	}
@@ -331,7 +331,7 @@ void GameBlock::CorrectSnowmanPosition(float angle)
 			pos.x = pos.x * cos(Math::ConvertToRadian(difAngle)) - pos.y * sin(Math::ConvertToRadian(difAngle));
 			pos.y = pos.x * sin(Math::ConvertToRadian(difAngle)) + pos.y * cos(Math::ConvertToRadian(difAngle));
 
-			snowman->SetPos(GetPos().x + pos.x, GetPos().y + pos.y, 0);
+			snowman->SetPos(GetPos().x + pos.x, GetPos().y + pos.y, 0.0f);
 			snowman->SetAngle(GetAngle());
 			
 		}
@@ -347,33 +347,33 @@ void GameBlock::CorrectAngle(ContactPointVector collision, Object pointer)
 	Degree nrmAngleD = Math::ConvertToDegree((nrmAngleR));
 
 	switch (collision.checkCollision) {
-	case LEFTUP:	nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD, 90 + GetAngle(), 180 + GetAngle())); break;
-	case LEFTDOWN:	nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD, 180 + GetAngle(), 270 + GetAngle())); break;
-	case RIGHTUP:	nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD, 0 + GetAngle(), 90 + GetAngle())); break;
-	case RIGHTDOWN: nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD, 270 + GetAngle(), 360 + GetAngle())); break;
+	case LEFTUP:	nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD,  90.0f + GetAngle(), 180.0f + GetAngle())); break;
+	case LEFTDOWN:	nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD, 180.0f + GetAngle(), 270.0f + GetAngle())); break;
+	case RIGHTUP:	nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD,   0.0f + GetAngle(),  90.0f + GetAngle())); break;
+	case RIGHTDOWN: nrmAngleR = Math::ConvertToRadian(clamp(nrmAngleD, 270.0f + GetAngle(), 360.0f + GetAngle())); break;
 	}
 
 	//ñ ÇÃíÜêSç¿ïW
 	Vector2 clossSurfacePos;
-	float distanceCorrect = (pointer.GetSize().x / 2) - sqrt(collision.distanceSquared);
+	float distanceCorrect = (pointer.GetSize().x / 2.0f) - sqrt(collision.distanceSquared);
 
-	clossSurfacePos.x = GetPos().x + (GetSize().y / 2 * cos(nrmAngleR));
-	clossSurfacePos.y = GetPos().y + (GetSize().y / 2 * sin(nrmAngleR));
+	clossSurfacePos.x = GetPos().x + (GetSize().y / 2.0f * cos(nrmAngleR));
+	clossSurfacePos.y = GetPos().y + (GetSize().y / 2.0f * sin(nrmAngleR));
 
 	Vector2 distanceCtoS = { clossSurfacePos.x - collision.closspoint.x ,
 							 clossSurfacePos.y - collision.closspoint.y };
 
-	if (distanceCtoS.x < 0) { distanceCtoS.x *= -1; }
-	if (distanceCtoS.y < 0) { distanceCtoS.y *= -1; }
+	if (distanceCtoS.x < 0.0f) { distanceCtoS.x *= - 1.0f ; }
+	if (distanceCtoS.y < 0.0f) { distanceCtoS.y *= - 1.0f ; }
 
 	float distanceCtoSNum = distanceCtoS.Length();
 	Radian correctAngleR = atan2(distanceCorrect, distanceCtoSNum);
-	Degree correctAngleD = Math::ConvertToDegree(correctAngleR) + 0.1;
+	Degree correctAngleD = Math::ConvertToDegree(correctAngleR) + 0.1f;
 
 	//ëÊÇPè€å¿Ç∆ëÊÇRè€å¿
-	if (nrmAngleD <= 0 && nrmAngleD >= 90 ||
-		nrmAngleD >= 270 && nrmAngleD <= 360) {
-		correctAngleD *= -1;
+	if (nrmAngleD <= 0.0f && nrmAngleD >= 90.0f ||
+		nrmAngleD >= 270.0f && nrmAngleD <= 360.0f) {
+		correctAngleD *= - 1.0f;
 	}
 
 	SetAngle(GetAngle() + correctAngleD);
@@ -396,6 +396,6 @@ void GameBlock::CorrectAngle(Object& perBlock, Object& haveBlock)//â¡äQé“Ç∆îÌäQé
 void GameBlock::CorrectBlockPosition(Object& perBlock, Object& haveBlock)
 {
 	if (CheckCollision(perBlock, haveBlock, mtv)) {
-		perBlock.SetPos(perBlock.GetPos().x - mtv.x, perBlock.GetPos().y - mtv.y, 0);
+		perBlock.SetPos(perBlock.GetPos().x - mtv.x, perBlock.GetPos().y - mtv.y, 0.0f);
 	}
 }
