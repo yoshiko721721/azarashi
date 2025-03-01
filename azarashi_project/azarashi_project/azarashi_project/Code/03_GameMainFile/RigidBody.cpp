@@ -107,7 +107,7 @@ bool RigidBody::isHorizonOrVertical(float boxAngle)
 void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block)
 {
 	// 接地点から円の中心へのベクトルを計算
-	Vector2 normal = { circle.GetPos().x - collision.closspoint.x , circle.GetPos().y - collision.closspoint.y };
+	Vector2 normal = { circle.GetPos().x - collision.closspoint.pos.x , circle.GetPos().y - collision.closspoint.pos.y };
 
 	//法線ベクトルの角度
 	Radian nrmAngleR = NormalizeRadian(atan2(normal.y, normal.x));	//0~360に正規化		
@@ -117,12 +117,12 @@ void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circl
 	switch (collision.checkCollision) {
 	case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90  + block.GetAngle(), 180 + block.GetAngle())); break;
 	case LEFTDOWN:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 180 + block.GetAngle(), 270 + block.GetAngle())); break;
-	case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0   + block.GetAngle(), 90 + block.GetAngle())); break;
+	case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0   + block.GetAngle(),  90 + block.GetAngle())); break;
 	case RIGHTDOWN: nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 270 + block.GetAngle(), 360 + block.GetAngle())); break;
 	}
 
 	// 最終的な法線ベクトルの角度を正規化して保持
-	finalNormalAngle = NormalizeRadian(nrmAngleR);
+	finalNormalAngle = nrmAngleR;
 
 }
 

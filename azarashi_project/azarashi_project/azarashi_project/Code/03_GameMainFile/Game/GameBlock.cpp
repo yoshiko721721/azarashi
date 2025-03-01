@@ -89,8 +89,8 @@ void GameBlock::Update(void)//足場のアップデート
 					otherCollision[i].closspoint = { -1,-1 };
 					otherCollision[i].distanceSquared = -1;
 				}
-				if (myCollision.closspoint.x == otherCollision[i].closspoint.x &&
-					myCollision.closspoint.y == otherCollision[i].closspoint.y) {
+				if (myCollision.closspoint.pos.x == otherCollision[i].closspoint.pos.x &&
+					myCollision.closspoint.pos.y == otherCollision[i].closspoint.pos.y) {
 					myHit[j] = true;
 				}
 				else {
@@ -127,8 +127,8 @@ void GameBlock::Update(void)//足場のアップデート
 					otherCollision[i].distanceSquared = -1;
 				}
 				
-				if (myCollision.closspoint.x == otherCollision[i].closspoint.x &&
-					myCollision.closspoint.y == otherCollision[i].closspoint.y) {
+				if (myCollision.closspoint.pos.x == otherCollision[i].closspoint.pos.x &&
+					myCollision.closspoint.pos.y == otherCollision[i].closspoint.pos.y) {
 					myHit[j] = true;
 				}
 				else {
@@ -340,7 +340,7 @@ void GameBlock::CorrectSnowmanPosition(float angle)
 void GameBlock::CorrectAngle(ContactPointVector collision, Object pointer)
 {
 	// 接地点から円の中心へのベクトルを計算
-	Vector2 normal = { pointer.GetPos().x - collision.closspoint.x , pointer.GetPos().y - collision.closspoint.y };
+	Vector2 normal = { pointer.GetPos().x - collision.closspoint.pos.x , pointer.GetPos().y - collision.closspoint.pos.y };
 
 	//法線ベクトルの角度
 	Radian nrmAngleR = Math::NormalizeRadian(atan2(normal.y, normal.x));	//0~360に正規化		
@@ -360,8 +360,8 @@ void GameBlock::CorrectAngle(ContactPointVector collision, Object pointer)
 	clossSurfacePos.x = GetPos().x + (GetSize().y / 2.0f * cos(nrmAngleR));
 	clossSurfacePos.y = GetPos().y + (GetSize().y / 2.0f * sin(nrmAngleR));
 
-	Vector2 distanceCtoS = { clossSurfacePos.x - collision.closspoint.x ,
-							 clossSurfacePos.y - collision.closspoint.y };
+	Vector2 distanceCtoS = { clossSurfacePos.x - collision.closspoint.pos.x ,
+							 clossSurfacePos.y - collision.closspoint.pos.y };
 
 	if (distanceCtoS.x < 0.0f) { distanceCtoS.x *= - 1.0f ; }
 	if (distanceCtoS.y < 0.0f) { distanceCtoS.y *= - 1.0f ; }

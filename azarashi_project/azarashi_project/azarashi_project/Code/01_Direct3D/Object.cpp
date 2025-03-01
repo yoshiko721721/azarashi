@@ -34,17 +34,17 @@ void Object::Initialize(const wchar_t* imgname, int sx, int sy)
 
 	HRESULT hr = g_pDevice->CreateBuffer(&bufferDesc, &subResourceData, &m_pVertexBuffer);
 
-	//if (m_pTextureView == nullptr) // ★ テクスチャが読み込まれていない場合のみ読み込む
-	//{
-	//	テクスチャ読み込み
-	//	hr = DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
-	//	if (FAILED(hr))
-	//	{
-	//		MessageBoxA(NULL, "テクスチャ読み込み失敗", "エラー", MB_ICONERROR | MB_OK);
-	//		return;
-	//	}
-	//}
-	m_pTextureView = TextureManager::GetSRV(imgname);
+	if (m_pTextureView == nullptr) // ★ テクスチャが読み込まれていない場合のみ読み込む
+	{
+		//テクスチャ読み込み
+		hr = DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
+		if (FAILED(hr))
+		{
+			MessageBoxA(NULL, "テクスチャ読み込み失敗", "エラー", MB_ICONERROR | MB_OK);
+			return;
+		}
+	}
+	//m_pTextureView = TextureManager::GetSRV(imgname);
 
 }
 

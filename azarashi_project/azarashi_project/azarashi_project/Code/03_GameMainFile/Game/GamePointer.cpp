@@ -41,8 +41,8 @@ void GamePointer::Update()//Playerのアップデート
 	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
 	int hitObj = 0;
 	for (auto& block : blocks) {
-		collision = BoxCollider::ColliderWithCircle(this, block);
-		if ( collision.checkCollision != NO_COLLISION) {
+		if (BoxCollider::ColliderWithCircle(this, block).checkCollision != NO_COLLISION) {
+			collision = BoxCollider::ColliderWithCircle(this, block);
 			m_Block = block;
 			myCollision = collision;
 			if (hitObj < 2) {
@@ -55,7 +55,7 @@ void GamePointer::Update()//Playerのアップデート
 
 	//自由落下
 	if (hitObj == 0 && behavior == BOUND) {
-			body.FreeFall(body.GetTime());
+		body.FreeFall(body.GetTime());
 	}
 
 
@@ -122,7 +122,6 @@ void GamePointer::Update()//Playerのアップデート
 
 
 	//一回前の当たり判定を記憶
-	oldVectorNum = body.vectorNum;
 	SetPos(GetPos().x + body.GetVector().x, GetPos().y + body.GetVector().y, 0);
 	now = 0;
 }

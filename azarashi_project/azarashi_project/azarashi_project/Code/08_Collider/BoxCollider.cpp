@@ -22,69 +22,53 @@ DirectX::XMFLOAT2 BoxCollider::RotatePosition(/*矩形の中心座標*/DirectX::XMFLOAT
 
 ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_Box)
 {
-    float angle = p_Box->GetAngle();   //角度をラジアンに変換
-    angle = angle * (M_PI / 180.0);
+    TransForm box;
+    TransForm circle;
 
-    DirectX::XMFLOAT3 circlepos = p_Circle->GetPos();   //ポインターを使ってcircleの座標取得
-    DirectX::XMFLOAT3 circlesize = p_Circle->GetSize();  //ポインターを使ってcircleのサイズ取得
-
-    //矩形の幅と高さを半分にしておくことで座標計算が簡単になる
-    DirectX::XMFLOAT2 halfsize = { p_Box->GetSize().x / 2, p_Box->GetSize().y / 2 };//OK
-    DirectX::XMFLOAT2 hitCorners[4];
-    //幅の半分と高さの半分の数値を使って長方形の頂点の座標を計算する(o^―^o)
-    hitCorners[0] = { -halfsize.x , -halfsize.y }; // AS
-    hitCorners[1] = { halfsize.x , -halfsize.y }; // SD
-    hitCorners[2] = { halfsize.x ,   halfsize.y }; // WD
-    hitCorners[3] = { -halfsize.x ,   halfsize.y }; // WA
-
-    //回転後、平行移動後の座標に変換(四つ角すべて)
-    for (int i = 0; i < 4; i++) {
-        hitCorners[i] = RotatePosition(hitCorners[i], angle);//長方形の各角を回転させる
-        hitCorners[i].x += p_Box->GetPos().x;//変換した矩形のXに矩形の中心座標Xを足す
-        hitCorners[i].y += p_Box->GetPos().y;//変換した矩形のYに矩形の中心座標Yを足す
-
-    }//OK
+    box.TransFormInitialize(*p_Box);
+    circle.TransFormInitialize(*p_Circle);
 
     DirectX::XMFLOAT2 normalizedVector = { 0.0f,0.0f };
-    DirectX::XMFLOAT2 closestPoint = { 0.0f,0.0f };
+    DirectX::XMFLOAT2 closestPoint     = { 0.0f,0.0f };
 
     // 各辺と円との距離を判定
     for (int i = 0; i < 4; i++)
     {
-        DirectX::XMFLOAT2 p1 = hitCorners[i];
-        DirectX::XMFLOAT2 p2 = hitCorners[(i + 1) % 4];
+        DirectX::XMFLOAT2 p1 = box.vertex[i];
+        DirectX::XMFLOAT2 p2 = box.vertex[(i + 1) % 4];
 
         // 辺の方向ベクトル
         DirectX::XMFLOAT2 edge = { p2.x - p1.x, p2.y - p1.y };//角から角のベクトルを図るよ
-        DirectX::XMFLOAT2 toCircle = { circlepos.x - p1.x, circlepos.y - p1.y };//点から角のベクトルを図るよ
+        DirectX::XMFLOAT2 toCircle = { circle.position.x - p1.x, circle.position.y - p1.y };//点から角のベクトルを図るよ
 
         float t = fmax(0, fmin(1, (toCircle.x * edge.x + toCircle.y * edge.y) / (edge.x * edge.x + edge.y * edge.y)));
         closestPoint = { p1.x + t * edge.x, p1.y + t * edge.y }; //返す値
 
         // 最近接点と円の中心の距離を計算
-        float distanceSquared = (closestPoint.x - circlepos.x) * (closestPoint.x - circlepos.x) + (closestPoint.y - circlepos.y) * (closestPoint.y - circlepos.y);//返す値
-        float radius = circlesize.y / 2.0;
+        float distanceSquared = (closestPoint.x - circle.position.x) * (closestPoint.x - circle.position.x) + (closestPoint.y - circle.position.y) * (closestPoint.y - circle.position.y);//返す値
+        float radius = circle.halfSize.y;
         if (distanceSquared <= radius * radius)
         {
             float clossPointNum = Math::CalcSquareRoot(closestPoint.x, closestPoint.y);
             for (int j = 0; j < 4; ++j) {
-                float hitCornerNum = Math::CalcSquareRoot(hitCorners[j].x, hitCorners[j].y);
+                float hitCornerNum = Math::CalcSquareRoot(box.vertex[j].x, box.vertex[j].y);
                 float distanceNum = clossPointNum - hitCornerNum;
                 if (distanceNum < 0.0001 && distanceNum > -0.0001) {
                     switch (j) {
-                    case 0: return{ LEFTDOWN  , closestPoint , distanceSquared };     break;
-                    case 1: return{ RIGHTDOWN , closestPoint , distanceSquared };     break;
-                    case 2: return{ RIGHTUP   , closestPoint , distanceSquared };     break;
-                    case 3: return{ LEFTUP    , closestPoint , distanceSquared };     break;
+                    case 0: return{ LEFTDOWN  , (closestPoint, 0.0f) , distanceSquared };     break;
+                    case 1: return{ RIGHTDOWN , (closestPoint, 0.0f) , distanceSquared };     break;
+                    case 2: return{ RIGHTUP   , (closestPoint, 0.0f) , distanceSquared };     break;
+                    case 3: return{ LEFTUP    , (closestPoint, 0.0f) , distanceSquared };     break;
                     }
                 }
             }
-
-            return { COLLISION, closestPoint ,distanceSquared };
+            
+            Radian nrmAngleR = atan2(edge.y, edge.x) + M_PI / 2.0f ;
+            return { COLLISION, (closestPoint, 0.0f) ,distanceSquared };
 
         }
     }
-    return { NO_COLLISION, closestPoint , -1 };
+    return { NO_COLLISION, (closestPoint, 0.0f) , -1 };
 };
 //--------------------------------------------------------------
 //四角と四角の当たり判定関数

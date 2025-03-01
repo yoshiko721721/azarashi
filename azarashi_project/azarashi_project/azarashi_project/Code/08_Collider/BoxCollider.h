@@ -1,5 +1,4 @@
 #pragma once
-#include <DirectXMath.h>
 #include <cmath>
 #include "../08_Collider/Base_collision.h"
 #define _USE_MATH_DEFINES

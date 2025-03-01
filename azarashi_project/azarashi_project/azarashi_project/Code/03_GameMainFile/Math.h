@@ -1,6 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
 #include <functional>
+#include "../01_Direct3D/Object.h"
 
 #define FRAMERATE 60 
 
@@ -48,11 +49,30 @@ struct Vector2 {
 
 };
 
+struct TransForm {
+	Vector2 position;
+	Vector2 halfSize;
+	float   angle;
+	Vector2 vertex[4];
+
+	/// @brief 中心座標、角度、ハーフサイズ 、実際の頂点座標を設定
+	/// @param obj 上記4つに必要な情報を含むオブジェクト
+	/// @return 角度も考慮されたboxにして返す
+	TransForm TransFormInitialize(Object& obj);
+
+	/// @brief 【forループ中に使う前提】４つの頂点を割り当てる
+	/// @param box 中心座標、角度、ハーフサイズの情報を含んだ構造体
+	/// @param i   ループカウンター変数
+	/// @return 頂点を一つずつ返す
+	Vector2   GetObjectVertex(TransForm transForm, int i);
+
+};
+
 
 namespace Math
 {
 
-	const float PI = 3.1416f;
+	const float PI = 3.14159265f;
 	const float TAU = 2 * PI;
 	Radian ConvertToRadian(Degree degree);													//ラジアンの計算
 	Degree ConvertToDegree(Radian radian);													//度数の計算

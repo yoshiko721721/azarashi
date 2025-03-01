@@ -72,3 +72,44 @@ Degree Math::NormalizeDegree(Degree degree)
     else
         return degree;
 }
+
+//======================================
+//          TransFormが持っている関数
+//======================================
+TransForm TransForm::TransFormInitialize(Object& obj)
+{
+    //boxに座標を格納していく
+    TransForm box;
+
+    box.position = { obj.GetPos().x      , obj.GetPos().y };			//座標
+    box.halfSize = { obj.GetSize().x / 2 , obj.GetSize().y / 2 };		//半分のサイズ
+    box.angle = obj.GetAngle();								            //角度
+    for (int i = 0; i < 4; ++i) {
+        box.vertex[i] = GetObjectVertex(box, i);						//回転移動も考慮した頂点
+    }
+    return box;
+}
+
+Vector2 TransForm::GetObjectVertex(TransForm transForm, int i)
+{
+    Vector2 vertex;
+    Radian angle = Math::ConvertToRadian(transForm.angle);
+
+    //場所の設定
+    switch (i)
+    {
+    case 0: vertex = { - transForm.halfSize.x,   transForm.halfSize.y };  break;	//左上
+    case 1: vertex = {   transForm.halfSize.x,   transForm.halfSize.y };  break;	//右上
+    case 2: vertex = {   transForm.halfSize.x, - transForm.halfSize.y };  break;	//右下
+    case 3: vertex = { - transForm.halfSize.x, - transForm.halfSize.y };  break;	//左下
+    default: return { -1.0f , -1.0f };
+    }
+
+    //回転移動
+    vertex.Rotate(angle);
+
+    //中心座標を加算
+    vertex = { vertex.x + transForm.position.x , vertex.y + transForm.position.y };
+
+    return vertex;
+}
