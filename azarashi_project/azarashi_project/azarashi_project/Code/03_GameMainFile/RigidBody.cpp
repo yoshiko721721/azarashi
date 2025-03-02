@@ -55,9 +55,10 @@ void RigidBody::Repulsion()
 	//Vector2 refrected = { vectorNum * cos(finalNormalAngle), 
 	//					  vectorNum * sin(finalNormalAngle) };
 
+	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
 	Radian refrectAngleR = ConvertToRadian(refrectAngleD);
-	Vector2 refrected = { Math::CalcAbs(vector.x) * cos(refrectAngleR),
-						  Math::CalcAbs(vector.y) * sin( refrectAngleR )};
+	Vector2 refrected = { vectorNum * cosf( refrectAngleR ),
+						  vectorNum * sinf( refrectAngleR )};
 
 	//”½”­‚ÌˆÚ“®—Ê‚ðŒvŽZ
 	vector.x = refrected.x * (1.0f - restitution);
@@ -135,7 +136,7 @@ void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circl
 		finalNormalAngle = Math::ConvertToRadian(collision.closspoint.normalAngle);
 	}
 
-	Degree angle = Math::ConvertToDegree(finalNormalAngle);
+	finalNormalAngle = Math::NormalizeRadian(finalNormalAngle);
 
 }
 

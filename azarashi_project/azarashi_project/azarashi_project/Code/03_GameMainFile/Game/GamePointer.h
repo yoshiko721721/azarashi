@@ -52,6 +52,7 @@ private:
 
 	BODY_BEHAVIOR behavior = BOUND;		//アザラシの挙動の状態
 	int boundCounter = 0;				//一定回数バウンドしたら転がる状態になる
+	const int boundLimmit = 4;
 	float oldVectorNum = 0;				//vectorの差を出すための保存用
 
 	int now ;

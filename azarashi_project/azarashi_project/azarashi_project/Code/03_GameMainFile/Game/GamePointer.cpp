@@ -70,19 +70,17 @@ void GamePointer::Update()//Playerのアップデート
 
 			body.CalcFinalNormalAngle(myCollision, *this, *m_Block);	//法線の角度を計算
 
-			switch (behavior) {
-			case BOUND:
-				body.Repulsion();			//反発
-				if ((oldVectorNum - body.vectorNum) < LIMMIT && (oldVectorNum - body.vectorNum) > -LIMMIT) {
-					behavior = ROLLING;
-					body.vector.x = 0;
-					body.vector.y = 0;
-				}
-				break;
-			case ROLLING:
+			//座標を補正
+			CorrectPosition(*m_Block, myCollision, m_Block->GetAngle());
+
+			if (behavior == ROLLING || boundCounter >= 4) {
 				body.HorizonUpdate(*this, *m_Block, AZARASHI_MODE[azaNum], ROLLINGSPEED);			//転がる処理
-				break;
 			}
+			else {
+				boundCounter++;
+				body.Repulsion();			//反発
+			}
+			
 
 			//ジャンプ
 			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) 
@@ -90,10 +88,9 @@ void GamePointer::Update()//Playerのアップデート
 				sound.Play(SOUND_LABEL_SE4);
 				body.AddForce(0.0f, 23.0f);
 				behavior = BOUND;
+				boundCounter = 0;
 			}
 
-			//座標を補正
-			CorrectPosition(*m_Block, myCollision, m_Block->GetAngle());
 
 		}
 	}
