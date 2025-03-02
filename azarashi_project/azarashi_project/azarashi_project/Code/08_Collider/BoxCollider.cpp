@@ -25,21 +25,21 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_B
     TransForm box;
     TransForm circle;
 
-    box.TransFormInitialize(*p_Box);
-    circle.TransFormInitialize(*p_Circle);
+    box = box.TransFormInitialize(*p_Box);
+    circle = circle.TransFormInitialize(*p_Circle);
 
-    DirectX::XMFLOAT2 normalizedVector = { 0.0f,0.0f };
-    DirectX::XMFLOAT2 closestPoint     = { 0.0f,0.0f };
+    Vector2 normalizedVector = { 0.0f,0.0f };
+    Vector2 closestPoint     = { 0.0f,0.0f };
 
     // Še•Ó‚Æ‰~‚Æ‚Ì‹——£‚ð”»’è
     for (int i = 0; i < 4; i++)
     {
-        DirectX::XMFLOAT2 p1 = box.vertex[i];
-        DirectX::XMFLOAT2 p2 = box.vertex[(i + 1) % 4];
+        Vector2 p1 = box.vertex[i];
+        Vector2 p2 = box.vertex[(i + 1) % 4];
 
         // •Ó‚Ì•ûŒüƒxƒNƒgƒ‹
-        DirectX::XMFLOAT2 edge = { p2.x - p1.x, p2.y - p1.y };//Šp‚©‚çŠp‚ÌƒxƒNƒgƒ‹‚ð}‚é‚æ
-        DirectX::XMFLOAT2 toCircle = { circle.position.x - p1.x, circle.position.y - p1.y };//“_‚©‚çŠp‚ÌƒxƒNƒgƒ‹‚ð}‚é‚æ
+        Vector2 edge = { p2.x - p1.x, p2.y - p1.y };//Šp‚©‚çŠp‚ÌƒxƒNƒgƒ‹‚ð}‚é‚æ
+        Vector2 toCircle = { circle.position.x - p1.x, circle.position.y - p1.y };//“_‚©‚çŠp‚ÌƒxƒNƒgƒ‹‚ð}‚é‚æ
 
         float t = fmax(0, fmin(1, (toCircle.x * edge.x + toCircle.y * edge.y) / (edge.x * edge.x + edge.y * edge.y)));
         closestPoint = { p1.x + t * edge.x, p1.y + t * edge.y }; //•Ô‚·’l
@@ -63,8 +63,9 @@ ContactPointVector BoxCollider::ColliderWithCircle(Object* p_Circle, Object* p_B
                 }
             }
             
-            Radian nrmAngleR = atan2(edge.y, edge.x) + M_PI / 2.0f ;
-            return { COLLISION, (closestPoint, 0.0f) ,distanceSquared };
+            Radian nrmAngleR = atan2(edge.y, edge.x) - M_PI / 2.0f ;
+            Degree angle = Math::ConvertToDegree(nrmAngleR);
+            return { COLLISION, {closestPoint, angle} ,distanceSquared };
 
         }
     }

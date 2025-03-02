@@ -45,17 +45,23 @@ void RigidBody::FreeFall(float time)
 //反発の計算
 void RigidBody::Repulsion()
 {
+	//自身のベクトルの向きを求める
+	Degree myAngle = Math::ConvertToDegree(atan2(vector.y, vector.x));
+	Degree nrmAngleD = Math::ConvertToDegree(finalNormalAngle);
+	Degree refrectAngleD = Math::CalcRefrectAngle(myAngle, nrmAngleD);
+
 	//速度ベクトルから長さを計算
-	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
-	Vector2 refrected = { vectorNum * cos(finalNormalAngle), 
-						  vectorNum * sin(finalNormalAngle) };
+	//vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
+	//Vector2 refrected = { vectorNum * cos(finalNormalAngle), 
+	//					  vectorNum * sin(finalNormalAngle) };
+
+	Radian refrectAngleR = ConvertToRadian(refrectAngleD);
+	Vector2 refrected = { Math::CalcAbs(vector.x) * cos(refrectAngleR),
+						  Math::CalcAbs(vector.y) * sin( refrectAngleR )};
 
 	//反発の移動量を計算
-	vector.x = - refrected.x * (1.0f - restitution) ;
-	vector.y = - refrected.y * (1.0f - restitution) ;
-
-	//vevtorに代入
-	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
+	vector.x = refrected.x * (1.0f - restitution);
+	vector.y = refrected.y * (1.0f - restitution);
 
 }
 //力の追加
@@ -106,23 +112,30 @@ bool RigidBody::isHorizonOrVertical(float boxAngle)
 
 void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block)
 {
-	// 接地点から円の中心へのベクトルを計算
-	Vector2 normal = { circle.GetPos().x - collision.closspoint.pos.x , circle.GetPos().y - collision.closspoint.pos.y };
+	if (collision.checkCollision != COLLISION) {
+		// 接地点から円の中心へのベクトルを計算
+		Vector2 normal = { circle.GetPos().x - collision.closspoint.pos.x , circle.GetPos().y - collision.closspoint.pos.y };
 
-	//法線ベクトルの角度
-	Radian nrmAngleR = NormalizeRadian(atan2(normal.y, normal.x));	//0~360に正規化		
-	Degree nrmAngleD = ConvertToDegree((nrmAngleR));
+		//法線ベクトルの角度
+		Radian nrmAngleR = NormalizeRadian(atan2(normal.y, normal.x));	//0~360に正規化		
+		Degree nrmAngleD = ConvertToDegree((nrmAngleR));
 
-	// 衝突位置に応じて法線ベクトルの角度を制限
-	switch (collision.checkCollision) {
-	case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90  + block.GetAngle(), 180 + block.GetAngle())); break;
-	case LEFTDOWN:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 180 + block.GetAngle(), 270 + block.GetAngle())); break;
-	case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0   + block.GetAngle(),  90 + block.GetAngle())); break;
-	case RIGHTDOWN: nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 270 + block.GetAngle(), 360 + block.GetAngle())); break;
+		// 衝突位置に応じて法線ベクトルの角度を制限
+		switch (collision.checkCollision) {
+		case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90  + block.GetAngle(), 180 + block.GetAngle())); break;
+		case LEFTDOWN:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 180 + block.GetAngle(), 270 + block.GetAngle())); break;
+		case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0   + block.GetAngle(),  90 + block.GetAngle())); break;
+		case RIGHTDOWN: nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 270 + block.GetAngle(), 360 + block.GetAngle())); break;
+		}
+
+		// 最終的な法線ベクトルの角度を正規化して保持
+		finalNormalAngle = nrmAngleR;
+	}
+	else {
+		finalNormalAngle = Math::ConvertToRadian(collision.closspoint.normalAngle);
 	}
 
-	// 最終的な法線ベクトルの角度を正規化して保持
-	finalNormalAngle = nrmAngleR;
+	Degree angle = Math::ConvertToDegree(finalNormalAngle);
 
 }
 

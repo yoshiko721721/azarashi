@@ -73,13 +73,15 @@ namespace Math
 {
 
 	const float PI = 3.14159265f;
-	const float TAU = 2 * PI;
+	const float TAU = 2.0f * PI;
 	Radian ConvertToRadian(Degree degree);													//ラジアンの計算
 	Degree ConvertToDegree(Radian radian);													//度数の計算
 	float CoefficientOfRestitution(float v_Initial, float v_After);							//反発係数の計算
 	float CalculateVelocityBeforeImpact(float setHeight, float gravity);					//衝突前の速度計算
 	double calculateRestitutionCoefficient(const std::function<float()>& velocityProvider);	//衝突後の速度計算
 	Vector2 CalcNormal(const Vector2& point1, const Vector2& point2);						//法線ベクトルを計算する
+	float CalcAbs(float result);
+	Degree CalcRefrectAngle(Degree myVec,Degree nrmVec);
 	float CalcSquareRoot(float x, float y);
 	float dot(Vector2 v1,Vector2 v2);
 

@@ -41,6 +41,23 @@ Vector2 Math::CalcNormal(const Vector2& point1, const Vector2& point2)
     return normal.Normalize();
 }
 
+float Math::CalcAbs(float result)
+{
+    if (result < 0) {
+        result *= - 1;
+    }
+    return result;
+}
+
+Degree Math::CalcRefrectAngle(Degree myAngle, Degree nrmAngle)
+{
+    myAngle = Math::NormalizeDegree(myAngle);
+    Degree angle = fmod(myAngle, 180);
+    Degree result = 2 * nrmAngle - angle;
+
+    return result;
+}
+
 float Math::CalcSquareRoot(float x, float y)
 {
     if (x == 0.0f) { return y; }
@@ -98,15 +115,15 @@ Vector2 TransForm::GetObjectVertex(TransForm transForm, int i)
     //場所の設定
     switch (i)
     {
-    case 0: vertex = { - transForm.halfSize.x,   transForm.halfSize.y };  break;	//左上
-    case 1: vertex = {   transForm.halfSize.x,   transForm.halfSize.y };  break;	//右上
-    case 2: vertex = {   transForm.halfSize.x, - transForm.halfSize.y };  break;	//右下
-    case 3: vertex = { - transForm.halfSize.x, - transForm.halfSize.y };  break;	//左下
+    case 0: vertex = { - transForm.halfSize.x, - transForm.halfSize.y };  break;	//左下
+    case 1: vertex = {   transForm.halfSize.x, - transForm.halfSize.y };  break;	//右下
+    case 2: vertex = {   transForm.halfSize.x,   transForm.halfSize.y };  break;	//右上
+    case 3: vertex = { - transForm.halfSize.x,   transForm.halfSize.y };  break;	//左上
     default: return { -1.0f , -1.0f };
     }
 
     //回転移動
-    vertex.Rotate(angle);
+    vertex = vertex.Rotate(angle);
 
     //中心座標を加算
     vertex = { vertex.x + transForm.position.x , vertex.y + transForm.position.y };

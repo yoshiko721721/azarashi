@@ -22,7 +22,7 @@ enum BODY_BEHAVIOR {
 };
 
 const float g = 9.81f;			//d—Í‰Á‘¬“x
-const float restitution = 0.6;	//”½”­ŒW”
+const float restitution = 0.6f;	//”½”­ŒW”
 
 
 class RigidBody

@@ -1,6 +1,7 @@
 #include "GamePointer.h"
 #include "../../03_GameMainFile/Math.h"
 #include "../../08_Collider/BoxCollider.h"
+#include "../../07_Camera/Camera.h"
 #include"../Application.h"
 #include<vector>
 
@@ -37,15 +38,16 @@ void GamePointer::Init()
 
 void GamePointer::Update()//Playerのアップデート
 {
+	Camera::UnLock();
 	Controller::Input::Update();
 	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
 	int hitObj = 0;
 	for (auto& block : blocks) {
-		if (BoxCollider::ColliderWithCircle(this, block).checkCollision != NO_COLLISION) {
-			collision = BoxCollider::ColliderWithCircle(this, block);
+		collision = BoxCollider::ColliderWithCircle(this, block);
+		if (collision.checkCollision != NO_COLLISION) {
 			m_Block = block;
 			myCollision = collision;
-			if (hitObj < 2) {
+			if (hitObj < 4) {
 				m_Blocks[hitObj] = block;
 				hitObj++;
 			}
@@ -65,6 +67,7 @@ void GamePointer::Update()//Playerのアップデート
 		
 		if (m_Block != nullptr)
 		{
+
 			body.CalcFinalNormalAngle(myCollision, *this, *m_Block);	//法線の角度を計算
 
 			switch (behavior) {
@@ -100,7 +103,9 @@ void GamePointer::Update()//Playerのアップデート
 
 
 	//モード切り替え
-	if ((Controller::Input::GetLeftTrigger() > 0 && Controller::Input::GetLeftTrigger() <= 1) && (Controller::Input::GetRightTrigger() >= 0 && Controller::Input::GetRightTrigger() <= 1))
+	if ((Controller::Input::GetLeftTrigger()   > 0 && Controller::Input::GetLeftTrigger() <= 1) &&
+		(Controller::Input::GetRightTrigger() >= 0 && Controller::Input::GetRightTrigger() <= 1) || 
+		Input::GetKeyPress(VK_T))
 	{
 		SetAzaNum(CIRCLE);
 	}
@@ -122,6 +127,7 @@ void GamePointer::Update()//Playerのアップデート
 
 
 	//一回前の当たり判定を記憶
+	oldVectorNum = Math::CalcSquareRoot(body.GetVector().x, body.GetVector().y);
 	SetPos(GetPos().x + body.GetVector().x, GetPos().y + body.GetVector().y, 0);
 	now = 0;
 }
