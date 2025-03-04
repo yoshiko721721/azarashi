@@ -16,10 +16,8 @@ public:
 
         resetPosX = startX;
         resetPosY = startY;
-
         //floorCenterX = floorcenterX;
         //floorCenterY = floorcenterY;
-
         SetPos(pos.x, pos.y, pos.z);
         SetSize(size.x, size.y, size.z);
     }
@@ -27,10 +25,12 @@ public:
 	~TestFloor() { Uninit(); }
 	void Init();  //èâä˙âª
 	void Update();//çXêV
-
+    float nowAngle;
 private:
     int centerX = 1;
     int centerY = 1;
+
+  
 
     float resetPosX;
     float resetPosY;

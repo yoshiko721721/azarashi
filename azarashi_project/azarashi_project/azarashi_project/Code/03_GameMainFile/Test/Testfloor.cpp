@@ -62,7 +62,7 @@ void TestFloor::Update()
    //if (SDL_GameControllerGetSensorData(Controller::Input::controller, SDL_SENSOR_GYRO, gyroData, 3) == 0)
    // {
 
-        float nowAngle = gyroData[1] * 180.0f / M_PI;
+        nowAngle = gyroData[1] * 180.0f / M_PI;
 
         nowAngle = nowAngle * 0.02f; // スケーリング係数を調整 
 

@@ -1,8 +1,9 @@
 #pragma once
 #include "../../01_Direct3D/Object.h"
+#include "GameBlock.h"
 #include "../../02_Input/input.h"
 
-class BreakBlock : public Object
+class BreakBlock : public GameBlock
 {
 public:
     BreakBlock(float startX, float startY, float sizex, float sizey, float setcenterX, float setcenterY)
@@ -19,7 +20,7 @@ public:
         SetPos(pos.x, pos.y, pos.z);
         SetSize(size.x, size.y, size.z);
     }
-    BreakBlock(float posX, float posY, float sizeX, float sizeY) : Object(posX, posY, sizeX, sizeY) {};
+    BreakBlock(float posX, float posY, float sizeX, float sizeY) : GameBlock(posX, posY, sizeX, sizeY) {};
     ~BreakBlock() { Uninit(); }
 
     void Init();    // ‰Šú‰»
@@ -34,7 +35,7 @@ private:
     float frictionRasistance;  // –€CŒW”
     float fallSpeed;           // —‰º‘¬“x
     float respawnTimer;        // •œŠˆ‚Ü‚Å‚ÌŠÔ
-    const float respawnTime = 3.0f;  // •œŠˆ‚Ü‚Å‚ÌŠÔi•bj
+    const float respawnTime = 2.0f;  // •œŠˆ‚Ü‚Å‚ÌŠÔi•bj
     const float bottom = -200.0f;
     float StartPosX;
     float StartPosY;
@@ -44,4 +45,6 @@ private:
 
     float resetPosX;
     float resetPosY;
+
+    int breakBlockCount = 0;
 };

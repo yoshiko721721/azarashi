@@ -138,7 +138,13 @@ void CSVMapLoader::LoadTextures()
 	Flat_PlatformTextures[2] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_02.png");  //傾かない床の各パーツ(2マス)
 	Flat_PlatformTextures[3] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_03.png");  //傾かない床の各パーツ(3マス)
 	Flat_PlatformTextures[4] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_04.png");  //傾かない床の各パーツ(4マス)
-	Flat_PlatformTextures[5] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_05.png");  //傾かない床の各パーツ(5マス)
+	Flat_PlatformTextures[5] = LoadTexture(L"asset/pic/Block/Block_04/Block_04_05.png");//傾かない床の各パーツ(5マス)
+
+	Break_PlatformTextures[1] = LoadTexture(L"asset/pic/Block_03.png");
+	Break_PlatformTextures[2] = LoadTexture(L"asset/pic/Block/Block_03/Block_03_02.png");
+	Break_PlatformTextures[3] = LoadTexture(L"asset/pic/Block/Block_03/Block_03_03.png");
+	Break_PlatformTextures[4] = LoadTexture(L"asset/pic/Block/Block_03/Block_03_04.png");
+	Break_PlatformTextures[5] = LoadTexture(L"asset/pic/Block/Block_03/Block_03_05.png");
 }
 
 //--------------------------------------------------------
@@ -298,8 +304,17 @@ GamePointer* CSVMapLoader::AddObject(std::vector<std::unique_ptr<Object>>* m_MyS
 			}
 			case BREAK_PLATFORM:
 			{
-				auto newChip = Application::GetInstance()->AddObject<BreakBlock>(x, y, BLOCKSIZE, BLOCKSIZE, stagewide, stagehigt);
-				newChip->SetTexture(textures[data[i][j]]);
+				int k = 1;
+				while (data[i][j] == data[i][j + k])
+				{
+					data[i][j + k] = 0;
+					k++;
+
+				}
+				int l;
+
+				auto newChip = Application::GetInstance()->AddObject<BreakBlock>(x + 128 * (k / 2), y, BLOCKSIZE * k, BLOCKSIZE);
+				newChip->SetTexture(Break_PlatformTextures[k]);
 				newChip->Init();
 				m_MySceneObjects->emplace_back(newChip);
 				//x += 64;

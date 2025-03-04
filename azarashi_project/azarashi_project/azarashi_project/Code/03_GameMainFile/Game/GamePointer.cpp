@@ -38,7 +38,7 @@ void GamePointer::Init()
 
 void GamePointer::Update()//Playerのアップデート
 {
-	Camera::UnLock();
+	//Camera::UnLock();
 	Controller::Input::Update();
 	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
 	int hitObj = 0;
@@ -82,11 +82,16 @@ void GamePointer::Update()//Playerのアップデート
 			}
 			
 
+			Radian forceAngle = Math::ConvertToRadian(myCollision.closspoint.normalAngle);
 			//ジャンプ
 			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) 
 			{
 				sound.Play(SOUND_LABEL_SE4);
-				body.AddForce(0.0f, 23.0f);
+				body.vectorNum = 23.0f;
+				Vector2 force = { body.vectorNum * cos(forceAngle),
+								  body.vectorNum * sin(forceAngle)};
+				body.AddForce(force.x, force.y);
+
 				behavior = BOUND;
 				boundCounter = 0;
 			}
