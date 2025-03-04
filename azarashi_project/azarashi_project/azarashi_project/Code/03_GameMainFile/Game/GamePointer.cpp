@@ -21,7 +21,7 @@ void GamePointer::Init()
 	//SetSize(100.0f, 100.0f, 0.0f);		  //大きさを設定
 	SetAngle(0.0f);						  //角度を設定
 	SetColor(1.0f, 1.0f, 1.0f, 1.0f);	  //色を設定
-
+	SetSize(SIZE_POINTER_STAND, SIZE_POINTER_CIRCLE, 0.0f);
 	circle.radius = GetPos().y / 2;
 
 	body.SetMass(7.0f);					  //質量を設定
@@ -29,7 +29,10 @@ void GamePointer::Init()
 	body.SetMag(7.0f);					  //倍率を設定
 	body.SetVector(0.0f, 0.0f);
 
-	now = 0;
+	textures[CIRCLE] = LoadTexture(AZARASHI_PICTURE_CIRCLE);
+	textures[STAND]  = LoadTexture(AZARASHI_PICTURE_STAND);
+	
+		now = 0;
 }
 
 //===========================================
@@ -87,11 +90,7 @@ void GamePointer::Update()//Playerのアップデート
 			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) 
 			{
 				sound.Play(SOUND_LABEL_SE4);
-				body.vectorNum = 23.0f;
-				Vector2 force = { body.vectorNum * cos(forceAngle),
-								  body.vectorNum * sin(forceAngle)};
-				body.AddForce(force.x, force.y);
-
+				PointerJump(myCollision.closspoint.normalAngle);
 				behavior = BOUND;
 				boundCounter = 0;
 			}
@@ -118,8 +117,14 @@ void GamePointer::Update()//Playerのアップデート
 	//モードチェンジ
 	if (isChangeMode()) {
 		switch (azaNum) {
-		case CIRCLE: Initialize(AZARASHI_PICTURE_CIRCLE); break;
-		case STAND:  Initialize(AZARASHI_PICTURE_STAND);  break;
+		case CIRCLE: m_pTextureView = textures[CIRCLE]; 
+					 SetSize(SIZE_POINTER_CIRCLE, SIZE_POINTER_CIRCLE, 0.0f);
+			break;
+		case STAND:  m_pTextureView = textures[STAND];  
+					 float standAngle = myCollision.closspoint.normalAngle - 90.0f;
+					 SetSize(SIZE_POINTER_STAND, SIZE_POINTER_CIRCLE, 0.0f);
+					 SetAngle(standAngle);
+			break;
 		}
 	}
 	//横移動と連動した画像の回転
@@ -150,14 +155,36 @@ void GamePointer::RotateTexture()  //引数　：　当たった物体の摩擦抵抗
 	float tempAngle = GetAngle();
 
 	if (body.GetVector().x < 0)
-		tempAngle -= body.GetVector().x + AZARASHI_MODE[azaNum];
+		tempAngle -= body.GetVector().x / 10.0f + AZARASHI_MODE[azaNum];
 	else if (body.GetVector().x > 0)
-		tempAngle -= body.GetVector().x + AZARASHI_MODE[azaNum];
+		tempAngle -= body.GetVector().x / 10.0f + AZARASHI_MODE[azaNum];
 
 	tempAngle -= body.vector.x;
 
 	SetAngle(tempAngle);
 }
+
+void GamePointer::PointerJump(float angle)
+{
+	Radian forceAngle = Math::ConvertToRadian(angle);
+	body.vectorNum = FORCE_JUMP;
+	Vector2 force = { body.vectorNum * cos(forceAngle),
+					  body.vectorNum * sin(forceAngle)};
+
+	body.AddForce(force.x, force.y);
+}
+
+ID3D11ShaderResourceView* GamePointer::LoadTexture(const wchar_t* filename)
+{
+	HRESULT hr = DirectX::CreateWICTextureFromFile(g_pDevice, filename, NULL, &m_pTextureView);
+	if (FAILED(hr))
+	{
+		MessageBoxA(NULL, "テクスチャ読み込み失敗", "エラー", MB_ICONERROR | MB_OK);
+	}
+	return m_pTextureView;
+}
+
+
 
 bool GamePointer::isChangeMode()
 {

@@ -7,9 +7,13 @@
 #include "GameBlock.h"
 #include "../../09_Sound/sound.h"
 
-#define AZARASHI_PICTURE_CIRCLE L"Asset/pic/Player_Round.png"
-#define AZARASHI_PICTURE_STAND  L"Asset/pic/azarasi.png"
+#define AZARASHI_PICTURE_CIRCLE L"Asset/pic/Player_Round_Copy.png"
+#define AZARASHI_PICTURE_STAND  L"Asset/pic/Player_Idle_Copy.png"
 
+#define FORCE_JUMP 23.0f
+
+#define SIZE_POINTER_CIRCLE 128.0f
+#define SIZE_POINTER_STAND  194.7f
 
 class GamePointer :public Object
 {
@@ -29,9 +33,10 @@ public:
 	AZA_MODE_NUMMBER azaNum = STAND;
 	AZA_MODE_NUMMBER oldAzaNum = azaNum;
 
-	//テクスチャ用変数
-	ID3D11ShaderResourceView* texture_Circle;
-	ID3D11ShaderResourceView* texture_Stand;
+	void PointerJump(float angle);
+
+	ID3D11ShaderResourceView* LoadTexture(const wchar_t* filename);
+
 
 	bool isChangeMode();									//アザラシのモード比較
 	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット
@@ -49,6 +54,8 @@ private:
 	Circle circle;				//
 	RigidBody body;										//物理挙動を持たせる
 	const float AZARASHI_MODE[MODENUM] = { 0.1 , 0.9 };	// 摩擦係数
+	//テクスチャ用変数
+	ID3D11ShaderResourceView* textures[2];
 
 	BODY_BEHAVIOR behavior = BOUND;		//アザラシの挙動の状態
 	int boundCounter = 0;				//一定回数バウンドしたら転がる状態になる

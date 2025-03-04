@@ -48,12 +48,13 @@ void RigidBody::Repulsion()
 	//自身のベクトルの向きを求める
 	Degree myAngle = Math::ConvertToDegree(atan2(vector.y, vector.x));
 	Degree nrmAngleD = Math::ConvertToDegree(finalNormalAngle);
+
+
 	Degree refrectAngleD = Math::CalcRefrectAngle(myAngle, nrmAngleD);
 
-	//速度ベクトルから長さを計算
-	//vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
-	//Vector2 refrected = { vectorNum * cos(finalNormalAngle), 
-	//					  vectorNum * sin(finalNormalAngle) };
+	if (nrmAngleD > 180.0f) {
+		refrectAngleD += 180.0f;
+	}
 
 	vectorNum = Math::CalcSquareRoot(vector.x, vector.y);
 	Radian refrectAngleR = ConvertToRadian(refrectAngleD);
