@@ -112,7 +112,7 @@ bool RigidBody::isHorizonOrVertical(float boxAngle)
 /// @param circle 円の情報
 /// @param block 四角形の情報
 
-void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block)
+float RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circle, Object& block)
 {
 	if (collision.checkCollision != COLLISION) {
 		// 接地点から円の中心へのベクトルを計算
@@ -124,9 +124,9 @@ void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circl
 
 		// 衝突位置に応じて法線ベクトルの角度を制限
 		switch (collision.checkCollision) {
-		case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90  + block.GetAngle(), 180 + block.GetAngle())); break;
+		case LEFTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 90 + block.GetAngle(), 180 + block.GetAngle())); break;
 		case LEFTDOWN:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 180 + block.GetAngle(), 270 + block.GetAngle())); break;
-		case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0   + block.GetAngle(),  90 + block.GetAngle())); break;
+		case RIGHTUP:	nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 0 + block.GetAngle(), 90 + block.GetAngle())); break;
 		case RIGHTDOWN: nrmAngleR = ConvertToRadian(clamp(nrmAngleD, 270 + block.GetAngle(), 360 + block.GetAngle())); break;
 		}
 
@@ -138,7 +138,7 @@ void RigidBody::CalcFinalNormalAngle(ContactPointVector collision, Object& circl
 	}
 
 	finalNormalAngle = Math::NormalizeRadian(finalNormalAngle);
-
+	return finalNormalAngle;
 }
 
 //==============================================

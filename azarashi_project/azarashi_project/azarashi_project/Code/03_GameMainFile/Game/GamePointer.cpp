@@ -45,11 +45,15 @@ void GamePointer::Update()//Playerのアップデート
 	Controller::Input::Update();
 	std::vector<GameBlock*> blocks = Application::GetInstance()->GetObjects<GameBlock>();
 	int hitObj = 0;
+	float nrmAngle = 0.0f;
+	float distance = 0.0f;
 	for (auto& block : blocks) {
 		collision = BoxCollider::ColliderWithCircle(this, block);
 		if (collision.checkCollision != NO_COLLISION) {
 			m_Block = block;
 			myCollision = collision;
+			distance += collision.distanceSquared;
+			nrmAngle += body.CalcFinalNormalAngle(myCollision, *this, *block);	//法線の角度を計算
 			if (hitObj < 4) {
 				m_Blocks[hitObj] = block;
 				hitObj++;
@@ -58,9 +62,17 @@ void GamePointer::Update()//Playerのアップデート
 		}
 	}
 
+
 	//自由落下
 	if (hitObj == 0 && behavior == BOUND) {
 		body.FreeFall(body.GetTime());
+	}
+	else if (hitObj > 0) {
+		//座標を補正
+		nrmAngle /= (float)hitObj;
+		distance /= (float)hitObj;
+		CorrectPosition(*m_Block, distance, nrmAngle);
+
 	}
 
 
@@ -71,10 +83,7 @@ void GamePointer::Update()//Playerのアップデート
 		if (m_Block != nullptr)
 		{
 
-			body.CalcFinalNormalAngle(myCollision, *this, *m_Block);	//法線の角度を計算
-
-			//座標を補正
-			CorrectPosition(*m_Block, myCollision, m_Block->GetAngle());
+			
 
 			if (behavior == ROLLING || boundCounter >= 4) {
 				body.HorizonUpdate(*this, *m_Block, AZARASHI_MODE[azaNum], ROLLINGSPEED);			//転がる処理
@@ -85,7 +94,6 @@ void GamePointer::Update()//Playerのアップデート
 			}
 			
 
-			Radian forceAngle = Math::ConvertToRadian(myCollision.closspoint.normalAngle);
 			//ジャンプ
 			if (Input::GetKeyTrigger(VK_RETURN) || Input::GetButtonTrigger(XINPUT_A)) 
 			{
@@ -170,7 +178,7 @@ void GamePointer::PointerJump(float angle)
 	body.vectorNum = FORCE_JUMP;
 	Vector2 force = { body.vectorNum * cos(forceAngle),
 					  body.vectorNum * sin(forceAngle)};
-
+	
 	body.AddForce(force.x, force.y);
 }
 
@@ -205,18 +213,18 @@ void GamePointer::SetAzaNum(AZA_MODE_NUMMBER m_AzaNum)
 /// @param clossPoint 円と四角形の接地点
 /// @param distanceSquared 円の中心座標とclossPointの距離 
 /// @param angle blockの角度
-void GamePointer::CorrectPosition(Object& block, ContactPointVector collision, float angle)
+void GamePointer::CorrectPosition(Object& block, float distancesqured, float angle)
 {
 	// 正式な距離を計算
-	float distance = sqrt(collision.distanceSquared);
+	float distance = sqrt(distancesqured);
 	// 円の重なり距離を計算
-	float overlap = (GetSize().y / 2) - distance;
+	float overlap = (GetSize().y / 2.0f) - distance;
 	// ブロックの回転角度に基づく法線の計算
 	XMFLOAT2 blockNormal = {
-		cos(body.GetFinalAngle()),
-		sin(body.GetFinalAngle())
+		cos(angle) * overlap,
+		sin(angle) * overlap
 	};
-	SetPos(GetPos().x + blockNormal.x * overlap, GetPos().y + blockNormal.y * overlap, 0);
+	SetPos(GetPos().x + blockNormal.x , GetPos().y + blockNormal.y , 0.0f);
 
 }
 

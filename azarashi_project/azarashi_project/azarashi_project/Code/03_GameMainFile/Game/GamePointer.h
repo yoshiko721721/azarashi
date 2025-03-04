@@ -41,7 +41,7 @@ public:
 	bool isChangeMode();									//アザラシのモード比較
 	void SetAzaNum(AZA_MODE_NUMMBER m_azaNum);				//アザラシの画像セット
 
-	void CorrectPosition(Object& block, ContactPointVector collision, float angle);		//座標の補正
+	void CorrectPosition(Object& block, float distance, float angle);		//座標の補正
 
 	int GetNowHits();
 	void NowHitsCounter(int count);
